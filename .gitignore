@@ -1,0 +1,23 @@
+# Raw source files — large binaries, re-downloadable from arXiv
+research_vault/raw/papers/*.pdf
+research_vault/raw/papers/*.PDF
+research_vault/raw/assets/
+
+# Obsidian — keep plugin/theme config, skip noisy workspace state
+research_vault/.obsidian/workspace.json
+research_vault/.obsidian/workspace-mobile.json
+research_vault/.obsidian/cache
+
+# Claude Code local settings (machine-specific)
+.claude/
+
+# Copilot local data
+research_vault/copilot/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~

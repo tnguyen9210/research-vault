@@ -1,0 +1,69 @@
+# Operation Log
+
+Append-only. Each entry: `## [YYYY-MM-DD] <operation> | <title or summary>`  
+Parse with: `grep "^## \[" wiki/log.md`
+
+---
+
+## [2026-05-28] ingest | Improved Offline Contextual Bandits with Second-Order Bounds (COLT 2025)
+
+- Copied raw file `2502.10826v2.pdf` → `raw/papers/Ryu2025Improved.pdf`; removed misplaced copy from `wiki/papers/`
+- Created `wiki/papers/Ryu2025Improved.md`
+- Created concept page: importance-weighting
+- Created author pages: Ryu-J-Jon, Jun-Kwang-Sung
+- Updated contextual-bandits.md (Key Papers + Variants), topics/offline-oracle-efficient-bandits.md (new Adjacent section)
+- Updated overview.md (6 papers, new offline-policy-optimization thread), index.md (5 new entries), log.md
+
+## [2026-05-28] ingest | Predicting and improving test-time scaling laws (arXiv 2026)
+
+- Renamed raw file `2602.01485v1.pdf` → `Li2026Predicting.pdf`
+- Created `wiki/papers/Li2026Predicting.md`
+- Created concept pages: test-time-scaling, slg-search
+- Created author pages: Li-Muheng, Qian-Jian, Mou-Wenlong
+- Created topic page: test-time-scaling
+- Updated overview.md (5 papers, new LLM test-time area), index.md (9 new entries)
+
+## [2026-05-27] ingest | Power Mean Estimation in Stochastic MCTS (arXiv 2024)
+
+- Renamed raw file `2406.02235v1.pdf` → `Dam2024Power.pdf`
+- Created `wiki/papers/Dam2024Power.md`
+- Created concept pages: monte-carlo-tree-search, power-mean-mcts
+- Created author pages: Dam-Tuan, Maillard-Odalric-Ambrym, Kaufmann-Emilie
+- Created topic page: monte-carlo-tree-search
+- Updated overview.md (4 papers, new MCTS area), index.md (8 new entries), log.md
+
+## [2026-05-27] ingest | Bypassing the Monster (Mathematics of Operations Research 2022)
+
+- Renamed raw file `2003.12699v5.pdf` → `SimchiLevi2022Bypassing.pdf`
+- Created `wiki/papers/SimchiLevi2022Bypassing.md`
+- Created concept page: realizability
+- Created author pages: Simchi-Levi-David, Xu-Yunzong
+- Updated oracle-efficiency.md, offline-oracle-efficient-bandits.md (FALCON now linked)
+- Updated overview.md (3 papers), index.md (5 new entries)
+
+## [2026-05-27] ingest | Cost Aware Best Arm Identification (arXiv 2024)
+
+- Renamed raw file `2402.16710v2.pdf` → `Kanarios2024Cost.pdf`
+- Created `wiki/papers/Kanarios2024Cost.md`
+- Created concept pages: best-arm-identification, cabai
+- Created author pages: Kanarios-Kellen, Zhang-Qining, Ying-Lei
+- Created topic page: best-arm-identification
+- Updated overview.md (now covers 2 papers/2 areas), index.md (10 new entries)
+
+## [2026-05-27] ingest | Taming the Monster Every Context (arXiv 2026)
+
+- Created `wiki/papers/Qin2026Taming.md`
+- Created concept pages: contextual-bandits, oracle-efficiency, offline-regression-oracle, exploitative-f-design, doec, dec
+- Created author pages: Zhang-Chicheng (advisor), Qin-Hao
+- Created topic page: offline-oracle-efficient-bandits
+- Updated index.md (8 new entries), overview.md (1 paper ingested), log.md
+- Removed venues category from schema per user preference
+- Note: ε-SEC concept page deferred; referenced as [[epsilon-sec]] from doec.md
+
+## [2026-05-27] setup | Wiki initialized
+
+- Created folder structure: raw/papers, raw/assets, wiki/{papers,concepts,authors,venues,topics,queries}
+- Created CLAUDE.md schema (ingest, query, lint workflows; page format specs)
+- Created index.md and log.md
+- Created overview.md as blank slate for synthesis
+- Domain: ML/AI research; primary sources: academic papers
