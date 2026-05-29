@@ -11,8 +11,9 @@ research_vault/.obsidian/cache
 # Claude Code local settings (machine-specific)
 .claude/
 
-# Copilot local data
+# Copilot local data (may contain API keys)
 research_vault/copilot/
+research_vault/.obsidian/plugins/copilot/data.json
 
 # OS / editor noise
 .DS_Store

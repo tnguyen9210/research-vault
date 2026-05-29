@@ -5,6 +5,25 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-05-28] ingest | Stochastically Constrained BAI with Thompson Sampling (arXiv 2025)
+
+- Renamed raw file `2501.03877v1.pdf` → `raw/papers/Yang2025Stochastically.pdf`
+- Created `wiki/papers/Yang2025Stochastically.md`
+- Created author pages: Yang-Le, Wang-Yi
+- Updated constrained-bai.md: added BFAI-TS entry + fixed-confidence vs. fixed-budget comparison table
+- Updated topics/best-arm-identification.md: added Yang2025Stochastically entry
+- Updated overview.md (8 papers), index.md (3 new entries), log.md
+
+## [2026-05-28] ingest | Constrained Best Arm Identification (NeurIPS 2025)
+
+- Renamed raw file `28162_Constrained_Best_Arm_Ide.pdf` → `raw/papers/Lardy2025Constrained.pdf`
+- Created `wiki/papers/Lardy2025Constrained.md`
+- Created concept page: constrained-bai
+- Created author pages: Lardy-Tyron, Koolen-Wouter-M
+- Updated best-arm-identification.md (concept + topic): added CBAI entry and CABAI vs. CBAI comparison table
+- Updated cabai.md: added distinction from [[constrained-bai]]
+- Updated overview.md (7 papers, CABAI/CBAI paragraph), index.md (5 new entries), log.md
+
 ## [2026-05-28] ingest | Improved Offline Contextual Bandits with Second-Order Bounds (COLT 2025)
 
 - Copied raw file `2502.10826v2.pdf` → `raw/papers/Ryu2025Improved.pdf`; removed misplaced copy from `wiki/papers/`

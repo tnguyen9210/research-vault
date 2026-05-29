@@ -2,7 +2,7 @@
 
 *Synthesis of the research area as represented by papers in this vault. Updated incrementally with each ingest.*
 
-**Sources ingested:** 6  
+**Sources ingested:** 8  
 **Last updated:** 2026-05-28
 
 ---
@@ -15,7 +15,7 @@ The vault covers two complementary areas of bandit research:
 
 **Offline policy optimization (off-policy learning):** Given a fixed log of $n$ interactions from a behavior policy, find the best policy without further interaction. [[Ryu2025Improved]] (COLT 2025) establishes new state-of-the-art bounds: PUB achieves parameter-free variance-adaptive off-policy selection via betting-based LCBs for unbounded importance-weighted rewards; the freezing score function reduces variance in small-data regimes. Key distinction from the oracle-efficient line: no online loop, no oracle calls — pure offline optimization.
 
-**Cost-aware pure exploration (best arm identification):** Fixed-confidence identification of the best arm at minimum cumulative testing cost. [[Kanarios2024Cost]] introduces CABAI, establishing that optimal arm sampling proportions scale with √c_a — a non-obvious structural result that invalidates standard BAI algorithms under heterogeneous costs.
+**Cost-aware pure exploration (best arm identification):** Two complementary cost-aware extensions of standard BAI. [[Kanarios2024Cost]] introduces CABAI: minimize cumulative testing cost $\sum_t C_t$ to find the best arm; optimal proportions scale with $\sqrt{c_a}$. [[Lardy2025Constrained]] introduces CBAI (fixed-confidence): find the best-reward arm among those whose *mean cost* is $\leq \gamma$; handles dependent reward-cost; optimal TaS for three model families. [[Yang2025Stochastically]] addresses the fixed-budget regime (BFAI): Thompson sampling with top-two framework (BFAI-TS) achieves asymptotically optimal exponential PFS decay rate $\Gamma_{\beta^*}$ under $m$ simultaneous Gaussian constraints.
 
 **LLM test-time scaling:** [[Li2026Predicting]] introduces tail-guided scaling law prediction and SLG Search, showing adaptive two-stage compute allocation achieves polynomial amplification over Best-of-$N$. Structural connection to BAI: state selection in SLG is a fixed-budget BAI problem.
 
@@ -26,7 +26,7 @@ The vault covers two complementary areas of bandit research:
 - **Unifying offline and online oracle design** — [[Qin2026Taming]] establishes the first formal bridge between DOEC (offline) and DEC (online)
 - **Offline policy optimization** — [[Ryu2025Improved]] shows parameter-free pessimism (PUB) and aggressive variance reduction (freezing) work; doubly robust bounds and deeper trees are open
 - **Complexity measures for exploration** — DOEC, DEC, Eluder dimension; their mutual relationships are active
-- **BAI with practical constraints** — [[Kanarios2024Cost]] opens cost-aware BAI; safety constraints and multi-fidelity are adjacent active areas
+- **BAI with practical constraints** — [[Kanarios2024Cost]] (cost-minimization) and [[Lardy2025Constrained]] (cost-threshold, dependent distributions) open two complementary directions; safety constraints and multi-fidelity are adjacent
 - **Extensions beyond iid bandits** — misspecification, reward corruption, distribution shift handled in [[Qin2026Taming]]; regret-setting CABAI and partial monitoring are open
 - **MCTS in stochastic environments** — [[Dam2024Power]] provides first complete convergence theory; optimal $p$ selection, adversarial extension, and deep learning integration are open
 - **Test-time compute optimization** — [[Li2026Predicting]] establishes tail-extrapolation scaling law prediction; deeper trees, PRM integration, and non-Gaussian tails are open
