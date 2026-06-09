@@ -2,8 +2,8 @@
 
 *Synthesis of the research area as represented by papers in this vault. Updated incrementally with each ingest.*
 
-**Sources ingested:** 8  
-**Last updated:** 2026-05-28
+**Sources ingested:** 9  
+**Last updated:** 2026-06-08
 
 ---
 
@@ -17,6 +17,8 @@ The vault covers two complementary areas of bandit research:
 
 **Cost-aware pure exploration (best arm identification):** Two complementary cost-aware extensions of standard BAI. [[Kanarios2024Cost]] introduces CABAI: minimize cumulative testing cost $\sum_t C_t$ to find the best arm; optimal proportions scale with $\sqrt{c_a}$. [[Lardy2025Constrained]] introduces CBAI (fixed-confidence): find the best-reward arm among those whose *mean cost* is $\leq \gamma$; handles dependent reward-cost; optimal TaS for three model families. [[Yang2025Stochastically]] addresses the fixed-budget regime (BFAI): Thompson sampling with top-two framework (BFAI-TS) achieves asymptotically optimal exponential PFS decay rate $\Gamma_{\beta^*}$ under $m$ simultaneous Gaussian constraints.
 
+**Budget-limited cumulative-reward bandits (cost-aware regret):** The cumulative-reward counterpart to the cost-aware BAI thread. [[TranThanh2012Knapsack]] introduces the [[budget-limited-mab]] — a single shared budget $B$ caps both exploration and exploitation, making the full-information optimum an *unbounded knapsack* on reward densities $\mu_i/c_i$. [[kube]] and fractional KUBE are the first algorithms achieving the optimal $O(\ln B)$ regret (with a matching lower bound), beating the $O(B^{2/3})$ $\varepsilon$-first baseline. Fractional KUBE is the budget-limited analogue of UCB. This directly answers the "cost-aware regret-minimization analogue of CABAI" question raised by the BAI thread.
+
 **LLM test-time scaling:** [[Li2026Predicting]] introduces tail-guided scaling law prediction and SLG Search, showing adaptive two-stage compute allocation achieves polynomial amplification over Best-of-$N$. Structural connection to BAI: state selection in SLG is a fixed-budget BAI problem.
 
 **Planning / MCTS:** [[Dam2024Power]] opens a fourth research direction — theoretical foundations of MCTS in stochastic environments. Uses power mean value backup to fix UCT's flawed logarithmic bonus, proving $\mathcal{O}(n^{-1/2})$ convergence. Notable cross-vault link: [[Kaufmann-Emilie]] co-authored both this paper and TAS (the BAI baseline in [[Kanarios2024Cost]]).
@@ -27,6 +29,7 @@ The vault covers two complementary areas of bandit research:
 - **Offline policy optimization** — [[Ryu2025Improved]] shows parameter-free pessimism (PUB) and aggressive variance reduction (freezing) work; doubly robust bounds and deeper trees are open
 - **Complexity measures for exploration** — DOEC, DEC, Eluder dimension; their mutual relationships are active
 - **BAI with practical constraints** — [[Kanarios2024Cost]] (cost-minimization) and [[Lardy2025Constrained]] (cost-threshold, dependent distributions) open two complementary directions; safety constraints and multi-fidelity are adjacent
+- **Cost/budget-constrained bandits across objectives** — [[budget-limited-bandits]] unifies cumulative-reward ([[TranThanh2012Knapsack]]) and pure-exploration ([[Kanarios2024Cost]]) cost-aware bandits; open frontiers: tight constants, non-stationary costs, multiple resource constraints (bandits-with-knapsacks)
 - **Extensions beyond iid bandits** — misspecification, reward corruption, distribution shift handled in [[Qin2026Taming]]; regret-setting CABAI and partial monitoring are open
 - **MCTS in stochastic environments** — [[Dam2024Power]] provides first complete convergence theory; optimal $p$ selection, adversarial extension, and deep learning integration are open
 - **Test-time compute optimization** — [[Li2026Predicting]] establishes tail-extrapolation scaling law prediction; deeper trees, PRM integration, and non-Gaussian tails are open
@@ -43,7 +46,7 @@ The vault covers two complementary areas of bandit research:
 - Are there information-theoretic lower bounds matching DOEC?
 - Can CO's optimality be proved for $K > 2$ arms?
 - Can OE2D extend to RLHF and partial monitoring?
-- Is there a cost-aware regret minimization analogue of CABAI?
+- ~~Is there a cost-aware regret minimization analogue of CABAI?~~ — yes: the [[budget-limited-mab]] / [[kube]] ([[TranThanh2012Knapsack]]). Remaining: tight constants, non-stationary rewards/costs.
 - Can PUB's learning bound (Thm 4.3 in [[Ryu2025Improved]]) be tightened to match its selection bound — scaling with $\sqrt{\bar{\mathbb{V}}(\pi^*)}$ rather than raw second moment?
 
 ## Suggested Next Sources

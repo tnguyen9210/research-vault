@@ -5,6 +5,29 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-06-09] update | KUBE vs. fractional KUBE comparison
+
+- Added "## KUBE vs. Fractional KUBE" section to `concepts/kube.md`: same objective, per-step knapsack-solver fork (greedy multiset + sampling vs. fractional relaxation = UCB-on-densities), side-by-side table, and the bound-vs-practice inversion (fractional has tighter bound but KUBE wins ≤40% under diverse costs).
+- Trimmed the now-redundant Fractional-KUBE bullet in "Variants" to a pointer to the new section.
+- No new pages or links; no other files touched.
+
+## [2026-06-08] ingest | Knapsack-based Optimal Policies for Budget-Limited MAB (AAAI 2012)
+
+- Renamed raw `1204.1909v1.pdf` → `TranThanh2012Knapsack.pdf`
+- Created `wiki/papers/TranThanh2012Knapsack.md`
+- Created concept pages: budget-limited-mab, kube
+- Created author pages: Tran-Thanh-Long (first), Rogers-Alex, Jennings-Nicholas-R (senior)
+- Created topic page: budget-limited-bandits (cost/budget-constrained bandits; reward vs. pure-exploration)
+- Cross-linked [[Kanarios2024Cost]] (Contrast: shared-budget regret vs. fixed-confidence cost minimization)
+- Updated index.md (7 new entries)
+- New thread: first budget-limited/cost-bandit family in the vault. Stubs referenced but not created: [[TranThanh2010Epsilon]] (the ε-first predecessor), [[upper-confidence-bound]]
+
+## [2026-05-31] update | Removed stale empty venues/ directory
+
+- Deleted empty `wiki/venues/` (contained no files); the venues category was already removed from the schema on 2026-05-27 during the Qin2026Taming ingest.
+- No wiki pages, `[[links]]`, or `CLAUDE.md` references affected.
+- `wiki/` now contains: papers, concepts, authors, topics, queries.
+
 ## [2026-05-28] ingest | Stochastically Constrained BAI with Thompson Sampling (arXiv 2025)
 
 - Renamed raw file `2501.03877v1.pdf` → `raw/papers/Yang2025Stochastically.pdf`
