@@ -155,6 +155,7 @@ Gradient noise argument: less overestimation
 - [[overestimation-bias]] — the key mechanism softmax corrects in deep Q-learning
 - [[deep-q-network]] — the base algorithm (DQN/DDQN) on which S-DQN/S-DDQN are built
 - [[monte-carlo-tree-search]] — loose connection via [[Dam2024Power]]: both use softmax/power-mean backups to improve on the max operator in tree/value-based planning
+- **Thematic parallel:** [[Kostrikov2022Offline]] — IQL replaces the max with an upper $\tau$-expectile over dataset actions. Closest relative of this paper in the vault, with an instructive asymmetry: here the max is available and softened to reduce [[overestimation-bias]]; there the max is unavailable (out-of-sample actions cannot be queried) and the smooth statistic is the only way to approximate it. This paper supplies the finite-$\tau$ gap bound that IQL's asymptotic Theorem 3 lacks
 - [[Song-Zhao]], [[Parr-Ronald-E]], [[Carin-Lawrence]] — authors
 
 ## Open Questions

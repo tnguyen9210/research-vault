@@ -35,7 +35,8 @@ This satisfies $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_\text{cov}(\pi^*_\be
 - [[realizability]] — analogous assumption: $\pi^*_\beta \in \Pi$; coverage is a *computational* condition whereas realizability is *statistical*
 - [[contextual-bandits]] — in standard contextual bandits, importance weights play a similar coverage role; $C_\text{cov}$ is the LM alignment analogue
 - [[dec]] — DEC and DOEC measure statistical complexity of bandit algorithms; $C_\text{cov}$ measures computational complexity in the sampling oracle framework
+- [[implicit-q-learning]] — offline RL's support condition $\pi_\beta(a|s) > 0$ is the binary, density-free analogue of $C_\text{cov}$: [[Kostrikov2022Offline]] proves convergence to the support-constrained optimum but cannot say how large $\tau$ must be, precisely because a support indicator carries no density information
 
 ## Current State
 
-Active area. [[Foster2025Foundation]] establishes $C_\text{cov}$ as the right complexity measure for the sampling oracle framework. Empirical evidence (Brown et al. 2024; Snell et al. 2024; Wu et al. 2024) suggests existing base models have favorable coverage on tasks of interest. Open: can $C_\text{cond}$ be estimated efficiently from $\pi_\text{ref}$ before running alignment?
+Active area. [[Foster2025Foundation]] establishes $C_\text{cov}$ as the right complexity measure for the sampling oracle framework. Empirical evidence (Brown et al. 2024; Snell et al. 2024; Wu et al. 2024) suggests existing base models have favorable coverage on tasks of interest. Open: can $C_\text{cond}$ be estimated efficiently from $\pi_\text{ref}$ before running alignment? A second opening is transfer in the other direction — importing a density-weighted coverage quantity into offline RL to replace the support condition in [[Kostrikov2022Offline]].

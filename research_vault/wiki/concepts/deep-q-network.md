@@ -38,6 +38,7 @@ optimized by RMSProp with minibatches from a replay buffer. $\theta^-$ is update
 - [[softmax-bellman-operator]] — drop-in replacement for max in the DQN target network
 - Distributional DQN (C51, QR-DQN) — models full return distribution; addresses overestimation differently
 - Rainbow (Hessel et al. 2018) — combines 6 DQN improvements; current strong baseline
+- [[implicit-q-learning]] — the offline counterpart: same TD machinery, but the target's max is replaced by an in-sample [[expectile-regression]] estimate so no unseen action is ever evaluated
 
 ## Current State
 

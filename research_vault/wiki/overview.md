@@ -2,8 +2,8 @@
 
 *Synthesis of the research area as represented by papers in this vault. Updated incrementally with each ingest.*
 
-**Sources ingested:** 11  
-**Last updated:** 2026-06-16
+**Sources ingested:** 12  
+**Last updated:** 2026-08-19
 
 ---
 
@@ -27,6 +27,8 @@ The vault covers two complementary areas of bandit research:
 
 **Value-based deep RL:** [[Song2019Revisiting]] introduces a new thread — replacing the max operator in DQN/DDQN target networks with the [[softmax-bellman-operator]] at inverse temperature $\tau$. Despite being a non-contraction, $\mathcal{T}_\text{soft}$ provably reduces [[overestimation-bias]] (with quantified bounds) and gradient noise, and converges to $\mathcal{T}$ exponentially fast in $\tau$. S-DQN and S-DDQN outperform their max counterparts on Atari, independent of exploration. Notable thematic parallel with [[Dam2024Power]]: both replace greedy max aggregation with a smooth operator to improve value estimation under noise.
 
+**Offline RL:** [[Kostrikov2022Offline]] opens the [[offline-reinforcement-learning]] thread. IQL performs multi-step dynamic programming while evaluating $Q$ *only* at dataset actions, by fitting an upper $\tau$-expectile of $Q(s,\cdot)$ ([[expectile-regression]]) in place of the max; Theorem 3 gives $\lim_{\tau\to 1} V_\tau(s) = \max_{a:\pi_\beta(a|s)>0} Q^*(s,a)$, the optimum constrained to data support. State of the art on D4RL antmaze (378.0 vs. 303.6 for CQL) at $\approx 4\times$ lower compute. The empirical headline is the collapse of single-step methods on stitching tasks ($\approx 0$ on antmaze-medium/large), which is the sharpest evidence in the vault that iterated Bellman backups buy something real.
+
 ## Active Research Threads
 
 - **Unifying offline and online oracle design** — [[Qin2026Taming]] establishes the first formal bridge between DOEC (offline) and DEC (online)
@@ -39,6 +41,8 @@ The vault covers two complementary areas of bandit research:
 - **Test-time compute optimization** — [[Li2026Predicting]] establishes tail-extrapolation scaling law prediction; deeper trees, PRM integration, and non-Gaussian tails are open
 - **Computational theory of LM alignment** — [[Foster2025Foundation]] establishes the sampling oracle framework and $C_\text{cov}$ lower bound; extension to nonlinear policies, tighter $T_\text{comp}$ bounds, and estimation of $C_\text{cond}$ from base model are open
 - **Smooth Bellman operators in deep RL** — [[Song2019Revisiting]] motivates replacing max with softmax in DQN targets; open: does the benefit extend to Rainbow/SAC/PPO, and is there a principled cooling schedule for $\tau$?
+- **Smooth aggregators in place of max (cross-cutting)** — now three independent instances in the vault: power mean in MCTS backups ([[Dam2024Power]], parameter $p$), softmax in DQN targets ([[Song2019Revisiting]], parameter $\tau$), and upper expectiles in offline RL ([[Kostrikov2022Offline]], parameter $\tau$). All three replace greedy maximization with a one-parameter family interpolating averaging-to-maximization, all three are motivated by estimation error under noise, and all three select the parameter empirically with no instance-dependent rule. Only [[Song2019Revisiting]] supplies a quantitative finite-parameter gap bound. A unified analysis looks tractable and is not in the literature.
+- **Offline RL with in-sample value learning** — [[Kostrikov2022Offline]] shows multi-step DP is possible without out-of-sample queries; open: a finite-$\tau$ bound on the gap to the support-constrained optimum, and a density-aware replacement for the binary support condition (natural bridge to [[coverage-coefficient]] from [[Foster2025Foundation]])
 
 ## Emerging Consensus
 

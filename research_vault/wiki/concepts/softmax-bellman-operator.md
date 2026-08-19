@@ -36,6 +36,7 @@ where $\text{sm}_\tau(\mathbf{x})_i = \frac{\exp(\tau x_i)}{\sum_j \exp(\tau x_j
 - [[overestimation-bias]] — the key failure mode $\mathcal{T}_\text{soft}$ corrects
 - [[deep-q-network]] — the algorithm family where softmax backup is applied in practice
 - [[power-mean-mcts]] / [[Dam2024Power]] — analogous idea in tree search: replacing max backup with a power-mean backup improves convergence; both papers argue greedy aggregation is suboptimal under estimation noise
+- [[expectile-regression]] / [[Kostrikov2022Offline]] — a third smooth surrogate for the max, in offline RL. Note the inverted purpose: $\mathcal{T}_\text{soft}$ softens a max the algorithm *could* compute, to reduce bias; the expectile approximates a max the algorithm is *forbidden* from computing, since out-of-sample actions cannot be queried. Softmax has the finite-$\tau$ gap bound (Thm 3 here) that the expectile treatment lacks
 
 ## Current State
 

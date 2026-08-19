@@ -35,6 +35,8 @@ Special cases: $p = 1$ recovers Fixed-Depth-MCTS (average mean); $p \to \infty$ 
 - [[monte-carlo-tree-search]] — the broader framework
 - **Fixed-Depth-MCTS** (Shah et al. 2022) — special case $p = 1$; deterministic environments only
 - **Power-UCT** (Dam et al. 2019) — predecessor without stochastic convergence guarantee
+- [[softmax-bellman-operator]] — the same smooth-aggregator-in-place-of-max idea in deep Q-learning ([[Song2019Revisiting]])
+- [[expectile-regression]] — and again in offline RL ([[Kostrikov2022Offline]]), where the smoothing is what makes in-sample maximization possible
 
 ## Current State
 Optimal $p$ selection remains open; $p = 2$ is a robust empirical default. Extension to adversarial MDPs and deep learning integration are open problems.

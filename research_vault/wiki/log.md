@@ -5,6 +5,20 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-08-19] ingest | Offline Reinforcement Learning with Implicit Q-Learning (ICLR 2022)
+
+- Renamed raw `2110.06169v1.pdf` -> `Kostrikov2022Offline.pdf`
+- Created `wiki/papers/Kostrikov2022Offline.md` (framing: theory gap + smooth-aggregator thread, per discussion)
+- Created concept pages: `expectile-regression`, `implicit-q-learning` (AWR and in-sample-learning considered and deferred)
+- Created author pages: `Kostrikov-Ilya`, `Nair-Ashvin`, `Levine-Sergey`
+- Created topic page: `topics/offline-reinforcement-learning.md` — first offline RL topic in the vault
+- Updated concepts: `overestimation-bias`, `softmax-bellman-operator`, `deep-q-network`, `power-mean-mcts`, `coverage-coefficient`
+- Updated papers: `Song2019Revisiting`, `Dam2024Power` (thematic parallels); `topics/monte-carlo-tree-search` (related topics)
+- Updated `overview.md`: offline RL paragraph, new cross-cutting thread "smooth aggregators in place of max" (Dam2024Power / Song2019Revisiting / Kostrikov2022Offline), sources 11 -> 12
+- Updated `index.md`: +7 entries (1 paper, 2 concepts, 3 authors, 1 topic)
+- Headline open question recorded: no finite-$\tau$ bound on $\max_{a:\pi_\beta(a|s)>0} Q^*(s,a) - V_\tau(s)$; conjecture that the gap is governed by a density-weighted coverage quantity ([[coverage-coefficient]]) rather than a support indicator
+- Noted for lint: pre-existing broken link `[[Carin-Lawrence]]` in `Song2019Revisiting.md`; garbled tail text in two `index.md` entries (`test-time-scaling` concept and topic lines)
+
 ## [2026-06-16] query | Foster2025Foundation Sections 1–4 summary
 
 - Saved `wiki/queries/2026-06-16-foster2025-sections-1-4.md`

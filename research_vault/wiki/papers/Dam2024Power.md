@@ -72,6 +72,7 @@ $$\left| \mathbb{E}[\hat{V}_n(s_0)] - \tilde{V}(s_0) \right| \leq \mathcal{O}(n^
 - **Extends:** Fixed-Depth-MCTS (Shah et al. 2022) — deterministic predecessor
 - **Extends:** Power-UCT (Dam et al. 2019) — adds theoretical guarantees
 - **Thematic parallel:** [[Song2019Revisiting]] — same core idea (replace max backup with a smooth aggregator to reduce estimation noise) applied to deep Q-learning targets rather than MCTS; both papers argue greedy max is suboptimal under value estimation error
+- **Thematic parallel:** [[Kostrikov2022Offline]] — the third instance of that pattern, in offline RL: an upper $\tau$-expectile replaces the max, and $\tau$ plays the role $p$ plays here. Both parameterize a family interpolating between averaging and maximization, and both must choose the parameter empirically ($p = 2$, $\tau = 0.9$) with no instance-dependent selection rule
 
 ## Open Questions
 

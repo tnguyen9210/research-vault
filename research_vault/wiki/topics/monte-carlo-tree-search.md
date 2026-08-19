@@ -26,3 +26,4 @@ The vault currently covers one paper addressing the stochastic setting via power
 ## Related Topics
 - [[best-arm-identification]] — BAI theory underlies action selection at each MCTS node; [[Kaufmann-Emilie]] bridges both areas
 - [[offline-oracle-efficient-bandits]] — contextual bandits; distinct from MCTS (planning vs. regret minimization)
+- [[offline-reinforcement-learning]] — shares the smooth-aggregator-instead-of-max design pattern ([[power-mean-mcts]] and [[expectile-regression]] are the two instances), and the same underlying problem of maximizing over noisy value estimates

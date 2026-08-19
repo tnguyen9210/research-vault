@@ -27,6 +27,7 @@ where $\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|$ is the max Q-gap an
 - Thrun & Schwartz (1994) — original identification of overestimation in Q-learning
 - van Hasselt et al. (2016a) — DDQN: mitigates overestimation by decoupling action selection (online net) from evaluation (target net)
 - [[Song2019Revisiting]] — proves the [[softmax-bellman-operator]] reduces overestimation with quantified bounds, independent of exploration
+- [[Kostrikov2022Offline]] — removes the bias at its source in the offline setting: the max is never applied to an extrapolated value, because $Q$ is evaluated only at dataset actions
 
 ## Variants & Related Concepts
 
@@ -34,6 +35,7 @@ where $\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|$ is the max Q-gap an
 - [[softmax-bellman-operator]] — provably reduces overestimation for all $\tau \ge 0$
 - Distributional RL (Dabney et al. 2018) — addresses the full return distribution rather than just the mean; also mitigates overestimation as a side effect
 - Ensemble / pessimistic Q-learning — uses multiple Q-networks and takes the minimum; common in offline RL
+- [[implicit-q-learning]] — avoidance rather than correction: an upper [[expectile-regression]] over dataset actions replaces the max, so no out-of-sample value is ever queried
 
 ## Current State
 

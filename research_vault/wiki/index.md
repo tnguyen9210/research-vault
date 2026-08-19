@@ -12,6 +12,7 @@ Format: `- [[slug]] — one-line description`
 - [[Ryu2025Improved]] — PUB: parameter-free variance-adaptive off-policy selection via betting-based LCB; freezing score function wins in small-data regimes (COLT 2025)
 - [[Li2026Predicting]] — SLG Search: tail-guided BoN scaling law prediction + adaptive two-stage compute allocation; polynomial amplification over BoN
 - [[Kanarios2024Cost]] — CABAI: cost-aware BAI with heterogeneous arm costs; optimal proportions scale $\sqrt{c_a}$; CTAS (optimal) and CO (fast)
+- [[Kostrikov2022Offline]] — IQL: offline RL with strictly in-sample value evaluation via upper-expectile regression; $\tau\to1$ recovers the support-constrained optimum; SOTA on D4RL antmaze (ICLR 2022)
 - [[Lardy2025Constrained]] — CBAI: BAI with cost-threshold constraint on bivariate arms; handles dependent reward-cost; asymptotically optimal TaS (NeurIPS 2025)
 - [[Yang2025Stochastically]] — BFAI-TS: fixed-budget constrained BAI with $m$ constraints via Thompson sampling; asymptotically optimal exponential PFS decay (arXiv 2025)
 - [[Qin2026Taming]] — OE2D: first offline-oracle-efficient contextual bandit algorithm for general function classes with O(log T) calls; introduces DOEC
@@ -25,6 +26,8 @@ Format: `- [[slug]] — one-line description`
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2012Knapsack]]
 - [[constrained-bai]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
 - [[deep-q-network]] — DQN/DDQN: Q-learning with neural network, experience replay, target network; DDQN decouples action selection from evaluation to reduce overestimation
+- [[expectile-regression]] — asymmetric-$\ell_2$ regression estimating the $\tau$-expectile; $\tau\to1$ approaches the supremum, enabling in-sample maximization; used by [[Kostrikov2022Offline]]
+- [[implicit-q-learning]] — IQL: upper-expectile $V$ + MSE $Q$ backup + AWR extraction; multi-step DP without out-of-sample queries; $\tau$ interpolates SARSA to Q-learning
 - [[importance-weighting]] — IW estimator for offline policy evaluation; variance control via pessimism and score functions; core primitive in off-policy learning
 - [[kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
 - [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]
@@ -53,7 +56,9 @@ Format: `- [[slug]] — one-line description`
 - [[Jennings-Nicholas-R]] — senior author of KUBE / budget-limited MAB; Loughborough (then Southampton); multi-agent systems
 - [[Jun-Kwang-Sung]] — senior author of PUB/freezing paper; U. Arizona; betting-based confidence bounds
 - [[Koolen-Wouter-M]] — senior author of CBAI; CWI/Twente; mixture martingales, pure exploration
+- [[Kostrikov-Ilya]] — first author of [[Kostrikov2022Offline]] (IQL); UC Berkeley; offline RL, efficient RL implementations
 - [[Lardy-Tyron]] — first author of CBAI; CWI/Leiden; BAI with cost-threshold constraints
+- [[Levine-Sergey]] — senior author of [[Kostrikov2022Offline]]; UC Berkeley; offline RL, robot learning
 - [[Ryu-J-Jon]] — first author of PUB/freezing paper; MIT; betting-based confidence bounds
 - [[Li-Muheng]] — first author of SLG Search; U. Toronto
 - [[Mou-Wenlong]] — senior author of SLG Search; U. Toronto
@@ -61,6 +66,7 @@ Format: `- [[slug]] — one-line description`
 - [[Kanarios-Kellen]] — first author of CABAI; U. Michigan
 - [[Kaufmann-Emilie]] — third author of Stochastic-Power-UCT; also co-developer of TAS (BAI); Univ. Lille / Inria
 - [[Maillard-Odalric-Ambrym]] — second author of Stochastic-Power-UCT; Univ. Lille / Inria
+- [[Nair-Ashvin]] — co-author of [[Kostrikov2022Offline]]; UC Berkeley; offline-to-online finetuning, AWAC
 - [[Parr-Ronald-E]] — co-author of softmax Bellman operator paper; Duke; RL theory, MDPs
 - [[Qin-Hao]] — first author of OE2D; U. Arizona
 - [[Rogers-Alex]] — co-author of KUBE / budget-limited MAB; Oxford (then Southampton); MAS, sensor networks
@@ -80,6 +86,7 @@ Format: `- [[slug]] — one-line description`
 - [[budget-limited-bandits]] — synthesis of budget/cost-constrained bandits; cumulative-reward (KUBE) vs. cost-aware BAI
 - [[monte-carlo-tree-search]] — synthesis of MCTS theory; Stochastic-Power-UCT and open problems
 - [[offline-oracle-efficient-bandits]] — synthesis of the research line on offline-oracle contextual bandits; FALCON → OE2D
+- [[offline-reinforcement-learning]] — synthesis of offline RL; in-sample vs. constrained vs. regularized, single-step vs. multi-step stitching
 - [[test-time-scaling]] — synthesis of LLM test-time compute scaling; SLG Search and open problems — synthesis of the research line on offline-oracle contextual bandits; FALCON → OE2D
 
 ## Queries
