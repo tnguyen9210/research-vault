@@ -51,6 +51,7 @@ Format: `- [[slug]] — one-line description`
 - [[epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
 - [[epsilon-sec]] — passive coverage measure upper-bounding [[doec]] (Thm 3 of [[Qin2026Taming]]); can be exponentially loose vs. active design
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
+- [[extrapolation-error]] — FQI trains $Q$ on the data distribution but queries it outside; the $\max$ then selects whichever unsupported action was overvalued
 - [[fitted-q-iteration]] — the offline RL template: relabel a fixed batch with Bellman targets, refit by least squares, repeat; $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[monte-carlo-tree-search]] — online planning via bandit-guided tree simulation; UCT and successors
@@ -111,3 +112,4 @@ Format: `- [[slug]] — one-line description`
 ## Queries
 
 - [[2026-06-16-foster2025-sections-1-4]] — section-by-section summary of Foster2025Foundation Sections 1–4: setup, coverage lower bound, SpannerSampling, hardness of proper exploration
+- [[2026-08-19-offline-fqi-walkthrough]] — reading path from the FQI template through offline-vs-online, extrapolation error, and Algorithm 1 of [[Yin2023Offline]]

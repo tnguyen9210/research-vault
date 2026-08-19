@@ -5,6 +5,45 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-08-19] query | Offline FQI walkthrough
+
+- Saved `wiki/queries/2026-08-19-offline-fqi-walkthrough.md` — threads the multi-turn FQI discussion into a reading path rather than a reference page, so it complements the concept pages instead of duplicating them
+- Covers, in the order the questions actually arose: what FQI fits (the $Q$-function directly, with labels from the previous iterate -- not dynamics, not a reward model); whether the algorithm depends on offline vs. online (it does not -- FQI is how you learn from data, offline/online is how you obtain it); the multi-action target question and why a fitted $Q$ can evaluate unobserved pairs at all; why $\max$ turns that into a selection effect; the two families of fix (penalize the query vs. refuse it); and Algorithm 1 of [[Yin2023Offline]] as the concrete instantiation
+- Links out to [[fitted-q-iteration]], [[extrapolation-error]], [[pessimistic-fitted-q-learning]], [[implicit-q-learning]], [[pessimism-principle]], [[overestimation-bias]], [[coverage-coefficient]], [[instance-dependent-bounds]], [[offline-reinforcement-learning]]
+- Backlinked from `concepts/fqi/fitted-q-iteration.md` so the query page is not an orphan (the vault's only other query page reached that state only after the 2026-08-19 lint)
+- Updated `index.md`: +1 Queries entry. Vault now 90 pages.
+
+## [2026-08-19] update | Walk Algorithm 1 of Yin2023Offline (PFQL) line by line
+
+- Expanded `concepts/fqi/pessimistic-fitted-q-learning.md` with a **line-by-line reading of Algorithm 1**, framed against the [[fitted-q-iteration]] template: lines 4 and 9 alone are FQI, lines 5-8 are the entire modification.
+- Per line: the finite-horizon structure (one backward sweep over $h$, a separate $\hat\theta_h$ per stage, no $\gamma$); the ridge term's double duty in line 4 and the fact that its argmin has no closed form; $\Sigma_h$ as the Gram matrix of *gradients* at $\hat\theta_h$, collapsing to $\sum_k\phi\phi^\top+\lambda I$ under linearity; $\Gamma_h = \beta/\sqrt{m(s,a)}$ as a $1/\sqrt{n}$ width with $n$ = effective sample size along the gradient direction; the clip at $H-h+1$ justified by rewards in $[0,1]$; and $\langle\cdot,\cdot\rangle_\mathcal{A}$ as $\arg\max_a$ written for stochastic policies.
+- **New subsection "Why the pessimism goes inside the backup."** $\hat V_h$ from line 9 becomes line 4's target next iteration, so the value backed up already has $\Gamma_h$ subtracted. That is what stops [[extrapolation-error]] propagating: an unsupported action has small $m(s,a)$, large $\Gamma_h$, and loses the max. Applying pessimism only at policy extraction would give a cautious policy built on already-contaminated values -- a different, weaker algorithm. This point was not recorded anywhere in the vault.
+- **New subsection "Where the guarantee comes from."** The decomposition $v^\pi - v^{\hat\pi} \le \sum_h 2\mathbb{E}_\pi[\Gamma_h]$, valid only when $|(\mathcal{P}_h\hat V_{h+1} - f(\hat\theta_h,\phi))(s,a)| \le \Gamma_h(s,a)$ (verified against the source, Section 3.1). Two consequences drawn out: the price of pessimism is the penalty along the *comparator's* trajectory, which is why the bound is instance-dependent; and the validity condition is where the nonlinearity bites, since $\Gamma_h$ is built from the very $\hat\theta_h$ it is meant to protect against.
+- Cross-updated `concepts/fqi/extrapolation-error.md` (placement matters as much as penalty size) and the variants table on `concepts/fqi/fitted-q-iteration.md`.
+- No new pages; still 89.
+
+## [2026-08-19] update | Offline vs. online FQI; what FQI actually fits
+
+Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the material is about a property of the template itself, and the Variants section already carried the undeveloped seed ("the data setting, not the algorithm").
+
+- New section **"Offline vs. online FQI"**, built on the thesis: *FQI determines how you learn from data; offline vs. online determines how you obtain it.* The Bellman update is identical in both regimes and inspects no provenance; what differs is whether $\mathcal{D}$ can change in response to what has been learned. Includes the online loop ($\mathcal{D}_1 \to Q_1 \to$ collect with $\pi_1$ + exploration $\to \mathcal{D}_2 \to \cdots$), the correction feedback loop, and a 9-row comparison table.
+- The framing that makes it click: online, the data distribution depending on the learner is usually called a difficulty, but for this failure mode it is a gift -- an erroneous $Q(s,B)=100$ is self-refuting online (acting on it generates the evidence that kills it) and self-*reinforcing* offline. Offline-specific machinery (pessimism, conservatism, support constraints) is therefore compensation for a missing feedback loop, not a different idea about Bellman regression.
+- New subsection **"What is actually being fitted"**: not the dynamics $P(s'|s,a)$, not a reward model -- the $Q$-function directly, with labels generated by the previous iterate. Notes that this is why FQI is model-free while still performing dynamic programming, and that the moving-target nature of the labels is the source of its instability.
+- Added the **tabular Q-learning** relation to Variants: FQI = Q-learning-style Bellman targets + batch supervised regression (the DQN link was already there; the incremental-limit framing was not).
+- Updated `concepts/fqi/extrapolation-error.md` to point at the new section instead of re-deriving the online/offline asymmetry, and `topics/offline-reinforcement-learning.md` to state the regime/template distinction once at the top.
+- No new pages; page count unchanged at 89.
+
+## [2026-08-19] update | Document extrapolation error in offline FQI
+
+- Created `concepts/fqi/extrapolation-error.md` — the train/query mismatch that defines the offline setting: FQI fits $Q$ on $(s_i,a_i)\sim d^\mu$ but its target evaluates $\max_{a'\in\mathcal{A}}Q_k(s_i',a')$ over every action, including unsupported ones
+- Contents: worked 3-action example showing an unconstrained $Q_1(s_3,B)$ contaminating the iteration-2 target; why a fitted $Q$ can predict an unobserved pair at all (shared parameters; the linear case $\phi(s_3,B)^\top\theta$ makes it explicit); the three coverage cases (exact pair observed / absent but similar data / far outside support); the unseen-pair vs. unseen-action distinction; the tabular contrast showing generalization and extrapolation are the same mechanism seen from two sides; why $\max$ turns zero-mean error into a selection effect; why online RL self-corrects and offline cannot; and a worked LCB table where the penalty flips the chosen action from an unsupported $B$ to a supported $A$
+- **Kept distinct from [[overestimation-bias]]**, with a comparison table on both pages. Overestimation is a statistical bias present when every action is observed and estimates are merely noisy; extrapolation error is a coverage failure that no amount of data on the wrong distribution repairs.
+- Records the point that vanilla FQI maximizes over all of $\mathcal{A}$, *not* over dataset-supported actions — these are different algorithms, and the second is essentially what [[implicit-q-learning]] implements via an upper expectile. Noted on both pages.
+- Also explains why concentrability / [[coverage-coefficient]] conditions are unavoidable rather than technical conveniences: FQI's greedy $\pi_k$ induces $d^{\pi_k}$, which need not resemble $d^\mu$.
+- Updated `concepts/fqi/fitted-q-iteration.md`: annotated the worked example as single-action (the multi-action case is where the difficulty lives), expanded the danger section with the train/query statement and a pointer, marked coverage error as the only offline-specific member of the three-error split, and sharpened the IQL row of the variants table
+- Cross-linked from `overestimation-bias`, `implicit-q-learning`, `pessimistic-fitted-q-learning`, `pessimism-principle`, `coverage-coefficient`
+- `concepts/fqi/` now holds 5 pages. `index.md` +1 entry.
+
 ## [2026-08-19] update | Document Fitted Q-Iteration; group the FQI family under concepts/fqi/
 
 - Created `concepts/fqi/fitted-q-iteration.md` — the base template the vault referenced everywhere but never defined: Bellman relabelling + least-squares refit, the ADP view $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$ and why $\Pi_\mathcal{F}\mathcal{T}$ need not contract (hence Bellman completeness, not just [[realizability]]), the backward reward-propagation intuition, a worked 3-transition example, the offline extrapolation failure mode, and the statistical / approximation / coverage error decomposition

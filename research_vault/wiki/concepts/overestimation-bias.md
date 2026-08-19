@@ -37,6 +37,7 @@ where $\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|$ is the max Q-gap an
 - Ensemble / pessimistic Q-learning — uses multiple Q-networks and takes the minimum; common in offline RL
 - [[implicit-q-learning]] — avoidance rather than correction: an upper [[expectile-regression]] over dataset actions replaces the max, so no out-of-sample value is ever queried
 - [[fitted-q-iteration]] — where the bias compounds offline: each sweep feeds an inflated $\max_{a'}$ back into the next regression target
+- [[extrapolation-error]] — the offline cousin, and a genuinely different failure. Overestimation is a *statistical* bias present even when every action is observed and estimates are merely noisy; extrapolation error is a *coverage* failure at actions with no supporting data, which no amount of data on the wrong distribution repairs
 
 ## Current State
 
