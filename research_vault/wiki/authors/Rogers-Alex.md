@@ -11,7 +11,8 @@ areas: [multi-agent-systems, multi-armed-bandits, sensor-networks, ai-for-sustai
 
 ## Papers in this Vault
 
-- [[TranThanh2012Knapsack]] (2012) — co-author on the [[budget-limited-mab]] / [[kube]] paper
+- [[TranThanh2010Epsilon]] (2010) — co-author on the paper introducing the [[budget-limited-mab]]
+- [[TranThanh2012Knapsack]] (2012) — co-author on the [[kube]] paper
 
 ## Research Themes
 

@@ -10,13 +10,13 @@ source: raw/papers/TranThanh2012Knapsack.pdf
 
 # Knapsack-based Optimal Policies for Budget-Limited Multi-Armed Bandits
 
-**TL;DR:** Introduces [[kube]] and fractional KUBE for the [[budget-limited-mab]], where each arm pull costs $c_i$ and a single budget $B$ caps *both* exploration and exploitation. Both achieve $O(\ln B)$ regret — the first algorithms to do so — and this rate is shown to be asymptotically optimal.
+**TL;DR:** Introduces [[kube]] and fractional KUBE for the [[budget-limited-mab]] (the model itself is from the same group's earlier [[TranThanh2010Epsilon]]), where each arm pull costs $c_i$ and a single budget $B$ caps *both* exploration and exploitation. Both achieve $O(\ln B)$ regret — the first algorithms to do so — and this rate is shown to be asymptotically optimal.
 
 ## Problem
 
-In the [[budget-limited-mab]], pulling arm $i$ costs $c_i$ and the agent has one shared budget $B$ that limits the *total* cost of pulls across both exploration and exploitation phases. This breaks the standard MAB intuition: because costs are heterogeneous, the optimal full-information policy is **not** "pull the highest-mean arm repeatedly," but rather to pull a *sequence* of arms maximizing total reward within budget. The relevant per-arm quantity becomes **reward density** $\mu_i / c_i$, not the mean $\mu_i$.
+In the [[budget-limited-mab]] — introduced by the same group in [[TranThanh2010Epsilon]], together with its unbounded-knapsack characterization — pulling arm $i$ costs $c_i$ and the agent has one shared budget $B$ that limits the *total* cost of pulls across both exploration and exploitation phases. This breaks the standard MAB intuition: because costs are heterogeneous, the optimal full-information policy is **not** "pull the highest-mean arm repeatedly," but rather to pull a *sequence* of arms maximizing total reward within budget. The relevant per-arm quantity becomes **reward density** $\mu_i / c_i$, not the mean $\mu_i$.
 
-Prior work either (a) budget-limited *only the exploration phase* (Antos et al. 2008; Bubeck et al. 2009; Guha & Munagala 2007), or (b) used a budget-limited $\varepsilon$-first policy ([[TranThanh2010Epsilon]]) that splits $B$ into $\varepsilon B$ exploration and $(1-\varepsilon)B$ exploitation. The $\varepsilon$-first method is sensitive to the choice of $\varepsilon$ and provably stuck at $O(B^{2/3})$ regret, far from the $O(\ln B)$ theoretical optimum.
+Prior work either (a) budget-limited *only the exploration phase* (Antos et al. 2008; Bubeck et al. 2009; Guha & Munagala 2007), or (b) used a budget-limited [[epsilon-first]] policy ([[TranThanh2010Epsilon]]) that splits $B$ into $\varepsilon B$ exploration and $(1-\varepsilon)B$ exploitation. The $\varepsilon$-first method is sensitive to the choice of $\varepsilon$ and provably stuck at $O(B^{2/3})$ regret, far from the $O(\ln B)$ theoretical optimum. (The $O(B^{2/3})$ rate is this paper's characterization; the 2010 paper states only an $\varepsilon$- and $\delta$-parameterized bound, which yields $B^{2/3}$ when optimized over $\varepsilon$.)
 
 ## Method
 
@@ -49,7 +49,7 @@ Sampling proportional to knapsack multiplicity means KUBE's *expected* reward eq
 - [[kube]] — the core algorithm (and its fractional variant)
 - [[upper-confidence-bound]] — fractional KUBE is the budget-limited analogue; UCB confidence width $\sqrt{2\ln t / n}$ is reused
 - [[Kanarios2024Cost]] — also attaches per-arm costs, but pure-exploration/fixed-confidence (minimize cost to *identify* best arm) vs. this paper's cumulative-reward/regret under a *shared* budget; contrast in what "cost-aware" means
-- **Extends:** [[TranThanh2010Epsilon]] — the $\varepsilon$-first budget-limited MAB this paper supersedes
+- **Extends:** [[TranThanh2010Epsilon]] — the paper that introduced the [[budget-limited-mab]] and its knapsack framing; this paper keeps the model and replaces its [[epsilon-first]] algorithm
 - [[Tran-Thanh-Long]], [[Rogers-Alex]], [[Jennings-Nicholas-R]] — authors
 
 ## Open Questions

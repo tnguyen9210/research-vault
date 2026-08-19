@@ -11,7 +11,8 @@ areas: [multi-armed-bandits, budget-limited-mab, multi-agent-systems, algorithmi
 
 ## Papers in this Vault
 
-- [[TranThanh2012Knapsack]] (2012) — introduces the [[budget-limited-mab]] and [[kube]]; first $O(\ln B)$ algorithms with matching lower bound
+- [[TranThanh2010Epsilon]] (2010) — introduces the [[budget-limited-mab]], its unbounded-knapsack optimum, and the [[epsilon-first]] policy for it
+- [[TranThanh2012Knapsack]] (2012) — introduces [[kube]]; first $O(\ln B)$ algorithms with matching lower bound
 
 ## Research Themes
 

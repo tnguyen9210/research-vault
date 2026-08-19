@@ -5,6 +5,19 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-08-19] ingest | Epsilon-First Policies for Budget-Limited Multi-Armed Bandits (AAAI 2010)
+
+- Renamed raw `1817-8271-1-PB.pdf` -> `TranThanh2010Epsilon.pdf`
+- Replaced the `papers/TranThanh2010Epsilon.md` STUB (created in the 2026-08-19 lint pass) with a full page written from the source
+- Created concept page: `epsilon-first`
+- Created author pages: `Chapman-Archie`, `Munoz-de-Cote-Enrique`; added the 2010 paper to `Tran-Thanh-Long`, `Rogers-Alex`, `Jennings-Nicholas-R`
+- **ATTRIBUTION CORRECTION.** The vault credited [[TranThanh2012Knapsack]] with introducing the [[budget-limited-mab]] and its unbounded-knapsack characterization. The source shows both are from the 2010 paper ("we introduce a new version of the MAB, a budget-limited MAB with an overall budget"; "a MAB with an overall budget limit reduces to an unbounded knapsack problem"), along with the reward-density statistic and the density-ordered greedy step. Fixed in: `concepts/budget-limited-mab.md` (`introduced_by` and body), `papers/TranThanh2012Knapsack.md` (TL;DR, Problem, Connections), `topics/budget-limited-bandits.md`, `index.md`, `overview.md`. 2012's contributions -- [[kube]], fractional KUBE, $O(\ln B)$, matching lower bound -- are unchanged.
+- **Precision fix.** The $O(B^{2/3})$ rate is NOT stated in the 2010 paper. Corollary 2 gives $L \le 2\varepsilon B D_{\max} + 2B\sqrt{(-\ln\delta)\sum_j c_j/(\varepsilon B)}$ w.p. $(1-\delta)^k$; optimizing over $\varepsilon$ yields $\varepsilon^* \propto B^{-1/3}$ and hence $B^{2/3}$. That optimization, and the "provably stuck" claim, are [[TranThanh2012Knapsack]]'s. Noted on both paper pages and on `concepts/kube.md`.
+- Updated `concepts/upper-confidence-bound.md`: the 2010 paper uses UCB as an exploration subroutine and finds it no better than uniform -- evidence that the $B^{2/3}$ ceiling is caused by the phase split, not the sampling rule
+- Updated `overview.md`: budget-limited paragraph re-attributed; sources 13 -> 14
+- Updated `index.md`: +3 entries (1 concept, 2 authors), 2 entries corrected, stub description replaced
+- No outstanding stubs remain in the vault.
+
 ## [2026-08-19] lint | Vault-wide link repair: 0 broken links, 0 orphans
 
 - Scanned all 84 wiki pages for unresolved `[[links]]`, stubs, and pages with no inbound links. Scanner now strips code spans first -- `[[slug]]` in index.md and `[[links]]` in log.md are documentation text inside backticks, not real links, and were previously false positives.

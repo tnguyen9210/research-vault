@@ -18,14 +18,14 @@ Format: `- [[slug]] — one-line description`
 - [[Qin2026Taming]] — OE2D: first offline-oracle-efficient contextual bandit algorithm for general function classes with O(log T) calls; introduces DOEC
 - [[SimchiLevi2022Bypassing]] — FALCON: first optimal offline-oracle-efficient contextual bandit algorithm; O(log T) calls for discrete actions under realizability
 - [[TranThanh2012Knapsack]] — KUBE / fractional KUBE: first $O(\ln B)$ algorithms for the budget-limited MAB; full-info optimum = unbounded knapsack; matching lower bound (AAAI 2012)
-- [[TranThanh2010Epsilon]] — *stub, not ingested*: $\varepsilon$-first budget-limited MAB; $O(B^{2/3})$ regret; superseded by [[TranThanh2012Knapsack]]
+- [[TranThanh2010Epsilon]] — introduces the budget-limited MAB + its unbounded-knapsack optimum; $\varepsilon$-first policy with the first loss bound (AAAI 2010)
 - [[Song2019Revisiting]] — S-DQN/S-DDQN: softmax Bellman operator reduces overestimation + gradient noise in DQNs; exponential convergence in $\tau$; outperforms DDQN on Atari (ICML 2019)
 - [[Yin2023Offline]] — PFQL/VAFQL: first instance-dependent offline RL bound under nonlinear (differentiable) function approximation; minimax-optimal up to $\sqrt{d}$ (ICLR 2023)
 
 ## Concepts
 
 - [[best-arm-identification]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
-- [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2012Knapsack]]
+- [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
 - [[constrained-bai]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
 - [[deep-q-network]] — DQN/DDQN: Q-learning with neural network, experience replay, target network; DDQN decouples action selection from evaluation to reduce overestimation
 - [[differentiable-function-approximation]] — $\mathcal{F}=\{f(\theta,\phi(\cdot,\cdot))\}$ with $f$ thrice differentiable in $\theta$; generalizes tabular/linear/GLM; gradient geometry enables instance-dependent analysis
@@ -46,6 +46,7 @@ Format: `- [[slug]] — one-line description`
 - [[dec]] — Decision Estimation Coefficient; complexity measure for online-oracle-efficient contextual bandits (Foster et al. 2021a)
 - [[doec]] — Decision-Offline Estimation Coefficient; complexity measure for offline-oracle-efficient bandits; introduced in [[Qin2026Taming]]
 - [[eluder-dimension]] — how long a point can elude being determined by prior queries; bounds [[epsilon-sec]] and hence [[doec]]
+- [[epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
 - [[epsilon-sec]] — passive coverage measure upper-bounding [[doec]] (Thm 3 of [[Qin2026Taming]]); can be exponentially loose vs. active design
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
@@ -60,6 +61,7 @@ Format: `- [[slug]] — one-line description`
 
 - [[Dam-Tuan]] — first author of Stochastic-Power-UCT; Univ. Lille / Inria
 - [[Carin-Lawrence]] — third author of [[Song2019Revisiting]]; Duke; Bayesian ML (peripheral to the RL content)
+- [[Chapman-Archie]] — co-author of both budget-limited MAB papers; Southampton; multi-agent systems, distributed optimization
 - [[Foster-Dylan-J]] — first author of [[Foster2025Foundation]]; Microsoft Research; online learning, LM alignment
 - [[Mhammedi-Zakaria]] — co-author of [[Foster2025Foundation]]; Google Research; RL theory, sampling oracle framework
 - [[Rohatgi-Dhruv]] — co-author of [[Foster2025Foundation]]; MIT; computational hardness of proper exploration
@@ -76,6 +78,7 @@ Format: `- [[slug]] — one-line description`
 - [[Kanarios-Kellen]] — first author of CABAI; U. Michigan
 - [[Kaufmann-Emilie]] — third author of Stochastic-Power-UCT; also co-developer of TAS (BAI); Univ. Lille / Inria
 - [[Maillard-Odalric-Ambrym]] — second author of Stochastic-Power-UCT; Univ. Lille / Inria
+- [[Munoz-de-Cote-Enrique]] — co-author of [[TranThanh2010Epsilon]]; Southampton; multi-agent learning, RL
 - [[Wang-Mengdi]] — co-author of [[Yin2023Offline]]; Princeton; RL theory, sample complexity with function approximation
 - [[Nair-Ashvin]] — co-author of [[Kostrikov2022Offline]]; UC Berkeley; offline-to-online finetuning, AWAC
 - [[Parr-Ronald-E]] — co-author of softmax Bellman operator paper; Duke; RL theory, MDPs

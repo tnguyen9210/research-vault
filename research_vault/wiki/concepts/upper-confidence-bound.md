@@ -34,6 +34,7 @@ with $\bar\mu_{i,t-1}$ the empirical mean and $n_{i,t-1}$ the pull count. This a
 
 - Lai & Robbins (1985) — the asymptotic instance-dependent lower bound UCB matches
 - Auer, Cesa-Bianchi & Fischer (2002) — UCB1; the finite-time logarithmic regret analysis
+- [[TranThanh2010Epsilon]] — uses UCB purely as an *exploration* subroutine inside an [[epsilon-first]] shell, and finds it performs no better than uniform sampling: the $B^{2/3}$ ceiling comes from the phase split, not the sampling rule
 - [[TranThanh2012Knapsack]] — fractional [[kube]] as the budget-limited analogue of UCB; [[kube]] itself solves a UCB-augmented knapsack each step
 - Abbasi-Yadkori et al. (2011) — self-normalized confidence sets for linear bandits; the source of the elliptical-bonus form reused throughout
 

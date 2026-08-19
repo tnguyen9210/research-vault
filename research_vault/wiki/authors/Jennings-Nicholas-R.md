@@ -11,7 +11,8 @@ areas: [multi-agent-systems, autonomous-agents, multi-armed-bandits, ai]
 
 ## Papers in this Vault
 
-- [[TranThanh2012Knapsack]] (2012) — senior author on the [[budget-limited-mab]] / [[kube]] paper
+- [[TranThanh2010Epsilon]] (2010) — senior author on the paper introducing the [[budget-limited-mab]]
+- [[TranThanh2012Knapsack]] (2012) — senior author on the [[kube]] paper
 
 ## Research Themes
 

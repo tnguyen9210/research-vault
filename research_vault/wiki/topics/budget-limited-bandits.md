@@ -16,8 +16,8 @@ These differ fundamentally: (1) trades off cheap-but-good vs. expensive-but-best
 
 ## Key Papers
 
-- [[TranThanh2010Epsilon]] (2010) — $\varepsilon$-first budget-limited MAB; $O(B^{2/3})$ regret (the baseline)
-- [[TranThanh2012Knapsack]] (2012) — [[kube]] / fractional KUBE; first $O(\ln B)$ regret with matching lower bound; full-info optimum = unbounded knapsack
+- [[TranThanh2010Epsilon]] (2010) — **introduces the budget-limited MAB**, its unbounded-knapsack optimum, and the reward-density statistic; solves it with an [[epsilon-first]] policy (uniform exploration on $\varepsilon B$, density-ordered greedy on the rest) and proves the first loss bound. Optimizing that bound over $\varepsilon$ gives $O(B^{2/3})$
+- [[TranThanh2012Knapsack]] (2012) — [[kube]] / fractional KUBE; first $O(\ln B)$ regret with matching lower bound, by interleaving exploration into the knapsack objective instead of giving it a separate phase
 - [[Kanarios2024Cost]] (2024) — cost-aware BAI (CABAI); fixed-confidence cost minimization, optimal proportions scale with $\sqrt{c_a}$
 
 ## Open Problems

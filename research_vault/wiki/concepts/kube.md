@@ -60,7 +60,7 @@ Each step both build the UCB density $\rho_i = \frac{\hat\mu_i + \sqrt{2\ln t/n_
 - **Fractional KUBE** — the UCB-on-densities variant; full contrast in [§ KUBE vs. Fractional KUBE](#kube-vs-fractional-kube) above
 - [[upper-confidence-bound]] — fractional KUBE reduces to UCB when costs are equal; KUBE generalizes UCB to the knapsack setting
 - [[budget-limited-mab]] — the problem KUBE solves
-- $\varepsilon$-first ([[TranThanh2010Epsilon]]) — the baseline KUBE beats; $\varepsilon$-first is $O(B^{2/3})$, KUBE is $O(\ln B)$
+- [[epsilon-first]] ([[TranThanh2010Epsilon]]) — the baseline KUBE beats. The 2010 paper states a bound parameterized by $\varepsilon$ and $\delta$; optimizing it gives $O(B^{2/3})$, and [[TranThanh2012Knapsack]] shows the family cannot do better. KUBE reaches $O(\ln B)$ by interleaving exploration into the knapsack objective rather than giving it its own phase
 
 ## Current State
 
