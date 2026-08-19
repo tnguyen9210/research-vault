@@ -16,14 +16,18 @@ Format: `- [[slug]] — one-line description`
 - [[Qin2026Taming]] — OE2D: first offline-oracle-efficient contextual bandit algorithm for general function classes with O(log T) calls; introduces DOEC
 - [[SimchiLevi2022Bypassing]] — FALCON: first optimal offline-oracle-efficient contextual bandit algorithm; O(log T) calls for discrete actions under realizability
 - [[TranThanh2012Knapsack]] — KUBE / fractional KUBE: first $O(\ln B)$ algorithms for the budget-limited MAB; full-info optimum = unbounded knapsack; matching lower bound (AAAI 2012)
+- [[Song2019Revisiting]] — S-DQN/S-DDQN: softmax Bellman operator reduces overestimation + gradient noise in DQNs; exponential convergence in $\tau$; outperforms DDQN on Atari (ICML 2019)
 
 ## Concepts
 
 - [[best-arm-identification]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2012Knapsack]]
 - [[constrained-bai]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
+- [[deep-q-network]] — DQN/DDQN: Q-learning with neural network, experience replay, target network; DDQN decouples action selection from evaluation to reduce overestimation
 - [[importance-weighting]] — IW estimator for offline policy evaluation; variance control via pessimism and score functions; core primitive in off-policy learning
 - [[kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
+- [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]
+- [[softmax-bellman-operator]] — replaces max in Bellman backup with softmax-weighted average at inverse temperature $\tau$; reduces overestimation; exponential convergence to $\mathcal{T}$; introduced in [[Song2019Revisiting]]
 - [[cabai]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
 - [[contextual-bandits]] — sequential decision-making with side information; minimize regret vs. best per-context action
 - [[dec]] — Decision Estimation Coefficient; complexity measure for online-oracle-efficient contextual bandits (Foster et al. 2021a)
@@ -50,8 +54,10 @@ Format: `- [[slug]] — one-line description`
 - [[Kanarios-Kellen]] — first author of CABAI; U. Michigan
 - [[Kaufmann-Emilie]] — third author of Stochastic-Power-UCT; also co-developer of TAS (BAI); Univ. Lille / Inria
 - [[Maillard-Odalric-Ambrym]] — second author of Stochastic-Power-UCT; Univ. Lille / Inria
+- [[Parr-Ronald-E]] — co-author of softmax Bellman operator paper; Duke; RL theory, MDPs
 - [[Qin-Hao]] — first author of OE2D; U. Arizona
 - [[Rogers-Alex]] — co-author of KUBE / budget-limited MAB; Oxford (then Southampton); MAS, sensor networks
+- [[Song-Zhao]] — first author of softmax Bellman operator paper; Baidu Research (Duke PhD); deep RL theory
 - [[Simchi-Levi-David]] — first author of FALCON; MIT
 - [[Tran-Thanh-Long]] — first author of KUBE / budget-limited MAB; Warwick (then Southampton); bandits under resource budgets
 - [[Xu-Yunzong]] — second author of FALCON; MIT

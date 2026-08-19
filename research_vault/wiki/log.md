@@ -5,6 +5,21 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-06-09] update | Song2019Revisiting — add Assumptions & Theorems section
+
+- Added "## Assumptions & Theorems" to `wiki/papers/Song2019Revisiting.md`: vocabulary, Lemma 2, Theorem 3, Theorem 4 (all three parts), gradient noise argument, and a how-the-pieces-fit diagram — all in plain language with the honest-gap note.
+- No new pages or links; no other files touched.
+
+## [2026-06-09] ingest | Revisiting the Softmax Bellman Operator (ICML 2019)
+
+- Renamed raw `1812.00456v2.pdf` → `Song2019Revisiting.pdf`
+- Created `wiki/papers/Song2019Revisiting.md`
+- Created concept pages: softmax-bellman-operator, overestimation-bias, deep-q-network
+- Created author pages: Song-Zhao, Parr-Ronald-E (Carin omitted — less central to RL content)
+- Cross-linked [[Dam2024Power]] (thematic parallel: both replace max backup with smooth aggregator)
+- Updated index.md (+6 entries), overview.md (new deep RL thread), log.md
+- New thread: value-based deep RL / Bellman operator variants. Stubs referenced: mellowmax (Asadi & Littman 2017), distributional RL (C51/QR-DQN), Rainbow (Hessel et al. 2018)
+
 ## [2026-06-09] update | KUBE vs. fractional KUBE comparison
 
 - Added "## KUBE vs. Fractional KUBE" section to `concepts/kube.md`: same objective, per-step knapsack-solver fork (greedy multiset + sampling vs. fractional relaxation = UCB-on-densities), side-by-side table, and the bound-vs-practice inversion (fractional has tighter bound but KUBE wins ≤40% under diverse costs).

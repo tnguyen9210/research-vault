@@ -2,8 +2,8 @@
 
 *Synthesis of the research area as represented by papers in this vault. Updated incrementally with each ingest.*
 
-**Sources ingested:** 9  
-**Last updated:** 2026-06-08
+**Sources ingested:** 10  
+**Last updated:** 2026-06-09
 
 ---
 
@@ -23,6 +23,8 @@ The vault covers two complementary areas of bandit research:
 
 **Planning / MCTS:** [[Dam2024Power]] opens a fourth research direction — theoretical foundations of MCTS in stochastic environments. Uses power mean value backup to fix UCT's flawed logarithmic bonus, proving $\mathcal{O}(n^{-1/2})$ convergence. Notable cross-vault link: [[Kaufmann-Emilie]] co-authored both this paper and TAS (the BAI baseline in [[Kanarios2024Cost]]).
 
+**Value-based deep RL:** [[Song2019Revisiting]] introduces a new thread — replacing the max operator in DQN/DDQN target networks with the [[softmax-bellman-operator]] at inverse temperature $\tau$. Despite being a non-contraction, $\mathcal{T}_\text{soft}$ provably reduces [[overestimation-bias]] (with quantified bounds) and gradient noise, and converges to $\mathcal{T}$ exponentially fast in $\tau$. S-DQN and S-DDQN outperform their max counterparts on Atari, independent of exploration. Notable thematic parallel with [[Dam2024Power]]: both replace greedy max aggregation with a smooth operator to improve value estimation under noise.
+
 ## Active Research Threads
 
 - **Unifying offline and online oracle design** — [[Qin2026Taming]] establishes the first formal bridge between DOEC (offline) and DEC (online)
@@ -33,6 +35,7 @@ The vault covers two complementary areas of bandit research:
 - **Extensions beyond iid bandits** — misspecification, reward corruption, distribution shift handled in [[Qin2026Taming]]; regret-setting CABAI and partial monitoring are open
 - **MCTS in stochastic environments** — [[Dam2024Power]] provides first complete convergence theory; optimal $p$ selection, adversarial extension, and deep learning integration are open
 - **Test-time compute optimization** — [[Li2026Predicting]] establishes tail-extrapolation scaling law prediction; deeper trees, PRM integration, and non-Gaussian tails are open
+- **Smooth Bellman operators in deep RL** — [[Song2019Revisiting]] motivates replacing max with softmax in DQN targets; open: does the benefit extend to Rainbow/SAC/PPO, and is there a principled cooling schedule for $\tau$?
 
 ## Emerging Consensus
 
