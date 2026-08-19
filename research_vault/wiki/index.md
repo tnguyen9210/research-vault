@@ -39,6 +39,7 @@ Format: `- [[slug]] — one-line description`
 - [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]
 - [[pessimism-principle]] — act on a lower confidence bound offline; same confidence machinery as UCB with the opposite sign, because offline errors are not self-correcting
 - [[pessimistic-fitted-q-learning]] — PFQL/VAFQL: fitted Q-iteration plus a gradient-geometry uncertainty penalty $\beta\|\nabla_\theta f\|_{\Sigma_h^{-1}}$; introduced in [[Yin2023Offline]]
+- [[pfql-algorithm-1]] — line-by-line walkthrough of Algorithm 1 of [[Yin2023Offline]]: each line's role, hyperparameter conditions, specializations, and why pessimism sits inside the backup
 - [[softmax-bellman-operator]] — replaces max in Bellman backup with softmax-weighted average at inverse temperature $\tau$; reduces overestimation; exponential convergence to $\mathcal{T}$; introduced in [[Song2019Revisiting]]
 - [[cabai]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
 - [[contextual-bandits]] — sequential decision-making with side information; minimize regret vs. best per-context action

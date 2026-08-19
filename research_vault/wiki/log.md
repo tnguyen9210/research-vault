@@ -5,6 +5,16 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-08-19] update | Move the PFQL Algorithm 1 walkthrough to its own page
+
+Corrects the placement from the previous entry: the Algorithm 1 detail was folded into `concepts/fqi/pessimistic-fitted-q-learning.md`, but it belongs in a dedicated file.
+
+- Created `concepts/fqi/pfql-algorithm-1.md` — a full walkthrough, expanded well beyond what fit as a section: pseudocode block, notation table, the three structural points (backward over $h$ once, no $\gamma$, $\hat V_{H+1}=0$ as a terminal condition not a heuristic), a paragraph per line, the "pessimism inside the backup" argument with a worked penalty table, a hyperparameter/conditions table (including the Theorem 3.2 burn-in on $K$, read off the source), the linear / tabular / GLM specializations, VAFQL as a one-line diff, where the guarantee comes from, and an explicit "what Algorithm 1 does not do" section
+- Trimmed `pessimistic-fitted-q-learning.md` back to its concept-page role (definition, three objectives, guarantee statement, VAFQL, related work) with a blockquote pointer to the walkthrough. 134 -> 81 lines; no content lost, just relocated.
+- Retargeted the entry points at the new page: `extrapolation-error`, the saved query `2026-08-19-offline-fqi-walkthrough`, `papers/Yin2023Offline.md`, and `index.md`
+- Specializations are new relative to the earlier section: linear $\Rightarrow$ PEVI exactly, one-hot $\Rightarrow$ $m(s,a)$ is the literal visitation count and $\Gamma_h \propto \beta/\sqrt{N(s,a)}$ (recovering VPVI), GLM $\Rightarrow$ the link derivative enters the width
+- Vault now 91 pages; `concepts/fqi/` holds 6.
+
 ## [2026-08-19] query | Offline FQI walkthrough
 
 - Saved `wiki/queries/2026-08-19-offline-fqi-walkthrough.md` — threads the multi-turn FQI discussion into a reading path rather than a reference page, so it complements the concept pages instead of duplicating them

@@ -120,6 +120,7 @@ That still requires a finite-sample bound on $\|\theta_{\mathcal{T}\hat V_{h+1}}
 
 - [[differentiable-function-approximation]] — the function class introduced here for policy learning
 - [[pessimistic-fitted-q-learning]] — PFQL and its variance-aware variant VAFQL
+- [[pfql-algorithm-1]] — line-by-line walkthrough of Algorithm 1, including the hyperparameter conditions and the linear/tabular/GLM specializations
 - [[instance-dependent-bounds]] — the guarantee type this paper delivers for nonlinear offline RL
 - [[offline-reinforcement-learning]] — the setting
 - [[realizability]] — Assumption 2.1, alongside Bellman completeness

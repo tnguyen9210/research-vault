@@ -138,7 +138,7 @@ Replace the point estimate with a lower confidence bound $Q_\text{LCB}(s,a) = \w
 
 Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pessimistic FQI takes $\max\{9,5,-2\} = 9$ and picks $A$. The penalty does not make the estimate of $B$ more accurate — it makes the algorithm decline to act on an estimate it has no evidence for. See [[pessimistic-fitted-q-learning]] for the version where $b$ is the gradient-geometry width $\beta\|\nabla_\theta f\|_{\Sigma_h^{-1}}$.
 
-**Where the penalty is applied matters as much as its size.** Subtracting $b$ only at policy extraction gives a cautious final policy computed from values that were *already* contaminated during the backups. To actually stop the propagation, the penalized $\hat Q$ must be what feeds the next Bellman target — so this table has to be evaluated at every stage, not once at the end. [[pessimistic-fitted-q-learning]] walks through Algorithm 1 of [[Yin2023Offline]] line by line on exactly this point.
+**Where the penalty is applied matters as much as its size.** Subtracting $b$ only at policy extraction gives a cautious final policy computed from values that were *already* contaminated during the backups. To actually stop the propagation, the penalized $\hat Q$ must be what feeds the next Bellman target — so this table has to be evaluated at every stage, not once at the end. [[pfql-algorithm-1]] walks through Algorithm 1 of [[Yin2023Offline]] line by line on exactly this point.
 
 ## Key Papers
 

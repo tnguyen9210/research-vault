@@ -22,46 +22,7 @@ PFQL fuses two well-worn ingredients and gets something neither gives alone.
 
 ## Formal Description
 
-### Algorithm 1, line by line
-
-```
-Input: D = {(s^k_h, a^k_h, r^k_h, s^k_{h+1})}, β, λ > 0
-Init:  V̂_{H+1}(·) ← 0
-for h = H, H−1, …, 1:
-  4:  θ̂_h ← argmin_θ Σ_k [f(θ,φ_{h,k}) − r_{h,k} − V̂_{h+1}(s^k_{h+1})]² + λ‖θ‖²
-  5:  Σ_h ← Σ_k ∇_θf(θ̂_h,φ_{h,k}) ∇_θf(θ̂_h,φ_{h,k})ᵀ + λI_d
-  6:  Γ_h(·,·) ← β √(∇_θf(θ̂_h,φ)ᵀ Σ_h⁻¹ ∇_θf(θ̂_h,φ)) + Õ(1/K)
-  7:  Q̄_h ← f(θ̂_h, φ(·,·)) − Γ_h(·,·)
-  8:  Q̂_h ← min{Q̄_h, H−h+1}⁺
-  9:  π̂_h ← argmax_{π_h}⟨Q̂_h, π_h⟩_A ,  V̂_h ← max_{π_h}⟨Q̂_h, π_h⟩_A
-Output: {π̂_h}
-```
-
-Lines 4 and 9 alone *are* [[fitted-q-iteration]] — regress on Bellman targets, act greedily. Lines 5–8 are the entire modification.
-
-**Structural note first.** This is the finite-horizon form, so the loop runs *backward over $h$ once* rather than $K$ times over an iteration index, and each stage carries its own parameter $\hat\theta_h$. No $\gamma$ appears: the setting is undiscounted and the horizon does the work. One sweep suffices because $H$ steps is all the lookahead there is.
-
-**Line 4 — the regression.** The target $r_{h,k} + \hat V_{h+1}(s^k_{h+1})$ is the FQI label: immediate reward plus next-stage value. The ridge term $\lambda\|\theta\|^2_2$ does double duty — it keeps $\Sigma_h$ invertible at line 5 and bounds the parameter (hence the condition $\lambda \le 1/2C_\Theta^2$). Critically, this argmin has **no closed form**: $f$ is nonlinear in $\theta$, so unlike LSVI one knows only that $\hat\theta_h$ is a stationary point. That is the technical crux of the whole paper.
-
-**Line 5 — the information matrix.** The Gram matrix of *gradients* $\nabla_\theta f$ evaluated at $\hat\theta_h$ — the local linearization of the model at the fitted parameter. Setting $f = \langle\theta,\phi\rangle$ gives $\nabla_\theta f = \phi$ and $\Sigma_h$ collapses to the familiar $\sum_k\phi\phi^\top + \lambda I$.
-
-**Line 6 — the penalty.** With $m(s,a) := (\nabla_\theta f^\top\Sigma_h^{-1}\nabla_\theta f)^{-1}$, the bonus is exactly $\Gamma_h = \beta/\sqrt{m(s,a)}$: the ordinary $1/\sqrt{n}$ confidence width with $n$ replaced by the effective sample size at $(s,a)$ *along the gradient direction* — how much the data informs the model in the direction that moving $f(\cdot,\phi(s,a))$ actually requires. Theorem 3.2 sets $\beta = 8dH\iota$. The $\tilde{O}(1/K)$ tail is stated to be for theoretical purposes only.
-
-**Lines 7–8 — subtract, then clip.** $\bar Q_h$ is the lower confidence bound. Line 8 clips above at $H-h+1$ (rewards lie in $[0,1]$, so no value can exceed the remaining horizon) and below at zero via $\{\cdot\}^+$. Free accuracy: any estimate outside that range is provably wrong.
-
-**Line 9 — greedy extraction.** $\langle\cdot,\cdot\rangle_\mathcal{A}$ is the inner product over actions, so this is $\arg\max_a$ / $\max_a$ written to allow stochastic $\pi_h$.
-
-### Why the pessimism goes inside the backup
-
-The placement is the design, and it is easy to miss. $\hat V_h$ from line 9 becomes line 4's target at the *next* iteration — so the value being backed up is $\max_a \hat Q_h$ where $\hat Q_h$ **already has $\Gamma_h$ subtracted**.
-
-That is what neutralizes [[extrapolation-error]]. In vanilla FQI the target's $\max_{a'}$ ranges over the full action space and preferentially selects whichever unsupported action the approximator overvalued, and the contaminated value then propagates backward through every remaining stage. Here an unsupported action has small $m(s,a)$, hence large $\Gamma_h$, hence loses the max. It is the LCB table from [[extrapolation-error]] applied at *every stage of the backup* rather than once at the output.
-
-Applying pessimism only at policy extraction would yield a cautious final policy built on values that were already contaminated — a different and weaker algorithm.
-
-### Compact form
-
-Given $\mathcal{D} = \{(s^k_h,a^k_h,r^k_h,s^k_{h+1})\}$, set $\hat V_{H+1}\leftarrow 0$ and for $h = H,\dots,1$:
+**Algorithm 1 of [[Yin2023Offline]].** Given $\mathcal{D} = \{(s^k_h,a^k_h,r^k_h,s^k_{h+1})\}$, set $\hat V_{H+1}\leftarrow 0$ and for $h = H,\dots,1$:
 
 $$
 \hat\theta_h \leftarrow \arg\min_{\theta\in\Theta}\ \sum_{k=1}^K\big[f(\theta,\phi_{h,k}) - r_{h,k} - \hat V_{h+1}(s^k_{h+1})\big]^2 + \lambda\|\theta\|_2^2
@@ -77,21 +38,7 @@ $$
 
 then $\bar Q_h \leftarrow f(\hat\theta_h,\phi) - \Gamma_h$, clip to $[\,\cdot\,, H-h+1]$, and set $\hat\pi_h$ greedy with $\hat V_h$ accordingly. Theorem 3.2 takes $\beta = 8dH\iota$.
 
-### Where the guarantee comes from
-
-Following Jin et al. (2021b), the suboptimality decomposes as
-
-$$
-v^{\pi} - v^{\hat\pi} \;\le\; \sum_{h=1}^H 2\,\mathbb{E}_{\pi}\big[\Gamma_h(s_h,a_h)\big]
-\qquad\text{provided}\qquad
-\big|(\mathcal{P}_h\hat V_{h+1} - f(\hat\theta_h,\phi))(s,a)\big| \le \Gamma_h(s,a),
-$$
-
-i.e. provided $\Gamma_h$ is a *valid* uncertainty bound. Two things follow.
-
-First, the price of pessimism is the penalty **evaluated along the comparator policy's trajectory**, not the penalty anywhere. What matters is not how uncertain the model is in general but how uncertain it is exactly where $\pi^*$ would go — which is why the resulting bound is instance-dependent and why coverage of $\pi^*$ specifically is the operative condition.
-
-Second, the whole guarantee rests on that validity condition, and establishing it is where the nonlinearity bites: $\Gamma_h$ is built from $\hat\theta_h$, so it is only meaningful once $\hat\theta_h$ is close to $\theta^*_h$. See the circularity noted under Intuition; [[Yin2023Offline]] breaks it with a non-asymptotic $\|\theta_{\mathcal{T}\hat V_{h+1}} - \hat\theta_h\|_2 = \tilde{O}(\sqrt{dH}/(\kappa\sqrt{K}))$.
+> **Line-by-line reading:** [[pfql-algorithm-1]] walks Algorithm 1 one line at a time — what the ridge term does, why the argmin has no closed form, $\Gamma_h$ as an effective-sample-size width, the hyperparameter conditions, the linear/tabular/GLM specializations, and why the pessimism has to sit *inside* the backup rather than at policy extraction.
 
 **Guarantee (Thm 3.2).** Under realizability + Bellman completeness and uniform coverage, with $\epsilon_\mathcal{F}=0$ and $K$ large enough, with probability $1-\delta$:
 
@@ -120,6 +67,7 @@ High-noise transitions get down-weighted. Theorem 4.1 replaces $\Sigma^\star_h$ 
 
 ## Variants & Related Concepts
 
+- [[pfql-algorithm-1]] — line-by-line walkthrough of Algorithm 1
 - [[fitted-q-iteration]] — the base template; PFQL is FQI with an uncertainty penalty subtracted before the greedy step
 - [[differentiable-function-approximation]] — the class PFQL is analyzed over
 - [[instance-dependent-bounds]] — the guarantee type it achieves

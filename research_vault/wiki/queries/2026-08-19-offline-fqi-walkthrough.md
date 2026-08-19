@@ -67,7 +67,7 @@ PFQL is the FQI template with pessimism inserted **inside the backup**. Lines 4 
 
 The placement is the design. $\hat V_h$ becomes the *next* iteration's target, so the value being backed up already has $\Gamma_h$ subtracted — an unsupported action gets a large penalty and loses the max before it can contaminate anything downstream. Penalizing only at policy extraction would give a cautious policy computed from values that were already poisoned.
 
-Line-by-line reading, the finite-horizon indexing, and the circularity in $\Gamma_h$ (it is built from the very $\hat\theta_h$ it protects against): [[pessimistic-fitted-q-learning]].
+Line-by-line reading, the finite-horizon indexing, the hyperparameter conditions, the linear/tabular/GLM specializations, and the circularity in $\Gamma_h$ (it is built from the very $\hat\theta_h$ it protects against): [[pfql-algorithm-1]]. Concept-level treatment: [[pessimistic-fitted-q-learning]].
 
 ## Where this leaves the open questions
 
