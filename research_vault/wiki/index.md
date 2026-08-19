@@ -84,4 +84,4 @@ Format: `- [[slug]] — one-line description`
 
 ## Queries
 
-*(empty — saved analyses filed here)*
+- [[2026-06-16-foster2025-sections-1-4]] — section-by-section summary of Foster2025Foundation Sections 1–4: setup, coverage lower bound, SpannerSampling, hardness of proper exploration

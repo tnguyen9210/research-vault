@@ -5,6 +5,12 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-06-16] query | Foster2025Foundation Sections 1–4 summary
+
+- Saved `wiki/queries/2026-06-16-foster2025-sections-1-4.md`
+- Covers: sampling oracle framework, coverage coefficient + lower bound (Thm 2.1), SpannerSampling algorithm + guarantee (Thm 3.1), ETH-hardness of proper exploration (Thm 4.1)
+- Updated `index.md` (1 new query entry)
+
 ## [2026-06-16] ingest | Is a Good Foundation Necessary for Efficient RL? (arXiv 2025)
 
 - Renamed raw `2503.07453v2.pdf` → `Foster2025Foundation.pdf`
