@@ -12,7 +12,7 @@ introduced_by: [[Yin2023Offline]]
 
 PFQL fuses two well-worn ingredients and gets something neither gives alone.
 
-**Fitted Q-iteration** supplies computational realism: a squared-error regression at each step, solvable by SGD, matching what neural FQI and DQN-style critics actually do. Compare the maxmin objectives that general-function-approximation theory produces, which are not runnable.
+**[[fitted-q-iteration]]** supplies computational realism: a squared-error regression at each step, solvable by SGD, matching what neural FQI and DQN-style critics actually do. Compare the maxmin objectives that general-function-approximation theory produces, which are not runnable.
 
 **Pessimism** supplies safety under distributional shift. Where the data is thin, the fitted model extrapolates and $Q$ is unreliable — usually upward, since downstream maximization selects large errors (see [[overestimation-bias]]). Subtracting an uncertainty penalty makes the algorithm prefer actions it has evidence for, the offline mirror of optimism-under-uncertainty in online RL.
 
@@ -65,6 +65,7 @@ High-noise transitions get down-weighted. Theorem 4.1 replaces $\Sigma^\star_h$ 
 
 ## Variants & Related Concepts
 
+- [[fitted-q-iteration]] — the base template; PFQL is FQI with an uncertainty penalty subtracted before the greedy step
 - [[differentiable-function-approximation]] — the class PFQL is analyzed over
 - [[instance-dependent-bounds]] — the guarantee type it achieves
 - [[implicit-q-learning]] — the opposing design in offline RL: rather than penalize uncertainty at out-of-sample actions, never evaluate them. Empirically strong, theoretically much weaker

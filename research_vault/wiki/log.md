@@ -5,6 +5,16 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-08-19] update | Document Fitted Q-Iteration; group the FQI family under concepts/fqi/
+
+- Created `concepts/fqi/fitted-q-iteration.md` — the base template the vault referenced everywhere but never defined: Bellman relabelling + least-squares refit, the ADP view $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$ and why $\Pi_\mathcal{F}\mathcal{T}$ need not contract (hence Bellman completeness, not just [[realizability]]), the backward reward-propagation intuition, a worked 3-transition example, the offline extrapolation failure mode, and the statistical / approximation / coverage error decomposition
+- **Structural change: `concepts/` may now contain topical subfolders.** Created `concepts/fqi/` and moved four pages into it: `fitted-q-iteration`, `deep-q-network`, `implicit-q-learning`, `pessimistic-fitted-q-learning` — i.e. the template and the things that ARE FQI instantiations. General primitives (`expectile-regression`, `overestimation-bias`, `pessimism-principle`, `softmax-bellman-operator`) stayed flat because other clusters reference them too.
+- Wikilinks are unaffected: Obsidian resolves `[[slug]]` by filename, not path, and the move introduced no new basename collisions. Verified 0 broken links after the move.
+- Updated `CLAUDE.md`: subfolder entry in the directory layout, a naming-table row, and a "Concept subfolders" rule block (links stay `[[slug]]` and never include the folder; filenames unique vault-wide; create a subfolder only at 4+ pages with a clear parent page; anything walking the wiki must recurse).
+- Cross-linked the new page from `pessimistic-fitted-q-learning`, `implicit-q-learning`, `deep-q-network`, `pessimism-principle`, `overestimation-bias`, `expectile-regression`, and `topics/offline-reinforcement-learning` — the last now frames the field as "FQI with one of its three steps modified" (target / regression / policy extraction), with a table of instances on the FQI page
+- Updated `index.md`: +1 entry, plus a note under Concepts that FQI-family pages live in `concepts/fqi/`
+- Noted for a future lint: `best-arm-identification`, `monte-carlo-tree-search`, and `test-time-scaling` each exist as BOTH a concept and a topic page, so `[[slug]]` for those three is already ambiguous in Obsidian. Pre-existing, unrelated to this change.
+
 ## [2026-08-19] ingest | Epsilon-First Policies for Budget-Limited Multi-Armed Bandits (AAAI 2010)
 
 - Renamed raw `1817-8271-1-PB.pdf` -> `TranThanh2010Epsilon.pdf`

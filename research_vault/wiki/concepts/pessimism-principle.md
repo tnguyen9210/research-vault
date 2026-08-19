@@ -46,6 +46,7 @@ In every case $\Gamma$ is large where the data is thin along the direction that 
 
 ## Variants & Related Concepts
 
+- [[fitted-q-iteration]] — the template pessimism is most often applied to; the $\max_{a'}$ in its target is precisely what makes offline extrapolation dangerous
 - [[pessimistic-fitted-q-learning]] — the sequential-RL instantiation over differentiable models
 - [[importance-weighting]] — the estimator pessimism is applied to in the off-policy-selection line
 - [[implicit-q-learning]] — the main *alternative* strategy: rather than estimate and penalize uncertainty at out-of-sample actions, never evaluate them at all. Empirically stronger; theoretically much weaker

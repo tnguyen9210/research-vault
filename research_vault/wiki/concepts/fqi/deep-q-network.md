@@ -34,6 +34,7 @@ optimized by RMSProp with minibatches from a replay buffer. $\theta^-$ is update
 
 ## Variants & Related Concepts
 
+- [[fitted-q-iteration]] — DQN is an incremental, stochastic FQI: the target network plays the role of the previous iterate $Q_k$, and SGD steps replace the full refit
 - [[overestimation-bias]] — core failure mode of the max operator in DQN targets
 - [[softmax-bellman-operator]] — drop-in replacement for max in the DQN target network
 - Distributional DQN (C51, QR-DQN) — models full return distribution; addresses overestimation differently

@@ -17,6 +17,8 @@ The literature splits along two axes.
 
 **A third axis: what is actually provable.** Practice and theory in offline RL have largely diverged. The methods people run (IQL, CQL, TD3+BC) carry no instance-dependent guarantees; the methods with sharp guarantees (PEVI, PFQL) are not run. [[Yin2023Offline]] represents the strongest current theory — [[instance-dependent-bounds]] under nonlinear ([[differentiable-function-approximation]]) models, via pessimism — while [[Kostrikov2022Offline]] represents the strongest current practice, with only an asymptotic guarantee. The two make a useful pair: they answer the same question (how to avoid trusting extrapolated values) with opposite strategies, penalize-the-uncertainty versus never-query-it.
 
+Nearly every algorithm here is a variant of one template: [[fitted-q-iteration]] — relabel the fixed batch with Bellman targets, refit by least squares, repeat. Reading the field as "FQI with one of its three steps modified" (target, regression, or policy extraction) makes the algorithm zoo tractable; the `concepts/fqi/` cluster collects the instances.
+
 The vault covers this area through two papers, one empirical and one theoretical; the deep-RL machinery they build on is covered by [[deep-q-network]] and [[Song2019Revisiting]].
 
 ## Key Papers

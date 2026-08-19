@@ -24,6 +24,8 @@ Format: `- [[slug]] — one-line description`
 
 ## Concepts
 
+*FQI-family pages live in `concepts/fqi/`; links are still plain `[[slug]]`.*
+
 - [[best-arm-identification]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
 - [[constrained-bai]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
@@ -49,6 +51,7 @@ Format: `- [[slug]] — one-line description`
 - [[epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
 - [[epsilon-sec]] — passive coverage measure upper-bounding [[doec]] (Thm 3 of [[Qin2026Taming]]); can be exponentially loose vs. active design
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
+- [[fitted-q-iteration]] — the offline RL template: relabel a fixed batch with Bellman targets, refit by least squares, repeat; $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[monte-carlo-tree-search]] — online planning via bandit-guided tree simulation; UCT and successors
 - [[slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[Li2026Predicting]]

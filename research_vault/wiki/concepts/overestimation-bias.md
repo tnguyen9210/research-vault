@@ -36,6 +36,7 @@ where $\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|$ is the max Q-gap an
 - Distributional RL (Dabney et al. 2018) — addresses the full return distribution rather than just the mean; also mitigates overestimation as a side effect
 - Ensemble / pessimistic Q-learning — uses multiple Q-networks and takes the minimum; common in offline RL
 - [[implicit-q-learning]] — avoidance rather than correction: an upper [[expectile-regression]] over dataset actions replaces the max, so no out-of-sample value is ever queried
+- [[fitted-q-iteration]] — where the bias compounds offline: each sweep feeds an inflated $\max_{a'}$ back into the next regression target
 
 ## Current State
 

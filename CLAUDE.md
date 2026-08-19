@@ -17,6 +17,7 @@ research_vault/
     ├── overview.md    ← high-level synthesis of the research area
     ├── papers/        ← one wiki page per ingested paper
     ├── concepts/      ← method/concept pages (attention, LoRA, RLHF, ...)
+    │   └── <cluster>/ ← optional topical subfolder, e.g. concepts/fqi/
     ├── authors/       ← notable researcher pages
     ├── topics/        ← broad topic synthesis pages (e.g., "PEFT Methods")
     └── queries/       ← saved analysis and query answers
@@ -30,11 +31,20 @@ research_vault/
 |----------|---------|---------|
 | Paper wiki page | `wiki/papers/<LastnameYearTitleFirstWord>.md` | `wiki/papers/Vaswani2017Attention.md` |
 | Concept page | `wiki/concepts/<slug>.md` | `wiki/concepts/attention.md` |
+| Concept page (clustered) | `wiki/concepts/<cluster>/<slug>.md` | `wiki/concepts/fqi/implicit-q-learning.md` |
 | Author page | `wiki/authors/<Lastname-Firstname>.md` | `wiki/authors/Vaswani-Ashish.md` |
 | Topic page | `wiki/topics/<slug>.md` | `wiki/topics/peft-methods.md` |
 | Query page | `wiki/queries/<YYYY-MM-DD-slug>.md` | `wiki/queries/2026-05-27-scaling-laws-comparison.md` |
 
 Use lowercase slugs, hyphens not underscores, no spaces in filenames.
+
+**Concept subfolders.** `wiki/concepts/` may contain topical subfolders grouping a tightly related family of pages (currently: `concepts/fqi/` for the Fitted Q-Iteration template and its variants). Rules:
+
+- Wikilinks are always `[[slug]]` — **never** include the folder. Obsidian resolves by filename, so subfoldering never changes a link.
+- Filenames must stay unique across the whole vault, or `[[slug]]` becomes ambiguous.
+- `index.md` entries are unchanged by subfoldering; note the folder once under the category heading rather than per entry.
+- Create a subfolder only when a cluster has 4+ pages and one of them is a clear parent/template page. Otherwise keep it flat.
+- Anything that walks the wiki (lint scans, scripts) must recurse into `concepts/`, not just list it.
 
 ---
 
