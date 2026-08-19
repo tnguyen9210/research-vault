@@ -59,6 +59,7 @@ This can be exponentially smaller: $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_
 ## Connections
 
 - [[coverage-coefficient]] — the central complexity measure; governs $T_\text{comp}$ lower and upper bounds
+- [[spanner-sampling]] — the two-phase improper exploration algorithm introduced here; attains the $C_\text{cov}$ lower bound
 - [[linear-softmax-policy]] — the policy parameterization studied throughout
 - [[contextual-bandits]] — alignment is cast as a contextual bandit with KL regularization
 - [[monte-carlo-tree-search]] — MTSS's multi-turn DP is a token-level analogue; [[Dam2024Power]] studies MCTS convergence in a related stochastic setting
@@ -67,6 +68,8 @@ This can be exponentially smaller: $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_
 - [[dec]] — DEC/DOEC are complexity measures for oracle-efficient bandits; $C_\text{cov}$ plays an analogous role in the sampling oracle framework
 - **Extends:** XPO (Xie et al. 2024) — proves XPO cannot be computationally efficient (Thm 4.1)
 - **Extends:** OnlineDPO (Guo et al. 2024) — shows it is data-inefficient due to passive exploration
+- [[Foster-Dylan-J]], [[Mhammedi-Zakaria]], [[Rohatgi-Dhruv]] — authors
+- [[2026-06-16-foster2025-sections-1-4]] — saved query: section-by-section walkthrough of Sections 1–4
 
 ## Open Questions
 

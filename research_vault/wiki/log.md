@@ -5,6 +5,22 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-08-19] lint | Vault-wide link repair: 0 broken links, 0 orphans
+
+- Scanned all 84 wiki pages for unresolved `[[links]]`, stubs, and pages with no inbound links. Scanner now strips code spans first -- `[[slug]]` in index.md and `[[links]]` in log.md are documentation text inside backticks, not real links, and were previously false positives.
+- **Broken links fixed (8 targets, 6 new pages):**
+  - `authors/Carin-Lawrence.md` -- third author of [[Song2019Revisiting]], omitted at ingest
+  - `concepts/pessimism-principle.md` -- referenced from `importance-weighting`; now the hub for the offline LCB idea across [[Ryu2025Improved]], [[Yin2023Offline]], PEVI, CQL
+  - `concepts/upper-confidence-bound.md` -- referenced from `kube`, `budget-limited-mab`, [[TranThanh2012Knapsack]]
+  - `concepts/eluder-dimension.md` -- referenced from `doec`
+  - `concepts/epsilon-sec.md` -- referenced from `doec`, [[Qin2026Taming]], `topics/offline-oracle-efficient-bandits`; written from the source PDF (Definition 3, Theorem 3, Propositions 1 and 3)
+  - `papers/TranThanh2010Epsilon.md` -- STUB, clearly banner-marked: no PDF in `raw/papers/`, content sourced only from what [[TranThanh2012Knapsack]] states about its predecessor
+- **Orphans fixed (6 pages, 0 new content):** [[Foster2025Foundation]] now links [[spanner-sampling]], its authors [[Mhammedi-Zakaria]] / [[Rohatgi-Dhruv]], and the saved query [[2026-06-16-foster2025-sections-1-4]]; [[Ryu2025Improved]] now links [[Ryu-J-Jon]] and [[Jun-Kwang-Sung]]. All were reachable only from `index.md`.
+- **Garbled index entries fixed:** the `test-time-scaling` concept line had `offline-regression-oracle`'s description appended to it, and the `test-time-scaling` topic line had a duplicated `FALCON -> OE2D` tail. Both truncated to their correct text; the orphaned tail restored to the `offline-regression-oracle` entry where it belonged.
+- Updated `index.md`: +6 entries (1 paper stub, 4 concepts, 1 author)
+- **Result: 0 broken links, 0 orphans across 84 pages.**
+- Outstanding: [[TranThanh2010Epsilon]] needs a real ingest (AAAI 2010) to replace the stub.
+
 ## [2026-08-19] ingest | Offline RL with Differentiable Function Approximation is Provably Efficient (ICLR 2023)
 
 - Renamed raw `2210.00750v2.pdf` -> `Yin2023Offline.pdf`

@@ -18,6 +18,7 @@ Format: `- [[slug]] — one-line description`
 - [[Qin2026Taming]] — OE2D: first offline-oracle-efficient contextual bandit algorithm for general function classes with O(log T) calls; introduces DOEC
 - [[SimchiLevi2022Bypassing]] — FALCON: first optimal offline-oracle-efficient contextual bandit algorithm; O(log T) calls for discrete actions under realizability
 - [[TranThanh2012Knapsack]] — KUBE / fractional KUBE: first $O(\ln B)$ algorithms for the budget-limited MAB; full-info optimum = unbounded knapsack; matching lower bound (AAAI 2012)
+- [[TranThanh2010Epsilon]] — *stub, not ingested*: $\varepsilon$-first budget-limited MAB; $O(B^{2/3})$ regret; superseded by [[TranThanh2012Knapsack]]
 - [[Song2019Revisiting]] — S-DQN/S-DDQN: softmax Bellman operator reduces overestimation + gradient noise in DQNs; exponential convergence in $\tau$; outperforms DDQN on Atari (ICML 2019)
 - [[Yin2023Offline]] — PFQL/VAFQL: first instance-dependent offline RL bound under nonlinear (differentiable) function approximation; minimax-optimal up to $\sqrt{d}$ (ICLR 2023)
 
@@ -34,6 +35,7 @@ Format: `- [[slug]] — one-line description`
 - [[importance-weighting]] — IW estimator for offline policy evaluation; variance control via pessimism and score functions; core primitive in off-policy learning
 - [[kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
 - [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]
+- [[pessimism-principle]] — act on a lower confidence bound offline; same confidence machinery as UCB with the opposite sign, because offline errors are not self-correcting
 - [[pessimistic-fitted-q-learning]] — PFQL/VAFQL: fitted Q-iteration plus a gradient-geometry uncertainty penalty $\beta\|\nabla_\theta f\|_{\Sigma_h^{-1}}$; introduced in [[Yin2023Offline]]
 - [[softmax-bellman-operator]] — replaces max in Bellman backup with softmax-weighted average at inverse temperature $\tau$; reduces overestimation; exponential convergence to $\mathcal{T}$; introduced in [[Song2019Revisiting]]
 - [[cabai]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
@@ -43,17 +45,21 @@ Format: `- [[slug]] — one-line description`
 - [[spanner-sampling]] — two-phase improper exploration algorithm achieving optimal $T_\text{comp} = \tilde{O}(C_\text{cov})$; introduced in [[Foster2025Foundation]]
 - [[dec]] — Decision Estimation Coefficient; complexity measure for online-oracle-efficient contextual bandits (Foster et al. 2021a)
 - [[doec]] — Decision-Offline Estimation Coefficient; complexity measure for offline-oracle-efficient bandits; introduced in [[Qin2026Taming]]
+- [[eluder-dimension]] — how long a point can elude being determined by prior queries; bounds [[epsilon-sec]] and hence [[doec]]
+- [[epsilon-sec]] — passive coverage measure upper-bounding [[doec]] (Thm 3 of [[Qin2026Taming]]); can be exponentially loose vs. active design
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
-- [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies
+- [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[monte-carlo-tree-search]] — online planning via bandit-guided tree simulation; UCT and successors
 - [[slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[Li2026Predicting]]
-- [[test-time-scaling]] — LLM inference-time compute scaling; Best-of-N and adaptive alternatives — reducing bandit learning to few calls to a regression oracle; enables practical implementation
+- [[test-time-scaling]] — LLM inference-time compute scaling; Best-of-$N$ and adaptive alternatives
+- [[upper-confidence-bound]] — optimism in the face of uncertainty; gap-dependent $O(\sum_i \log T/\Delta_i)$ regret; the online mirror of [[pessimism-principle]]
 - [[power-mean-mcts]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
 - [[realizability]] — assumption f* ∈ F enabling FALCON's optimal offline-oracle-efficient guarantees; introduced in [[SimchiLevi2022Bypassing]]
 
 ## Authors
 
 - [[Dam-Tuan]] — first author of Stochastic-Power-UCT; Univ. Lille / Inria
+- [[Carin-Lawrence]] — third author of [[Song2019Revisiting]]; Duke; Bayesian ML (peripheral to the RL content)
 - [[Foster-Dylan-J]] — first author of [[Foster2025Foundation]]; Microsoft Research; online learning, LM alignment
 - [[Mhammedi-Zakaria]] — co-author of [[Foster2025Foundation]]; Google Research; RL theory, sampling oracle framework
 - [[Rohatgi-Dhruv]] — co-author of [[Foster2025Foundation]]; MIT; computational hardness of proper exploration
@@ -94,7 +100,7 @@ Format: `- [[slug]] — one-line description`
 - [[monte-carlo-tree-search]] — synthesis of MCTS theory; Stochastic-Power-UCT and open problems
 - [[offline-oracle-efficient-bandits]] — synthesis of the research line on offline-oracle contextual bandits; FALCON → OE2D
 - [[offline-reinforcement-learning]] — synthesis of offline RL; in-sample vs. constrained vs. regularized, single-step vs. multi-step stitching
-- [[test-time-scaling]] — synthesis of LLM test-time compute scaling; SLG Search and open problems — synthesis of the research line on offline-oracle contextual bandits; FALCON → OE2D
+- [[test-time-scaling]] — synthesis of LLM test-time compute scaling; SLG Search and open problems
 
 ## Queries
 
