@@ -19,6 +19,7 @@ Format: `- [[slug]] — one-line description`
 - [[SimchiLevi2022Bypassing]] — FALCON: first optimal offline-oracle-efficient contextual bandit algorithm; O(log T) calls for discrete actions under realizability
 - [[TranThanh2012Knapsack]] — KUBE / fractional KUBE: first $O(\ln B)$ algorithms for the budget-limited MAB; full-info optimum = unbounded knapsack; matching lower bound (AAAI 2012)
 - [[Song2019Revisiting]] — S-DQN/S-DDQN: softmax Bellman operator reduces overestimation + gradient noise in DQNs; exponential convergence in $\tau$; outperforms DDQN on Atari (ICML 2019)
+- [[Yin2023Offline]] — PFQL/VAFQL: first instance-dependent offline RL bound under nonlinear (differentiable) function approximation; minimax-optimal up to $\sqrt{d}$ (ICLR 2023)
 
 ## Concepts
 
@@ -26,11 +27,14 @@ Format: `- [[slug]] — one-line description`
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2012Knapsack]]
 - [[constrained-bai]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
 - [[deep-q-network]] — DQN/DDQN: Q-learning with neural network, experience replay, target network; DDQN decouples action selection from evaluation to reduce overestimation
+- [[differentiable-function-approximation]] — $\mathcal{F}=\{f(\theta,\phi(\cdot,\cdot))\}$ with $f$ thrice differentiable in $\theta$; generalizes tabular/linear/GLM; gradient geometry enables instance-dependent analysis
 - [[expectile-regression]] — asymmetric-$\ell_2$ regression estimating the $\tau$-expectile; $\tau\to1$ approaches the supremum, enabling in-sample maximization; used by [[Kostrikov2022Offline]]
 - [[implicit-q-learning]] — IQL: upper-expectile $V$ + MSE $Q$ backup + AWR extraction; multi-step DP without out-of-sample queries; $\tau$ interpolates SARSA to Q-learning
+- [[instance-dependent-bounds]] — hub: guarantees driven by the individual instance (gaps, variance, gradient geometry, coverage) rather than a worst case over the class
 - [[importance-weighting]] — IW estimator for offline policy evaluation; variance control via pessimism and score functions; core primitive in off-policy learning
 - [[kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
 - [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]
+- [[pessimistic-fitted-q-learning]] — PFQL/VAFQL: fitted Q-iteration plus a gradient-geometry uncertainty penalty $\beta\|\nabla_\theta f\|_{\Sigma_h^{-1}}$; introduced in [[Yin2023Offline]]
 - [[softmax-bellman-operator]] — replaces max in Bellman backup with softmax-weighted average at inverse temperature $\tau$; reduces overestimation; exponential convergence to $\mathcal{T}$; introduced in [[Song2019Revisiting]]
 - [[cabai]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
 - [[contextual-bandits]] — sequential decision-making with side information; minimize regret vs. best per-context action
@@ -66,6 +70,7 @@ Format: `- [[slug]] — one-line description`
 - [[Kanarios-Kellen]] — first author of CABAI; U. Michigan
 - [[Kaufmann-Emilie]] — third author of Stochastic-Power-UCT; also co-developer of TAS (BAI); Univ. Lille / Inria
 - [[Maillard-Odalric-Ambrym]] — second author of Stochastic-Power-UCT; Univ. Lille / Inria
+- [[Wang-Mengdi]] — co-author of [[Yin2023Offline]]; Princeton; RL theory, sample complexity with function approximation
 - [[Nair-Ashvin]] — co-author of [[Kostrikov2022Offline]]; UC Berkeley; offline-to-online finetuning, AWAC
 - [[Parr-Ronald-E]] — co-author of softmax Bellman operator paper; Duke; RL theory, MDPs
 - [[Qin-Hao]] — first author of OE2D; U. Arizona
@@ -76,6 +81,8 @@ Format: `- [[slug]] — one-line description`
 - [[Xu-Yunzong]] — second author of FALCON; MIT
 - [[Yang-Le]] — first author of BFAI-TS; City University of Hong Kong; constrained BAI, Thompson sampling
 - [[Wang-Yi]] — senior author of BFAI-TS; University of Hong Kong; simulation optimization
+- [[Wang-Yu-Xiang]] — senior author of [[Yin2023Offline]]; UC Santa Barbara; offline RL theory, statistical learning
+- [[Yin-Ming]] — first author of [[Yin2023Offline]]; UC Santa Barbara; instance-dependent offline RL sample complexity
 - [[Ying-Lei]] — senior author of CABAI; U. Michigan
 - [[Zhang-Chicheng]] — second author of OE2D; U. Arizona; vault owner's advisor
 - [[Zhang-Qining]] — second author of CABAI; U. Michigan

@@ -36,6 +36,8 @@ This satisfies $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_\text{cov}(\pi^*_\be
 - [[contextual-bandits]] — in standard contextual bandits, importance weights play a similar coverage role; $C_\text{cov}$ is the LM alignment analogue
 - [[dec]] — DEC and DOEC measure statistical complexity of bandit algorithms; $C_\text{cov}$ measures computational complexity in the sampling oracle framework
 - [[implicit-q-learning]] — offline RL's support condition $\pi_\beta(a|s) > 0$ is the binary, density-free analogue of $C_\text{cov}$: [[Kostrikov2022Offline]] proves convergence to the support-constrained optimum but cannot say how large $\tau$ must be, precisely because a support indicator carries no density information
+- **Concentrability** $C_\text{eff} := \sup_\pi\sup_h\|d^\pi_h/d^\mu_h\|^2_{2,d^\mu_h}$ — offline RL's classical all-policy coverage condition ([[Yin2023Offline]], Assumption 2.2); *single-policy* concentrability (Xie et al. 2021a) is the weaker, more modern form
+- **Uniform coverage** ([[Yin2023Offline]], Assumption 2.3) — unlike concentrability, depends jointly on the MDP *and* the function class, requiring both a curvature condition and parameter identifiability. Strictly stronger, and the price paid for [[instance-dependent-bounds]] under [[differentiable-function-approximation]]
 
 ## Current State
 

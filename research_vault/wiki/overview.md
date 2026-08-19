@@ -2,7 +2,7 @@
 
 *Synthesis of the research area as represented by papers in this vault. Updated incrementally with each ingest.*
 
-**Sources ingested:** 12  
+**Sources ingested:** 13  
 **Last updated:** 2026-08-19
 
 ---
@@ -29,6 +29,8 @@ The vault covers two complementary areas of bandit research:
 
 **Offline RL:** [[Kostrikov2022Offline]] opens the [[offline-reinforcement-learning]] thread. IQL performs multi-step dynamic programming while evaluating $Q$ *only* at dataset actions, by fitting an upper $\tau$-expectile of $Q(s,\cdot)$ ([[expectile-regression]]) in place of the max; Theorem 3 gives $\lim_{\tau\to 1} V_\tau(s) = \max_{a:\pi_\beta(a|s)>0} Q^*(s,a)$, the optimum constrained to data support. State of the art on D4RL antmaze (378.0 vs. 303.6 for CQL) at $\approx 4\times$ lower compute. The empirical headline is the collapse of single-step methods on stitching tasks ($\approx 0$ on antmaze-medium/large), which is the sharpest evidence in the vault that iterated Bellman backups buy something real.
 
+**Theory of offline RL:** [[Yin2023Offline]] supplies the theoretical pole of the same thread. Over the [[differentiable-function-approximation]] class — three-times-differentiable $f(\theta,\phi(s,a))$, strictly generalizing tabular, linear, and GLM — pessimistic fitted Q-learning ([[pessimistic-fitted-q-learning]]) achieves the first [[instance-dependent-bounds]] for offline RL under a *nonlinear* class, governed by the Fisher-information-style quantity $\sum_h\mathbb{E}_{\pi^*}[\sqrt{\nabla_\theta f^\top\Sigma_h^{\star-1}\nabla_\theta f}]$; a variance-aware variant saves a factor $H$ and is minimax-optimal up to $\sqrt{d}$. Read against [[Kostrikov2022Offline]], the pairing is instructive: pessimism has the theory and none of the benchmark numbers, in-sample learning has the numbers and only an asymptotic guarantee.
+
 ## Active Research Threads
 
 - **Unifying offline and online oracle design** — [[Qin2026Taming]] establishes the first formal bridge between DOEC (offline) and DEC (online)
@@ -43,6 +45,8 @@ The vault covers two complementary areas of bandit research:
 - **Smooth Bellman operators in deep RL** — [[Song2019Revisiting]] motivates replacing max with softmax in DQN targets; open: does the benefit extend to Rainbow/SAC/PPO, and is there a principled cooling schedule for $\tau$?
 - **Smooth aggregators in place of max (cross-cutting)** — now three independent instances in the vault: power mean in MCTS backups ([[Dam2024Power]], parameter $p$), softmax in DQN targets ([[Song2019Revisiting]], parameter $\tau$), and upper expectiles in offline RL ([[Kostrikov2022Offline]], parameter $\tau$). All three replace greedy maximization with a one-parameter family interpolating averaging-to-maximization, all three are motivated by estimation error under noise, and all three select the parameter empirically with no instance-dependent rule. Only [[Song2019Revisiting]] supplies a quantitative finite-parameter gap bound. A unified analysis looks tractable and is not in the literature.
 - **Offline RL with in-sample value learning** — [[Kostrikov2022Offline]] shows multi-step DP is possible without out-of-sample queries; open: a finite-$\tau$ bound on the gap to the support-constrained optimum, and a density-aware replacement for the binary support condition (natural bridge to [[coverage-coefficient]] from [[Foster2025Foundation]])
+- **Instance-dependent guarantees (cross-cutting)** — now a hub in its own right ([[instance-dependent-bounds]]). Fully realized in the bandit papers ([[Kanarios2024Cost]], [[Lardy2025Constrained]], [[Yang2025Stochastically]], [[Ryu2025Improved]], [[TranThanh2012Knapsack]]), newly reached for nonlinear offline RL by [[Yin2023Offline]], and conspicuously *absent* where the vault's empirical papers sit. Two open frontiers: nobody has measured whether these instance functionals predict observed difficulty, and the algorithms carrying the guarantees are not the algorithms anyone runs.
+- **Theory/practice gap in offline RL** — [[Yin2023Offline]] (PFQL, sharp bound, never run) vs. [[Kostrikov2022Offline]] (IQL, SOTA on D4RL, asymptotic guarantee only); open: an instance-dependent bound for an in-sample method, coverage conditions that survive overparameterization (uniform coverage requires parameter identifiability, which neural nets violate structurally), and whether the $d$-vs-$\sqrt{d}$ gap for nonlinear classes is real
 
 ## Emerging Consensus
 

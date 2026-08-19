@@ -34,6 +34,8 @@ where $\hat{\mu}_{a,b}$ is the pull-weighted mixture mean.
 - [[Lardy2025Constrained]] — CBAI: each arm has joint (reward, cost) distribution; goal is best-reward arm with mean cost $\leq \gamma$; handles dependent distributions; asymptotically optimal TaS
 
 ## Variants & Related Concepts
+
+- [[instance-dependent-bounds]] — BAI is the setting where instance-optimality is most fully realized; the characteristic time $T^*(\mu)$ is the canonical instance functional
 - [[cabai]] — cost-aware BAI; minimize cumulative cost not rounds; $w^*_a \propto \sqrt{c_a}$
 - [[constrained-bai]] — cost-threshold BAI; find best arm with mean cost $\leq \gamma$; handles dependent reward-cost
 - **BAI with safety constraints** (Wang et al. 2022) — agent constrained; distinct from CABAI/CBAI where any arm can be pulled

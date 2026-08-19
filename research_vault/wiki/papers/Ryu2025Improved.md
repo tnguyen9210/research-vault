@@ -71,6 +71,8 @@ where $F_\beta(\phi) \geq 0$ is the *negative influence* of $\phi$. The bound re
 - [[contextual-bandits]] — offline variant: policy class fixed, no further environment interaction
 - [[offline-oracle-efficient-bandits]] — adjacent line: those results minimize online regret via offline oracle calls; this paper optimizes from a fixed log
 - [[SimchiLevi2022Bypassing]] — FALCON also uses offline data but addresses regret in an online setting under realizability; this paper requires neither realizability nor online interaction
+- **Shares the pessimism principle:** [[Yin2023Offline]] — PFQL applies a lower-confidence penalty to offline *policy learning* in sequential MDPs, with the uncertainty measured by gradient geometry rather than betting-based IW concentration; both deliver [[instance-dependent-bounds]] adapted to the data at hand
+- [[instance-dependent-bounds]] — PUB's variance adaptivity is the bandit-side instance of this guarantee type
 
 ## Open Questions
 

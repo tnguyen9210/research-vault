@@ -150,6 +150,7 @@ Point 3 is the substantive one and connects directly to [[coverage-coefficient]]
 - **Thematic parallel:** [[Song2019Revisiting]] — softmax in place of max in the Bellman target. Same move as IQL's expectile, different smoothing family, and Song supplies the finite-$\tau$ bound IQL lacks. Note the *opposite* directions: Song softens the max downward to fight overestimation with full action access; IQL softens it to approximate a max it is forbidden from computing.
 - **Thematic parallel:** [[Dam2024Power]] — power mean in place of max in MCTS backups. Third instance of the same design pattern.
 - **Related:** [[coverage-coefficient]] — [[Foster2025Foundation]] formalizes coverage as the quantity governing what is learnable from a reference distribution; IQL's support constraint $\pi_\beta(a|s) > 0$ is the crude, binary version of the same idea
+- **Theory counterpart:** [[Yin2023Offline]] — PFQL delivers exactly the [[instance-dependent-bounds]] this page lists as its headline open question, in the *pessimism* family rather than the in-sample family. It penalizes uncertainty at out-of-sample actions instead of refusing to evaluate them, pays for it with a strong uniform-coverage assumption, and is not run empirically. The two papers are the theory and practice poles of [[offline-reinforcement-learning]]
 - [[Kostrikov-Ilya]], [[Nair-Ashvin]], [[Levine-Sergey]] — authors
 
 ## Open Questions
