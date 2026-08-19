@@ -8,6 +8,7 @@ Format: `- [[slug]] — one-line description`
 ## Papers
 
 - [[Dam2024Power]] — Stochastic-Power-UCT: power mean MCTS with $\mathcal{O}(n^{-1/2})$ convergence in stochastic MDPs; fixes UCT's flawed logarithmic bonus
+- [[Foster2025Foundation]] — coverage is necessary and sufficient for computationally efficient LM alignment; SpannerSampling matches $C_\text{cov}$ lower bound; ETH-hardness of training-time interventions
 - [[Ryu2025Improved]] — PUB: parameter-free variance-adaptive off-policy selection via betting-based LCB; freezing score function wins in small-data regimes (COLT 2025)
 - [[Li2026Predicting]] — SLG Search: tail-guided BoN scaling law prediction + adaptive two-stage compute allocation; polynomial amplification over BoN
 - [[Kanarios2024Cost]] — CABAI: cost-aware BAI with heterogeneous arm costs; optimal proportions scale $\sqrt{c_a}$; CTAS (optimal) and CO (fast)
@@ -30,6 +31,9 @@ Format: `- [[slug]] — one-line description`
 - [[softmax-bellman-operator]] — replaces max in Bellman backup with softmax-weighted average at inverse temperature $\tau$; reduces overestimation; exponential convergence to $\mathcal{T}$; introduced in [[Song2019Revisiting]]
 - [[cabai]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
 - [[contextual-bandits]] — sequential decision-making with side information; minimize regret vs. best per-context action
+- [[coverage-coefficient]] — $C_\text{cov}(\pi^*_\beta)$: measures how well $\pi_\text{ref}$ covers the optimal policy; lower bounds sampling oracle calls in [[Foster2025Foundation]]
+- [[linear-softmax-policy]] — $\pi_\theta(y|x) \propto \pi_\text{ref}(y|x)\exp(\beta^{-1}\langle\theta,\phi(x,y)\rangle)$; natural RLHF parameterization studied in [[Foster2025Foundation]]
+- [[spanner-sampling]] — two-phase improper exploration algorithm achieving optimal $T_\text{comp} = \tilde{O}(C_\text{cov})$; introduced in [[Foster2025Foundation]]
 - [[dec]] — Decision Estimation Coefficient; complexity measure for online-oracle-efficient contextual bandits (Foster et al. 2021a)
 - [[doec]] — Decision-Offline Estimation Coefficient; complexity measure for offline-oracle-efficient bandits; introduced in [[Qin2026Taming]]
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
@@ -43,6 +47,9 @@ Format: `- [[slug]] — one-line description`
 ## Authors
 
 - [[Dam-Tuan]] — first author of Stochastic-Power-UCT; Univ. Lille / Inria
+- [[Foster-Dylan-J]] — first author of [[Foster2025Foundation]]; Microsoft Research; online learning, LM alignment
+- [[Mhammedi-Zakaria]] — co-author of [[Foster2025Foundation]]; Google Research; RL theory, sampling oracle framework
+- [[Rohatgi-Dhruv]] — co-author of [[Foster2025Foundation]]; MIT; computational hardness of proper exploration
 - [[Jennings-Nicholas-R]] — senior author of KUBE / budget-limited MAB; Loughborough (then Southampton); multi-agent systems
 - [[Jun-Kwang-Sung]] — senior author of PUB/freezing paper; U. Arizona; betting-based confidence bounds
 - [[Koolen-Wouter-M]] — senior author of CBAI; CWI/Twente; mixture martingales, pure exploration

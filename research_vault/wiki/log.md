@@ -5,6 +5,18 @@ Parse with: `grep "^## \[" wiki/log.md`
 
 ---
 
+## [2026-06-16] ingest | Is a Good Foundation Necessary for Efficient RL? (arXiv 2025)
+
+- Renamed raw `2503.07453v2.pdf` → `Foster2025Foundation.pdf`
+- Created `wiki/papers/Foster2025Foundation.md`
+- Created concept pages: `coverage-coefficient`, `linear-softmax-policy`, `spanner-sampling`
+- Created author pages: `Foster-Dylan-J`, `Mhammedi-Zakaria`, `Rohatgi-Dhruv`
+- Updated `topics/test-time-scaling.md`: added Foster2025Foundation entry + 2 open problems
+- Updated `topics/monte-carlo-tree-search.md`: added MTSS entry + open problem on token-level coverage
+- Updated `overview.md`: new "Computational theory of LM alignment" thread; active thread entry; source count 10 → 11
+- Updated `index.md`: +7 entries (1 paper, 3 concepts, 3 authors)
+- New thread: computational-statistical tradeoffs for LM alignment via sampling oracle. Stubs referenced: XPO (Xie et al. 2024), OnlineDPO (Guo et al. 2024)
+
 ## [2026-06-09] update | Song2019Revisiting — add Assumptions & Theorems section
 
 - Added "## Assumptions & Theorems" to `wiki/papers/Song2019Revisiting.md`: vocabulary, Lemma 2, Theorem 3, Theorem 4 (all three parts), gradient noise argument, and a how-the-pieces-fit diagram — all in plain language with the honest-gap note.

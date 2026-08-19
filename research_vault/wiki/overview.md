@@ -2,8 +2,8 @@
 
 *Synthesis of the research area as represented by papers in this vault. Updated incrementally with each ingest.*
 
-**Sources ingested:** 10  
-**Last updated:** 2026-06-09
+**Sources ingested:** 11  
+**Last updated:** 2026-06-16
 
 ---
 
@@ -21,6 +21,8 @@ The vault covers two complementary areas of bandit research:
 
 **LLM test-time scaling:** [[Li2026Predicting]] introduces tail-guided scaling law prediction and SLG Search, showing adaptive two-stage compute allocation achieves polynomial amplification over Best-of-$N$. Structural connection to BAI: state selection in SLG is a fixed-budget BAI problem.
 
+**Computational theory of LM alignment:** [[Foster2025Foundation]] opens a new thread — a formal computational framework for online LM alignment via a *sampling oracle*. Central finding: the [[coverage-coefficient]] $C_\text{cov}(\pi^*_\beta)$ is both necessary (Thm 2.1) and sufficient (SpannerSampling, Thm 3.1) for computationally efficient active exploration. Training-time interventions (OnlineDPO, XPO) cannot simultaneously achieve data and computational efficiency under ETH (Thm 4.1). Multi-turn MTSS (Thm 5.1) replaces sequence-level $C_\text{cov}$ with exponentially smaller token-level $C_\text{cond}$ under autoregressive realizability. Theoretical grounding for why inference-time compute (MCTS, BoN) beats training-time-only exploration.
+
 **Planning / MCTS:** [[Dam2024Power]] opens a fourth research direction — theoretical foundations of MCTS in stochastic environments. Uses power mean value backup to fix UCT's flawed logarithmic bonus, proving $\mathcal{O}(n^{-1/2})$ convergence. Notable cross-vault link: [[Kaufmann-Emilie]] co-authored both this paper and TAS (the BAI baseline in [[Kanarios2024Cost]]).
 
 **Value-based deep RL:** [[Song2019Revisiting]] introduces a new thread — replacing the max operator in DQN/DDQN target networks with the [[softmax-bellman-operator]] at inverse temperature $\tau$. Despite being a non-contraction, $\mathcal{T}_\text{soft}$ provably reduces [[overestimation-bias]] (with quantified bounds) and gradient noise, and converges to $\mathcal{T}$ exponentially fast in $\tau$. S-DQN and S-DDQN outperform their max counterparts on Atari, independent of exploration. Notable thematic parallel with [[Dam2024Power]]: both replace greedy max aggregation with a smooth operator to improve value estimation under noise.
@@ -35,6 +37,7 @@ The vault covers two complementary areas of bandit research:
 - **Extensions beyond iid bandits** — misspecification, reward corruption, distribution shift handled in [[Qin2026Taming]]; regret-setting CABAI and partial monitoring are open
 - **MCTS in stochastic environments** — [[Dam2024Power]] provides first complete convergence theory; optimal $p$ selection, adversarial extension, and deep learning integration are open
 - **Test-time compute optimization** — [[Li2026Predicting]] establishes tail-extrapolation scaling law prediction; deeper trees, PRM integration, and non-Gaussian tails are open
+- **Computational theory of LM alignment** — [[Foster2025Foundation]] establishes the sampling oracle framework and $C_\text{cov}$ lower bound; extension to nonlinear policies, tighter $T_\text{comp}$ bounds, and estimation of $C_\text{cond}$ from base model are open
 - **Smooth Bellman operators in deep RL** — [[Song2019Revisiting]] motivates replacing max with softmax in DQN targets; open: does the benefit extend to Rainbow/SAC/PPO, and is there a principled cooling schedule for $\tau$?
 
 ## Emerging Consensus

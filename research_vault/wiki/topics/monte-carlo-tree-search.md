@@ -13,6 +13,7 @@ The vault currently covers one paper addressing the stochastic setting via power
 ## Key Papers
 
 - **[[Dam2024Power]]** (2024) — Stochastic-Power-UCT: uses power mean backup operator + polynomial exploration bonus; proves $\mathcal{O}(n^{-1/2})$ convergence rate for root-node value estimation in stochastic MDPs; $p = 2$ consistently best empirically
+- **[[Foster2025Foundation]]** (2025) — MTSS (MultiTurnSpannerSampling): a token-level DP backward induction algorithm for autoregressive LM alignment; achieves exponentially better runtime by replacing sequence-level $C_\text{cov}(\pi^*_\beta)$ with token-level $C_\text{cond}(\pi^*_\beta)$; exploits that the KL-regularized Q-function $Q^*_{h,\beta}$ is linear under autoregressive realizability
 
 ## Open Problems
 
@@ -20,6 +21,7 @@ The vault currently covers one paper addressing the stochastic setting via power
 - Optimal $p$ selection for power mean as a function of environment structure
 - Extension of polynomial-bonus MCTS to adversarial MDP settings
 - Integration of power mean backups with deep learning value networks (AlphaZero-style)
+- Does MTSS's runtime advantage (token-level vs. sequence-level coverage) extend to sub-sequence-level MDPs?
 
 ## Related Topics
 - [[best-arm-identification]] — BAI theory underlies action selection at each MCTS node; [[Kaufmann-Emilie]] bridges both areas
