@@ -26,23 +26,23 @@ $$
 \text{doec}_{\gamma,\varepsilon}(\mathcal{G},\Lambda) \lesssim \tfrac{1}{\gamma}\text{Edim}(\mathcal{G},\sqrt{\varepsilon})\log^3(1/\varepsilon).
 $$
 
-So small Eluder dimension bounds [[epsilon-sec]], which bounds [[doec]]. Applied to per-context generalized linear rewards (where $\text{Edim} \le \tilde{O}(d\log\frac{1}{\varepsilon})$), this gives OE2D a $\tilde{O}(\sqrt{dT\log|\mathcal{F}|})$ regret bound while cutting oracle calls from $O(T)$ to $O(\log T)$.
+So small Eluder dimension bounds [[epsilon-sec]], which bounds [[decision-offline-estimation-coefficient]]. Applied to per-context generalized linear rewards (where $\text{Edim} \le \tilde{O}(d\log\frac{1}{\varepsilon})$), this gives OE2D a $\tilde{O}(\sqrt{dT\log|\mathcal{F}|})$ regret bound while cutting oracle calls from $O(T)$ to $O(\log T)$.
 
 ## Key Papers
 
 - Russo & Van Roy (2013) — introduces Eluder dimension for optimistic algorithms in bandits and RL
 - Jin et al. (2021a) — Bellman Eluder dimension; the RL extension
-- [[Qin2026Taming]] — uses it to certify small [[epsilon-sec]] and hence small [[doec]] (Proposition 1)
+- [[Qin2026Taming]] — uses it to certify small [[epsilon-sec]] and hence small [[decision-offline-estimation-coefficient]] (Proposition 1)
 - [[Yin2023Offline]] — argues the tractable instances of Eluder dimension are still essentially linear-in-features, motivating [[differentiable-function-approximation]] as an alternative structural handle
 
 ## Variants & Related Concepts
 
-- [[epsilon-sec]] — bounded by Eluder dimension; in turn bounds [[doec]]
-- [[doec]] / [[dec]] — the complexity measures Eluder dimension is used to certify
+- [[epsilon-sec]] — bounded by Eluder dimension; in turn bounds [[decision-offline-estimation-coefficient]]
+- [[decision-offline-estimation-coefficient]] / [[decision-estimation-coefficient]] — the complexity measures Eluder dimension is used to certify
 - [[differentiable-function-approximation]] — a competing structural assumption; smoothness rather than query-independence
 - **Bilinear classes** (Du et al. 2021), **linear Bellman complete** (Zanette et al. 2020) — sibling structural conditions
 - [[realizability]] — assumed alongside; Eluder dimension constrains the class's geometry, realizability its expressiveness
 
 ## Current State
 
-A standard tool for proving sequential learnability beyond linear models, but with a known limitation the vault records twice: its concrete tractable instances remain close to linear-in-features (a point made in Wen & Van Roy 2013 §4.1 and cited by [[Yin2023Offline]]), and it is a *sufficient* rather than necessary condition — [[Qin2026Taming]] shows [[epsilon-sec]] can be exponentially loose relative to [[doec]], so the chain from Eluder dimension down to the true complexity can be doubly loose.
+A standard tool for proving sequential learnability beyond linear models, but with a known limitation the vault records twice: its concrete tractable instances remain close to linear-in-features (a point made in Wen & Van Roy 2013 §4.1 and cited by [[Yin2023Offline]]), and it is a *sufficient* rather than necessary condition — [[Qin2026Taming]] shows [[epsilon-sec]] can be exponentially loose relative to [[decision-offline-estimation-coefficient]], so the chain from Eluder dimension down to the true complexity can be doubly loose.

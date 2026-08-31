@@ -33,8 +33,8 @@ Benchmark class $\Lambda$ determines the regret notion:
 - [[oracle-efficiency]] — computational tractability via oracle reductions
 - [[offline-regression-oracle]] — practical oracle model
 - [[importance-weighting]] — core primitive for offline/off-policy evaluation
-- [[dec]] — complexity measure for online-oracle-efficient algorithms
-- [[doec]] — complexity measure for offline-oracle-efficient algorithms
+- [[decision-estimation-coefficient]] — complexity measure for online-oracle-efficient algorithms
+- [[decision-offline-estimation-coefficient]] — complexity measure for offline-oracle-efficient algorithms
 
 ## Current State
 

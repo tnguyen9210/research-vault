@@ -1,14 +1,12 @@
 ---
-title: "Best Arm Identification"
-tags: [bandits, pure-exploration]
+title: "Cost-Aware Best Arm Identification"
+tags: [bandits, pure-exploration, cost-aware]
 ---
 
-# Best Arm Identification
+# Cost-Aware Best Arm Identification
 
 ## Overview
-Best arm identification (BAI) is the fixed-confidence pure exploration paradigm: run sequential trials on K arms and stop when confident the best arm has been identified (with probability ≥ 1−δ), at minimum expected sample cost. Unlike regret minimization, all pulls serve exploration and the algorithm terminates. The theoretical foundation is mature: Kaufmann et al. (2016) established matching lower bounds, and TAS achieves them asymptotically.
-
-The vault currently covers a cost-aware generalization ([[cabai]]) where each arm has a heterogeneous testing cost, motivating a fundamentally different optimal allocation rule (√c_a vs. uniform).
+The literature extending [[best-arm-identification]] (see the concept page for the paradigm, lower bound, and TAS) with **heterogeneous arm costs** — the vault's most developed pure-exploration thread. Cost enters in fundamentally different roles across the papers: as the objective to minimize ([[cabai]], where the optimal allocation shifts to $\sqrt{c_a}$ proportions), as a feasibility constraint ([[constrained-bai]]), and under a fixed budget with multiple stochastic constraints (BFAI). The paradigm's mature machinery (transportation-cost lower bounds, Track-and-Stop) carries over, but each cost role reshapes the optimal allocation differently.
 
 ## Key Papers
 
@@ -37,4 +35,5 @@ Both papers place cost at the center of BAI, but with different objectives:
 - Non-asymptotic sample complexity for CBAI
 
 ## Related Topics
+- [[budget-limited-bandits]] — the cumulative-reward counterpart: one shared budget, knapsack optimum, $O(\ln B)$ regret
 - [[offline-oracle-efficient-bandits]] — regret minimization setting; distinct goal (cumulative regret over T rounds rather than fixed-confidence identification)

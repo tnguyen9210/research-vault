@@ -1,18 +1,19 @@
 ---
 title: "$\\varepsilon$-Sequential Extrapolation Coefficient ($\\varepsilon$-SEC)"
+aliases: [epsilon-SEC]
 tags: [contextual-bandits, complexity-measure, oracle-efficiency, coverage]
 introduced_by: [[Qin2026Taming]]
 ---
 
 # $\varepsilon$-Sequential Extrapolation Coefficient ($\varepsilon$-SEC)
 
-**Definition:** A passive measure of exploration difficulty: the worst-case accumulated coverage of each benchmark distribution $\lambda_i$ by the mixture of distributions chosen up to and including step $i$. Introduced in [[Qin2026Taming]] as a modification of Xie et al. (2022)'s SEC, and used there to upper bound [[doec]].
+**Definition:** A passive measure of exploration difficulty: the worst-case accumulated coverage of each benchmark distribution $\lambda_i$ by the mixture of distributions chosen up to and including step $i$. Introduced in [[Qin2026Taming]] as a modification of Xie et al. (2022)'s SEC, and used there to upper bound [[decision-offline-estimation-coefficient]].
 
 ## Intuition
 
 To learn efficiently from an offline regression oracle you need the data you gather to be informative about every benchmark distribution you might want to evaluate. $\varepsilon$-SEC asks: if distributions arrive adversarially one at a time, how badly can the running mixture fail to cover the newest arrival, summed over the sequence?
 
-Small $\varepsilon$-SEC means an adversary cannot keep presenting distributions that the accumulated data fails to cover — coverage is achieved *incidentally*, without designing for it. That is exactly why it is a **passive** measure, and why it can be loose: [[doec]] permits active experimental design, deliberately choosing an exploration distribution $p$, whereas $\varepsilon$-SEC only tracks what accumulates.
+Small $\varepsilon$-SEC means an adversary cannot keep presenting distributions that the accumulated data fails to cover — coverage is achieved *incidentally*, without designing for it. That is exactly why it is a **passive** measure, and why it can be loose: [[decision-offline-estimation-coefficient]] permits active experimental design, deliberately choosing an exploration distribution $p$, whereas $\varepsilon$-SEC only tracks what accumulates.
 
 ## Formal Description
 
@@ -41,17 +42,17 @@ Two deliberate differences from the original SEC (Xie et al. 2022): the regulari
 ## Key Papers
 
 - Xie et al. (2022) — the original SEC, used to unify optimism-based RL analyses under low coverability and small Bellman Eluder dimension
-- [[Qin2026Taming]] — introduces $\varepsilon$-SEC; Theorem 3 (upper bounds [[doec]]), Proposition 1 (Eluder grounding), Proposition 3 (exponential looseness)
+- [[Qin2026Taming]] — introduces $\varepsilon$-SEC; Theorem 3 (upper bounds [[decision-offline-estimation-coefficient]]), Proposition 1 (Eluder grounding), Proposition 3 (exponential looseness)
 - Agarwal et al. (2024) — nonlinear $F$-design; the $\gamma\to0$ pure-exploration specialization generalizes their Theorem 4.2
 
 ## Variants & Related Concepts
 
-- [[doec]] — the quantity $\varepsilon$-SEC bounds; strictly sharper, because it allows active design
+- [[decision-offline-estimation-coefficient]] — the quantity $\varepsilon$-SEC bounds; strictly sharper, because it allows active design
 - [[eluder-dimension]] — bounds $\varepsilon$-SEC (Proposition 1)
-- [[dec]] — the online counterpart in the DEC/DOEC family
+- [[decision-estimation-coefficient]] — the online counterpart in the DEC/DOEC family
 - [[exploitative-f-design]] — the per-context optimization OE2D actually solves, which is where active design enters
 - [[coverage-coefficient]] — same underlying question (how well does one distribution cover another?) in the LM alignment setting
 
 ## Current State
 
-Useful but known to be lossy. It is the main structural tool for certifying bounded [[doec]] and connects the DOEC framework to the established Eluder-dimension literature, but [[Qin2026Taming]] itself demonstrates the exponential gap and lists "tighter structural characterizations of DOEC beyond $\varepsilon$-SEC" as an open problem. The gap is not a technical artifact — it reflects a genuine distinction between passive coverage and active experimental design.
+Useful but known to be lossy. It is the main structural tool for certifying bounded [[decision-offline-estimation-coefficient]] and connects the DOEC framework to the established Eluder-dimension literature, but [[Qin2026Taming]] itself demonstrates the exponential gap and lists "tighter structural characterizations of DOEC beyond $\varepsilon$-SEC" as an open problem. The gap is not a technical artifact — it reflects a genuine distinction between passive coverage and active experimental design.

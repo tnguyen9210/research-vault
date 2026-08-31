@@ -66,9 +66,9 @@ $$\left| \mathbb{E}[\hat{V}_n(s_0)] - \tilde{V}(s_0) \right| \leq \mathcal{O}(n^
 
 - [[monte-carlo-tree-search]] — the algorithmic framework this paper operates within
 - [[power-mean-mcts]] — the novel algorithm introduced here
-- [[Kaufmann-Emilie]] — third author; also known for TAS (BAI), connecting to [[best-arm-identification]]
-- [[Dam-Tuan]] — first author
-- [[Maillard-Odalric-Ambrym]] — second author
+- Emilie Kaufmann — third author; also known for TAS (BAI), connecting to [[best-arm-identification]]
+- Tuan Dam — first author
+- Odalric-Ambrym Maillard — second author
 - **Extends:** Fixed-Depth-MCTS (Shah et al. 2022) — deterministic predecessor
 - **Extends:** Power-UCT (Dam et al. 2019) — adds theoretical guarantees
 - **Thematic parallel:** [[Song2019Revisiting]] — same core idea (replace max backup with a smooth aggregator to reduce estimation noise) applied to deep Q-learning targets rather than MCTS; both papers argue greedy max is suboptimal under value estimation error

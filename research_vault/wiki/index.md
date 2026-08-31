@@ -24,8 +24,6 @@ Format: `- [[slug]] — one-line description`
 
 ## Concepts
 
-*FQI-family pages live in `concepts/fqi/`; links are still plain `[[slug]]`.*
-
 - [[best-arm-identification]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
 - [[constrained-bai]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
@@ -46,11 +44,11 @@ Format: `- [[slug]] — one-line description`
 - [[coverage-coefficient]] — $C_\text{cov}(\pi^*_\beta)$: measures how well $\pi_\text{ref}$ covers the optimal policy; lower bounds sampling oracle calls in [[Foster2025Foundation]]
 - [[linear-softmax-policy]] — $\pi_\theta(y|x) \propto \pi_\text{ref}(y|x)\exp(\beta^{-1}\langle\theta,\phi(x,y)\rangle)$; natural RLHF parameterization studied in [[Foster2025Foundation]]
 - [[spanner-sampling]] — two-phase improper exploration algorithm achieving optimal $T_\text{comp} = \tilde{O}(C_\text{cov})$; introduced in [[Foster2025Foundation]]
-- [[dec]] — Decision Estimation Coefficient; complexity measure for online-oracle-efficient contextual bandits (Foster et al. 2021a)
-- [[doec]] — Decision-Offline Estimation Coefficient; complexity measure for offline-oracle-efficient bandits; introduced in [[Qin2026Taming]]
-- [[eluder-dimension]] — how long a point can elude being determined by prior queries; bounds [[epsilon-sec]] and hence [[doec]]
+- [[decision-estimation-coefficient]] — DEC; complexity measure for online-oracle-efficient contextual bandits (Foster et al. 2021a)
+- [[decision-offline-estimation-coefficient]] — DOEC; complexity measure for offline-oracle-efficient bandits; introduced in [[Qin2026Taming]]
+- [[eluder-dimension]] — how long a point can elude being determined by prior queries; bounds [[epsilon-sec]] and hence [[decision-offline-estimation-coefficient]]
 - [[epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
-- [[epsilon-sec]] — passive coverage measure upper-bounding [[doec]] (Thm 3 of [[Qin2026Taming]]); can be exponentially loose vs. active design
+- [[epsilon-sec]] — passive coverage measure upper-bounding [[decision-offline-estimation-coefficient]] (Thm 3 of [[Qin2026Taming]]); can be exponentially loose vs. active design
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
 - [[extrapolation-error]] — FQI trains $Q$ on the data distribution but queries it outside; the $\max$ then selects whichever unsupported action was overvalued
 - [[fitted-q-iteration]] — the offline RL template: relabel a fixed batch with Bellman targets, refit by least squares, repeat; $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$
@@ -62,54 +60,13 @@ Format: `- [[slug]] — one-line description`
 - [[power-mean-mcts]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
 - [[realizability]] — assumption f* ∈ F enabling FALCON's optimal offline-oracle-efficient guarantees; introduced in [[SimchiLevi2022Bypassing]]
 
-## Authors
-
-- [[Dam-Tuan]] — first author of Stochastic-Power-UCT; Univ. Lille / Inria
-- [[Carin-Lawrence]] — third author of [[Song2019Revisiting]]; Duke; Bayesian ML (peripheral to the RL content)
-- [[Chapman-Archie]] — co-author of both budget-limited MAB papers; Southampton; multi-agent systems, distributed optimization
-- [[Foster-Dylan-J]] — first author of [[Foster2025Foundation]]; Microsoft Research; online learning, LM alignment
-- [[Mhammedi-Zakaria]] — co-author of [[Foster2025Foundation]]; Google Research; RL theory, sampling oracle framework
-- [[Rohatgi-Dhruv]] — co-author of [[Foster2025Foundation]]; MIT; computational hardness of proper exploration
-- [[Jennings-Nicholas-R]] — senior author of KUBE / budget-limited MAB; Loughborough (then Southampton); multi-agent systems
-- [[Jun-Kwang-Sung]] — senior author of PUB/freezing paper; U. Arizona; betting-based confidence bounds
-- [[Koolen-Wouter-M]] — senior author of CBAI; CWI/Twente; mixture martingales, pure exploration
-- [[Kostrikov-Ilya]] — first author of [[Kostrikov2022Offline]] (IQL); UC Berkeley; offline RL, efficient RL implementations
-- [[Lardy-Tyron]] — first author of CBAI; CWI/Leiden; BAI with cost-threshold constraints
-- [[Levine-Sergey]] — senior author of [[Kostrikov2022Offline]]; UC Berkeley; offline RL, robot learning
-- [[Ryu-J-Jon]] — first author of PUB/freezing paper; MIT; betting-based confidence bounds
-- [[Li-Muheng]] — first author of SLG Search; U. Toronto
-- [[Mou-Wenlong]] — senior author of SLG Search; U. Toronto
-- [[Qian-Jian]] — second author of SLG Search; U. Hong Kong
-- [[Kanarios-Kellen]] — first author of CABAI; U. Michigan
-- [[Kaufmann-Emilie]] — third author of Stochastic-Power-UCT; also co-developer of TAS (BAI); Univ. Lille / Inria
-- [[Maillard-Odalric-Ambrym]] — second author of Stochastic-Power-UCT; Univ. Lille / Inria
-- [[Munoz-de-Cote-Enrique]] — co-author of [[TranThanh2010Epsilon]]; Southampton; multi-agent learning, RL
-- [[Wang-Mengdi]] — co-author of [[Yin2023Offline]]; Princeton; RL theory, sample complexity with function approximation
-- [[Nair-Ashvin]] — co-author of [[Kostrikov2022Offline]]; UC Berkeley; offline-to-online finetuning, AWAC
-- [[Parr-Ronald-E]] — co-author of softmax Bellman operator paper; Duke; RL theory, MDPs
-- [[Qin-Hao]] — first author of OE2D; U. Arizona
-- [[Rogers-Alex]] — co-author of KUBE / budget-limited MAB; Oxford (then Southampton); MAS, sensor networks
-- [[Song-Zhao]] — first author of softmax Bellman operator paper; Baidu Research (Duke PhD); deep RL theory
-- [[Simchi-Levi-David]] — first author of FALCON; MIT
-- [[Tran-Thanh-Long]] — first author of KUBE / budget-limited MAB; Warwick (then Southampton); bandits under resource budgets
-- [[Xu-Yunzong]] — second author of FALCON; MIT
-- [[Yang-Le]] — first author of BFAI-TS; City University of Hong Kong; constrained BAI, Thompson sampling
-- [[Wang-Yi]] — senior author of BFAI-TS; University of Hong Kong; simulation optimization
-- [[Wang-Yu-Xiang]] — senior author of [[Yin2023Offline]]; UC Santa Barbara; offline RL theory, statistical learning
-- [[Yin-Ming]] — first author of [[Yin2023Offline]]; UC Santa Barbara; instance-dependent offline RL sample complexity
-- [[Ying-Lei]] — senior author of CABAI; U. Michigan
-- [[Zhang-Chicheng]] — second author of OE2D; U. Arizona; vault owner's advisor
-- [[Zhang-Qining]] — second author of CABAI; U. Michigan
-
 ## Topics
 
-- [[best-arm-identification]] — synthesis of BAI and cost-aware BAI; CABAI open problems
 - [[budget-limited-bandits]] — synthesis of budget/cost-constrained bandits; cumulative-reward (KUBE) vs. cost-aware BAI
-- [[monte-carlo-tree-search]] — synthesis of MCTS theory; Stochastic-Power-UCT and open problems
+- [[cost-aware-bai]] — the cost-aware BAI literature: cost as objective (CABAI), constraint (CBAI), fixed budget (BFAI); CABAI/CBAI positioning table
 - [[offline-oracle-efficient-bandits]] — synthesis of the research line on offline-oracle contextual bandits; FALCON → OE2D
 - [[offline-reinforcement-learning]] — synthesis of offline RL; in-sample vs. constrained vs. regularized, single-step vs. multi-step stitching
 - [[smooth-aggregators]] — cross-cutting pattern: power-mean MCTS, softmax DQN, expectile IQL as one parameterized avg→max family; unified analysis open
-- [[test-time-scaling]] — synthesis of LLM test-time compute scaling; SLG Search and open problems
 
 ## Queries
 

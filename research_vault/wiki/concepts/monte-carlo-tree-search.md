@@ -1,5 +1,6 @@
 ---
 title: "Monte-Carlo Tree Search (MCTS)"
+aliases: [MCTS]
 tags: [planning, reinforcement-learning, tree-search, bandits]
 introduced_by: [[Dam2024Power]]
 ---
@@ -29,11 +30,14 @@ Quality measured by convergence rate $r(t)$: $|\mathbb{E}[\hat{V}_n(s_0)] - V^*(
 
 ## Key Papers
 - [[Dam2024Power]] — introduces Stochastic-Power-UCT: power mean backup + polynomial bonus; $\mathcal{O}(n^{-1/2})$ convergence in stochastic MDPs
+- [[Foster2025Foundation]] — MTSS: token-level DP backward induction for autoregressive LM alignment; exponentially better runtime by replacing sequence-level $C_\text{cov}$ with token-level $C_\text{cond}$
 
 ## Variants & Related Concepts
 - [[power-mean-mcts]] — power mean backup operator; generalizes average and max
 - **UCT** (Kocsis & Szepesvári 2006) — logarithmic bonus; flawed theory in stochastic settings
 - **Fixed-Depth-MCTS** (Shah et al. 2022) — polynomial bonus; deterministic environments only
+- [[best-arm-identification]] — BAI theory underlies action selection at each node
+- [[smooth-aggregators]] — the power-mean backup is one of three vault instances of smoothing the max
 
 ## Current State
-UCT remains dominant in practice (AlphaGo, AlphaZero). Theoretical foundations for stochastic settings are incomplete; [[Dam2024Power]] makes progress. Combining MCTS with deep learning value functions is an active frontier.
+UCT remains dominant in practice (AlphaGo, AlphaZero) although its logarithmic bonus assumes exponential concentration of regret where actual concentration is polynomial — the theory for stochastic environments is incomplete, with [[Dam2024Power]] the current progress ($p=2$ consistently best empirically). [[Foster2025Foundation]] connects the framework to LM alignment via MTSS. Per-paper open questions (minimax rate, optimal $p$, adversarial extension, deep value networks) live on the paper pages.

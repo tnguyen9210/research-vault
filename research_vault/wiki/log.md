@@ -87,7 +87,7 @@ Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the m
   - `concepts/eluder-dimension.md` -- referenced from `doec`
   - `concepts/epsilon-sec.md` -- referenced from `doec`, [[Qin2026Taming]], `topics/offline-oracle-efficient-bandits`; written from the source PDF (Definition 3, Theorem 3, Propositions 1 and 3)
   - `papers/TranThanh2010Epsilon.md` -- STUB, clearly banner-marked: no PDF in `raw/papers/`, content sourced only from what [[TranThanh2012Knapsack]] states about its predecessor
-- **Orphans fixed (6 pages, 0 new content):** [[Foster2025Foundation]] now links [[spanner-sampling]], its authors [[Mhammedi-Zakaria]] / [[Rohatgi-Dhruv]], and the saved query [[2026-06-16-foster2025-sections-1-4]]; [[Ryu2025Improved]] now links [[Ryu-J-Jon]] and [[Jun-Kwang-Sung]]. All were reachable only from `index.md`.
+- **Orphans fixed (6 pages, 0 new content):** [[Foster2025Foundation]] now links [[spanner-sampling]], its authors Zakaria Mhammedi / Dhruv Rohatgi, and the saved query [[2026-06-16-foster2025-sections-1-4]]; [[Ryu2025Improved]] now links J. Jon Ryu and Kwang-Sung Jun. All were reachable only from `index.md`.
 - **Garbled index entries fixed:** the `test-time-scaling` concept line had `offline-regression-oracle`'s description appended to it, and the `test-time-scaling` topic line had a duplicated `FALCON -> OE2D` tail. Both truncated to their correct text; the orphaned tail restored to the `offline-regression-oracle` entry where it belonged.
 - Updated `index.md`: +6 entries (1 paper stub, 4 concepts, 1 author)
 - **Result: 0 broken links, 0 orphans across 84 pages.**
@@ -120,7 +120,7 @@ Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the m
 - Updated `overview.md`: offline RL paragraph, new cross-cutting thread "smooth aggregators in place of max" (Dam2024Power / Song2019Revisiting / Kostrikov2022Offline), sources 11 -> 12
 - Updated `index.md`: +7 entries (1 paper, 2 concepts, 3 authors, 1 topic)
 - Headline open question recorded: no finite-$\tau$ bound on $\max_{a:\pi_\beta(a|s)>0} Q^*(s,a) - V_\tau(s)$; conjecture that the gap is governed by a density-weighted coverage quantity ([[coverage-coefficient]]) rather than a support indicator
-- Noted for lint: pre-existing broken link `[[Carin-Lawrence]]` in `Song2019Revisiting.md`; garbled tail text in two `index.md` entries (`test-time-scaling` concept and topic lines)
+- Noted for lint: pre-existing broken link `Lawrence Carin` in `Song2019Revisiting.md`; garbled tail text in two `index.md` entries (`test-time-scaling` concept and topic lines)
 
 ## [2026-06-16] query | Foster2025Foundation Sections 1–4 summary
 
@@ -265,3 +265,16 @@ Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the m
 - Its one unique thread became [[smooth-aggregators]] (power-mean MCTS / softmax DQN / expectile IQL; unified analysis open)
 - Related-Topics links added from [[monte-carlo-tree-search]] and [[offline-reinforcement-learning]]; index.md updated
 - Schema: overview.md removed from layout and from the ingest workflow (steps renumbered)
+
+## [2026-08-30] update | Boundary rules encoded; twins resolved; authors/ removed
+- CLAUDE.md: new Page-Type Boundary Rules section (concept-vs-topic test, topic-when-earned, hygiene, no author pages); no-delete rule amended for redundant/regenerable pages
+- Twins audit: topic/concept basename collisions found (BAI, MCTS, TTS). BAI topic earned -> renamed [[cost-aware-bai]], re-definition stripped. MCTS and TTS topics (2 papers each, below threshold) merged into their concept pages and deleted; per-paper open questions already lived on paper pages
+- authors/ (36 pages) deleted: list + regenerable themes only; the one cross-paper insight (Kaufmann bridging MCTS<->BAI) already on [[Dam2024Power]]. Author links unlinked to plain names in 17 files; Authors section dropped from index
+
+## [2026-08-30] update | Flatten concepts/fqi/ into concepts/
+- Six FQI-family pages moved to top-level `concepts/`; subfolder removed; links unchanged (basename resolution)
+- Schema: cluster-subfolder mechanism replaced by the hub-page convention — a family is expressed by its hub ([[fitted-q-iteration]]) + member links, never a folder
+
+## [2026-08-30] update | Concept naming rules encoded; dec/doec spelled out
+- CLAUDE.md: five concept-naming rules (citable-name kebab, acronym policy, aliases:, hub-prefix restriction, name-shape-encodes-type); concept template gains `aliases:`
+- Renamed [[decision-estimation-coefficient]] and [[decision-offline-estimation-coefficient]] (were dec/doec); links updated; aliases added to 10 concept pages

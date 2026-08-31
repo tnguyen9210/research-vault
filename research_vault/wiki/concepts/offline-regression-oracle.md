@@ -31,10 +31,10 @@ An online regression oracle $\mathcal{O}_\mathrm{on}(\mathcal{F})$ receives tupl
 
 ## Key Papers
 
-- [[Qin2026Taming]] — uses offline oracle with $O(\log T)$ calls for general function classes; shows $\mathrm{Reg}_\mathrm{off}$ governs regret alongside [[doec]]
+- [[Qin2026Taming]] — uses offline oracle with $O(\log T)$ calls for general function classes; shows $\mathrm{Reg}_\mathrm{off}$ governs regret alongside [[decision-offline-estimation-coefficient]]
 
 ## Related Concepts
 
 - [[oracle-efficiency]]
-- [[doec]] — the complexity measure that governs regret when using offline oracles
+- [[decision-offline-estimation-coefficient]] — the complexity measure that governs regret when using offline oracles
 - [[contextual-bandits]]

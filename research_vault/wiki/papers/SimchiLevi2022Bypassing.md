@@ -67,8 +67,8 @@ $$
 - [[offline-regression-oracle]] — the oracle type; standard ERM qualifies
 - [[contextual-bandits]] — the problem setting
 - [[offline-oracle-efficient-bandits]] — this paper's central place in that research line
-- [[Simchi-Levi-David]] — first author
-- [[Xu-Yunzong]] — second author
+- David Simchi-Levi — first author
+- Yunzong Xu — second author
 - **Generalized by:** [[Qin2026Taming]] — extends to general action spaces and drops realizability via DOEC
 
 ## Open Questions (as of this paper)

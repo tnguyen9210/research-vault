@@ -67,7 +67,7 @@ Papers whose central open problem is the *absence* of such a bound:
 
 - **Minimax / worst-case bounds** — the complement; the right tool for establishing lower bounds and for comparing algorithm classes, and what instance-dependent results are measured against
 - **Instance-optimality** — the strong form: a matching per-instance lower bound. Achieved asymptotically in BAI, and up to $\sqrt{d}$ in [[Yin2023Offline]]
-- **Complexity measures** — [[dec]], [[doec]], Eluder dimension: instance functionals for whole problem classes rather than single instances
+- **Complexity measures** — [[decision-estimation-coefficient]], [[decision-offline-estimation-coefficient]], Eluder dimension: instance functionals for whole problem classes rather than single instances
 - [[differentiable-function-approximation]] — chosen precisely because its structure supports an instance functional
 - [[coverage-coefficient]] — the coverage-flavored member of this family
 

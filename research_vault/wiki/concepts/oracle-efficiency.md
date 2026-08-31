@@ -15,7 +15,7 @@ Direct contextual bandit algorithms are computationally hard in general (related
 
 **Online regression oracle** O_on(F): receives a stream of (context, action, reward) tuples online, outputs predictors with small cumulative squared loss. Requires O(T) calls. Used by SquareCB (Foster & Rakhlin 2020), E2D (Foster et al. 2021a).
 
-**Offline regression oracle** O_off(F): receives a batch of iid (context, action, reward) tuples, outputs a predictor minimizing out-of-sample prediction error. More practical — standard ERM, ridge regression, logistic regression all qualify. Complexity governed by [[doec]].
+**Offline regression oracle** O_off(F): receives a batch of iid (context, action, reward) tuples, outputs a predictor minimizing out-of-sample prediction error. More practical — standard ERM, ridge regression, logistic regression all qualify. Complexity governed by [[decision-offline-estimation-coefficient]].
 
 ## Why Offline Oracle Is Preferred in Practice
 
@@ -42,6 +42,6 @@ Direct contextual bandit algorithms are computationally hard in general (related
 ## Related Concepts
 
 - [[offline-regression-oracle]]
-- [[dec]] — governs online-oracle efficiency
-- [[doec]] — governs offline-oracle efficiency
+- [[decision-estimation-coefficient]] — governs online-oracle efficiency
+- [[decision-offline-estimation-coefficient]] — governs offline-oracle efficiency
 - [[contextual-bandits]]

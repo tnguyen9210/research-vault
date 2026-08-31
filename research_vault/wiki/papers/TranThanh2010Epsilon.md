@@ -87,7 +87,7 @@ The tie in the homogeneous case is expected and honestly explained: when costs a
 - **Superseded by:** [[TranThanh2012Knapsack]] — same problem, same group; [[kube]] interleaves exploration and exploitation through a UCB-augmented knapsack and reaches the optimal $O(\ln B)$ with a matching lower bound
 - [[upper-confidence-bound]] — used here only as an *exploration* baseline inside the $\varepsilon$-first shell, and shown not to help; the 2012 paper instead puts UCB inside the knapsack objective itself, which does help
 - [[kube]] — the successor algorithm
-- [[Tran-Thanh-Long]], [[Chapman-Archie]], [[Munoz-de-Cote-Enrique]], [[Rogers-Alex]], [[Jennings-Nicholas-R]] — authors
+- Long Tran-Thanh, Archie Chapman, Enrique Munoz de Cote, Alex Rogers, Nicholas R. Jennings — authors
 
 ## Open Questions
 

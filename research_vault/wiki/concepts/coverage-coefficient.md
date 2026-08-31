@@ -34,7 +34,7 @@ This satisfies $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_\text{cov}(\pi^*_\be
 - [[linear-softmax-policy]] — the policy class where $C_\text{cov}$ is studied
 - [[realizability]] — analogous assumption: $\pi^*_\beta \in \Pi$; coverage is a *computational* condition whereas realizability is *statistical*
 - [[contextual-bandits]] — in standard contextual bandits, importance weights play a similar coverage role; $C_\text{cov}$ is the LM alignment analogue
-- [[dec]] — DEC and DOEC measure statistical complexity of bandit algorithms; $C_\text{cov}$ measures computational complexity in the sampling oracle framework
+- [[decision-estimation-coefficient]] — DEC and DOEC measure statistical complexity of bandit algorithms; $C_\text{cov}$ measures computational complexity in the sampling oracle framework
 - [[implicit-q-learning]] — offline RL's support condition $\pi_\beta(a|s) > 0$ is the binary, density-free analogue of $C_\text{cov}$: [[Kostrikov2022Offline]] proves convergence to the support-constrained optimum but cannot say how large $\tau$ must be, precisely because a support indicator carries no density information
 - **Concentrability** $C_\text{eff} := \sup_\pi\sup_h\|d^\pi_h/d^\mu_h\|^2_{2,d^\mu_h}$ — offline RL's classical all-policy coverage condition ([[Yin2023Offline]], Assumption 2.2); *single-policy* concentrability (Xie et al. 2021a) is the weaker, more modern form
 - [[extrapolation-error]] — what coverage conditions are ultimately bounding: how far the learned policy's queries stray from the data

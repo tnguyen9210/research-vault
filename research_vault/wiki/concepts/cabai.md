@@ -1,5 +1,6 @@
 ---
 title: "Cost Aware Best Arm Identification (CABAI)"
+aliases: [CABAI, cost-aware BAI]
 tags: [bandits, pure-exploration, cost-aware, cabai]
 introduced_by: [[Kanarios2024Cost]]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Fitted Q-Iteration (FQI)"
+aliases: [FQI]
 tags: [reinforcement-learning, offline-reinforcement-learning, approximate-dynamic-programming, function-approximation, bellman-operator]
 introduced_by: [[Yin2023Offline]]
 ---

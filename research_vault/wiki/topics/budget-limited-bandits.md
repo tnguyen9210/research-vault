@@ -30,3 +30,4 @@ These differ fundamentally: (1) trades off cheap-but-good vs. expensive-but-best
 ## Related Topics
 
 - [[best-arm-identification]] — the pure-exploration regime that the cost-aware BAI thread specializes
+- [[cost-aware-bai]] — that thread's own survey: cost as objective vs. constraint vs. budget

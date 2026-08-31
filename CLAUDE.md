@@ -16,9 +16,7 @@ research_vault/
     ├── index.md       ← master catalog of all wiki pages (you maintain this)
     ├── log.md         ← append-only operation log (you maintain this)
     ├── papers/        ← one wiki page per ingested paper
-    ├── concepts/      ← method/concept pages (attention, LoRA, RLHF, ...)
-    │   └── <cluster>/ ← optional topical subfolder, e.g. concepts/fqi/
-    ├── authors/       ← notable researcher pages
+    ├── concepts/      ← method/concept pages (attention, LoRA, RLHF, ...) — flat
     ├── topics/        ← broad topic synthesis pages (e.g., "PEFT Methods")
     └── queries/       ← saved analysis and query answers
 ```
@@ -50,22 +48,38 @@ The canonical ID for every paper is its **Better BibTeX citekey** (format `auth.
 |----------|---------|---------|
 | Paper wiki page | `wiki/papers/<citekey>.md` | `wiki/papers/munos2008FiniteTime.md` |
 | Concept page | `wiki/concepts/<slug>.md` | `wiki/concepts/attention.md` |
-| Concept page (clustered) | `wiki/concepts/<cluster>/<slug>.md` | `wiki/concepts/fqi/implicit-q-learning.md` |
-| Author page | `wiki/authors/<Lastname-Firstname>.md` | `wiki/authors/Vaswani-Ashish.md` |
 | Topic page | `wiki/topics/<slug>.md` | `wiki/topics/peft-methods.md` |
 | Query page | `wiki/queries/<YYYY-MM-DD-slug>.md` | `wiki/queries/2026-05-27-scaling-laws-comparison.md` |
 
 Use lowercase slugs, hyphens not underscores, no spaces in filenames.
 
+**Concept naming rules:**
+
+1. **Lowercase kebab-case, named by the concept's most citable standard name** — what a paper's prose would call it (`fitted-q-iteration`, `coverage-coefficient`). This is what fuzzy finders (Ctrl+P, Obsidian quick switcher) match and what Claude resolves from paper text.
+2. **Acronym filenames only when the acronym IS the spoken name** (`kube`, `cabai`, `slg-search`). Short/ambiguous acronyms are spelled out (`decision-estimation-coefficient`, not `dec`).
+3. **Short forms go in frontmatter `aliases:`** (e.g. `aliases: [DEC]`) so `[[DEC]]` autocompletes in Obsidian and search finds both forms.
+4. **Hub-prefix only for members with no standalone name** (`pfql-algorithm-1`). A concept with its own citable name keeps it — never `fqi-implicit-q-learning`.
+5. **Name shape encodes page type:** citekeys / capitalized legacy names = papers; kebab-case object names = concepts; kebab-case scope names (`cost-aware-bai`, `smooth-aggregators`) = topics.
+
 **Legacy paper pages.** Pages created before the Zotero wiring use `<LastnameYearTitleFirstWord>` (e.g. `Vaswani2017Attention`). Keep their names — renaming breaks links, and macOS filesystems are case-insensitive, so a citekey twin (`vaswani2017Attention.md`) must NEVER be created alongside one. One page per paper: if a legacy page exists, keep using it and add `citekey:` to its frontmatter when you next touch it.
 
-**Concept subfolders.** `wiki/concepts/` may contain topical subfolders grouping a tightly related family of pages (currently: `concepts/fqi/` for the Fitted Q-Iteration template and its variants). Rules:
+**Concept families.** `wiki/concepts/` is fully flat. A tightly related family (e.g. the FQI variants) is expressed by a **hub page** ([[fitted-q-iteration]]) that lists its members, plus links back from each member — never by a subfolder. Filenames must stay unique across the whole vault, or `[[slug]]` becomes ambiguous.
 
-- Wikilinks are always `[[slug]]` — **never** include the folder. Obsidian resolves by filename, so subfoldering never changes a link.
-- Filenames must stay unique across the whole vault, or `[[slug]]` becomes ambiguous.
-- `index.md` entries are unchanged by subfoldering; note the folder once under the category heading rather than per entry.
-- Create a subfolder only when a cluster has 4+ pages and one of them is a clear parent/template page. Otherwise keep it flat.
-- Anything that walks the wiki (lint scans, scripts) must recurse into `concepts/`, not just list it.
+---
+
+## Page-Type Boundary Rules
+
+**A concept defines an object; a topic surveys a literature.** A concept answers "what *is* X, precisely?" (Definition, Intuition, Formal Description — mostly timeless). A topic answers "where does the field stand on X?" (Overview synthesis, chronological Key Papers, Open Problems — changes with every ingest). One concept appears in many topics; one topic weaves many concepts.
+
+Practical rules:
+
+1. **Default to concept.** Anything statable as a one-sentence definition with a formal description is a concept — including problem settings (BAI, budget-limited MAB), which are formal objects first. While an area is small, the concept's "Current State" section carries the mini-synthesis.
+2. **Topic-when-earned.** Create a topic page only when the area's narrative outgrows that section: ≈4–5+ papers *and* a real story (chronology, contested claims, a positioning table). Structure after content proves it.
+3. **Hygiene once both exist.** The topic never re-defines — it links the concept. The concept keeps no chronology or open-problems lists — it links the topic. A topic must NOT share the concept's filename: basenames are unique vault-wide (macOS is case-insensitive), so give the topic its own name (e.g. concept `best-arm-identification` / topic `cost-aware-bai`).
+4. **Zotero collections are not pages.** Category views come from `library.json` on demand (saved under `wiki/queries/` when worth keeping) — never as folders or member-list "topics".
+5. **No author pages.** Zotero + `library.json` already answer "what do I have by X"; an author profile is generated on demand from the library plus paper pages, not maintained. In paper Connections, name authors as plain text.
+
+The wiki is **flat**: links resolve by basename, so folders add filing decisions without adding navigation; grouping is expressed by hub pages, links, `index.md`, and generated views.
 
 ---
 
@@ -112,7 +126,7 @@ Brief honest assessment.
 
 ## Connections
 - [[concept or paper]] — why it's related
-- [[author page]] — links to key authors
+- Authors as plain text (no author pages)
 - **Extends:** [[prior paper]]
 - **Challenged by:** [[later paper]]
 - **Used in:** [[paper that builds on this]]
@@ -127,6 +141,7 @@ Questions the paper leaves unanswered, plus follow-ups worth pursuing — especi
 ---
 title: "<Concept Name>"
 tags: [area1, area2]
+aliases: [ACRONYM]              # short forms, if any (searchable in Obsidian)
 introduced_by: [[PaperSlug]]    # earliest key reference in this vault
 ---
 
@@ -148,27 +163,6 @@ Math or pseudocode if relevant.
 
 ## Current State
 Is this still dominant? Superseded? Active research area?
-```
-
-### Author Page (`wiki/authors/`)
-
-```markdown
----
-name: "<Full Name>"
-affiliation: "<current org>"
-areas: [area1, area2]
----
-
-# <Full Name>
-
-**Affiliation:** ...  
-**Research areas:** ...
-
-## Papers in this Vault
-- [[paper-slug]] (Year) — one-line summary
-
-## Research Themes
-Patterns across their work.
 ```
 
 ### Topic Page (`wiki/topics/`)
@@ -220,7 +214,7 @@ question: "<the question asked>"
 
 ## Formatting Rules
 
-- **Math:** Always write mathematical expressions in LaTeX syntax — inline with `$...$`, display equations with `$$...$$`. Never use plain-text math notation (e.g., write `$\sqrt{c_a}$` not `√c_a`, `$\delta$-PAC` not `δ-PAC`, `$O(\log T)$` not `O(log T)`). This applies to all wiki pages: papers, concepts, topics, authors.
+- **Math:** Always write mathematical expressions in LaTeX syntax — inline with `$...$`, display equations with `$$...$$`. Never use plain-text math notation (e.g., write `$\sqrt{c_a}$` not `√c_a`, `$\delta$-PAC` not `δ-PAC`, `$O(\log T)$` not `O(log T)`). This applies to all wiki pages: papers, concepts, topics.
 
 ---
 
@@ -235,10 +229,9 @@ When the user says **"ingest <citekey>"** or **"summarize <citekey>"** (or names
 
 For a **non-Zotero source** (a file dropped into `raw/papers/`): read it, rename it to `raw/papers/<LastnameYearTitleFirstWord>.<ext>` (the only permitted raw/ operation), and use that slug for the wiki page; then continue from step 3.
 5. **Update or create** concept pages for the most important new concepts introduced by the paper — limit to **3 new concept pages per ingest**. Prioritize concepts that are genuinely novel contributions of the paper (not background concepts). Update the "Key Papers" section of existing concept pages.
-6. **Update or create** author pages for first/last authors (and others if prominent). Add the paper to their "Papers in this Vault" list.
-7. **Update** any relevant topic pages — revise the synthesis, add the paper to "Key Papers", update "Open Problems" if applicable.
-8. **Update** `wiki/index.md`: add an entry for every new page created.
-9. **Append** to `wiki/log.md`: `## [YYYY-MM-DD] ingest | <Title> (<Venue Year>)`
+6. **Update** any relevant topic pages — revise the synthesis, add the paper to "Key Papers", update "Open Problems" if applicable.
+7. **Update** `wiki/index.md`: add an entry for every new page created.
+8. **Append** to `wiki/log.md`: `## [YYYY-MM-DD] ingest | <Title> (<Venue Year>)`
 
 A single paper ingest typically touches 5–15 pages.
 
@@ -260,7 +253,7 @@ When the user asks a question:
 When the user says **"lint"**:
 
 1. Scan all pages for `[[links]]` that don't resolve to an existing file — report as broken links.
-2. Check for concept/author pages that are referenced but don't exist yet — list as stubs to create.
+2. Check for concept pages that are referenced but don't exist yet — list as stubs to create.
 3. Look for pages with no inbound links (orphans).
 4. Identify claims that newer papers contradict — flag for review.
 5. Suggest 3–5 new questions worth investigating or sources worth finding.
@@ -270,7 +263,7 @@ When the user says **"lint"**:
 
 ## Index Conventions (`wiki/index.md`)
 
-- Organized by category (Papers, Concepts, Authors, Topics, Queries).
+- Organized by category (Papers, Concepts, Topics, Queries).
 - Each entry: `- [[slug]] — one-line description` (under ~120 chars).
 - Keep entries sorted alphabetically within each category.
 - Update immediately after every ingest or query-save operation.
@@ -290,7 +283,7 @@ When the user says **"lint"**:
 ## Cross-referencing Rules
 
 - When you mention a concept that has a wiki page, always link it: `[[attention]]`.
-- When you create a new paper page, search for existing concept/author/topic pages that should link back to it and update them.
+- When you create a new paper page, search for existing concept/topic pages that should link back to it and update them.
 - Never leave a page as a complete island — every page must link to at least one other page, and be linked from at least one other page.
 - Prefer depth over breadth: a few meaningful cross-references are better than a dozen superficial ones.
 
@@ -301,7 +294,7 @@ When the user says **"lint"**:
 - Never edit the **content** of files under `raw/`. Renaming them (non-Zotero ingest only) is the only permitted operation.
 - Never edit, rename, or hand-add files in `$PAPERS_DIR` — it belongs to `fetch_paper.py`.
 - Never hand-edit `library.json` — it is regenerated wholesale by Better BibTeX.
-- Never delete wiki pages — mark them deprecated with a note at the top instead.
+- Never delete a page that carries synthesis — mark it deprecated instead. A page that is redundant or fully regenerable (a duplicate, a member-list shadow of a collection) may be removed, with a `log.md` entry recording what happened to its content.
 - Never silently skip updating the index or log.
 - Never invent citations or paper results — if uncertain, say so on the page.
 - Never summarize without stating the key technical claim precisely.

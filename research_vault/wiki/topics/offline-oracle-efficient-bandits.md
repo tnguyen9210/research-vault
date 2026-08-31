@@ -46,13 +46,13 @@ Key distinction from the oracle-efficient line: oracle-efficient bandits minimiz
 
 ## Open Problems
 
-- Lower bounds on [[doec]]: when is offline-oracle-efficient learning information-theoretically hard?
+- Lower bounds on [[decision-offline-estimation-coefficient]]: when is offline-oracle-efficient learning information-theoretically hard?
 - First-order offline-oracle-efficient algorithms (sub-√T regret under favorable conditions)
 - Extensions to partial monitoring, RLHF, non-iid context distributions
-- Tighter structural characterizations of [[doec]] beyond [[epsilon-sec]]
+- Tighter structural characterizations of [[decision-offline-estimation-coefficient]] beyond [[epsilon-sec]]
 - Online-to-offline reduction for first-order algorithms (cf. Foster & Krishnamurthy 2021)
 
 ## Related Topics
 
-- [[dec]] and [[doec]] as dual complexity measures (online vs. offline oracle)
+- [[decision-estimation-coefficient]] and [[decision-offline-estimation-coefficient]] as dual complexity measures (online vs. offline oracle)
 - Online-oracle-efficient bandits (E2D, SquareCB — not yet in vault)

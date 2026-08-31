@@ -48,7 +48,7 @@ $$
 \left[ \mathbb{E}_{a \sim \lambda}[\hat{g}(a)] - \mathbb{E}_{a \sim p}[\hat{g}(a)] + \frac{1}{\gamma} \mathrm{Coverage}_\varepsilon(p, \lambda;\, G) \right]
 $$
 
-Unlike [[dec]], DOEC does not reference the ground-truth reward — enabling actual reduction to offline regression.
+Unlike [[decision-estimation-coefficient]], DOEC does not reference the ground-truth reward — enabling actual reduction to offline regression.
 
 ## Results
 
@@ -77,15 +77,15 @@ Regret of OE2D (finite $\mathcal{F}$, ERM oracle):
 
 ## Connections
 
-- [[doec]] — new complexity measure introduced here; governs OE2D's regret
-- [[dec]] — existing measure for online-oracle algorithms; shown to be $\geq$ DOEC (up to lower-order terms)
+- [[decision-offline-estimation-coefficient]] — new complexity measure introduced here; governs OE2D's regret
+- [[decision-estimation-coefficient]] — existing measure for online-oracle algorithms; shown to be $\geq$ DOEC (up to lower-order terms)
 - [[exploitative-f-design]] — the key algorithmic primitive
 - [[offline-regression-oracle]] — the computational model
 - [[oracle-efficiency]] — the broader research context
 - [[contextual-bandits]] — the problem setting
 - [[epsilon-sec]] — bounds DOEC from above (Theorem 3)
-- [[Zhang-Chicheng]] — second author (advisor)
-- [[Qin-Hao]] — first author
+- Chicheng Zhang — second author (advisor)
+- Hao Qin — first author
 - **Generalizes:** [[SimchiLevi2022Bypassing]] (FALCON), Linear FALCON (Xu & Zeevi 2020)
 - **Offline-oracle counterpart of:** E2D (Foster et al. 2021a)
 

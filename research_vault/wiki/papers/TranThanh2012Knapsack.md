@@ -50,7 +50,7 @@ Sampling proportional to knapsack multiplicity means KUBE's *expected* reward eq
 - [[upper-confidence-bound]] — fractional KUBE is the budget-limited analogue; UCB confidence width $\sqrt{2\ln t / n}$ is reused
 - [[Kanarios2024Cost]] — also attaches per-arm costs, but pure-exploration/fixed-confidence (minimize cost to *identify* best arm) vs. this paper's cumulative-reward/regret under a *shared* budget; contrast in what "cost-aware" means
 - **Extends:** [[TranThanh2010Epsilon]] — the paper that introduced the [[budget-limited-mab]] and its knapsack framing; this paper keeps the model and replaces its [[epsilon-first]] algorithm
-- [[Tran-Thanh-Long]], [[Rogers-Alex]], [[Jennings-Nicholas-R]] — authors
+- Long Tran-Thanh, Alex Rogers, Nicholas R. Jennings — authors
 
 ## Open Questions
 

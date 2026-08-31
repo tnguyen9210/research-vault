@@ -65,10 +65,10 @@ This can be exponentially smaller: $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_
 - [[monte-carlo-tree-search]] — MTSS's multi-turn DP is a token-level analogue; [[Dam2024Power]] studies MCTS convergence in a related stochastic setting
 - [[test-time-scaling]] — SpannerSampling formalizes *why* inference-time compute (rather than training-time) enables computationally efficient exploration; direct theoretical backing for MCTS/BoN approaches
 - [[realizability]] — Assumption 1.1 (policy realizability) parallels FALCON's realizability; [[SimchiLevi2022Bypassing]]
-- [[dec]] — DEC/DOEC are complexity measures for oracle-efficient bandits; $C_\text{cov}$ plays an analogous role in the sampling oracle framework
+- [[decision-estimation-coefficient]] — DEC/DOEC are complexity measures for oracle-efficient bandits; $C_\text{cov}$ plays an analogous role in the sampling oracle framework
 - **Extends:** XPO (Xie et al. 2024) — proves XPO cannot be computationally efficient (Thm 4.1)
 - **Extends:** OnlineDPO (Guo et al. 2024) — shows it is data-inefficient due to passive exploration
-- [[Foster-Dylan-J]], [[Mhammedi-Zakaria]], [[Rohatgi-Dhruv]] — authors
+- Dylan J. Foster, Zakaria Mhammedi, Dhruv Rohatgi — authors
 - [[2026-06-16-foster2025-sections-1-4]] — saved query: section-by-section walkthrough of Sections 1–4
 
 ## Open Questions

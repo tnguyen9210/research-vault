@@ -1,5 +1,6 @@
 ---
 title: "Best Arm Identification"
+aliases: [BAI]
 tags: [bandits, pure-exploration, fixed-confidence]
 introduced_by: [[Kanarios2024Cost]]
 ---
@@ -42,4 +43,4 @@ where $\hat{\mu}_{a,b}$ is the pull-weighted mixture mean.
 - **Multi-fidelity BAI** — costs are known a priori and controllable; differs from CABAI's random unknown costs
 
 ## Current State
-Theoretical foundation is mature: matching lower/upper bounds via TAS. Active extensions: cost-awareness ([[cabai]], [[constrained-bai]]), safety constraints, multi-fidelity, and dependent arm distributions. Regret-minimization and BAI are studied as largely separate paradigms.
+Theoretical foundation is mature: matching lower/upper bounds via TAS. Active extensions: cost-awareness ([[cabai]], [[constrained-bai]] — surveyed in [[cost-aware-bai]]), safety constraints, multi-fidelity, and dependent arm distributions. Regret-minimization and BAI are studied as largely separate paradigms.

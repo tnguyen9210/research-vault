@@ -1,5 +1,6 @@
 ---
 title: "KUBE (Knapsack-based Upper Confidence Bound Exploration)"
+aliases: [KUBE, fractional KUBE]
 tags: [budget-limited-mab, ucb, knapsack, regret, kube, bandits]
 introduced_by: [[TranThanh2012Knapsack]]
 ---

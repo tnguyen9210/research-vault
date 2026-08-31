@@ -1,5 +1,6 @@
 ---
 title: "Implicit Q-Learning (IQL)"
+aliases: [IQL]
 tags: [offline-reinforcement-learning, expectile-regression, deep-reinforcement-learning, bellman-operator, value-estimation]
 introduced_by: [[Kostrikov2022Offline]]
 ---

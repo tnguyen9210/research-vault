@@ -22,11 +22,13 @@ $$V_N(s) = \mathbb{E}\!\left[\max_{1 \leq i \leq N} R_s^{(i)}\right], \quad R_s^
 
 ## Key Papers
 - [[Li2026Predicting]] — tail extrapolation predicts $V_N(s)$ from $m \ll N$ samples; SLG Search achieves polynomial compute amplification over BoN
+- [[Foster2025Foundation]] — the theoretical case for inference-time compute: SpannerSampling meets the [[coverage-coefficient]] lower bound with only a sampling oracle, while training-time interventions (DPO/XPO) cannot be simultaneously data- and compute-efficient under ETH
 
 ## Variants & Related Concepts
 - [[slg-search]] — adaptive two-stage search using predicted scaling laws
 - **Tree of Thoughts / MCTS** — deeper tree-structured search; [[monte-carlo-tree-search]] is a related planning framework
 - **Process Reward Models (PRMs)** — score intermediate steps rather than final responses; complement to outcome reward models
+- [[coverage-coefficient]] — the quantity governing when inference-time exploration is computationally feasible
 
 ## Current State
-Active research area (2024–2026). BoN is the dominant practical approach. Adaptive multi-stage methods like SLG are emerging with theoretical backing. Extension to PRMs and deeper trees are open frontiers.
+Active research area (2024–2026). BoN is the dominant practical approach; adaptive multi-stage methods (SLG) are emerging with theoretical backing, and [[Foster2025Foundation]] supplies the computational-theory grounding for why inference-time compute beats training-time-only exploration. Structural connection: state selection in SLG is a fixed-budget [[best-arm-identification]] problem. Per-paper open questions (deeper trees, PRM integration, tail assumptions, estimating $C_\text{cond}$) live on the paper pages.

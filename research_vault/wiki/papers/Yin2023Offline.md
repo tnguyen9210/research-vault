@@ -129,8 +129,8 @@ That still requires a finite-sample bound on $\|\theta_{\mathcal{T}\hat V_{h+1}}
 - **Shares the pessimism principle:** [[Ryu2025Improved]] — PUB applies betting-based LCBs to offline *policy selection*; PFQL applies a gradient-geometry LCB to offline *policy learning*
 - **Generalizes:** Jin et al. (2021b) PEVI (linear MDPs), Yin & Wang (2021) VPVI (tabular), Yin et al. (2022) (variance-aware linear)
 - **Contrasts with:** Chen & Jiang (2019), Xie et al. (2021a) — GFA, worst-case bounds, weaker coverage
-- [[Yin-Ming]], [[Wang-Mengdi]], [[Wang-Yu-Xiang]] — authors
-- [[Foster-Dylan-J]] — co-author of the "fundamental barriers" result (Foster et al. 2021) that motivates Assumption 2.1
+- Ming Yin, Mengdi Wang, Yu-Xiang Wang — authors
+- Dylan J. Foster — co-author of the "fundamental barriers" result (Foster et al. 2021) that motivates Assumption 2.1
 
 ## Open Questions
 

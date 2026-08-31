@@ -1,5 +1,6 @@
 ---
 title: "Decision-Offline Estimation Coefficient (DOEC)"
+aliases: [DOEC]
 tags: [contextual-bandits, complexity-measure, oracle-efficiency]
 introduced_by: [[Qin2026Taming]]
 ---
@@ -23,7 +24,7 @@ DOEC is the minimax value of the [[exploitative-f-design]] problem. It measures:
 
 ## Key Difference from DEC
 
-[[dec]] uses $\mathbb{E}_{a \sim p}[(\hat{g}(a) - g^*(a))^2]$ as the exploration cost — this references the unknown $g^*$, preventing direct reduction to offline regression.
+[[decision-estimation-coefficient]] uses $\mathbb{E}_{a \sim p}[(\hat{g}(a) - g^*(a))^2]$ as the exploration cost — this references the unknown $g^*$, preventing direct reduction to offline regression.
 
 DOEC uses $\mathrm{Coverage}_\varepsilon(p, \lambda;\, G)$, which does **not** reference $g^*$ — enabling actual reduction to [[offline-regression-oracle]].
 
@@ -63,7 +64,7 @@ $$\mathrm{Reg} \lesssim \tilde{O}\!\left(\sqrt{T \cdot \max_x\,\mathbb{E}[\mathr
 
 ## Related Concepts
 
-- [[dec]] — online-oracle analogue; DOEC $\geq$ DEC (up to lower-order terms)
+- [[decision-estimation-coefficient]] — online-oracle analogue; DOEC $\geq$ DEC (up to lower-order terms)
 - [[epsilon-sec]] — upper bounds DOEC; may be exponentially loose
 - [[exploitative-f-design]] — DOEC is the minimax value of this problem
 - [[eluder-dimension]] — bounds $\varepsilon$-SEC, which bounds DOEC (for discrete $\Lambda$)

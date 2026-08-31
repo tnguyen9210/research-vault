@@ -1,5 +1,6 @@
 ---
 title: "Decision Estimation Coefficient (DEC)"
+aliases: [DEC]
 tags: [contextual-bandits, complexity-measure, oracle-efficiency]
 ---
 
@@ -31,7 +32,7 @@ Key values: $\mathrm{dec}(F_x, \Lambda) \lesssim |\mathcal{A}|$, $d/h$, $1/h$ fo
 
 ## Key Difference from DOEC
 
-DEC's exploration cost $\mathbb{E}_{a \sim p}[(\hat{g}(a) - g^*(a))^2]$ references the **ground-truth $g^*$** — this prevents reduction to offline regression (you can't minimize this without knowing $g^*$). [[doec]] replaces this with $\mathrm{Coverage}_\varepsilon$, removing the dependence on $g^*$ and enabling offline oracle reduction.
+DEC's exploration cost $\mathbb{E}_{a \sim p}[(\hat{g}(a) - g^*(a))^2]$ references the **ground-truth $g^*$** — this prevents reduction to offline regression (you can't minimize this without knowing $g^*$). [[decision-offline-estimation-coefficient]] replaces this with $\mathrm{Coverage}_\varepsilon$, removing the dependence on $g^*$ and enabling offline oracle reduction.
 
 ## DOEC-DEC Bridge ([[Qin2026Taming]], Theorem 5)
 
@@ -49,6 +50,6 @@ This bridges the design principles of offline- and online-oracle efficient algor
 
 ## Related Concepts
 
-- [[doec]] — offline-oracle analogue; upper bounds DEC
+- [[decision-offline-estimation-coefficient]] — offline-oracle analogue; upper bounds DEC
 - [[contextual-bandits]]
 - [[oracle-efficiency]]

@@ -1,5 +1,6 @@
 ---
 title: "Pessimistic Fitted Q-Learning (PFQL)"
+aliases: [PFQL, VAFQL]
 tags: [offline-reinforcement-learning, pessimism, fitted-q-iteration, differentiable-function-approximation, variance-awareness]
 introduced_by: [[Yin2023Offline]]
 ---

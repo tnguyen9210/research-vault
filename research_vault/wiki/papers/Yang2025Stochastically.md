@@ -79,8 +79,8 @@ PFS on log scale shows linear decay for BFAI-TS — confirming the exponential c
 - [[constrained-bai]] — complementary regime: this paper is **fixed-budget** (fixed $n$, minimize PFS); [[Lardy2025Constrained]] is **fixed-confidence** (minimize $\mathbb{E}[\tau_\delta]$). Same problem structure, different theoretical frameworks.
 - [[best-arm-identification]] — BFAI extends fixed-budget BAI to $m$ stochastic constraints
 - [[cabai]] — distinct: CABAI minimizes cumulative testing cost; BFAI minimizes false selection probability within a fixed budget
-- [[Yang-Le]] — first author
-- [[Wang-Yi]] — senior author
+- Le Yang — first author
+- Yi Wang — senior author
 - **Extends:** Russo 2020 (top-two TS for unconstrained BAI) — BFAI-TS adds feasibility tracking to the top-two TS framework
 - **Related:** Katz-Samuels & Scott 2019 (TF-LUCB, fixed-confidence top-feasible arm ID); OCBA-CO (Lee et al. 2012, constrained R&S)
 
