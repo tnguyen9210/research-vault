@@ -108,6 +108,7 @@ Format: `- [[slug]] — one-line description`
 - [[monte-carlo-tree-search]] — synthesis of MCTS theory; Stochastic-Power-UCT and open problems
 - [[offline-oracle-efficient-bandits]] — synthesis of the research line on offline-oracle contextual bandits; FALCON → OE2D
 - [[offline-reinforcement-learning]] — synthesis of offline RL; in-sample vs. constrained vs. regularized, single-step vs. multi-step stitching
+- [[smooth-aggregators]] — cross-cutting pattern: power-mean MCTS, softmax DQN, expectile IQL as one parameterized avg→max family; unified analysis open
 - [[test-time-scaling]] — synthesis of LLM test-time compute scaling; SLG Search and open problems
 
 ## Queries

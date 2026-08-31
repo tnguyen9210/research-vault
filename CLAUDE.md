@@ -15,7 +15,6 @@ research_vault/
 └── wiki/
     ├── index.md       ← master catalog of all wiki pages (you maintain this)
     ├── log.md         ← append-only operation log (you maintain this)
-    ├── overview.md    ← high-level synthesis of the research area
     ├── papers/        ← one wiki page per ingested paper
     ├── concepts/      ← method/concept pages (attention, LoRA, RLHF, ...)
     │   └── <cluster>/ ← optional topical subfolder, e.g. concepts/fqi/
@@ -238,9 +237,8 @@ For a **non-Zotero source** (a file dropped into `raw/papers/`): read it, rename
 5. **Update or create** concept pages for the most important new concepts introduced by the paper — limit to **3 new concept pages per ingest**. Prioritize concepts that are genuinely novel contributions of the paper (not background concepts). Update the "Key Papers" section of existing concept pages.
 6. **Update or create** author pages for first/last authors (and others if prominent). Add the paper to their "Papers in this Vault" list.
 7. **Update** any relevant topic pages — revise the synthesis, add the paper to "Key Papers", update "Open Problems" if applicable.
-8. **Update** `overview.md` if the paper meaningfully shifts the big picture.
-9. **Update** `wiki/index.md`: add an entry for every new page created.
-10. **Append** to `wiki/log.md`: `## [YYYY-MM-DD] ingest | <Title> (<Venue Year>)`
+8. **Update** `wiki/index.md`: add an entry for every new page created.
+9. **Append** to `wiki/log.md`: `## [YYYY-MM-DD] ingest | <Title> (<Venue Year>)`
 
 A single paper ingest typically touches 5–15 pages.
 

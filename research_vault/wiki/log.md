@@ -259,3 +259,9 @@ Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the m
 - Created index.md and log.md
 - Created overview.md as blank slate for synthesis
 - Domain: ML/AI research; primary sources: academic papers
+
+## [2026-08-30] update | Dissolve overview.md; create smooth-aggregators topic
+- overview.md deleted: per-area synthesis verified already present in topic/concept pages; consensus/debate bullets likewise
+- Its one unique thread became [[smooth-aggregators]] (power-mean MCTS / softmax DQN / expectile IQL; unified analysis open)
+- Related-Topics links added from [[monte-carlo-tree-search]] and [[offline-reinforcement-learning]]; index.md updated
+- Schema: overview.md removed from layout and from the ingest workflow (steps renumbered)

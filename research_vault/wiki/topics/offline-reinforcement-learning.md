@@ -50,3 +50,4 @@ Adjacent, not offline but structurally relevant:
 - [[test-time-scaling]] — inference-time compute as an alternative to better training-time policies; [[Foster2025Foundation]] gives the coverage-theoretic argument for that trade
 - [[offline-oracle-efficient-bandits]] — the bandit-theoretic counterpart: what can be learned given only an offline regression oracle over a fixed distribution
 - [[instance-dependent-bounds]] — the guarantee type that separates [[Yin2023Offline]] from the worst-case GFA literature, and that [[Kostrikov2022Offline]] lacks
+- [[smooth-aggregators]] — the cross-cutting pattern IQL's expectile trick instantiates, alongside power-mean MCTS and softmax DQN targets
