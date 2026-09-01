@@ -178,6 +178,7 @@ FQI is a template; most offline RL algorithms are FQI with **one of its three st
 - [[deep-q-network]] — DQN is an incremental, stochastic FQI: the target network $Q_{\theta^-}$ plays the role of the previous iterate $Q_k$, and SGD steps replace the full refit. Replay buffers and target networks are the practical machinery that makes the approximation work
 - [[2026-08-19-offline-fqi-walkthrough]] — saved query: a reading path through this page, [[extrapolation-error]] and [[pessimistic-fitted-q-learning]], in the order the questions arise
 - [[offline-reinforcement-learning]] — the data setting, not the algorithm. Keeping these separate matters: **FQI is the template, offline RL is the regime.** Offline FQI is plain FQI on fixed data; most of modern offline RL is offline FQI plus some mechanism preventing unsupported actions from looking artificially good. Developed in the *Offline vs. online FQI* section above
+- [[fqi-finite-sample-analysis]] — line-by-line walkthrough of Jiang's (2020) finite-sample guarantee for this template: the A/B/C error chain, the coverage step, and the Bernstein fast rate
 - [[realizability]] — necessary but not sufficient here; Bellman completeness is the operative assumption
 - [[differentiable-function-approximation]] — the class over which FQI's fitted step becomes analyzable with gradient geometry
 

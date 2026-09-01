@@ -52,6 +52,7 @@ Format: `- [[slug]] — one-line description`
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
 - [[extrapolation-error]] — FQI trains $Q$ on the data distribution but queries it outside; the $\max$ then selects whichever unsupported action was overvalued
 - [[fitted-q-iteration]] — the offline RL template: relabel a fixed batch with Bellman targets, refit by least squares, repeat; $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$
+- [[fqi-finite-sample-analysis]] — Jiang (2020) note, line by line: $J(\pi^*)-J(\hat\pi)$ bound via Bellman-error propagation + Bernstein fast rate $O(n^{-1/2})$
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[monte-carlo-tree-search]] — online planning via bandit-guided tree simulation; UCT and successors
 - [[slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[Li2026Predicting]]

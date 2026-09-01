@@ -278,3 +278,9 @@ Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the m
 ## [2026-08-30] update | Concept naming rules encoded; dec/doec spelled out
 - CLAUDE.md: five concept-naming rules (citable-name kebab, acronym policy, aliases:, hub-prefix restriction, name-shape-encodes-type); concept template gains `aliases:`
 - Renamed [[decision-estimation-coefficient]] and [[decision-offline-estimation-coefficient]] (were dec/doec); links updated; aliases added to 10 concept pages
+
+## [2026-09-01] ingest | Notes on Fitted Q-iteration (Jiang 2020, lecture note)
+- Non-Zotero source; created [[fqi-finite-sample-analysis]] — Tuan's verbatim line-by-line walkthrough of the finite-sample analysis (A/B/C decomposition, Lemma 1, coverage step, Pythagorean identity, Bernstein fast rate, assumption map)
+- Inline math delimiters normalized \( \) -> $ $ per formatting rules; wording unchanged
+- Linked from the [[fitted-q-iteration]] hub; index updated
+- raw/papers/Jiang2020Fitted.pdf PENDING — the PDF still needs to be dropped into raw/papers/ (only extracted text was available at ingest)
