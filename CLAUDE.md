@@ -250,7 +250,9 @@ When the user asks a question:
 
 ## Workflow: Lint the Wiki
 
-When the user says **"lint"**:
+**Cadence:** run after roughly every 10 ingests, or when a month has passed since the last `lint` entry in `wiki/log.md` — when an ingest crosses either threshold, offer a lint.
+
+When the user says **"lint"** (or `/rv-lint`):
 
 1. Scan all pages for `[[links]]` that don't resolve to an existing file — report as broken links.
 2. Check for concept pages that are referenced but don't exist yet — list as stubs to create.
