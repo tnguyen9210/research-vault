@@ -12,8 +12,8 @@ tags: [contextual-bandits, offline-contextual-bandits, pessimism, learning-theor
 
 ## 0. Summary of results
 
-1. **What a value-based method is.** Fit a reward model $\hat f$ by least-squares regression on the logged triples and act greedily on it, $\hat\pi(x)\in\arg\max_a\hat f(x,a)$; in the modern form, subtract an *uncertainty quantifier* $b(x,a)$ first, $\hat\pi(x)\in\arg\max_a\hat f(x,a)-b(x,a)$ (§2.1). This — not "estimate $\hat v(\pi)$ for every candidate policy and pick the largest" — is the representative formulation (§2.3). The estimate-then-select formulation is the policy-optimization view; with plug-in value estimates it *coincides* with greedy when the policy class is unrestricted (Proposition 7.1), and otherwise it is cost-sensitive classification with imputed rewards (§7).
-2. **Two lemmas carry the analysis.** The plug-in decomposition, $\mathrm{Regret}\le\mathbb E_x[(r-\hat f)(x,\pi^*(x))+(\hat f-r)(x,\hat\pi(x))]$ (Lemma 3.13), charges the greedy policy for the error at the action *it* picks, so greedy needs *uniform* coverage of all actions (Theorem 4.2, Proposition 4.4). The pessimism lemma, $\mathrm{Regret}(\hat\pi)\le2\,\mathbb E_x[b(x,\pi^*(x))]$ (Lemma 3.14, Theorem 5.1), charges only the optimal policy's uncertainty, so pessimism needs *single-policy* coverage (Definition 3.8). Replacing uniform by single-policy coverage is what pessimism buys, and it is not a matter of minimax rates (§5.6).
+1. **What a value-based method is.** Fit a reward model $\hat f$ by least-squares regression on the logged triples and act greedily on it, $\hat\pi(x)\in\arg\max_a\hat f(x,a)$; in the modern form, subtract a computable *uncertainty penalty* $\Gamma(x,a)$ first, $\hat\pi(x)\in\arg\max_a\hat f(x,a)-\Gamma(x,a)$ (§2.1). This — not "estimate $\hat v(\pi)$ for every candidate policy and pick the largest" — is the representative formulation (§2.3). The estimate-then-select formulation is the policy-optimization view; with plug-in value estimates it *coincides* with greedy when the policy class is unrestricted (Proposition 7.1), and otherwise it is cost-sensitive classification with imputed rewards (§7).
+2. **Two lemmas carry the analysis.** The plug-in decomposition, $\mathrm{Regret}\le\mathbb E_x[(r-\hat f)(x,\pi^*(x))+(\hat f-r)(x,\hat\pi(x))]$ (Lemma 3.13), charges the greedy policy for the error at the action *it* picks, so greedy needs *uniform* coverage of all actions (Theorem 4.2, Proposition 4.4). The pessimism lemma, $\mathrm{Regret}(\hat\pi)\le2\,\mathbb E_x[\Gamma(x,\pi^*(x))]$ (Lemma 3.14, Theorem 5.1), charges only the optimal policy's uncertainty, so pessimism needs *single-policy* coverage (Definition 3.8). Replacing uniform by single-policy coverage is what pessimism buys, and it is not a matter of minimax rates (§5.6).
 3. **Rates.** Under realizability: tabular LCB $\tilde O(\sqrt{S\,C^*/n})$ with a matching lower bound (Theorem 5.2); linear $2\beta\,\mathbb E_{\pi^*}\|\phi\|_{\Lambda^{-1}}=\tilde O(\sqrt{d/(\kappa n)})$ (Theorem 5.3); general finite $\mathcal F$ via the version space, $\tilde O(\sqrt{C_{\mathcal F}(\pi^*)\ln|\mathcal F|/n})$ with class-dependent coverage (Theorem 5.4); greedy $O(\sqrt{\ln|\mathcal F|/(\mu_{\min}n)})$ (Corollary 4.3). Action gaps give $1/n$ for the plug-in rule (Theorem 8.2).
 4. **What must be assumed.** Value-based methods need realizability $r\in\mathcal F$ and never use the propensities $\mu$; coverage enters only the analysis, and through $C_{\mathcal F}$ it can be finite where importance weights are unbounded. The policy-based route (§9) needs the propensities and pays $\ln|\Pi|$ instead of the complexity of $\mathcal F$; the two meet in the doubly robust estimator (§6.3).
 
@@ -66,7 +66,7 @@ This is a very natural target to minimize.
 | $\|g\|_{\nu\times\mu}^2:=\mathbb E_{d^\mu}[g^2]$, likewise $\|g\|_{\nu\times\pi}$; $\|g\|_{L_1(\nu\times\pi)}:=\mathbb E_{d^\pi}\lvert g\rvert$ | norms under the data and target distributions |
 | $\mu_{\min}:=\inf_{x,a}\mu(a\mid x)$ | may be $0$ |
 | $C^\pi$, $C^\pi_2$, $C_{\mathcal F}(\pi)$; $C^*:=C^{\pi^*}$, $\bar C^*:=C^{\pi^*}_2$ | coverage coefficients, Definition 3.8 |
-| $b(x,a)$ | uncertainty quantifier for $\hat f$, Definition 3.10 |
+| $b(x,a)$; $\Gamma(x,a)$ | uncertainty quantifier for $\hat f$ (Definition 3.10); the computable penalty an algorithm subtracts, which must itself be a valid quantifier — $b$ is an analysis object, $\Gamma$ an algorithmic one |
 | $\phi$, $d$, $\Lambda$, $\Sigma_\mu$, $\beta_\delta$ | linear case: features, dimension, regularized Gram matrix, population Gram matrix, confidence radius (§3.1, §3.5) |
 
 **Standing assumptions.** (A1) *Data:* $(x_t,a_t,r_t)$ are i.i.d. as in §1.1. (A2) *Boundedness:* rewards lie in $[0,1]$, every $f\in\mathcal F$ maps into $[0,1]$, $K<\infty$. (A3) *Realizability:* $r\in\mathcal F$ — invoked where stated. (A4) *Finite class:* $N<\infty$ — invoked where stated; for infinite classes $\ln N$ becomes a covering number or pseudo-dimension and the rates are unchanged. (A5) *Comparator:* value-based methods place no restriction on the policy, so the comparator is the global optimum $\pi^*$, which may be taken deterministic because $\max_\pi\mathbb E_x[r(x,\pi)]=\mathbb E_x\max_ar(x,a)$; where a class $\Pi$ is used (§7, §9) the comparator is $\pi^*_\Pi$. All statements "with probability at least $1-\delta$" refer to the draw of $D_n$; union bounds are made explicit.
@@ -82,13 +82,13 @@ $$
 and then *derives* a policy from $\hat f$ by choosing, in each context, the action the model rates highest. Two versions exist.
 
 - **Greedy (plug-in).** $\hat\pi(x)\in\arg\max_a\hat f(x,a)$, i.e. $\hat\pi=\pi_{\hat f}$. This is "the regression approach" of Beygelzimer & Langford (2009), the plug-in individualized-treatment rule of Murphy (2005) and Qian & Murphy (2011), and "value-based learning" in Brandfonbrener et al. (2021): "first learn the $Q$ function and then use a greedy policy with respect to this estimated $Q$ function."
-- **Pessimistic (lower confidence bound).** With an *uncertainty quantifier* $b(x,a)\ge0$ such that $|\hat f(x,a)-r(x,a)|\le b(x,a)$ for all $(x,a)$ with high probability (Definition 3.10),
+- **Pessimistic (lower confidence bound).** With a penalty $\Gamma(x,a)\ge0$ computed from the data that is a valid *uncertainty quantifier*, i.e. $|\hat f(x,a)-r(x,a)|\le\Gamma(x,a)$ for all $(x,a)$ with high probability (Definition 3.10),
 $$
-\hat\pi(x)\in\arg\max_{a\in\mathcal A}\ \hat f(x,a)-b(x,a). \tag{LCB}
+\hat\pi(x)\in\arg\max_{a\in\mathcal A}\ \hat f(x,a)-\Gamma(x,a). \tag{LCB}
 $$
 This is LCB in Rashidinejad et al. (2021), pessimistic value iteration at horizon one in Jin, Yang & Wang (2021), the confidence-adjusted index rule with $\alpha=-\beta_\delta$ in Xiao et al. (2021), NeuraLCB in Nguyen-Tang et al. (2022), and, in the tabular case, the $\hat\pi_\infty$ (PUNC) rule of Li, Ma & Srebro (2022).
 
-Both versions use the data through $\hat f$ (and $b$) alone: the propensities $\mu(a_t\mid x_t)$ are never used, the behavior policy may be deterministic, and no policy class is specified — the policy ranges over all of $\mathcal A^{\mathcal X}$, so the comparator is the global optimum.
+Both versions use the data through $\hat f$ (and $\Gamma$) alone: the propensities $\mu(a_t\mid x_t)$ are never used, the behavior policy may be deterministic, and no policy class is specified — the policy ranges over all of $\mathcal A^{\mathcal X}$, so the comparator is the global optimum.
 
 ### 2.2 Intuition
 
@@ -100,7 +100,7 @@ Both versions use the data through $\hat f$ (and $b$) alone: the propensities $\
 
 The other way to write an offline learner is *estimate, then select*: form an estimate $\hat v(\pi)$ of every candidate's value and output $\arg\max_{\pi\in\Pi}\hat v(\pi)$ — or, pessimistically, $\arg\max_\pi\hat v(\pi)-W_\pi$ with per-policy widths. This is the **policy-optimization** view. It is the natural home of the policy-based route (importance-weighted estimates: §2.4 and §9), but it can also be run with value-based estimates: the **direct method** plugs the reward model into every policy's value, $\hat v^{\mathrm{DM}}(\pi)=\frac1n\sum_t\hat f(x_t,\pi)$ (§6), and the doubly robust estimator combines the two (§6.3). Its relation to §2.1 is exact:
 
-- **Unrestricted class.** If $\Pi=\mathcal A^{\mathcal X}$, the maximizer of $\hat v^{\mathrm{DM}}$ over $\Pi$ is the greedy policy $\pi_{\hat f}$ on the logged contexts, and the maximizer of the pessimistic plug-in value $\frac1n\sum_t[\hat f-b](x_t,\pi)$ is (LCB): the maximization decouples across contexts (Proposition 7.1). Estimate-then-select with plug-in values *is* regression-then-greedy.
+- **Unrestricted class.** If $\Pi=\mathcal A^{\mathcal X}$, the maximizer of $\hat v^{\mathrm{DM}}$ over $\Pi$ is the greedy policy $\pi_{\hat f}$ on the logged contexts, and the maximizer of the pessimistic plug-in value $\frac1n\sum_t[\hat f-\Gamma](x_t,\pi)$ is (LCB): the maximization decouples across contexts (Proposition 7.1). Estimate-then-select with plug-in values *is* regression-then-greedy.
 - **Restricted class.** If $\Pi\subsetneq\mathcal A^{\mathcal X}$, maximizing $\hat v^{\mathrm{DM}}$ over $\Pi$ is cost-sensitive classification with the imputed reward vector $\hat f(x_t,\cdot)$ — the "direct method for policy optimization" of Dudík et al. (2011), the Offset Tree's regression baseline, and, with doubly robust scores in place of $\hat f$, the policy learning of Athey & Wager (2021) and Zhou, Athey & Wager (2023). Its guarantee is a uniform-deviation bound over $\Pi$ (Theorem 7.2), and it is what one uses when the deployed policy must lie in a given class.
 - **Policy-level pessimism.** Pessimism can also be applied to policy values rather than to action values: choose $\arg\max_{\pi}\min_{f\in\mathcal F_\varepsilon}\hat v_f(\pi)$ over a version space $\mathcal F_\varepsilon$ of reward models consistent with the data. This is Bellman-consistent pessimism at horizon one (Xie et al. 2021; Theorem 5.4) and the $\hat\pi_2$ rule of Li, Ma & Srebro (2022). Their framework — a confidence set $\Theta\ni\theta^*$ induces the pessimistic value $\hat V(\pi):=\inf_{\theta\in\Theta}\mathbb E_x[\phi(x,\pi(x))^\top\theta]$, then $\hat\pi:=\arg\max_\pi\hat V(\pi)$ — is exactly estimate-then-select with pessimistic plug-in values, and it contains both forms: the $\ell_2$ set gives $\hat\pi_2=$ BCP, the $\ell_\infty$ set gives $\hat\pi_\infty$ (PUNC), which reduces to tabular LCB and is adaptively minimax optimal, strictly dominating $\hat\pi_2$ (§5.4). It is the right tool when no pointwise uncertainty quantifier is available (general $\mathcal F$).
 
@@ -118,7 +118,7 @@ Everything in §4–§8 is assembled from this section: concentration inequaliti
 
 **Theorem 3.1 (Hoeffding).** Let $Z_1,\dots,Z_n$ be i.i.d. with values in $[a,b]$. With probability at least $1-\delta$, $\big|\frac1n\sum_iZ_i-\mathbb EZ\big|\le(b-a)\sqrt{\ln(2/\delta)/(2n)}$. For $M$ such sample means simultaneously, replace $\delta$ by $\delta/M$ (union bound).
 
-**Theorem 3.2 (Bernstein, one-sided).** Let $Y_1,\dots,Y_n$ be i.i.d. with $\mathrm{Var}(Y)\le s^2$ and $|Y-\mathbb EY|\le b$ almost surely. With probability at least $1-\delta$, $\ \mathbb EY-\frac1n\sum_iY_i\le\sqrt{2s^2\ln(1/\delta)/n}+2b\ln(1/\delta)/(3n)$.
+**Theorem 3.2 (Bernstein, one-sided).** Let $Y_1,\dots,Y_n$ be i.i.d. with $\mathrm{Var}(Y)\le s^2$ and $|Y-\mathbb EY|\le c$ almost surely. With probability at least $1-\delta$, $\ \mathbb EY-\frac1n\sum_iY_i\le\sqrt{2s^2\ln(1/\delta)/n}+2c\ln(1/\delta)/(3n)$.
 
 **Theorem 3.3 (self-normalized bound; Abbasi-Yadkori, Pál & Szepesvári 2011, Thm 2).** Let $\phi_t:=\phi(x_t,a_t)\in\mathbb R^d$ with $\|\phi_t\|_2\le1$, and $r_t=\langle\theta^*,\phi_t\rangle+\eta_t$ with $\mathbb E[\eta_t\mid x_t,a_t]=0$ and $\eta_t$ supported on an interval of length $1$ (hence $\tfrac12$-sub-Gaussian), $\|\theta^*\|_2\le B$. Let $\Lambda:=\lambda I+\sum_t\phi_t\phi_t^\top$ and $\hat\theta:=\Lambda^{-1}\sum_t\phi_tr_t$. With probability at least $1-\delta$,
 $$
@@ -145,7 +145,7 @@ and consequently
 $$
 \|\hat f-r\|^2_{\nu\times\mu}\ \le\ 12\,L\ =\ \frac{12\ln(N/\delta)}{n}. \tag{3}
 $$
-*Proof.* (2) is Theorem 3.2 with $s^2=4\,\mathbb E[Y(f)]$ and $b=3$ (Lemma 3.5) at confidence $\delta/N$, union-bounded over $\mathcal F$. Because $r\in\mathcal F$ and $\hat f$ minimizes the empirical loss, $\frac1n\sum_iY_i(\hat f)=\mathcal L_D(\hat f)-\mathcal L_D(r)\le0$. Applying (2) at $f=\hat f$ and writing $x:=\|\hat f-r\|^2_{\nu\times\mu}$: $x\le\sqrt{8xL}+2L\le x/2+4L+2L$, i.e. $x\le12L$. $\square$
+*Proof.* (2) is Theorem 3.2 with $s^2=4\,\mathbb E[Y(f)]$ and $c=3$ (Lemma 3.5) at confidence $\delta/N$, union-bounded over $\mathcal F$. Because $r\in\mathcal F$ and $\hat f$ minimizes the empirical loss, $\frac1n\sum_iY_i(\hat f)=\mathcal L_D(\hat f)-\mathcal L_D(r)\le0$. Applying (2) at $f=\hat f$ and writing $x:=\|\hat f-r\|^2_{\nu\times\mu}$: $x\le\sqrt{8xL}+2L\le x/2+4L+2L$, i.e. $x\le12L$. $\square$
 
 **Corollary 3.7 (version space).** On the event of Theorem 3.6, with $\varepsilon:=4L$, the set $\mathcal F_\varepsilon:=\{f\in\mathcal F:\mathcal L_D(f)\le\mathcal L_D(\hat f)+\varepsilon\}$ satisfies (i) $r\in\mathcal F_\varepsilon$ and (ii) $\|f-r\|^2_{\nu\times\mu}\le20L$ for every $f\in\mathcal F_\varepsilon$.
 *Proof.* (i) $\mathcal L_D(r)-\mathcal L_D(\hat f)=-\frac1n\sum_iY_i(\hat f)\le(\sqrt{8xL}-x)+2L\le2L+2L$, since $\max_{x\ge0}(\sqrt{8xL}-x)=2L$. (ii) For $f\in\mathcal F_\varepsilon$, $\frac1n\sum_iY_i(f)=\mathcal L_D(f)-\mathcal L_D(r)\le\mathcal L_D(\hat f)+\varepsilon-\mathcal L_D(r)\le\varepsilon$; by (2), $x_f:=\mathbb E[Y(f)]\le\varepsilon+2L+\sqrt{8x_fL}\le6L+x_f/2+4L$, so $x_f\le20L$. $\square$
@@ -173,18 +173,20 @@ Part (c) is the mechanism behind "extrapolation": class-dependent coverage is me
 
 **Definition 3.10 ($\delta$-uncertainty quantifier).** Given $\hat f$, a function $b:\mathcal X\times\mathcal A\to[0,\infty)$ is a $\delta$-uncertainty quantifier if $\ \mathbb P\big(\forall(x,a):\ |\hat f(x,a)-r(x,a)|\le b(x,a)\big)\ge1-\delta$. (This is the $\xi$-uncertainty quantifier of Jin, Yang & Wang (2021) at horizon one and the penalty function of Rashidinejad et al. (2021).)
 
+The condition is used in two roles, and the two get separate symbols. A quantifier $b$ appearing in an *analysis* need not be computable from the data: any valid bound may be used, and the sharpest available one gives the sharpest conclusion. A penalty $\Gamma$ that an *algorithm* subtracts, as in (LCB), is evaluated by that algorithm and so must be computable, and the algorithm's guarantee holds only if $\Gamma$ is in addition a valid quantifier — pessimism-validity in the sense of Li, Ma & Srebro (2022). Hence Theorem 4.1 is stated with $b$, which the greedy rule never touches, and Lemma 3.14 with $\Gamma$. Of the two tabular quantifiers below, $b^{\mathrm H}$ is computable and serves in either role, while $b^{\mathrm B}$ involves the unknown variance $\sigma^2(x,a)$ and is an analysis object until that variance is replaced by an empirical estimate.
+
 **Proposition 3.11 (tabular quantifiers).** Let $S,K<\infty$, $\mathcal F=[0,1]^{\mathcal X\times\mathcal A}$, and let $\hat f(x,a)$ be the empirical mean of the rewards logged at $(x,a)$ (any value in $[0,1]$ if $n(x,a)=0$); this is the least-squares fit (1). Conditional on the design $\{(x_t,a_t)\}_{t\le n}$, each of
 $$
 b^{\mathrm H}(x,a):=\min\Big\{1,\sqrt{\tfrac{\ln(2SK/\delta)}{2\,n(x,a)}}\Big\},\qquad
 b^{\mathrm B}(x,a):=\min\Big\{1,\sqrt{\tfrac{2\sigma^2(x,a)\ln(2SK/\delta)}{n(x,a)}}+\tfrac{2\ln(2SK/\delta)}{3\,n(x,a)}\Big\}
 $$
 is a $\delta$-uncertainty quantifier.
-*Proof.* Given the design, the rewards in cell $(x,a)$ are $n(x,a)$ i.i.d. draws from $\rho(x,a)$. $b^{\mathrm H}$: Theorem 3.1 at confidence $\delta/(SK)$, union bound over cells. $b^{\mathrm B}$: Theorem 3.2 on both sides with $s^2=\sigma^2(x,a)$, $b=1$, at confidence $\delta/(2SK)$, union bound over cells and sides. Empty cells use $|\hat f-r|\le1$. $\square$
+*Proof.* Given the design, the rewards in cell $(x,a)$ are $n(x,a)$ i.i.d. draws from $\rho(x,a)$. $b^{\mathrm H}$: Theorem 3.1 at confidence $\delta/(SK)$, union bound over cells. $b^{\mathrm B}$: Theorem 3.2 on both sides with $s^2=\sigma^2(x,a)$, $c=1$, at confidence $\delta/(2SK)$, union bound over cells and sides. Empty cells use $|\hat f-r|\le1$. $\square$
 
 **Proposition 3.12 (linear quantifier).** Let $\mathcal F=\{\langle\theta,\phi(\cdot,\cdot)\rangle:\|\theta\|_2\le B\}$ with $\|\phi\|_2\le1$, realizable with $r=\langle\theta^*,\phi\rangle$, and let $\hat f:=\langle\hat\theta,\phi\rangle$ with $\hat\theta$ the ridge estimate of Theorem 3.3. Then $b(x,a):=\beta_\delta\|\phi(x,a)\|_{\Lambda^{-1}}$ is a $\delta$-uncertainty quantifier.
 *Proof.* On the event of Theorem 3.3, $|\hat f(x,a)-r(x,a)|=|\langle\hat\theta-\theta^*,\phi(x,a)\rangle|\le\|\hat\theta-\theta^*\|_\Lambda\|\phi(x,a)\|_{\Lambda^{-1}}\le\beta_\delta\|\phi(x,a)\|_{\Lambda^{-1}}$. $\square$
 
-Here $\beta_\delta=\tilde O(\sqrt d)$, and if $\Lambda\succeq\kappa nI$ then $b\le\beta_\delta/\sqrt{\kappa n}$ uniformly. For a general finite $\mathcal F$ no pointwise quantifier follows from Theorem 3.6; Theorem 5.4 works with the version space instead.
+Here $\beta_\delta=\tilde O(\sqrt d)$, and if $\Lambda\succeq\kappa nI$ then $b\le\beta_\delta/\sqrt{\kappa n}$ uniformly. This quantifier is computable, so it also serves as $\Gamma$. For a general finite $\mathcal F$ no pointwise quantifier follows from Theorem 3.6; Theorem 5.4 works with the version space instead.
 
 ### 3.5 The two suboptimality lemmas
 
@@ -196,11 +198,11 @@ r(x,a^*)-r(x,\hat a)\ \le\ (r-f)(x,a^*)+(f-r)(x,\hat a)\ \le\ |g(x,a^*)|+|g(x,\h
 $$
 *Proof.* $r(x,a^*)-r(x,\hat a)=(r-f)(x,a^*)+\big(f(x,a^*)-f(x,\hat a)\big)+(f-r)(x,\hat a)$, and the middle term is $\le0$ by the definition of $\pi_f$. $\square$
 
-**Lemma 3.14 (pessimism).** Let $b$ satisfy $|\hat f(x,a)-r(x,a)|\le b(x,a)$ for all $(x,a)$ and let $\hat\pi$ be the rule (LCB). Then for every $x$,
+**Lemma 3.14 (pessimism).** Let $\Gamma$ satisfy $|\hat f(x,a)-r(x,a)|\le\Gamma(x,a)$ for all $(x,a)$ and let $\hat\pi$ be the rule (LCB). Then for every $x$,
 $$
-r(x,\pi^*(x))-r(x,\hat\pi(x))\ \le\ 2\,b(x,\pi^*(x)) .
+r(x,\pi^*(x))-r(x,\hat\pi(x))\ \le\ 2\,\Gamma(x,\pi^*(x)) .
 $$
-*Proof.* $r(x,\hat\pi(x))\ge\hat f(x,\hat\pi(x))-b(x,\hat\pi(x))\ge\hat f(x,\pi^*(x))-b(x,\pi^*(x))\ge r(x,\pi^*(x))-2b(x,\pi^*(x))$, using the quantifier, the definition of (LCB), and the quantifier again. $\square$
+*Proof.* $r(x,\hat\pi(x))\ge\hat f(x,\hat\pi(x))-\Gamma(x,\hat\pi(x))\ge\hat f(x,\pi^*(x))-\Gamma(x,\pi^*(x))\ge r(x,\pi^*(x))-2\Gamma(x,\pi^*(x))$, using the quantifier, the definition of (LCB), and the quantifier again. $\square$
 
 The difference between the two is the whole story. The plug-in rule is charged for the error at the action *it* chose, which is random and is systematically the over-estimated one; the pessimistic rule is charged only at the action the *optimal* policy chooses. Lemma 3.14 is Theorem 4.2 of Jin, Yang & Wang (2021) at horizon one and the core of the LCB analysis in Rashidinejad et al. (2021). (Read with policies in place of actions and $\hat v(\pi)$ in place of $\hat f(x,a)$, the same two inequalities give the MaxIPW and PES guarantees of the policy-based route; §9.)
 
@@ -212,13 +214,15 @@ Fit $\hat f$ by (1) on all $n$ triples and output $\hat\pi=\pi_{\hat f}$. No pro
 
 ### 4.2 Analysis
 
-**Theorem 4.1 (greedy, pointwise form).** Let $b$ be a $\delta$-uncertainty quantifier for $\hat f$. With probability at least $1-\delta$,
+**Theorem 4.1 (greedy, pointwise form).** Let $b:\mathcal X\times\mathcal A\to[0,\infty)$ be any function bounding the error of $\hat f$ pointwise, in the sense that $|\hat f(x,a)-r(x,a)|\le b(x,a)$ for all $(x,a)$ simultaneously with probability at least $1-\delta$ over $D_n$. Then on that same event,
 $$
 \mathrm{Regret}(\pi_{\hat f})\ \le\ \mathbb E_x\big[b(x,\pi^*(x))\big]+\mathbb E_x\big[b(x,\pi_{\hat f}(x))\big]\ \le\ \mathbb E_x\big[b(x,\pi^*(x))\big]+\mathbb E_x\Big[\max_ab(x,a)\Big].
 $$
 *Proof.* Lemma 3.13 with $|g|\le b$, averaged over $x\sim\nu$. $\square$
 
 **Reading Theorem 4.1.** The greedy rule can be wrong at a context only when the model error there is at least as large as the true gap it has to resolve, so its loss is controlled by the accuracy of $\hat f$ at two actions only: the one $\pi^*$ takes, and the one the rule itself takes. The first term is unavoidable — up to a factor of two it is the *only* term the pessimistic rule pays (Lemma 3.14) — so the second term is the entire difference between the two approaches. That term is the price of letting the data choose the action: the rule commits to whichever action the regression rates highest, so accuracy at the remaining actions does not help it, and relaxing it to $\mathbb E_x[\max_ab(x,a)]$ is the most that can be said in general, because the rule has to be accurate wherever it might land.
+
+**Provenance of Theorem 4.1.** This is an assembly rather than a quotation. Both of its ingredients are classical: Lemma 3.13, whose sup-norm version is the horizon-one case of the classical bound on the loss of a policy greedy with respect to an approximate value function (Singh & Yee 1994 — *from memory, not verified against the PDF; §10.3*), and the $\xi$-uncertainty quantifier of Jin, Yang & Wang (2021), whose Theorem 4.2 is its pessimistic counterpart, recorded here as Lemma 3.14. The greedy statement in this quantifier form does not appear to be a named result in any single paper, and the proof above is the standard two-line argument, written out rather than cited.
 
 **Theorem 4.2 (greedy, $L_2$ form; uniform coverage).** For any $f:\mathcal X\times\mathcal A\to[0,1]$,
 $$
@@ -230,14 +234,14 @@ $$
 
 By Lemma 3.4, $\|f-r\|^2_{\nu\times\mu}=\mathcal L(f)-\mathcal L(r)$, so Theorem 4.2 reads $\mathrm{Regret}(\pi_f)\le2\mu_{\min}^{-1/2}[\mathcal L(f)-\mathcal L(r)]^{1/2}$: this is Murphy's (2005) generalization-error bound for the plug-in rule, restated as (3.1) in Qian & Murphy (2011), and, for $K$ actions logged uniformly, Theorem 6.1 of Beygelzimer & Langford (2009), $\mathrm{reg}(\pi_f)\le2\sqrt{K\,\mathrm{reg}_r(f)}$, which they show is tight. The proof shows where the uniform coverage comes from: the $\pi^*$ term costs $\sqrt{\bar C^*}$, the coverage of the *optimal* policy, while the chosen-action term costs the coverage of the *learned* policy, which can only be bounded by the least-covered action.
 
-**Provenance.** Theorem 4.2 is not new. Its content is Murphy's (2005) generalization-error bound and Theorem 6.1 of Beygelzimer & Langford (2009), both verified in §10.1; what is written here is that bound restated in terms of the second-moment coefficients of Definition 3.8 — the change of measure standard in the offline RL literature — in place of the original $\mu_{\min}^{-1/2}$ constant. Theorem 4.1 is an assembly rather than a quotation. Both of its ingredients are classical: Lemma 3.13, whose sup-norm version is the horizon-one case of the classical bound on the loss of a policy greedy with respect to an approximate value function (Singh & Yee 1994 — *from memory, not verified against the PDF; §10.3*), and the $\xi$-uncertainty quantifier of Jin, Yang & Wang (2021), whose Theorem 4.2 is its pessimistic counterpart, recorded here as Lemma 3.14. The greedy statement in this quantifier form does not appear to be a named result in any single paper, and the proofs above are the standard two-line arguments, written out rather than cited. The same holds for Theorem 3.6, and hence for Corollary 4.3.
+**Provenance of Theorem 4.2.** This bound is not new. Its content is Murphy's (2005) generalization-error bound and Theorem 6.1 of Beygelzimer & Langford (2009), both verified in §10.1; what is written here is that bound restated in terms of the second-moment coefficients of Definition 3.8 — the change of measure standard in the offline RL literature — in place of the original $\mu_{\min}^{-1/2}$ constant. The same holds for Theorem 3.6, and hence for Corollary 4.3: standard realizable analysis, not a result of ours.
 
 **Corollary 4.3 (rate under realizability).** Under (A3)–(A4), with probability at least $1-\delta$, $\ \mathrm{Regret}(\pi_{\hat f})\le2\sqrt{12\,C_{\mathrm{unif}}\ln(N/\delta)/n}$.
 *Proof.* Theorem 4.2 with (3). $\square$
 
 ### 4.3 Why uniform coverage cannot be dropped
 
-**Proposition 4.4 (two actions).** Let $\mathcal X$ be a single context and $\mathcal A=\{1,2\}$. Action 1 has the deterministic reward $1/2$; action 2 has a Bernoulli reward with mean $1/2-\Delta$, $\Delta\in(0,1/4]$; the behavior policy logs action 2 with a small probability $p$, so that $n(2)\approx pn=:k$. Then: (i) $b(1)=0$ is a valid quantifier, action 1 being noiseless, while for action 2 the Hoeffding quantifier $b^{\mathrm H}$ of Proposition 3.11 is $b(2)=\min\{1,\sqrt{\ln(4/\delta)/(2k)}\}$; (ii) if $\Delta\le1/(2\sqrt k)$, the event $\hat f(2)>1/2$ has probability at least an absolute constant $c_0>0$ (binomial anti-concentration), on which the greedy policy chooses action 2 and incurs regret $\Delta$; with $\Delta=1/(2\sqrt k)$, $\ \mathbb E[\mathrm{Regret}(\pi_{\hat f})]\ge c_0/(2\sqrt k)\asymp b(2)$; (iii) on the event of Proposition 3.11, which has probability at least $1-\delta$, the rule (LCB) chooses action 1 and incurs no regret, because $\hat f(2)-b(2)\le r(2)<1/2=\hat f(1)-b(1)$.
+**Proposition 4.4 (two actions).** Let $\mathcal X$ be a single context and $\mathcal A=\{1,2\}$. Action 1 has the deterministic reward $1/2$; action 2 has a Bernoulli reward with mean $1/2-\Delta$, $\Delta\in(0,1/4]$; the behavior policy logs action 2 with a small probability $p$, so that $n(2)\approx pn=:k$. Then: (i) in the analysis of the greedy rule one may take $b(1)=0$, valid because action 1 is noiseless, together with the Hoeffding bound $b(2)=\min\{1,\sqrt{\ln(4/\delta)/(2k)}\}$ at action 2; the pessimistic rule cannot use $b(1)=0$, since it must evaluate its penalty, and instead subtracts the computable $\Gamma=b^{\mathrm H}$ of Proposition 3.11, so that $\Gamma(2)=b(2)$ and $\Gamma(1)=\min\{1,\sqrt{\ln(4/\delta)/(2n(1))}\}$; (ii) if $\Delta\le1/(2\sqrt k)$, the event $\hat f(2)>1/2$ has probability at least an absolute constant $c_0>0$ (binomial anti-concentration), on which the greedy policy chooses action 2 and incurs regret $\Delta$; with $\Delta=1/(2\sqrt k)$, $\ \mathbb E[\mathrm{Regret}(\pi_{\hat f})]\ge c_0/(2\sqrt k)\asymp b(2)$; (iii) on the event of Proposition 3.11, which has probability at least $1-\delta$, the rule (LCB) chooses action 1 and incurs no regret whenever $\Gamma(1)<\Delta$, since then $\hat f(2)-\Gamma(2)\le r(2)=\tfrac12-\Delta<\tfrac12-\Gamma(1)=\hat f(1)-\Gamma(1)$; with $\Delta=1/(2\sqrt k)$ and $n(1)=n-k$ this holds as soon as $p<1/(1+2\ln(4/\delta))$.
 
 Here $C^*=(1-p)^{-1}\approx1$ — the optimal action is covered as well as it could be — and the greedy rule still fails at the rate of the *un*covered action's uncertainty: the term $\mathbb E_x[\max_ab(x,a)]$ in Theorem 4.1 is not an artifact of the proof. Rashidinejad et al. (2021, Proposition 1) make the same point for the empirical best arm: it fails even when $C^*\approx1$.
 
@@ -249,13 +253,13 @@ The greedy policy is governed by the least-covered action: Lemma 3.13 charges th
 
 ### 5.1 Method
 
-Fit $\hat f$ by (1) on all $n$ triples, take a $\delta$-uncertainty quantifier $b$ for it (Proposition 3.11 or 3.12), and output the rule (LCB), $\hat\pi(x)\in\arg\max_a\hat f(x,a)-b(x,a)$. Computable quantifiers are where the structure of $\mathcal F$ enters; propensities are still not used.
+Fit $\hat f$ by (1) on all $n$ triples, take a computable penalty $\Gamma$ that is a $\delta$-uncertainty quantifier for it (Proposition 3.11 or 3.12), and output the rule (LCB), $\hat\pi(x)\in\arg\max_a\hat f(x,a)-\Gamma(x,a)$. Computable quantifiers are where the structure of $\mathcal F$ enters; propensities are still not used.
 
 ### 5.2 The main theorem
 
-**Theorem 5.1 (pessimism: single-policy coverage suffices).** Let $b$ be a $\delta$-uncertainty quantifier for $\hat f$ and $\hat\pi$ the rule (LCB). With probability at least $1-\delta$,
+**Theorem 5.1 (pessimism: single-policy coverage suffices).** Let $\Gamma$ be a $\delta$-uncertainty quantifier for $\hat f$ and $\hat\pi$ the rule (LCB). With probability at least $1-\delta$,
 $$
-\boxed{\ \mathrm{Regret}(\hat\pi)\ \le\ 2\,\mathbb E_{x\sim\nu}\big[b(x,\pi^*(x))\big]\ } \tag{4}
+\boxed{\ \mathrm{Regret}(\hat\pi)\ \le\ 2\,\mathbb E_{x\sim\nu}\big[\Gamma(x,\pi^*(x))\big]\ } \tag{4}
 $$
 *Proof.* Lemma 3.14 averaged over $x\sim\nu$. $\square$
 
@@ -263,7 +267,7 @@ Only the optimal policy's uncertainty appears: a poorly covered action costs not
 
 ### 5.3 Tabular classes
 
-**Theorem 5.2 (tabular LCB).** Let $S,K<\infty$, $\hat f$ the cell-wise empirical means, and $\hat\pi$ the rule (LCB) with $b^{\mathrm H}$. Conditional on the design, with probability at least $1-\delta$,
+**Theorem 5.2 (tabular LCB).** Let $S,K<\infty$, $\hat f$ the cell-wise empirical means, and $\hat\pi$ the rule (LCB) with $\Gamma=b^{\mathrm H}$. Conditional on the design, with probability at least $1-\delta$,
 $$
 \mathrm{Regret}(\hat\pi)\ \le\ 2\,\mathbb E_{x\sim\nu}\Big[\min\Big\{1,\sqrt{\tfrac{\ln(2SK/\delta)}{2\,n(x,\pi^*(x))}}\Big\}\Big].
 $$
@@ -307,7 +311,7 @@ using $r\in\mathcal F_\varepsilon$, then the choice of $\hat\pi$ with $\pi^*\in\
 
 ### 5.6 Neural classes, and what pessimism buys
 
-NeuraLCB (Nguyen-Tang et al. 2022; `nguyen-tang2022Offline`) uses (LCB) with $b(x,a)=\beta\|\nabla_\theta f(x,a;\hat\theta)\|_{\Lambda^{-1}}$ for a neural-tangent-kernel Gram matrix, trains $\hat f$ by stochastic gradient descent in an online manner, and obtains regret $\tilde O(\sqrt{\tilde d/n})$ up to a coverage constant for $\pi^*$, $\tilde d$ the effective dimension, under a condition milder than single-policy concentrability (cited, not re-derived). Jeunen & Goethals (2021) report the practical version — regression reward models with a lower confidence bound — for recommendation.
+NeuraLCB (Nguyen-Tang et al. 2022; `nguyen-tang2022Offline`) uses (LCB) with $\Gamma(x,a)=\beta\|\nabla_\theta f(x,a;\hat\theta)\|_{\Lambda^{-1}}$ for a neural-tangent-kernel Gram matrix, trains $\hat f$ by stochastic gradient descent in an online manner, and obtains regret $\tilde O(\sqrt{\tilde d/n})$ up to a coverage constant for $\pi^*$, $\tilde d$ the effective dimension, under a condition milder than single-policy concentrability (cited, not re-derived). Jeunen & Goethals (2021) report the practical version — regression reward models with a lower confidence bound — for recommendation.
 
 *What pessimism buys.* Comparing Theorems 4.2 and 5.1: greedy needs uniform coverage, $C_{\mathrm{unif}}<\infty$, while pessimism needs single-policy coverage, $C^*<\infty$ (or its average or class-dependent forms). This is not a matter of worst-case rates. In the context-free case with counts $n(a)$, Xiao et al. (2021; `xiao2021Optimality`) define confidence-adjusted index rules $\arg\max_a\hat f(a)+\alpha/\sqrt{n(a)}$ — optimistic, greedy or pessimistic according to the sign of $\alpha$ — and prove that *every* such rule is minimax optimal, matching an $\Omega(1/\sqrt{\min_an(a)})$ lower bound on simple regret; that instance-dependent optimality in the sense of online bandits cannot be achieved by any batch algorithm; and that under a *weighted-minimax* criterion, which weights each instance by the inherent difficulty of predicting its optimal value, the pessimistic rule is the one that is optimal. Proposition 4.4 is the instance behind the criterion: pessimism's bound depends only on the optimal action's uncertainty, the others' on the largest.
 
@@ -374,8 +378,8 @@ Setting $\hat f\equiv0$ recovers IPW with $r^2$ in place of $\Delta^2$: DR keeps
 
 ### 7.1 Unrestricted class: the same object
 
-**Proposition 7.1.** Let $\Pi=\mathcal A^{\mathcal X}$. (a) The greedy policy $\pi_{\hat f}$ maximizes $\hat v^{\mathrm{DM}}$ over $\Pi$, and every maximizer agrees with $\pi_{\hat f}$ on the evaluation contexts; the population plug-in value $v_{\hat f}(\pi):=\mathbb E_{x\sim\nu}[\hat f(x,\pi)]$ is maximized by $\pi_{\hat f}$ for every $\nu$. (b) With a quantifier $b$, the rule (LCB) maximizes the pessimistic plug-in values $\frac1m\sum_{x\in D^{\mathrm{eval}}}[\hat f-b](x,\pi)$ and $\mathbb E_{x\sim\nu}[(\hat f-b)(x,\pi)]$ over $\Pi$ in the same sense. (c) Define the per-policy score $X_\pi:=v_{\hat f}(\pi)$ and width $W_\pi:=\mathbb E_{x\sim\nu}[b(x,\pi(x))]$ for deterministic $\pi$; on the event of the quantifier, $|X_\pi-v(\pi)|\le W_\pi$ for all $\pi$, the pessimistic selection rule $\arg\max_\pi X_\pi-W_\pi$ is (LCB), and its guarantee $W_{\pi^*}+W_{\pi^*}$ is (4).
-*Proof.* For any $h:\mathcal X\times\mathcal A\to\mathbb R$ and any distribution over contexts, $\max_{\pi}\mathbb E[h(x,\pi)]=\mathbb E[\max_ah(x,a)]$, attained by the pointwise maximizer independently of the distribution; apply with $h=\hat f$ and $h=\hat f-b$. (c) integrates the quantifier along $a=\pi(x)$; then $v(\hat\pi)\ge X_{\hat\pi}-W_{\hat\pi}\ge X_{\pi^*}-W_{\pi^*}\ge v(\pi^*)-2W_{\pi^*}$. $\square$
+**Proposition 7.1.** Let $\Pi=\mathcal A^{\mathcal X}$. (a) The greedy policy $\pi_{\hat f}$ maximizes $\hat v^{\mathrm{DM}}$ over $\Pi$, and every maximizer agrees with $\pi_{\hat f}$ on the evaluation contexts; the population plug-in value $v_{\hat f}(\pi):=\mathbb E_{x\sim\nu}[\hat f(x,\pi)]$ is maximized by $\pi_{\hat f}$ for every $\nu$. (b) With a penalty $\Gamma$, the rule (LCB) maximizes the pessimistic plug-in values $\frac1m\sum_{x\in D^{\mathrm{eval}}}[\hat f-\Gamma](x,\pi)$ and $\mathbb E_{x\sim\nu}[(\hat f-\Gamma)(x,\pi)]$ over $\Pi$ in the same sense. (c) Define the per-policy score $X_\pi:=v_{\hat f}(\pi)$ and width $W_\pi:=\mathbb E_{x\sim\nu}[\Gamma(x,\pi(x))]$ for deterministic $\pi$; on the event of the quantifier, $|X_\pi-v(\pi)|\le W_\pi$ for all $\pi$, the pessimistic selection rule $\arg\max_\pi X_\pi-W_\pi$ is (LCB), and its guarantee $W_{\pi^*}+W_{\pi^*}$ is (4).
+*Proof.* For any $h:\mathcal X\times\mathcal A\to\mathbb R$ and any distribution over contexts, $\max_{\pi}\mathbb E[h(x,\pi)]=\mathbb E[\max_ah(x,a)]$, attained by the pointwise maximizer independently of the distribution; apply with $h=\hat f$ and $h=\hat f-\Gamma$. (c) integrates the quantifier along $a=\pi(x)$; then $v(\hat\pi)\ge X_{\hat\pi}-W_{\hat\pi}\ge X_{\pi^*}-W_{\pi^*}\ge v(\pi^*)-2W_{\pi^*}$. $\square$
 
 So estimate-then-select with plug-in values is regression-then-greedy written differently: the selection objective is not computable (it involves $\nu$), but its maximizer is, because the maximization decouples across contexts. The per-policy widths do not scale with $|\Pi|=K^{|\mathcal X|}$ because uniformity was obtained over $\mathcal F$.
 
@@ -404,7 +408,7 @@ which is the shape of Theorem 3.1 of Xie et al. (2021), with $\log(|\mathcal F||
 | Formulation | Policy | Needs | Coverage in the bound |
 |---|---|---|---|
 | regression → greedy (§4) | $\pi_{\hat f}$ | $r\in\mathcal F$ | uniform, $C_{\mathrm{unif}}$ |
-| regression → (LCB) (§5) | $\arg\max_a\hat f-b$ | $r\in\mathcal F$, a quantifier $b$ | single-policy, $C^*$ / $\bar C^*$ / $\mathbb E_{\pi^*}\|\phi\|_{\Lambda^{-1}}$ |
+| regression → (LCB) (§5) | $\arg\max_a\hat f-\Gamma$ | $r\in\mathcal F$, a computable quantifier $\Gamma$ | single-policy, $C^*$ / $\bar C^*$ / $\mathbb E_{\pi^*}\|\phi\|_{\Lambda^{-1}}$ |
 | estimate-then-select, plug-in values, $\Pi=\mathcal A^{\mathcal X}$ (§7.1) | $=\pi_{\hat f}$, resp. $=$ (LCB) | same | same |
 | estimate-then-select, plug-in values, $\Pi$ restricted (§7.2) | $\arg\max_{\pi\in\Pi}\hat v^{\mathrm{DM}}$ | $r\in\mathcal F$ | whole class, $C_\Pi$ |
 | policy-level pessimism, version space (§5.5, §7.2) | $\arg\max_\pi\min_{f\in\mathcal F_\varepsilon}\hat v_f(\pi)$ | $r\in\mathcal F$ | class-dependent, $C_{\mathcal F}(\pi^*_\Pi)$ |
@@ -415,7 +419,7 @@ which is the shape of Theorem 3.1 of Xie et al. (2021), with $\log(|\mathcal F||
 
 ### 8.1 Variance-aware quantifiers
 
-**Proposition 8.1.** In the tabular setting, the rule (LCB) with the Bernstein quantifier $b^{\mathrm B}$ of Proposition 3.11 satisfies, conditional on the design and with probability at least $1-\delta$,
+**Proposition 8.1.** In the tabular setting, the rule (LCB) with $\Gamma=b^{\mathrm B}$, the Bernstein quantifier of Proposition 3.11 satisfies, conditional on the design and with probability at least $1-\delta$,
 $$
 \mathrm{Regret}(\hat\pi)\ \le\ 2\,\mathbb E_{x\sim\nu}\Big[\min\Big\{1,\sqrt{\tfrac{2\sigma^2(x,\pi^*(x))\ln(2SK/\delta)}{n(x,\pi^*(x))}}+\tfrac{2\ln(2SK/\delta)}{3\,n(x,\pi^*(x))}\Big\}\Big].
 $$
@@ -455,8 +459,8 @@ With the Hoeffding width the two bounds coincide because the width is policy-ind
 | Source of variance | ratios $\pi/\mu$, possibly unbounded | bounded regression; none from $\mu$ (Lemma 6.1) |
 | Deficient support | fatal: weights undefined | tolerated through $C_{\mathcal F}$ (Lemma 3.9(c)) |
 | Comparator | best in $\Pi$ | global optimum $\pi^*$ |
-| Uncertainty quantified | per policy, $W_\pi$ | per pair, $b(x,a)$ (Def. 3.10) |
-| Pessimism | $\arg\max_\pi\hat v(\pi)-W^U_\pi$ | $\arg\max_a\hat f(x,a)-b(x,a)$; equals per-policy pessimism on $\mathcal A^{\mathcal X}$ (Prop. 7.1) |
+| Uncertainty quantified | per policy, $W_\pi$ | per pair, $b(x,a)$ / $\Gamma(x,a)$ (Def. 3.10) |
+| Pessimism | $\arg\max_\pi\hat v(\pi)-W^U_\pi$ | $\arg\max_a\hat f(x,a)-\Gamma(x,a)$; equals per-policy pessimism on $\mathcal A^{\mathcal X}$ (Prop. 7.1) |
 | Coverage in the bound | $C^{\pi^*_\Pi}_2$ (Bernstein widths); $C_\gamma(\pi^*_\Pi)$ (IX) | $C^*$, $\bar C^*$, $C_{\mathcal F}(\pi^*)$, $\mathbb E_{\pi^*}\|\phi\|_{\Lambda^{-1}}$ (§5) |
 | Complexity factor | $\ln\lvert\Pi\rvert$ | $\ln N$, $S$, $d$, $\tilde d$ — larger: modeling rewards is harder than ranking actions |
 | Learning (large class) | $\arg\max$ over $\Pi$: non-convex, NP-hard in general | regression (convex for linear $\mathcal F$) + per-context $\arg\max$ |
