@@ -46,6 +46,7 @@ In every case $\Gamma$ is large where the data is thin along the direction that 
 
 ## Variants & Related Concepts
 
+- [[value-based-offline-bandits]] — the principle at horizon one, where the pessimism lemma is two lines and converts uniform coverage into single-policy coverage
 - [[fitted-q-iteration]] — the template pessimism is most often applied to; the $\max_{a'}$ in its target is precisely what makes offline extrapolation dangerous
 - [[extrapolation-error]] — the concrete failure pessimism exists to prevent, with a worked LCB table showing the penalty flipping the chosen action
 - [[pessimistic-fitted-q-learning]] — the sequential-RL instantiation over differentiable models

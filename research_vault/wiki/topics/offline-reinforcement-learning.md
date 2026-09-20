@@ -46,6 +46,7 @@ Adjacent, not offline but structurally relevant:
 
 ## Related Topics
 
+- [[offline-contextual-bandits]] — the $H=1$ case: no bootstrapping, no error propagation, so the coverage story appears in isolation
 - [[monte-carlo-tree-search]] — planning-time analogue of the same max-under-uncertainty problem; [[Dam2024Power]] uses a smooth backup for the same reason
 - [[test-time-scaling]] — inference-time compute as an alternative to better training-time policies; [[Foster2025Foundation]] gives the coverage-theoretic argument for that trade
 - [[offline-oracle-efficient-bandits]] — the bandit-theoretic counterpart: what can be learned given only an offline regression oracle over a fixed distribution

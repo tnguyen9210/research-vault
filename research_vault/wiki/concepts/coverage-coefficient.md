@@ -31,6 +31,7 @@ This satisfies $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_\text{cov}(\pi^*_\be
 
 ## Variants & Related Concepts
 
+- [[offline-contextual-bandits]] — where $C^*$ and $C_{\mathrm{unif}}$ are defined and graded against each other; [[value-based-offline-bandits]] for the second-moment and class-dependent forms
 - [[linear-softmax-policy]] — the policy class where $C_\text{cov}$ is studied
 - [[realizability]] — analogous assumption: $\pi^*_\beta \in \Pi$; coverage is a *computational* condition whereas realizability is *statistical*
 - [[contextual-bandits]] — in standard contextual bandits, importance weights play a similar coverage role; $C_\text{cov}$ is the LM alignment analogue

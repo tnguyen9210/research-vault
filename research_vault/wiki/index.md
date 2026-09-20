@@ -53,6 +53,7 @@ Format: `- [[slug]] — one-line description`
 - [[extrapolation-error]] — FQI trains $Q$ on the data distribution but queries it outside; the $\max$ then selects whichever unsupported action was overvalued
 - [[fitted-q-iteration]] — the offline RL template: relabel a fixed batch with Bellman targets, refit by least squares, repeat; $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$
 - [[fqi-finite-sample-analysis]] — Jiang (2020) note, line by line: $J(\pi^*)-J(\hat\pi)$ bound via Bellman-error propagation + Bernstein fast rate $O(n^{-1/2})$
+- [[offline-contextual-bandits]] — the batch contextual bandit: fixed logged data, no interaction; setup, coverage coefficients, and the value-based / policy-based taxonomy
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[monte-carlo-tree-search]] — online planning via bandit-guided tree simulation; UCT and successors
 - [[slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[Li2026Predicting]]
@@ -60,6 +61,7 @@ Format: `- [[slug]] — one-line description`
 - [[upper-confidence-bound]] — optimism in the face of uncertainty; gap-dependent $O(\sum_i \log T/\Delta_i)$ regret; the online mirror of [[pessimism-principle]]
 - [[power-mean-mcts]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
 - [[realizability]] — assumption f* ∈ F enabling FALCON's optimal offline-oracle-efficient guarantees; introduced in [[SimchiLevi2022Bypassing]]
+- [[value-based-offline-bandits]] — fit $\hat q$ by regression, then act greedily or pessimistically; toolkit, greedy and LCB guarantees, Rashidinejad's Theorem 4 with proof
 
 ## Topics
 
@@ -73,4 +75,4 @@ Format: `- [[slug]] — one-line description`
 
 - [[2026-06-16-foster2025-sections-1-4]] — section-by-section summary of Foster2025Foundation Sections 1–4: setup, coverage lower bound, SpannerSampling, hardness of proper exploration
 - [[2026-08-19-offline-fqi-walkthrough]] — reading path from the FQI template through offline-vs-online, extrapolation error, and Algorithm 1 of [[Yin2023Offline]]
-- [[2026-09-16-offline-cb-value-based]] — self-contained account of the standard value-based approach to offline contextual bandits (regression → greedy, and its pessimistic LCB form with an uncertainty quantifier), in Jun's note notation: problem definition, why "estimate each policy then select" is the alternative view and when it coincides, technical toolkit (concentration, realizable least squares, coverage/change of measure, uncertainty quantifiers, the plug-in and pessimism lemmas), greedy vs pessimistic guarantees, tabular/linear/version-space/neural instantiations, direct method + DR, class-restricted variants, fast rates, comparison with the policy-based route, verified provenance
+- [[2026-09-16-offline-cb-value-based]] — reading path for the value-based offline contextual bandit account; the answer now lives in [[offline-contextual-bandits]] and [[value-based-offline-bandits]]
