@@ -170,7 +170,7 @@ The policy-based route sketched above is estimate-then-select with importance-we
 **Proposition 6.1 (MaxIPW and PES).** Let $\Pi$ be finite and $W_\pi:=\frac1{\mu_{\min}}\sqrt{\ln(2|\Pi|/\delta)/(2T)}$, so that $|\widehat J^{\mathrm{IPW}}(\pi)-J(\pi)|\le W_\pi$ for all $\pi\in\Pi$ with probability at least $1-\delta$ (Hoeffding, as in [[value-based-offline-bandits]]; summands in $[0,1/\mu_{\min}]$). Then MaxIPW satisfies $\Delta_\Pi\le W_{\pi^*_\Pi}+W_{\hat\pi}$ and PES with any valid per-policy widths satisfies $\Delta_\Pi\le W^L_{\pi^*_\Pi}+W^U_{\pi^*_\Pi}$.
 *Proof.* the plug-in decomposition in [[value-based-offline-bandits]]'s first inequality with $f\to\widehat J^{\mathrm{IPW}}$, $q^*\to J$, actions $\to$ policies; and the pessimism lemma in [[value-based-offline-bandits]] likewise. $\square$
 
-With the Hoeffding width the two bounds coincide because the width is policy-independent; with variance-adaptive widths — the IPW summands have variance at most $\mathbb E_{d^\mu}[(\pi/\mu)^2r^2]\le C^\pi_2$, so Bernstein (see [[value-based-offline-bandits]]) gives $W_\pi\asymp\sqrt{2C^\pi_2\ln(4|\Pi|/\delta)/T}+2\ln(4|\Pi|/\delta)/(3\mu_{\min}T)$ — PES is governed by $C^{\pi^*_\Pi}_2$ alone while MaxIPW is governed by $\max_\pi C^\pi_2$, the policy-level version of uniform versus single-policy coverage. (Making such widths data-driven is the hyperparameter-adaptation problem of Jun's note, proposed in [[Ryu2025Improved]]. The two smoothed estimators are not interchangeable: IX, $\pi/(\mu+\gamma)$, bounds the weights by $1/\gamma$ and pays a bias of exactly $\gamma C_\gamma(\pi)$; LS, $b^{-1}\ln(1+b\hat r)$, is *not* bounded for fixed $b$, and pays $bD_b(\pi^*)$ with $D_b(\pi)\le C_b(\pi)$ — hence the better of the two bounds.)
+With the Hoeffding width the two bounds coincide because the width is policy-independent; with variance-adaptive widths — the IPW summands have variance at most $\mathbb E_{d^\mu}[(\pi/\mu)^2r^2]\le C^\pi_2$, so Bernstein (see [[value-based-offline-bandits]]) gives $W_\pi\asymp\sqrt{2C^\pi_2\ln(4|\Pi|/\delta)/T}+2\ln(4|\Pi|/\delta)/(3\mu_{\min}T)$ — PES is governed by $C^{\pi^*_\Pi}_2$ alone while MaxIPW is governed by $\max_\pi C^\pi_2$, the policy-level version of uniform versus single-policy coverage. (Making such widths data-driven is the hyperparameter-adaptation problem of `jun2026CS703Q10`, proposed in [[Ryu2025Improved]]. The two smoothed estimators are not interchangeable: IX, $\pi/(\mu+\gamma)$, bounds the weights by $1/\gamma$ and pays a bias of exactly $\gamma C_\gamma(\pi)$; LS, $b^{-1}\ln(1+b\hat r)$, is *not* bounded for fixed $b$, and pays $bD_b(\pi^*)$ with $D_b(\pi)\le C_b(\pi)$ — hence the better of the two bounds.)
 
 | | Policy-based (IPW → MaxIPW / PES → IX / LS) | Value-based (regression → greedy / (LCB)) |
 |---|---|---|
@@ -205,8 +205,9 @@ with one set of symbols.
 of §5.2 is their §5.1.3, and the uniform-deviation guarantee is
 standard.
 
-Proposition 6.1 is Lemmas 1 and 2 of K.-S. Jun's CSED703Q note
-(*Offline contextual bandits*, Spring 2026), which states them in
+Proposition 6.1 is Lemmas 1 and 2 of `jun2026CS703Q10` (K.-S. Jun,
+*CS703Q10: Offline contextual bandits*, CSED703Q, Spring 2026), which
+states them in
 exactly this abstracted form: $N$ variables $X_i$ with means $\mu_i$
 and two-sided widths $W^L_i,W^U_i$, with MaxIPW giving
 $\mu_1-\mu_J\le W^L_1+W^U_J$ and PES giving $\mu_1-\mu_J\le
