@@ -39,9 +39,13 @@ Direct contextual bandit algorithms are computationally hard in general (related
 - [[SimchiLevi2022Bypassing]] — FALCON: first optimal offline-oracle-efficient algorithm; O(log T) calls for discrete actions under realizability
 - [[Qin2026Taming]] — OE2D: extends FALCON to general action spaces and drops realizability; introduces DOEC
 
-## Related Concepts
+## Variants & Related Concepts
 
 - [[offline-regression-oracle]]
 - [[decision-estimation-coefficient]] — governs online-oracle efficiency
 - [[decision-offline-estimation-coefficient]] — governs offline-oracle efficiency
 - [[contextual-bandits]]
+
+## Current State
+
+Active, and the offline-oracle route has won on practicality. The table above reads as a closing gap: FALCON settled discrete actions at $O(\log T)$ offline calls in 2022, and OE2D ([[Qin2026Taming]]) is the first row that is offline, general and $O(\log T)$ at once, while also dropping realizability. What the vault has no source on is empirical behaviour — every result here is theoretical.

@@ -195,7 +195,11 @@ Two consequences worth extracting.
 - **No single-policy coverage.** Assumption 2.3 is uniform over $\Theta$, stronger than the single-policy concentrability Xie et al. (2021a) achieve for GFA.
 - **No experiments.** The paper is purely theoretical; PFQL is not run on a benchmark.
 
-## Connections
+## Key Papers
+
+- [[Yin2023Offline]] — the source; Algorithm 1 and Theorems 3.2 and 4.1 are its
+
+## Variants & Related Concepts
 
 - [[pessimistic-fitted-q-learning]] — the concept-level page this walkthrough accompanies
 - [[fitted-q-iteration]] — the template lines 4 and 9 implement
@@ -205,3 +209,7 @@ Two consequences worth extracting.
 - [[instance-dependent-bounds]] — what the $\mathbb{E}_{\pi^*}[\Gamma_h]$ form delivers
 - [[Yin2023Offline]] — the source paper
 - [[2026-08-19-offline-fqi-walkthrough]] — the saved query that arrives here from the FQI template
+
+## Current State
+
+Current as of its source (ICLR 2023) and unsuperseded in the vault. Its open edges are the ones §"What Algorithm 1 does not do" names: no computational guarantee for the nonconvex line-4 argmin, exact Bellman completeness in the main theorems, uniform rather than single-policy coverage, and no experiments.

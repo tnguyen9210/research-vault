@@ -165,6 +165,30 @@ Math or pseudocode if relevant.
 Is this still dominant? Superseded? Active research area?
 ```
 
+**Two shapes, one ending.** Most concept pages are **definitional**: they
+define an object and fit the template above in roughly 35–200 lines with
+five or six `##` sections. A few are **technical accounts** — they work
+through one body of mathematics (a proof, an algorithm line by line, a
+family of guarantees) and are organised by that argument rather than by
+the template. A technical account replaces the single `## Formal
+Description` with numbered sections (`## 1.`, `### 1.1`), opens with a
+scope note saying what it assumes and what it leaves to other pages, and
+records per-result provenance — what was verified against which source,
+and what was not. [[value-based-offline-bandits]] is the reference
+instance.
+
+Both shapes still **end with the same three sections**: `## Key Papers`,
+`## Variants & Related Concepts`, `## Current State`. Do not substitute
+`## Connections` (that is the paper-page section) or `## Related
+Concepts`, and do not drop `## Current State` because a page is long —
+a long page is the one where a reader most needs to be told whether it
+is foundations or the frontier.
+
+Default to definitional. Earn the technical account the way a topic is
+earned: when the material genuinely will not fit the template without
+being damaged, not merely because it is long. Only one `#` heading per
+page — the title; numbered sections are `##`.
+
 ### Topic Page (`wiki/topics/`)
 
 ```markdown
@@ -266,7 +290,7 @@ When the user says **"lint"** (or `/rv-lint`):
 ## Index Conventions (`wiki/index.md`)
 
 - Organized by category (Papers, Concepts, Topics, Queries).
-- Each entry: `- [[slug]] — one-line description` (under ~120 chars).
+- Each entry: `- [[slug]] — one-line description`. Budget the **description** at ~25 words — count words, not characters, so that LaTeX and long slugs are not penalised (`$\mathcal{F}=\{f(\theta,\phi(\cdot,\cdot))\}$` is 40 characters of source for one symbol). A good entry names the object, its one distinguishing property, and the paper that introduced it.
 - Keep entries sorted alphabetically within each category.
 - Update immediately after every ingest or query-save operation.
 

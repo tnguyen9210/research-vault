@@ -41,7 +41,7 @@ I will follow the note line by line.
 
 ---
 
-# 0. Notation we need before starting
+## 0. Notation we need before starting
 
 The final FQI iterate is
 
@@ -103,7 +103,7 @@ $d_0$ and execute $\widehat\pi$.
 
 ---
 
-# 1. Start with policy suboptimality
+## 1. Start with policy suboptimality
 
 The proof begins with
 
@@ -124,7 +124,7 @@ $$
 This first equality deserves quite a bit of explanation.
 
 
-## Why does this equality hold?
+### Why does this equality hold?
 
 Define
 
@@ -249,7 +249,7 @@ telescoping argument**.
 
 ---
 
-# 2. Replace $V^*$ by $Q^*(s,\pi^*)$
+## 2. Replace $V^*$ by $Q^*(s,\pi^*)$
 
 Because $\pi^*$ is optimal,
 
@@ -348,7 +348,7 @@ $$
 
 ---
 
-# 3. Convert the expectation into $L_1$ norms
+## 3. Convert the expectation into $L_1$ norms
 
 The next line is
 
@@ -420,7 +420,7 @@ $$
 
 ---
 
-# 4. Replace $L_1$ by $L_2$
+## 4. Replace $L_1$ by $L_2$
 
 The note then obtains Equation (1):
 
@@ -492,7 +492,7 @@ $$
 
 ---
 
-# 5. What distributions $\nu\times\pi$ matter?
+## 5. What distributions $\nu\times\pi$ matter?
 
 The note says we now need to bound
 
@@ -535,7 +535,7 @@ $$
 
 ---
 
-# 6. Helper Lemma: value error from Q-function error
+## 6. Helper Lemma: value error from Q-function error
 
 The note defines a special policy
 
@@ -602,7 +602,7 @@ This is a **proof device**. It is not a policy FQI actually computes.
 
 ---
 
-# 7. Proof of Lemma 1
+## 7. Proof of Lemma 1
 
 The note starts from
 
@@ -703,7 +703,7 @@ Taking square roots proves the lemma.
 
 ---
 
-# 8. Begin the recursive Q-error bound
+## 8. Begin the recursive Q-error bound
 
 Now comes the central part of the proof.
 
@@ -756,7 +756,7 @@ This decomposition is the heart of fitted-value-iteration analysis.
 
 ---
 
-# 9. Triangle inequality
+## 9. Triangle inequality
 
 Next,
 
@@ -797,7 +797,7 @@ $$
 
 ---
 
-# 10. Move the first error to the offline-data distribution
+## 10. Move the first error to the offline-data distribution
 
 The next line is
 
@@ -872,7 +872,7 @@ actual proof.
 
 ---
 
-# 11. What is $P(\nu\times\pi)$?
+## 11. What is $P(\nu\times\pi)$?
 
 The note defines
 
@@ -937,7 +937,7 @@ used again at the next recursive step.
 
 ---
 
-# 12. The starred step
+## 12. The starred step
 
 The note separately proves
 
@@ -1035,7 +1035,7 @@ $$
 
 ---
 
-# 13. Jensen's inequality
+## 13. Jensen's inequality
 
 The next step is
 
@@ -1085,7 +1085,7 @@ expectation **of a square**.
 
 ---
 
-# 14. Recognize the next-state distribution
+## 14. Recognize the next-state distribution
 
 Now
 
@@ -1133,7 +1133,7 @@ This proves step $(*)$.
 
 ---
 
-# 15. Use Lemma 1 to turn value error back into Q-error
+## 15. Use Lemma 1 to turn value error back into Q-error
 
 The next line of the main proof is
 
@@ -1197,7 +1197,7 @@ Therefore the inequality can be applied **recursively**.
 
 ---
 
-# 16. The recursive structure
+## 16. The recursive structure
 
 For intuition, define
 
@@ -1243,7 +1243,7 @@ This is part C of the proof.
 
 ---
 
-# 17. Why squared regression loss gives exactly Bellman error
+## 17. Why squared regression loss gives exactly Bellman error
 
 The note writes
 
@@ -1357,7 +1357,7 @@ This is sometimes called the **Pythagorean property of squared loss**.
 
 ---
 
-# 18. Replace population losses by empirical losses
+## 18. Replace population losses by empirical losses
 
 Using the uniform deviation assumption,
 
@@ -1419,7 +1419,7 @@ $$
 
 ---
 
-# 19. Where Bellman completeness is used
+## 19. Where Bellman completeness is used
 
 The note puts beside this line
 
@@ -1466,7 +1466,7 @@ the main proof.
 
 ---
 
-# 20. Use empirical optimality of $f_k$
+## 20. Use empirical optimality of $f_k$
 
 By the FQI definition,
 
@@ -1528,7 +1528,7 @@ This is the one-step FQI statistical error.
 
 ---
 
-# 21. Plug it into the recursive error bound
+## 21. Plug it into the recursive error bound
 
 Recall
 
@@ -1631,7 +1631,7 @@ $$
 
 ---
 
-# 22. Bound the initial error $e_0$
+## 22. Bound the initial error $e_0$
 
 The algorithm initializes
 
@@ -1700,7 +1700,7 @@ from finite offline data.
 
 ---
 
-# 23. Return to Equation (1)
+## 23. Return to Equation (1)
 
 Equation (1) gave
 
@@ -1775,7 +1775,7 @@ That is the main result on page 3.
 
 ---
 
-# 24. The entire main proof in one chain
+## 24. The entire main proof in one chain
 
 The logical flow is
 
@@ -1822,7 +1822,7 @@ $$
 
 ---
 
-# 25. Why does the first analysis only give an $n^{-1/4}$ rate?
+## 25. Why does the first analysis only give an $n^{-1/4}$ rate?
 
 The note then points out a weakness.
 
@@ -1869,7 +1869,7 @@ inequality**.
 
 ---
 
-# 26. Fast-rate proof: define excess loss
+## 26. Fast-rate proof: define excess loss
 
 Fix some previous function $f'$.
 
@@ -1940,7 +1940,7 @@ $$
 
 ---
 
-# 27. Expected excess loss equals squared Bellman error
+## 27. Expected excess loss equals squared Bellman error
 
 The note obtains
 
@@ -1993,7 +1993,7 @@ That is the desired fast rate.
 
 ---
 
-# 28. Why Bernstein can give a faster rate
+## 28. Why Bernstein can give a faster rate
 
 The crucial observation is that the variance of $Y$ becomes smaller
 when the expected excess loss becomes smaller.
@@ -2109,7 +2109,7 @@ It is what permits the $1/n$ excess-risk rate.
 
 ---
 
-# 29. Apply Bernstein's inequality
+## 29. Apply Bernstein's inequality
 
 Let
 
@@ -2183,7 +2183,7 @@ That is what creates the fast rate.
 
 ---
 
-# 30. Use the fact that the empirical minimizer beats $Tf'$
+## 30. Use the fact that the empirical minimizer beats $Tf'$
 
 Let
 
@@ -2228,7 +2228,7 @@ This is a particularly strong property of realizable squared regression.
 
 ---
 
-# 31. Apply Bernstein to the empirical minimizer
+## 31. Apply Bernstein to the empirical minimizer
 
 Because inequality (S) holds simultaneously for all $f$, it also holds
 for the data-dependent choice
@@ -2351,7 +2351,7 @@ $O(n^{-1/4})$.
 
 ---
 
-# 32. One technical subtlety worth noticing
+## 32. One technical subtlety worth noticing
 
 There is a small rigor issue worth keeping in mind if you want to reuse
 this proof in your own work.
@@ -2388,7 +2388,7 @@ FQI estimator.
 
 ---
 
-# 33. Where every major assumption was used
+## 33. Where every major assumption was used
 
 It may help to map the assumptions directly onto the proof:
 
@@ -2406,7 +2406,7 @@ It may help to map the assumptions directly onto the proof:
 
 ---
 
-# 34. The proof's deepest idea
+## 34. The proof's deepest idea
 
 The central quantity is not directly
 
@@ -2479,10 +2479,19 @@ you control the one-step operator error.
 
 ---
 
-## Connections
+## Key Papers
+
+- Jiang 2020, *Notes on Fitted Q-iteration* (lecture note) — the source this page works through line by line; no paper page yet
+- Munos & Szepesvári 2008 (`munos2008FiniteTime`) — the Approximate Value Iteration analysis the note scrutinizes; no paper page yet
+
+## Variants & Related Concepts
 
 - [[fitted-q-iteration]] — the family hub; this page is its finite-sample guarantee, worked line by line
 - [[extrapolation-error]] — what the coverage assumption $C$ rules out
 - [[pessimistic-fitted-q-learning]] / [[pfql-algorithm-1]] — the modern instance-dependent descendant of this analysis
 - [[smooth-aggregators]] — §34's closing question: which parts of this proof survive a soft/log-avg-exp backup
 - Munos & Szepesvári 2008 (`munos2008FiniteTime`) — the Approximate Value Iteration literature this note scrutinizes
+
+## Current State
+
+The slow-rate ($n^{-1/4}$) and fast-rate (Bernstein) arguments worked through here are the standard finite-sample account of FQI under Bellman completeness and uniform concentrability, and they remain the baseline later refinements are stated against. What has moved on is the coverage assumption: uniform $C$ has largely given way to single-policy concentrability, and the pessimistic descendants ([[pessimistic-fitted-q-learning]], [[pfql-algorithm-1]]) carry instance-dependent bounds this analysis cannot express. Read as foundations, not as the frontier.
