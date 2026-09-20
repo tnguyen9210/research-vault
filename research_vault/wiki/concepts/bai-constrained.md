@@ -1,7 +1,7 @@
 ---
 title: "Constrained Best Arm Identification (CBAI)"
 tags: [best-arm-identification, pure-exploration, cost-constraint, bandits]
-aliases: [constrained-bai]
+aliases: [constrained-bai, best-arm-identification-constrained]
 introduced_by: [[Lardy2025Constrained]]
 ---
 
@@ -39,8 +39,8 @@ Instance-dependent lower bound: $\mathbb{E}[\tau_\delta] \geq T^*(\boldsymbol{\n
 
 ## Variants & Related Concepts
 
-- [[best-arm-identification-cost-aware]] — **cost minimization** formulation: minimize $\sum_t C_t$ (cumulative testing cost) to find the best arm ([[Kanarios2024Cost]]). Key distinction: CABAI's cost is the *optimization metric*; CBAI/BFAI's cost is a *feasibility constraint on arm means*.
-- [[best-arm-identification]] — unconstrained BAI; constrained BAI adds per-arm feasibility constraints
+- [[bai-cost-aware]] — **cost minimization** formulation: minimize $\sum_t C_t$ (cumulative testing cost) to find the best arm ([[Kanarios2024Cost]]). Key distinction: CABAI's cost is the *optimization metric*; CBAI/BFAI's cost is a *feasibility constraint on arm means*.
+- [[bai]] — unconstrained BAI; constrained BAI adds per-arm feasibility constraints
 
 ## Current State
 

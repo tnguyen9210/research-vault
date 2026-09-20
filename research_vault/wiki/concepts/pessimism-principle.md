@@ -30,7 +30,7 @@ where $\hat v$ is an empirical value estimate and $\Gamma$ is a high-probability
 |---|---|
 | Tabular | visitation counts, $\Gamma \propto \sqrt{1/n(s,a)}$ |
 | Linear MDPs | elliptical bonus $\beta\sqrt{\phi^\top\Sigma_h^{-1}\phi}$ (PEVI) |
-| [[differentiable-function-approximation]] | gradient geometry $\beta\sqrt{\nabla_\theta f^\top\Sigma_h^{-1}\nabla_\theta f}$ ([[fitted-q-iteration-pessimistic]]) |
+| [[differentiable-function-approximation]] | gradient geometry $\beta\sqrt{\nabla_\theta f^\top\Sigma_h^{-1}\nabla_\theta f}$ ([[fqi-pessimistic]]) |
 | Off-policy selection | concentration on [[importance-weighting]] estimates; betting-based LCBs ([[Ryu2025Improved]]) |
 | Value regularization | penalize $Q$ on out-of-distribution actions (CQL) |
 
@@ -47,9 +47,9 @@ In every case $\Gamma$ is large where the data is thin along the direction that 
 ## Variants & Related Concepts
 
 - [[contextual-bandits-offline-value-based]] — the principle at horizon one, where the pessimism lemma is two lines and converts uniform coverage into single-policy coverage
-- [[fitted-q-iteration]] — the template pessimism is most often applied to; the $\max_{a'}$ in its target is precisely what makes offline extrapolation dangerous
+- [[fqi]] — the template pessimism is most often applied to; the $\max_{a'}$ in its target is precisely what makes offline extrapolation dangerous
 - [[extrapolation-error]] — the concrete failure pessimism exists to prevent, with a worked LCB table showing the penalty flipping the chosen action
-- [[fitted-q-iteration-pessimistic]] — the sequential-RL instantiation over differentiable models
+- [[fqi-pessimistic]] — the sequential-RL instantiation over differentiable models
 - [[importance-weighting]] — the estimator pessimism is applied to in the off-policy-selection line
 - [[implicit-q-learning]] — the main *alternative* strategy: rather than estimate and penalize uncertainty at out-of-sample actions, never evaluate them at all. Empirically stronger; theoretically much weaker
 - [[coverage-coefficient]] — quantifies what pessimism cannot recover; every pessimistic bound is stated against a coverage condition

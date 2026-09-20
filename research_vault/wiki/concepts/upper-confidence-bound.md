@@ -42,7 +42,7 @@ with $\bar\mu_{i,t-1}$ the empirical mean and $n_{i,t-1}$ the pull count. This a
 
 - [[budget-limited-mab-kube]] / [[budget-limited-mab]] — UCB adapted to reward densities under a shared budget
 - [[pessimism-principle]] — the offline mirror image: same confidence widths, subtracted rather than added
-- [[best-arm-identification]] — pure exploration uses confidence bounds toward a different objective (identify the best arm) with a different optimality notion (sample complexity, not regret)
+- [[bai]] — pure exploration uses confidence bounds toward a different objective (identify the best arm) with a different optimality notion (sample complexity, not regret)
 - **Thompson sampling** — the Bayesian alternative; comparable regret, often better empirically (see [[Yang2025Stochastically]])
 - [[instance-dependent-bounds]] — UCB's gap-dependent regret is the canonical example
 

@@ -35,8 +35,8 @@ $$V_N(\mathcal{A}_\text{SLG}) \geq V_{N^{1+\gamma}}(\mathcal{A}_\text{BoN}), \qu
 
 ## Variants & Related Concepts
 - [[test-time-scaling]] — the broader context
-- [[best-arm-identification]] — SLG's state selection phase is structurally a fixed-budget BAI problem: pilot $K$ arms, then exploit the best
-- [[monte-carlo-tree-search]] — deeper tree-structured alternative; SLG uses only 2 stages
+- [[bai]] — SLG's state selection phase is structurally a fixed-budget BAI problem: pilot $K$ arms, then exploit the best
+- [[mcts]] — deeper tree-structured alternative; SLG uses only 2 stages
 
 ## Current State
 SLG is a new algorithm (Feb 2026). Open: deeper multi-stage extensions, PRM integration, non-Gaussian tail distributions.

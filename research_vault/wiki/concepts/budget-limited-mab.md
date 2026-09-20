@@ -31,7 +31,7 @@ The optimal density arm is $I^* = \arg\max_i \mu_i/c_i$; the minimal density gap
 
 ## Variants & Related Concepts
 
-- [[best-arm-identification]] — pure-exploration cousin; budget-limited MAB is cumulative-reward (regret), not identification
+- [[bai]] — pure-exploration cousin; budget-limited MAB is cumulative-reward (regret), not identification
 - [[Kanarios2024Cost]] / cost-aware BAI — attaches per-arm costs but in the fixed-confidence pure-exploration regime (minimize cost to identify the best arm), a different objective from the shared-budget cumulative-reward setting here
 - [[upper-confidence-bound]] — the confidence-width machinery KUBE inherits
 - Knapsack / unbounded knapsack — the full-information optimal policy is a knapsack solution

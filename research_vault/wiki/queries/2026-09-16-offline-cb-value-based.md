@@ -41,5 +41,5 @@ Kept with the technical account, in [[contextual-bandits-offline-value-based]] �
 
 - [[contextual-bandits-offline]] / [[contextual-bandits-offline-value-based]] — the two pages this split into
 - [[pessimism-principle]] — the shared mechanism
-- [[fitted-q-iteration-finite-sample-analysis]] — the horizon-$H$ analysis the bandit case specializes
+- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis the bandit case specializes
 - [[contextual-bandits]] — the online problem this is the batch version of

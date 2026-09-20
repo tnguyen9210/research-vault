@@ -13,6 +13,10 @@ status: temporary
 > holds 38 pages. Kept as the record of the rule and the reasoning;
 > delete it once that is no longer wanted. Deliberately not in
 > `index.md`, so a lint will report it as an orphan — expected.
+>
+> **Wave 2 also executed 2026-09-19:** the `bai`, `fqi` and `mcts`
+> family prefixes are abbreviated; `cb` was rejected. See the last
+> section for the rule and the reasoning.
 
 ## The rule used
 
@@ -112,3 +116,69 @@ inconsistency (`fqi-` vs `fitted-q-iteration`, `pfql-` vs
   history readable.
 - Old names should be added as `aliases:` in frontmatter so existing
   links and muscle memory keep resolving.
+
+## Wave 2 (executed) — abbreviating family prefixes
+
+Wave 1 made names structural but long: `fitted-q-iteration-finite-
+sample-analysis` is 41 characters. The question is whether to
+abbreviate family prefixes to the standard acronyms of the field.
+
+### The rule proposed
+
+Abbreviate only when all four hold:
+
+1. the acronym is **standard in the literature**, not a local coinage;
+2. it is **unambiguous inside this vault**, not just in general;
+3. the **parent is abbreviated too**, so the family stays consistent —
+   mixing `fitted-q-iteration` with `fqi-...` is exactly the mismatch
+   wave 1 removed;
+4. the **full name goes into `aliases:`**, so search and existing
+   links keep working.
+
+### Applied (8 pages)
+
+| current | proposed | chars |
+|---|---|---|
+| `best-arm-identification` | `bai` | 23 → 3 |
+| `best-arm-identification-constrained` | `bai-constrained` | 35 → 15 |
+| `best-arm-identification-cost-aware` | `bai-cost-aware` | 34 → 14 |
+| `fitted-q-iteration` | `fqi` | 18 → 3 |
+| `fitted-q-iteration-finite-sample-analysis` | `fqi-finite-sample-analysis` | 41 → 26 |
+| `fitted-q-iteration-pessimistic` | `fqi-pessimistic` | 30 → 15 |
+| `monte-carlo-tree-search` | `mcts` | 23 → 4 |
+| `monte-carlo-tree-search-power-mean` | `mcts-power-mean` | 34 → 15 |
+
+Average name length across these eight drops from about 30 characters
+to about 12. All three acronyms are universal in this literature and
+collide with nothing else in the vault.
+
+### Rejected
+
+**`cb` for contextual bandits.** Measured in the vault: **LCB appears
+47 times and UCB 38, against CB's 8.** In a corpus where those three
+letters usually end a confidence-bound acronym, `cb-offline-value-
+based` invites a misreading, and [[upper-confidence-bound]] is itself
+a page. The three affected names are also the shortest of the long
+ones (18, 26, 38), so the saving is smallest where the risk is
+highest. Keep `contextual-bandits-`.
+
+**`mab`.** `budget-limited-mab` already carries the acronym;
+abbreviating the rest of it gives `blmab-kube`, which is worse than
+what wave 1 replaced.
+
+**`tts`, `rl`, `dfa`.** Not standard enough to be read without effort.
+
+### The cost worth weighing
+
+**A filename is also its link text.** Obsidian shows a bare wiki link
+as the page name, so a link to `bai` reads "bai" in the sentence
+unless it is piped with explicit display text every time. Short names
+improve the file list and the quick switcher; they make running prose
+terser and, in places, worse. The
+eight pages above are the ones where the acronym is so standard that
+"BAI", "FQI" and "MCTS" read naturally in a sentence anyway — which
+is the real reason to stop at these three and not generalise.
+
+A second wave also leaves a second set of dead names in the
+append-only log. Doing it now is cheaper than after the four queued
+ingests, when more pages will point at these names.

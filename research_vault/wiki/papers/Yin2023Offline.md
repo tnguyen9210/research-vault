@@ -10,7 +10,7 @@ source: raw/papers/Yin2023Offline.pdf
 
 # Offline Reinforcement Learning with Differentiable Function Approximation is Provably Efficient
 
-**TL;DR:** The first **instance-dependent** offline RL guarantee under *nonlinear* function approximation. Over the [[differentiable-function-approximation]] class $\mathcal{F} = \{f(\theta,\phi(\cdot,\cdot)) : \theta \in \Theta \subset \mathbb{R}^d\}$, [[fitted-q-iteration-pessimistic]] (PFQL) achieves a suboptimality bound driven by a Fisher-information-style quantity $\sqrt{\nabla_\theta f^\top \Sigma_h^{\star-1} \nabla_\theta f}$; a variance-reweighted variant (VAFQL) removes a factor of $H$ and is minimax-optimal up to $\sqrt{d}$.
+**TL;DR:** The first **instance-dependent** offline RL guarantee under *nonlinear* function approximation. Over the [[differentiable-function-approximation]] class $\mathcal{F} = \{f(\theta,\phi(\cdot,\cdot)) : \theta \in \Theta \subset \mathbb{R}^d\}$, [[fqi-pessimistic]] (PFQL) achieves a suboptimality bound driven by a Fisher-information-style quantity $\sqrt{\nabla_\theta f^\top \Sigma_h^{\star-1} \nabla_\theta f}$; a variance-reweighted variant (VAFQL) removes a factor of $H$ and is minimax-optimal up to $\sqrt{d}$.
 
 ## Problem
 
@@ -119,7 +119,7 @@ That still requires a finite-sample bound on $\|\theta_{\mathcal{T}\hat V_{h+1}}
 ## Connections
 
 - [[differentiable-function-approximation]] — the function class introduced here for policy learning
-- [[fitted-q-iteration-pessimistic]] — PFQL and its variance-aware variant VAFQL, with Algorithm 1 read line by line: the hyperparameter conditions and the linear/tabular/GLM specializations
+- [[fqi-pessimistic]] — PFQL and its variance-aware variant VAFQL, with Algorithm 1 read line by line: the hyperparameter conditions and the linear/tabular/GLM specializations
 - [[instance-dependent-bounds]] — the guarantee type this paper delivers for nonlinear offline RL
 - [[offline-reinforcement-learning]] — the setting
 - [[realizability]] — Assumption 2.1, alongside Bellman completeness

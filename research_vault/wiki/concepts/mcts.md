@@ -1,6 +1,6 @@
 ---
 title: "Monte-Carlo Tree Search (MCTS)"
-aliases: [MCTS]
+aliases: [MCTS, monte-carlo-tree-search]
 tags: [planning, reinforcement-learning, tree-search, bandits]
 introduced_by: [[Dam2024Power]]
 ---
@@ -33,10 +33,10 @@ Quality measured by convergence rate $r(t)$: $|\mathbb{E}[\hat{V}_n(s_0)] - V^*(
 - [[Foster2025Foundation]] — MTSS: token-level DP backward induction for autoregressive LM alignment; exponentially better runtime by replacing sequence-level $C_\text{cov}$ with token-level $C_\text{cond}$
 
 ## Variants & Related Concepts
-- [[monte-carlo-tree-search-power-mean]] — power mean backup operator; generalizes average and max
+- [[mcts-power-mean]] — power mean backup operator; generalizes average and max
 - **UCT** (Kocsis & Szepesvári 2006) — logarithmic bonus; flawed theory in stochastic settings
 - **Fixed-Depth-MCTS** (Shah et al. 2022) — polynomial bonus; deterministic environments only
-- [[best-arm-identification]] — BAI theory underlies action selection at each node
+- [[bai]] — BAI theory underlies action selection at each node
 - [[smooth-aggregators]] — the power-mean backup is one of three vault instances of smoothing the max
 
 ## Current State

@@ -10,7 +10,7 @@ tags: [budget-limited-mab, bandits, regret, best-arm-identification]
 A family of bandit problems where pulling arms is *costly* and resources are *constrained*, so the agent must reason about reward *per unit cost* rather than reward alone. Two distinct objectives recur:
 
 1. **Cumulative-reward / regret under a shared budget** — a single budget $B$ caps total spend across exploration *and* exploitation; maximize total reward (equivalently, minimize regret vs. the knapsack optimum). The [[budget-limited-mab]] is the canonical model; the right statistic is reward density $\mu_i/c_i$.
-2. **Pure-exploration / fixed-confidence cost minimization** — identify the best arm with confidence $1-\delta$ while minimizing *cumulative cost*. This is cost-aware [[best-arm-identification]].
+2. **Pure-exploration / fixed-confidence cost minimization** — identify the best arm with confidence $1-\delta$ while minimizing *cumulative cost*. This is cost-aware [[bai]].
 
 These differ fundamentally: (1) trades off cheap-but-good vs. expensive-but-best arms for accumulated reward and admits $\Theta(\ln B)$ regret; (2) is a stopping-time problem where cost reshapes the optimal sampling proportions (e.g. $\propto \sqrt{c_a}$ in [[Kanarios2024Cost]]).
 
@@ -29,5 +29,5 @@ These differ fundamentally: (1) trades off cheap-but-good vs. expensive-but-best
 
 ## Related Topics
 
-- [[best-arm-identification]] — the pure-exploration regime that the cost-aware BAI thread specializes
+- [[bai]] — the pure-exploration regime that the cost-aware BAI thread specializes
 - [[cost-aware-bai]] — that thread's own survey: cost as objective vs. constraint vs. budget

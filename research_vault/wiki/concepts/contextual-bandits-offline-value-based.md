@@ -473,7 +473,7 @@ Resolved 2026-09-19: Rashidinejad's penalty constant is verified — $\Gamma=\sq
 - [[coverage-coefficient]] — the coefficients of §2.3
 - [[realizability]] — assumption (A3), on which every rate here depends
 - [[extrapolation-error]] — the greedy failure mode of §3.4, in RL language
-- [[fitted-q-iteration-finite-sample-analysis]] — the horizon-$H$ analysis; Theorem 2.6 is its "part C", Lemma 2.13 its "part A" without error propagation
+- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis; Theorem 2.6 is its "part C", Lemma 2.13 its "part A" without error propagation
 - [[instance-dependent-bounds]] — §7
 - [[importance-weighting]] — the other route's estimator
 - [[Ryu2025Improved]] — the policy-side second-order bound that §7.1 mirrors

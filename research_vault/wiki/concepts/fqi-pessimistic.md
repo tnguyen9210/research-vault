@@ -1,6 +1,6 @@
 ---
 title: "Pessimistic Fitted Q-Learning (PFQL)"
-aliases: [PFQL, VAFQL, pessimistic-fitted-q-learning, pfql-algorithm-1]
+aliases: [PFQL, VAFQL, pessimistic-fitted-q-learning, pfql-algorithm-1, fitted-q-iteration-pessimistic]
 tags: [offline-reinforcement-learning, pessimism, fitted-q-iteration, differentiable-function-approximation, variance-awareness, algorithm-walkthrough]
 introduced_by: [[Yin2023Offline]]
 ---
@@ -11,12 +11,12 @@ introduced_by: [[Yin2023Offline]]
 
 > **Scope.** The concept and the line-by-line reading of Algorithm 1
 > of [[Yin2023Offline]], on one page. **Assumed, not restated here:**
-> the FQI template and its notation, on [[fitted-q-iteration]]; the
+> the FQI template and its notation, on [[fqi]]; the
 > model class, on [[differentiable-function-approximation]].
 > **Left to other pages:** the failure pessimism corrects,
 > [[overestimation-bias]] and [[extrapolation-error]]; the general
 > principle, [[pessimism-principle]]; the horizon-$H$ analysis of
-> unpenalized FQI, [[fitted-q-iteration-finite-sample-analysis]]. §11 records what
+> unpenalized FQI, [[fqi-finite-sample-analysis]]. §11 records what
 > was checked against the paper and what was not.
 
 **The one-sentence version:** Algorithm 1 is FQI with pessimism
@@ -28,7 +28,7 @@ modification.
 
 PFQL fuses two well-worn ingredients and gets something neither gives alone.
 
-**[[fitted-q-iteration]]** supplies computational realism: a squared-error regression at each step, solvable by SGD, matching what neural FQI and DQN-style critics actually do. Compare the maxmin objectives that general-function-approximation theory produces, which are not runnable.
+**[[fqi]]** supplies computational realism: a squared-error regression at each step, solvable by SGD, matching what neural FQI and DQN-style critics actually do. Compare the maxmin objectives that general-function-approximation theory produces, which are not runnable.
 
 **Pessimism** supplies safety under distributional shift. Where the data is thin, the fitted model extrapolates and $Q$ is unreliable — usually upward, since downstream maximization selects large errors (see [[overestimation-bias]]). Subtracting an uncertainty penalty makes the algorithm prefer actions it has evidence for, the offline mirror of optimism-under-uncertainty in online RL.
 
@@ -274,8 +274,8 @@ algorithm, the bonus reading and VAFQL.
 
 ## Variants & Related Concepts
 
-- [[fitted-q-iteration]] — the base template; PFQL is FQI with an uncertainty penalty subtracted before the greedy step, and lines 4 and 9 are its two steps
-- [[fitted-q-iteration-finite-sample-analysis]] — the finite-sample analysis of unpenalized FQI that this line descends from
+- [[fqi]] — the base template; PFQL is FQI with an uncertainty penalty subtracted before the greedy step, and lines 4 and 9 are its two steps
+- [[fqi-finite-sample-analysis]] — the finite-sample analysis of unpenalized FQI that this line descends from
 - [[differentiable-function-approximation]] — the class $f$ lives in, and the source of the $\nabla^2_{\theta\theta}f$ obstacle
 - [[instance-dependent-bounds]] — what the $\mathbb{E}_{\pi^*}[\Gamma_h]$ form delivers
 - [[pessimism-principle]] — the general idea; $\Gamma_h$ is one computable instance of the width $b(s,a)$

@@ -50,9 +50,9 @@ A subtlety that is easy to miss. Applying expectile regression to a full TD targ
 ## Variants & Related Concepts
 
 - [[implicit-q-learning]] — the algorithm built on this primitive
-- [[fitted-q-iteration]] — the template IQL modifies; the expectile replaces the $\max_{a'}$ in its Bellman target
+- [[fqi]] — the template IQL modifies; the expectile replaces the $\max_{a'}$ in its Bellman target
 - [[softmax-bellman-operator]] — a different smooth surrogate for the max, with an explicit finite-$\tau$ approximation bound ([[Song2019Revisiting]]) that the expectile treatment lacks
-- [[monte-carlo-tree-search-power-mean]] — a third smooth-aggregator-in-place-of-max instance, in tree search ([[Dam2024Power]])
+- [[mcts-power-mean]] — a third smooth-aggregator-in-place-of-max instance, in tree search ([[Dam2024Power]])
 - [[overestimation-bias]] — the reason smooth surrogates are attractive in the first place
 
 ## Current State

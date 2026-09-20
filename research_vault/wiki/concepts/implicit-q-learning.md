@@ -54,11 +54,11 @@ the optimal value *constrained to the behavior policy's support*. Proof: Lemma 2
 
 ## Variants & Related Concepts
 
-- [[fitted-q-iteration]] — the base template; IQL is FQI with the target's $\max_{a'}$ replaced by an in-sample upper expectile, so no out-of-sample action is ever queried
+- [[fqi]] — the base template; IQL is FQI with the target's $\max_{a'}$ replaced by an in-sample upper expectile, so no out-of-sample action is ever queried
 - [[extrapolation-error]] — the failure IQL removes by construction rather than by penalty: vanilla FQI maximizes over all of $\mathcal{A}$, IQL over the data support, and these are genuinely different algorithms
 - [[expectile-regression]] — the estimation primitive
 - [[softmax-bellman-operator]] — the same "replace max with a smooth aggregator" move applied to online deep Q-learning ([[Song2019Revisiting]]); has the finite-temperature bound IQL lacks
-- [[monte-carlo-tree-search-power-mean]] — the same move in tree search ([[Dam2024Power]])
+- [[mcts-power-mean]] — the same move in tree search ([[Dam2024Power]])
 - [[overestimation-bias]] — avoided at the source rather than corrected
 - [[coverage-coefficient]] — the density-aware notion of what a reference distribution makes learnable; IQL's binary support condition $\pi_\beta(a|s)>0$ is its crude analogue
 

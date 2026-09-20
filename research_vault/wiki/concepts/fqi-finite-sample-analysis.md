@@ -1,8 +1,8 @@
 ---
 title: "FQI Finite-Sample Analysis — Jiang (2020) note, line by line"
 tags: [reinforcement-learning, offline-reinforcement-learning, learning-theory]
-aliases: [fqi-finite-sample-analysis]
-introduced_by: [[fitted-q-iteration]]
+aliases: [fitted-q-iteration-finite-sample-analysis]
+introduced_by: [[fqi]]
 source: https://nanjiang.cs.illinois.edu/files/cs598/note5.pdf   # Nan Jiang, "Notes on Fitted Q-iteration", 30 Aug 2020 (UIUC CS598 note 5)
 ---
 
@@ -10,15 +10,15 @@ source: https://nanjiang.cs.illinois.edu/files/cs598/note5.pdf   # Nan Jiang, "N
 
 > **Scope.** A line-by-line walkthrough (2026-09-01) of Nan Jiang's
 > *Notes on Fitted Q-iteration* (30 Aug 2020): the
-> $J(\pi^*)-J(\widehat\pi)$ bound for [[fitted-q-iteration]] under
+> $J(\pi^*)-J(\widehat\pi)$ bound for [[fqi]] under
 > realizability, Bellman completeness and uniform concentrability,
 > together with the Bernstein fast rate.
 >
 > **Assumed, not restated here:** the FQI template and the MDP
-> notation, on [[fitted-q-iteration]]. **Left to other pages:** what
+> notation, on [[fqi]]. **Left to other pages:** what
 > the coverage assumption rules out, [[extrapolation-error]]; the
 > single-policy and instance-dependent successor,
-> [[fitted-q-iteration-pessimistic]]; the
+> [[fqi-pessimistic]]; the
 > horizon-one case, where the coverage story appears without
 > bootstrapping, [[contextual-bandits-offline-value-based]]. Nothing here is
 > pessimistic — this is the analysis of plain FQI. §35 records what
@@ -2550,12 +2550,12 @@ been consulted directly.
 
 ## Variants & Related Concepts
 
-- [[fitted-q-iteration]] — the family hub; this page is its finite-sample guarantee, worked line by line
+- [[fqi]] — the family hub; this page is its finite-sample guarantee, worked line by line
 - [[extrapolation-error]] — what the coverage assumption $C$ rules out
-- [[fitted-q-iteration-pessimistic]] — the modern instance-dependent descendant of this analysis, algorithm and walkthrough on one page
+- [[fqi-pessimistic]] — the modern instance-dependent descendant of this analysis, algorithm and walkthrough on one page
 - [[smooth-aggregators]] — §34's closing question: which parts of this proof survive a soft/log-avg-exp backup
 - Munos & Szepesvári 2008 (`munos2008FiniteTime`) — the Approximate Value Iteration literature this note scrutinizes
 
 ## Current State
 
-The slow-rate ($n^{-1/4}$) and fast-rate (Bernstein) arguments worked through here are the standard finite-sample account of FQI under Bellman completeness and uniform concentrability, and they remain the baseline later refinements are stated against. What has moved on is the coverage assumption: uniform $C$ has largely given way to single-policy concentrability, and the pessimistic descendant [[fitted-q-iteration-pessimistic]] carries instance-dependent bounds this analysis cannot express. Read as foundations, not as the frontier.
+The slow-rate ($n^{-1/4}$) and fast-rate (Bernstein) arguments worked through here are the standard finite-sample account of FQI under Bellman completeness and uniform concentrability, and they remain the baseline later refinements are stated against. What has moved on is the coverage assumption: uniform $C$ has largely given way to single-policy concentrability, and the pessimistic descendant [[fqi-pessimistic]] carries instance-dependent bounds this analysis cannot express. Read as foundations, not as the frontier.

@@ -12,7 +12,7 @@ introduced_by: [[Kostrikov2022Offline]]
 
 The single sentence that explains most of offline RL:
 
-> **[[fitted-q-iteration]] trains $Q$ on the data distribution but queries $Q$ outside it.**
+> **[[fqi]] trains $Q$ on the data distribution but queries $Q$ outside it.**
 
 The regression step fits $Q_{k+1}$ on inputs $(s_i,a_i) \sim d^\mu$ — whatever the behavior policy actually did. The target step evaluates $\max_{a'\in\mathcal{A}} Q_k(s_i',a')$ — over *every* action, including ones $\mu$ never took. Nothing forces those two sets to coincide, and in offline RL they usually do not.
 
@@ -104,7 +104,7 @@ Overestimation is a statistical bias that survives infinite data at each observe
 
 ### Why online RL escapes this
 
-If an online agent believes $Q(s,B) = 100$, it can try $B$, observe $r = -2$, and correct. The optimistic estimate is self-refuting: acting on it generates the evidence that destroys it. Offline, the dataset is fixed. If $B$ is absent, nothing in the training loop can ever contradict the fabricated value — the same error is self-*reinforcing*. This is why optimism is right online and [[pessimism-principle]] is right offline. The underlying asymmetry is a property of the data-collection protocol, not of the Bellman regression; see the *Offline vs. online FQI* section of [[fitted-q-iteration]].
+If an online agent believes $Q(s,B) = 100$, it can try $B$, observe $r = -2$, and correct. The optimistic estimate is self-refuting: acting on it generates the evidence that destroys it. Offline, the dataset is fixed. If $B$ is absent, nothing in the training loop can ever contradict the fabricated value — the same error is self-*reinforcing*. This is why optimism is right online and [[pessimism-principle]] is right offline. The underlying asymmetry is a property of the data-collection protocol, not of the Bellman regression; see the *Offline vs. online FQI* section of [[fqi]].
 
 ### Vanilla FQI really does maximize over unsupported actions
 
@@ -136,9 +136,9 @@ Replace the point estimate with a lower confidence bound $Q_\text{LCB}(s,a) = \w
 | $B$ | 20 | 15 | 5 |
 | $C$ | 8 | 10 | $-2$ |
 
-Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pessimistic FQI takes $\max\{9,5,-2\} = 9$ and picks $A$. The penalty does not make the estimate of $B$ more accurate — it makes the algorithm decline to act on an estimate it has no evidence for. See [[fitted-q-iteration-pessimistic]] for the version where $b$ is the gradient-geometry width $\beta\|\nabla_\theta f\|_{\Sigma_h^{-1}}$.
+Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pessimistic FQI takes $\max\{9,5,-2\} = 9$ and picks $A$. The penalty does not make the estimate of $B$ more accurate — it makes the algorithm decline to act on an estimate it has no evidence for. See [[fqi-pessimistic]] for the version where $b$ is the gradient-geometry width $\beta\|\nabla_\theta f\|_{\Sigma_h^{-1}}$.
 
-**Where the penalty is applied matters as much as its size.** Subtracting $b$ only at policy extraction gives a cautious final policy computed from values that were *already* contaminated during the backups. To actually stop the propagation, the penalized $\hat Q$ must be what feeds the next Bellman target — so this table has to be evaluated at every stage, not once at the end. [[fitted-q-iteration-pessimistic]] walks through Algorithm 1 of [[Yin2023Offline]] line by line on exactly this point.
+**Where the penalty is applied matters as much as its size.** Subtracting $b$ only at policy extraction gives a cautious final policy computed from values that were *already* contaminated during the backups. To actually stop the propagation, the penalized $\hat Q$ must be what feeds the next Bellman target — so this table has to be evaluated at every stage, not once at the end. [[fqi-pessimistic]] walks through Algorithm 1 of [[Yin2023Offline]] line by line on exactly this point.
 
 ## Key Papers
 
@@ -151,10 +151,10 @@ Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pes
 
 ## Variants & Related Concepts
 
-- [[fitted-q-iteration]] — the template in which the train/query mismatch arises
+- [[fqi]] — the template in which the train/query mismatch arises
 - [[overestimation-bias]] — the noise-driven cousin; see the comparison table above
 - [[pessimism-principle]] — the general remedy: act on a lower confidence bound
-- [[fitted-q-iteration-pessimistic]] — pessimism instantiated with a computable width
+- [[fqi-pessimistic]] — pessimism instantiated with a computable width
 - [[implicit-q-learning]] — the alternative remedy: restrict the max to in-sample actions, smoothed via [[expectile-regression]]
 - [[coverage-coefficient]] — the quantity that measures how much extrapolation a dataset forces
 - [[offline-reinforcement-learning]] — the setting

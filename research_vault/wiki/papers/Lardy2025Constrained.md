@@ -74,10 +74,10 @@ TaS-1d (unconstrained BAI) is catastrophically bad on the None-feasible instance
 
 ## Connections
 
-- [[best-arm-identification-constrained]] — the novel problem formulation introduced here
+- [[bai-constrained]] — the novel problem formulation introduced here
 - [[Kanarios2024Cost]] — complementary: CABAI minimizes cumulative cost; CBAI constrains mean arm cost. Both use GLR stopping; different lower bounds and optimal proportions.
-- [[best-arm-identification]] — CBAI extends fixed-confidence BAI to cost-constrained bivariate arms
-- [[best-arm-identification-cost-aware]] — contrast: cost-minimization vs. cost-threshold objective
+- [[bai]] — CBAI extends fixed-confidence BAI to cost-constrained bivariate arms
+- [[bai-cost-aware]] — contrast: cost-minimization vs. cost-threshold objective
 - Tyron Lardy — first author
 - Wouter M. Koolen — senior author; co-developer of mixture martingale tools used in stopping thresholds
 - **Extends:** Garivier & Kaufmann 2016 (TAS) to bivariate arm distributions

@@ -36,7 +36,7 @@ $$T_\text{data}(\varepsilon,\delta) = \tilde{O}\!\left(\frac{R_\text{max}^2}{\be
 
 - [[coverage-coefficient]] — governs $T_\text{comp}$; SpannerSampling achieves the lower bound in $C_\text{cov}$
 - [[linear-softmax-policy]] — the policy class for which SpannerSampling is designed
-- [[monte-carlo-tree-search]] — MTSS (MultiTurnSpannerSampling) is the token-level DP extension; structurally analogous to backward induction in MDPs; [[Dam2024Power]] studies MCTS convergence in stochastic environments
+- [[mcts]] — MTSS (MultiTurnSpannerSampling) is the token-level DP extension; structurally analogous to backward induction in MDPs; [[Dam2024Power]] studies MCTS convergence in stochastic environments
 - [[test-time-scaling]] — SpannerSampling is a formal instance of inference-time exploration beating training-time-only methods
 
 ## Current State

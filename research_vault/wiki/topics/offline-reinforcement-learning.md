@@ -17,7 +17,7 @@ The literature splits along two axes.
 
 **A third axis: what is actually provable.** Practice and theory in offline RL have largely diverged. The methods people run (IQL, CQL, TD3+BC) carry no instance-dependent guarantees; the methods with sharp guarantees (PEVI, PFQL) are not run. [[Yin2023Offline]] represents the strongest current theory — [[instance-dependent-bounds]] under nonlinear ([[differentiable-function-approximation]]) models, via pessimism — while [[Kostrikov2022Offline]] represents the strongest current practice, with only an asymptotic guarantee. The two make a useful pair: they answer the same question (how to avoid trusting extrapolated values) with opposite strategies, penalize-the-uncertainty versus never-query-it.
 
-Nearly every algorithm here is a variant of one template: [[fitted-q-iteration]] — relabel the fixed batch with Bellman targets, refit by least squares, repeat. The template itself is regime-agnostic: FQI determines how you learn from data, offline vs. online determines how you obtain it, and the Bellman update is byte-identical either way. What the offline regime removes is the feedback loop in which a wrong value gets tested and corrected, and the field's distinctive machinery — pessimism, conservatism, support constraints — exists to compensate for that absence. Reading the field as "FQI with one of its three steps modified" (target, regression, or policy extraction) makes the algorithm zoo tractable; the FQI-family concept pages collect the instances, with [[fitted-q-iteration]] as the hub.
+Nearly every algorithm here is a variant of one template: [[fqi]] — relabel the fixed batch with Bellman targets, refit by least squares, repeat. The template itself is regime-agnostic: FQI determines how you learn from data, offline vs. online determines how you obtain it, and the Bellman update is byte-identical either way. What the offline regime removes is the feedback loop in which a wrong value gets tested and corrected, and the field's distinctive machinery — pessimism, conservatism, support constraints — exists to compensate for that absence. Reading the field as "FQI with one of its three steps modified" (target, regression, or policy extraction) makes the algorithm zoo tractable; the FQI-family concept pages collect the instances, with [[fqi]] as the hub.
 
 The vault covers this area through two papers, one empirical and one theoretical; the deep-RL machinery they build on is covered by [[deep-q-network]] and [[Song2019Revisiting]].
 
@@ -47,7 +47,7 @@ Adjacent, not offline but structurally relevant:
 ## Related Topics
 
 - [[contextual-bandits-offline]] — the $H=1$ case: no bootstrapping, no error propagation, so the coverage story appears in isolation
-- [[monte-carlo-tree-search]] — planning-time analogue of the same max-under-uncertainty problem; [[Dam2024Power]] uses a smooth backup for the same reason
+- [[mcts]] — planning-time analogue of the same max-under-uncertainty problem; [[Dam2024Power]] uses a smooth backup for the same reason
 - [[test-time-scaling]] — inference-time compute as an alternative to better training-time policies; [[Foster2025Foundation]] gives the coverage-theoretic argument for that trade
 - [[offline-oracle-efficient-bandits]] — the bandit-theoretic counterpart: what can be learned given only an offline regression oracle over a fixed distribution
 - [[instance-dependent-bounds]] — the guarantee type that separates [[Yin2023Offline]] from the worst-case GFA literature, and that [[Kostrikov2022Offline]] lacks

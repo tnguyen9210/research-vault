@@ -18,7 +18,7 @@ aliases: [offline CB, batch contextual bandits, offline bandit policy learning, 
 > assumptions, guarantees — on [[contextual-bandits-offline-value-based]]; the
 > policy-based family, which has no page yet and is covered here only
 > by §4.2 and §6; the horizon-$H$ analysis the bandit case
-> specializes, on [[fitted-q-iteration-finite-sample-analysis]]. §7 records what was
+> specializes, on [[fqi-finite-sample-analysis]]. §7 records what was
 > checked against sources and what was not.
 
 ## 1. Intuition
@@ -99,7 +99,7 @@ Restricting each maximum to the pairs its numerator charges is not a formality: 
 
 ## 3. Relation to offline RL
 
-A contextual bandit is the one-step, $H=1$ case of offline reinforcement learning. Its action value is the immediate conditional mean reward, so there is no estimated next-state value, no Bellman-error propagation across iterations, and no need for a transition model. See [[fitted-q-iteration-finite-sample-analysis]] for the horizon-$H$ statement this specializes.
+A contextual bandit is the one-step, $H=1$ case of offline reinforcement learning. Its action value is the immediate conditional mean reward, so there is no estimated next-state value, no Bellman-error propagation across iterations, and no need for a transition model. See [[fqi-finite-sample-analysis]] for the horizon-$H$ statement this specializes.
 
 
 ## 4. The two families of methods
@@ -243,7 +243,7 @@ Zhou–Athey–Wager theorem forms are both still recorded from memory.
 - [[importance-weighting]] — the policy route's estimator
 - [[extrapolation-error]] — the greedy rule's failure mode, in RL language
 - [[offline-reinforcement-learning]] — the $H>1$ generalization
-- [[fitted-q-iteration-finite-sample-analysis]] — the horizon-$H$ analysis this specializes
+- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis this specializes
 - [[offline-oracle-efficient-bandits]] — a different sense of "offline"; see the terminology guard
 
 ## Current State

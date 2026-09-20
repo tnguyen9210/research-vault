@@ -14,7 +14,7 @@ source: raw/papers/Kanarios2024Cost.pdf
 
 ## Problem
 
-Standard [[best-arm-identification]] minimizes sample complexity (rounds). Real product pipelines separate testing from deployment — the cost of each prototype trial matters. Standard BAI algorithms like TAS ignore heterogeneous per-arm costs and are provably sub-optimal in this setting. CABAI formalizes: given $K$ arms each with a reward distribution $\nu_{\mu_a}$ and a cost distribution $\nu_{c_a}$, find a $\delta$-PAC algorithm minimizing expected cumulative cost $\mathbb{E}[J(\tau_\delta)] = \mathbb{E}[\sum_{k=1}^{\tau_\delta} C_k]$.
+Standard [[bai]] minimizes sample complexity (rounds). Real product pipelines separate testing from deployment — the cost of each prototype trial matters. Standard BAI algorithms like TAS ignore heterogeneous per-arm costs and are provably sub-optimal in this setting. CABAI formalizes: given $K$ arms each with a reward distribution $\nu_{\mu_a}$ and a cost distribution $\nu_{c_a}$, find a $\delta$-PAC algorithm minimizing expected cumulative cost $\mathbb{E}[J(\tau_\delta)] = \mathbb{E}[\sum_{k=1}^{\tau_\delta} C_k]$.
 
 ## Method
 
@@ -65,8 +65,8 @@ CTAS optimal proportions $w^*=(0.23, 0.72, 0.05)$ vs. TAS $(0.46, 0.46, 0.08)$: 
 
 ## Connections
 
-- [[best-arm-identification]] — CABAI extends fixed-confidence BAI with heterogeneous per-arm costs
-- [[best-arm-identification-cost-aware]] — the novel problem formulation introduced here
+- [[bai]] — CABAI extends fixed-confidence BAI with heterogeneous per-arm costs
+- [[bai-cost-aware]] — the novel problem formulation introduced here
 - Kellen Kanarios — first author
 - Qining Zhang — second author (U. Michigan; distinct from advisor Chicheng Zhang)
 - Lei Ying — third/senior author

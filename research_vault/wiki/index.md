@@ -24,9 +24,9 @@ Format: `- [[slug]] — one-line description`
 
 ## Concepts
 
-- [[best-arm-identification]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
-- [[best-arm-identification-constrained]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
-- [[best-arm-identification-cost-aware]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
+- [[bai]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
+- [[bai-constrained]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
+- [[bai-cost-aware]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
 - [[budget-limited-mab-epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
 - [[budget-limited-mab-kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
@@ -43,15 +43,15 @@ Format: `- [[slug]] — one-line description`
 - [[expectile-regression]] — asymmetric-$\ell_2$ regression estimating the $\tau$-expectile; $\tau\to1$ approaches the supremum, enabling in-sample maximization; used by [[Kostrikov2022Offline]]
 - [[exploitative-f-design]] — per-context minimax optimization simultaneously satisfying Low Regret and Good Coverage; core primitive of OE2D
 - [[extrapolation-error]] — FQI trains $Q$ on the data distribution but queries it outside; the $\max$ then selects whichever unsupported action was overvalued
-- [[fitted-q-iteration]] — the offline RL template: relabel a fixed batch with Bellman targets, refit by least squares, repeat; $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$
-- [[fitted-q-iteration-finite-sample-analysis]] — Jiang (2020) note, line by line: $J(\pi^*)-J(\hat\pi)$ bound via Bellman-error propagation + Bernstein fast rate $O(n^{-1/2})$
-- [[fitted-q-iteration-pessimistic]] — PFQL/VAFQL: fitted Q-iteration plus a gradient-geometry uncertainty penalty, with Algorithm 1 of [[Yin2023Offline]] read line by line
+- [[fqi]] — the offline RL template: relabel a fixed batch with Bellman targets, refit by least squares, repeat; $Q_{k+1}\approx\Pi_\mathcal{F}\mathcal{T}Q_k$
+- [[fqi-finite-sample-analysis]] — Jiang (2020) note, line by line: $J(\pi^*)-J(\hat\pi)$ bound via Bellman-error propagation + Bernstein fast rate $O(n^{-1/2})$
+- [[fqi-pessimistic]] — PFQL/VAFQL: fitted Q-iteration plus a gradient-geometry uncertainty penalty, with Algorithm 1 of [[Yin2023Offline]] read line by line
 - [[implicit-q-learning]] — IQL: upper-expectile $V$ + MSE $Q$ backup + AWR extraction; multi-step DP without out-of-sample queries; $\tau$ interpolates SARSA to Q-learning
 - [[importance-weighting]] — IW estimator for offline policy evaluation; variance control via pessimism and score functions; core primitive in off-policy learning
 - [[instance-dependent-bounds]] — hub: guarantees driven by the individual instance (gaps, variance, gradient geometry, coverage) rather than a worst case over the class
 - [[linear-softmax-policy]] — $\pi_\theta(y|x) \propto \pi_\text{ref}(y|x)\exp(\beta^{-1}\langle\theta,\phi(x,y)\rangle)$; natural RLHF parameterization studied in [[Foster2025Foundation]]
-- [[monte-carlo-tree-search]] — online planning via bandit-guided tree simulation; UCT and successors
-- [[monte-carlo-tree-search-power-mean]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
+- [[mcts]] — online planning via bandit-guided tree simulation; UCT and successors
+- [[mcts-power-mean]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[oracle-efficiency]] — reducing bandit learning to a few calls to a regression oracle; contrasts the online and [[offline-regression-oracle]] variants
 - [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]

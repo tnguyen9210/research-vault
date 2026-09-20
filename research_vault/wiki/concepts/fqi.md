@@ -1,6 +1,6 @@
 ---
 title: "Fitted Q-Iteration (FQI)"
-aliases: [FQI]
+aliases: [FQI, fitted-q-iteration]
 tags: [reinforcement-learning, offline-reinforcement-learning, approximate-dynamic-programming, function-approximation, bellman-operator]
 introduced_by: [[Yin2023Offline]]
 ---
@@ -66,7 +66,7 @@ where $\Pi_\mathcal{F}$ is the least-squares projection onto $\mathcal{F}$ under
 
 ### Finite-horizon form
 
-The vault's theory papers use the episodic variant: iterate *backward over the horizon* $h = H,\dots,1$ rather than over $k$, with a separate $Q_h$ per stage and $\hat V_{h+1}$ in the target. Same template, different indexing — one sweep suffices because the horizon is finite. See [[fitted-q-iteration-pessimistic]], which is exactly this with an uncertainty penalty inserted at each stage.
+The vault's theory papers use the episodic variant: iterate *backward over the horizon* $h = H,\dots,1$ rather than over $k$, with a separate $Q_h$ per stage and $\hat V_{h+1}$ in the target. Same template, different indexing — one sweep suffices because the horizon is finite. See [[fqi-pessimistic]], which is exactly this with an uncertainty penalty inserted at each stage.
 
 ### Worked example
 
@@ -158,7 +158,7 @@ So the offline-specific machinery — [[pessimism-principle]], conservatism, sup
 - Riedmiller (2005) — neural FQI; the direct ancestor of DQN-style critics
 - Munos (2005, 2007) — approximate value iteration and error propagation across iterations
 - Chen & Jiang (2019) — information-theoretic analysis of batch RL under realizability + concentrability; the reference point that later instance-dependent work is measured against
-- [[Yin2023Offline]] — [[fitted-q-iteration-pessimistic]]: FQI plus a gradient-geometry penalty over [[differentiable-function-approximation]], yielding the first [[instance-dependent-bounds]] for offline RL under a nonlinear class
+- [[Yin2023Offline]] — [[fqi-pessimistic]]: FQI plus a gradient-geometry penalty over [[differentiable-function-approximation]], yielding the first [[instance-dependent-bounds]] for offline RL under a nonlinear class
 - Fan et al. (2020) — theoretical analysis of deep Q-learning, treating DQN as neural FQI
 
 ## Variants & Related Concepts
@@ -170,15 +170,15 @@ FQI is a template; most offline RL algorithms are FQI with **one of its three st
 | Bellman target | restrict $\max_{a'}$ to in-sample actions, smoothed as an upper expectile | [[implicit-q-learning]] |
 | Bellman target | replace $\max_{a'}$ with a softmax at temperature $\tau$ | [[softmax-bellman-operator]] |
 | Regression step | reweight residuals by conditional variance | VAFQL ([[Yin2023Offline]]) |
-| Value estimate | subtract an uncertainty penalty *before* the value enters the next target | [[fitted-q-iteration-pessimistic]], [[pessimism-principle]] |
+| Value estimate | subtract an uncertainty penalty *before* the value enters the next target | [[fqi-pessimistic]], [[pessimism-principle]] |
 | Value estimate | push down $Q$ on out-of-distribution actions | CQL (Kumar et al. 2020) |
 | Policy extraction | advantage-weighted behavioral cloning | AWR step of [[implicit-q-learning]] |
 
 - **Tabular Q-learning** — the incremental limit. Q-learning updates one transition at a time, $Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma\max_{a'}Q(s',a') - Q(s,a)]$, whereas FQI forms targets for the whole batch and refits. The mental picture: **FQI = Q-learning-style Bellman targets + batch supervised regression**
 - [[deep-q-network]] — DQN is an incremental, stochastic FQI: the target network $Q_{\theta^-}$ plays the role of the previous iterate $Q_k$, and SGD steps replace the full refit. Replay buffers and target networks are the practical machinery that makes the approximation work
-- [[2026-08-19-offline-fqi-walkthrough]] — saved query: a reading path through this page, [[extrapolation-error]] and [[fitted-q-iteration-pessimistic]], in the order the questions arise
+- [[2026-08-19-offline-fqi-walkthrough]] — saved query: a reading path through this page, [[extrapolation-error]] and [[fqi-pessimistic]], in the order the questions arise
 - [[offline-reinforcement-learning]] — the data setting, not the algorithm. Keeping these separate matters: **FQI is the template, offline RL is the regime.** Offline FQI is plain FQI on fixed data; most of modern offline RL is offline FQI plus some mechanism preventing unsupported actions from looking artificially good. Developed in the *Offline vs. online FQI* section above
-- [[fitted-q-iteration-finite-sample-analysis]] — line-by-line walkthrough of Jiang's (2020) finite-sample guarantee for this template: the A/B/C error chain, the coverage step, and the Bernstein fast rate
+- [[fqi-finite-sample-analysis]] — line-by-line walkthrough of Jiang's (2020) finite-sample guarantee for this template: the A/B/C error chain, the coverage step, and the Bernstein fast rate
 - [[realizability]] — necessary but not sufficient here; Bellman completeness is the operative assumption
 - [[differentiable-function-approximation]] — the class over which FQI's fitted step becomes analyzable with gradient geometry
 
@@ -186,4 +186,4 @@ FQI is a template; most offline RL algorithms are FQI with **one of its three st
 
 The dominant algorithmic skeleton for value-based offline RL, and the one nearly every theoretical guarantee in the area is stated for. Its appeal over information-theoretic alternatives (the maxmin objectives that general-function-approximation analyses produce) is that the inner step is an ordinary least-squares fit, so it is actually runnable.
 
-What remains open is the same list that makes offline RL hard. The composition $\Pi_\mathcal{F}\mathcal{T}$ has no contraction guarantee without Bellman completeness, an assumption that is strong and unverifiable in practice. Error propagation across sweeps is understood only up to worst-case concentrability in the general case; the instance-dependent treatment exists only for structured classes ([[Yin2023Offline]]). And the $\max$ in the target remains the central vulnerability — the reason the two strongest current answers, in-sample learning ([[implicit-q-learning]]) and pessimism ([[fitted-q-iteration-pessimistic]]), are both best understood as edits to this template rather than departures from it.
+What remains open is the same list that makes offline RL hard. The composition $\Pi_\mathcal{F}\mathcal{T}$ has no contraction guarantee without Bellman completeness, an assumption that is strong and unverifiable in practice. Error propagation across sweeps is understood only up to worst-case concentrability in the general case; the instance-dependent treatment exists only for structured classes ([[Yin2023Offline]]). And the $\max$ in the target remains the central vulnerability — the reason the two strongest current answers, in-sample learning ([[implicit-q-learning]]) and pessimism ([[fqi-pessimistic]]), are both best understood as edits to this template rather than departures from it.

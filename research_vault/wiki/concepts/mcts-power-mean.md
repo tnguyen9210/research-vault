@@ -1,7 +1,7 @@
 ---
 title: "Power Mean MCTS (Stochastic-Power-UCT)"
 tags: [mcts, planning, power-mean, convergence]
-aliases: [power-mean-mcts]
+aliases: [power-mean-mcts, monte-carlo-tree-search-power-mean]
 introduced_by: [[Dam2024Power]]
 ---
 
@@ -33,7 +33,7 @@ Special cases: $p = 1$ recovers Fixed-Depth-MCTS (average mean); $p \to \infty$ 
 - [[Dam2024Power]] — introduces Stochastic-Power-UCT with complete convergence proof for stochastic MDPs
 
 ## Variants & Related Concepts
-- [[monte-carlo-tree-search]] — the broader framework
+- [[mcts]] — the broader framework
 - **Fixed-Depth-MCTS** (Shah et al. 2022) — special case $p = 1$; deterministic environments only
 - **Power-UCT** (Dam et al. 2019) — predecessor without stochastic convergence guarantee
 - [[softmax-bellman-operator]] — the same smooth-aggregator-in-place-of-max idea in deep Q-learning ([[Song2019Revisiting]])

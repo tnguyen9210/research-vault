@@ -30,7 +30,7 @@ The bar is that $\mathcal{C}(\mathcal{M})$ be **computable from the instance** a
 
 The instance functional takes recognizably different forms by setting.
 
-**Gap-dependent (bandits, BAI).** Hardness is carried by reward gaps $\Delta_i = \mu^* - \mu_i$: UCB's $O(\sum_i \log T/\Delta_i)$ regret, and in fixed-confidence BAI the characteristic time $T^*(\mu)$ that appears in the $\log(1/\delta)$ lower bound. Track-and-stop-style algorithms are asymptotically optimal *at each instance*. See [[best-arm-identification]].
+**Gap-dependent (bandits, BAI).** Hardness is carried by reward gaps $\Delta_i = \mu^* - \mu_i$: UCB's $O(\sum_i \log T/\Delta_i)$ regret, and in fixed-confidence BAI the characteristic time $T^*(\mu)$ that appears in the $\log(1/\delta)$ lower bound. Track-and-stop-style algorithms are asymptotically optimal *at each instance*. See [[bai]].
 
 **Variance-dependent.** Replace a range bound $V_\text{max}$ with the actual conditional variance, so low-noise instances converge faster — Bernstein rather than Hoeffding. In offline RL this is the difference between $H$ and $\sqrt{\text{Var}}$ scaling, and it collapses to a fast $O(1/K)$ rate on deterministic transitions.
 

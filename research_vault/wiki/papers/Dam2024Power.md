@@ -64,9 +64,9 @@ $$\left| \mathbb{E}[\hat{V}_n(s_0)] - \tilde{V}(s_0) \right| \leq \mathcal{O}(n^
 
 ## Connections
 
-- [[monte-carlo-tree-search]] — the algorithmic framework this paper operates within
-- [[monte-carlo-tree-search-power-mean]] — the novel algorithm introduced here
-- Emilie Kaufmann — third author; also known for TAS (BAI), connecting to [[best-arm-identification]]
+- [[mcts]] — the algorithmic framework this paper operates within
+- [[mcts-power-mean]] — the novel algorithm introduced here
+- Emilie Kaufmann — third author; also known for TAS (BAI), connecting to [[bai]]
 - Tuan Dam — first author
 - Odalric-Ambrym Maillard — second author
 - **Extends:** Fixed-Depth-MCTS (Shah et al. 2022) — deterministic predecessor

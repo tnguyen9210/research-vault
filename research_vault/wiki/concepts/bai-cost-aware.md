@@ -1,6 +1,6 @@
 ---
 title: "Cost Aware Best Arm Identification (CABAI)"
-aliases: [CABAI, cost-aware BAI, cabai]
+aliases: [CABAI, cost-aware BAI, cabai, best-arm-identification-cost-aware]
 tags: [bandits, pure-exploration, cost-aware, cabai]
 introduced_by: [[Kanarios2024Cost]]
 ---
@@ -10,7 +10,7 @@ introduced_by: [[Kanarios2024Cost]]
 **Definition:** Pure exploration problem where each arm $a$ has both a reward distribution $\nu_{\mu_a}$ and a cost distribution $\nu_{c_a}$; goal is to identify the best-reward arm with probability $\geq 1 - \delta$ at minimum expected cumulative cost $J(\tau_\delta) = \sum_{k=1}^{\tau_\delta} C_k$.
 
 ## Intuition
-Models the testing/deployment split in product development: during testing, each trial incurs a cost (prototype cost, ad platform fee, clinical trial dose), while reward is what matters post-deployment. Standard [[best-arm-identification]] ignores this cost heterogeneity. CABAI separates the testing objective (cost) from the deployment objective (reward).
+Models the testing/deployment split in product development: during testing, each trial incurs a cost (prototype cost, ad platform fee, clinical trial dose), while reward is what matters post-deployment. Standard [[bai]] ignores this cost heterogeneity. CABAI separates the testing objective (cost) from the deployment objective (reward).
 
 ## Formal Description
 Instance $(\mu, c)$: $\mu = (\mu_1, \ldots, \mu_K)$ reward means, $c = (c_1, \ldots, c_K)$ cost means. Arms from natural exponential family (Assumption 1). Costs bounded positive (Assumption 2). At round $t$, observe $(R_t, C_t) \sim \nu_{\mu_{A_t}} \times \nu_{c_{A_t}}$.
@@ -36,9 +36,9 @@ Non-trivial structural result: optimal cost proportion $w^*_a \propto \sqrt{c_a}
 - [[Kanarios2024Cost]] — introduces CABAI, lower bound, CTAS, and CO
 
 ## Variants & Related Concepts
-- [[best-arm-identification]] — CABAI reduces to standard BAI when all $c_a$ equal
-- [[best-arm-identification-constrained]] — **distinct formulation**: CBAI constrains *mean arm cost* $\leq \gamma$; CABAI minimizes *cumulative testing cost* $\sum_t C_t$. Different lower bounds and optimal proportions. See [[Lardy2025Constrained]].
+- [[bai]] — CABAI reduces to standard BAI when all $c_a$ equal
+- [[bai-constrained]] — **distinct formulation**: CBAI constrains *mean arm cost* $\leq \gamma$; CABAI minimizes *cumulative testing cost* $\sum_t C_t$. Different lower bounds and optimal proportions. See [[Lardy2025Constrained]].
 - **BAI with safety constraints** — constraint is on safety, not cost; agent can be restricted from certain arms
 
 ## Current State
-Open: CO's optimality for $K > 2$ arms; cost-aware regret minimization; ETC variant for CABAI. The complementary [[best-arm-identification-constrained]] formulation (cost as constraint, not metric) is now resolved for three model families.
+Open: CO's optimality for $K > 2$ arms; cost-aware regret minimization; ETC variant for CABAI. The complementary [[bai-constrained]] formulation (cost as constraint, not metric) is now resolved for three model families.
