@@ -241,7 +241,7 @@ $$
 $$
 *Proof.* Lemma 2.14 averaged over $x\sim\nu$. $\square$
 
-Only the optimal policy's uncertainty appears: a poorly covered action costs nothing unless $\pi^*$ uses it. This is the horizon-one case of Theorem 4.2 of Jin, Yang & Wang (2021), $\mathrm{SubOpt}(\hat\pi)\le2\sum_h\mathbb E_{\pi^*}[\Gamma_h]$. Explicit rates follow by inserting the quantifiers of §2.4.
+Only the optimal policy's uncertainty appears: a poorly covered action costs nothing unless $\pi^*$ uses it. This is the horizon-one case of Theorem 4.2 of Jin, Yang & Wang (2021), $\Delta(\hat\pi)\le2\sum_h\mathbb E_{\pi^*}[\Gamma_h]$. Explicit rates follow by inserting the quantifiers of §2.4.
 
 ### 4.3 Tabular classes
 
