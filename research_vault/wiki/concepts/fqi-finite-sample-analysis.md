@@ -2,7 +2,7 @@
 title: "FQI Finite-Sample Analysis — Jiang (2020) note, line by line"
 tags: [reinforcement-learning, offline-reinforcement-learning, learning-theory]
 introduced_by: [[fitted-q-iteration]]
-source: raw/papers/Jiang2020Fitted.pdf   # Nan Jiang, "Notes on Fitted Q-iteration", 2020 (PDF pending)
+source: https://nanjiang.cs.illinois.edu/files/cs598/note5.pdf   # Nan Jiang, "Notes on Fitted Q-iteration", 30 Aug 2020 (UIUC CS598 note 5)
 ---
 
 # FQI Finite-Sample Analysis (Jiang 2020 note)
@@ -2518,12 +2518,16 @@ you control the one-step operator error.
 statements and both rate results are the note's; the section titles,
 the A/B/C decomposition at the top and the commentary are this page's.
 
-*The source is not archived.* The frontmatter points at
-`raw/papers/Jiang2020Fitted.pdf`, which does not exist — the note was
-read at the time and never mirrored, and nothing here has been
-re-checked against it since. Treat any quotation as recorded from
-memory until that PDF is in `raw/`. This is the page's one outstanding
-provenance gap.
+*Where the source is.* The note is not mirrored in the vault; the
+frontmatter points at the author's copy,
+<https://nanjiang.cs.illinois.edu/files/cs598/note5.pdf> (UIUC CS598,
+note 5). Checked 2026-09-19: it resolves, and its title block reads
+"Notes on Fitted Q-iteration, Nan Jiang, August 30, 2020" — the
+version this page was written from. Being an unarchived course note it
+can be revised or moved without notice, so keeping a copy in
+`raw/papers/` would still be worth doing. Separately, the page's
+content has not been re-read against the note since 2026-09-01, so
+treat any quotation as recorded from that reading.
 
 *This page's own, not the note's.* §32, which observes that the
 fast-rate bound is stated for a fixed $f'$ while FQI substitutes the
@@ -2539,7 +2543,7 @@ been consulted directly.
 
 ## Key Papers
 
-- Jiang 2020, *Notes on Fitted Q-iteration* (lecture note) — the source this page works through line by line; no paper page yet
+- Jiang 2020, *Notes on Fitted Q-iteration* (UIUC CS598, note 5, 30 Aug 2020) — the source this page works through line by line; no paper page yet, read online at <https://nanjiang.cs.illinois.edu/files/cs598/note5.pdf>
 - Munos & Szepesvári 2008 (`munos2008FiniteTime`) — the Approximate Value Iteration analysis the note scrutinizes; no paper page yet
 
 ## Variants & Related Concepts
