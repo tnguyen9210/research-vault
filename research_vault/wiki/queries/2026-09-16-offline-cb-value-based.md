@@ -35,7 +35,7 @@ Kept with the technical account, in [[value-based-offline-bandits]] §8.2.
   - All four were keyed to arXiv revision years until 2026-09-19; the keys above are the corrected ones. Confirm they are pinned before ingesting, since the citekey is the page filename, the link target and the mirror filename.
 - Write the policy-based page; move the route comparison to it, or keep it on the setting page as the cross-family home.
 - A topic page is still not earned: revisit once the four papers above have pages.
-- Drop K.-S. Jun's CSED703Q note into `raw/papers/Jun2026Offline.pdf`; it is the reference point for the policy route.
+- K.-S. Jun's CSED703Q note (*Offline contextual bandits*, Spring 2026) is the reference point for the policy route. Supplied 2026-09-19 and read; it still needs saving into `raw/papers/Jun2026Offline.pdf` by hand. What it settles: MaxIPW and PES are its Lemmas 1–2 (now credited in [[offline-contextual-bandits]] §7), IX is its Theorem 3 with bias exactly $\gamma C_\gamma(\pi)$ and weights bounded by $1/\gamma$, LS its Theorem 6 with $bD_b(\pi^*)$ and $D_b\le C_b$ but *unbounded* weights, and the hyperparameter-adaptation sketch is [[Ryu2025Improved]]. Its own open ends are offpolicy learning and the loss-vs-reward asymmetry, both marked TODO in the note.
 
 ## Connections
 

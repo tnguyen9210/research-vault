@@ -2523,11 +2523,12 @@ frontmatter points at the author's copy,
 <https://nanjiang.cs.illinois.edu/files/cs598/note5.pdf> (UIUC CS598,
 note 5). Checked 2026-09-19: it resolves, and its title block reads
 "Notes on Fitted Q-iteration, Nan Jiang, August 30, 2020" — the
-version this page was written from. Being an unarchived course note it
-can be revised or moved without notice, so keeping a copy in
-`raw/papers/` would still be worth doing. Separately, the page's
-content has not been re-read against the note since 2026-09-01, so
-treat any quotation as recorded from that reading.
+version this page was written from. Being a course note rather than a
+published paper, it can be revised or moved without notice; if the URL
+ever stops resolving, the walkthrough below is the only record of what
+it said. Separately, the page's content has not been re-read against
+the note since 2026-09-01, so treat any quotation as recorded from
+that reading.
 
 *This page's own, not the note's.* §32, which observes that the
 fast-rate bound is stated for a fixed $f'$ while FQI substitutes the
