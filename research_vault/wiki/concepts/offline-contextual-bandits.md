@@ -10,6 +10,17 @@ aliases: [offline CB, batch contextual bandits, offline bandit policy learning]
 
 > **Terminology guard.** "Offline" here means *learning from a fixed logged dataset*. The vault's [[offline-oracle-efficient-bandits]] topic is a different use of the word — *online* algorithms that call an *offline regression oracle*. Do not conflate. The pessimism literature writes $\mathrm{SubOpt}(\hat\pi)$, and the policy-learning literature $\mathrm{Regret}$, for what this page calls $\Delta(\hat\pi)$.
 
+> **Scope.** This page is the setting and the taxonomy: what the
+> problem is, the notation the family pages share, the coverage
+> coefficients, and the two routes with the constructions that
+> straddle them (§5) and their comparison (§6). **Left to other
+> pages:** the value-based family in full — estimators, algorithms,
+> assumptions, guarantees — on [[value-based-offline-bandits]]; the
+> policy-based family, which has no page yet and is covered here only
+> by §4.2 and §6; the horizon-$H$ analysis the bandit case
+> specializes, on [[fqi-finite-sample-analysis]]. §7 records what was
+> checked against sources and what was not.
+
 ## 1. Intuition
 
 Online, an algorithm that is unsure about an action can play it. Offline it cannot, and that single difference drives the whole theory. The data distribution is whatever $\mu$ happened to produce, the learner's errors are never self-correcting, and an action that was rarely logged is both badly estimated and — if the learner acts greedily on its estimates — disproportionately likely to be chosen, because the noise that inflates an estimate is exactly what makes it win an $\arg\max$. Everything below is organized around that asymmetry: how much the logged distribution has to overlap the policy one wants to deploy, and what an algorithm can do to need less overlap.
@@ -181,6 +192,30 @@ With the Hoeffding width the two bounds coincide because the width is policy-ind
 
 **Rule of thumb.** Trust the value-based route when a good reward model is plausible (rich features, dense actions, deterministic or unlogged $\mu$, large models); trust the policy-based route when the policy class is simple, $\mu$ is logged and stochastic, and rewards are hard to model. DR and SWITCH exist because the honest answer is usually "both, partially".
 
+
+## 7. Provenance
+
+*Notation.* §2 follows the Overleaf research log
+(`02_offline_contextual_bandits.tex`, §1) and is shared verbatim with
+[[value-based-offline-bandits]]; the two pages are meant to be read
+with one set of symbols.
+
+*Quoted.* Proposition 5.1 is Dudík, Langford & Li (2011), Theorems
+1–2, written in bandit form; the cost-sensitive-classification reading
+of §5.2 is their §5.1.3, and the uniform-deviation guarantee is
+standard.
+
+*Derived here rather than quoted.* Proposition 6.1 (MaxIPW and PES) is
+obtained by reading the two suboptimality lemmas of
+[[value-based-offline-bandits]] §2.5 over policies instead of actions;
+it is not taken from any single paper. The route comparison in §6 is
+this page's synthesis, not a table from the literature.
+
+*Verify before citing.* The per-claim record for everything cited in
+§5 and §6 is kept in one place, [[value-based-offline-bandits]] §8.3,
+rather than duplicated here. Two entries there bear directly on this
+page: the Singh & Yee (1994) attribution and the Athey & Wager /
+Zhou–Athey–Wager theorem forms are both still recorded from memory.
 
 ## Key Papers
 

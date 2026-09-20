@@ -10,7 +10,7 @@ introduced_by: [[Yin2023Offline]]
 
 **The one-sentence version:** Algorithm 1 is FQI with pessimism inserted *inside the backup* rather than at policy extraction — lines 4 and 9 alone are plain FQI, and lines 5–8 are the entire modification.
 
-## The algorithm
+## 1. The algorithm
 
 ```
 Input: D = {(s^k_h, a^k_h, r^k_h, s^k_{h+1})}_{k=1..K, h=1..H},  β,  λ > 0
@@ -29,7 +29,7 @@ for h = H, H−1, …, 1:
 Output: {π̂_h}_{h=1}^H
 ```
 
-### Notation
+### 1.1 Notation
 
 | Symbol | Meaning |
 |---|---|
@@ -43,7 +43,7 @@ Output: {π̂_h}_{h=1}^H
 | $C_\Theta$ | bound on $\|\theta\|_2$ |
 | $\iota$ | polylog factor |
 
-## Structure before content
+## 2. Structure before content
 
 Three things about the shape of the loop, since they differ from the classical FQI presentation:
 
@@ -53,9 +53,9 @@ Three things about the shape of the loop, since they differ from the classical F
 
 **$\hat V_{H+1}\leftarrow 0$** is the terminal condition, not an initialization heuristic. There is genuinely no value after the last stage.
 
-## Line by line
+## 3. Line by line
 
-### Line 4 — the regression
+### 3.1 Line 4 — the regression
 
 $$
 \hat\theta_h \leftarrow \arg\min_{\theta\in\Theta}\ \sum_{k=1}^K\Big[f(\theta,\phi_{h,k}) - \underbrace{r_{h,k} - \hat V_{h+1}(s^k_{h+1})}_{\text{the FQI label}}\Big]^2 + \lambda\|\theta\|_2^2
@@ -76,7 +76,7 @@ Expanding $Z_h$ around $\hat\theta_h$ produces a curvature term $\Delta\Sigma_h^
 
 Practically, the square loss is the *reason* FQI was chosen here: SGD applies directly, unlike the maxmin objectives that general-function-approximation theory produces.
 
-### Line 5 — the information matrix
+### 3.2 Line 5 — the information matrix
 
 $$
 \Sigma_h \leftarrow \sum_{k=1}^K \nabla_\theta f(\hat\theta_h,\phi_{h,k})\,\nabla_\theta^\top f(\hat\theta_h,\phi_{h,k}) + \lambda I_d
@@ -86,7 +86,7 @@ The Gram matrix of **gradients**, evaluated at the freshly fitted $\hat\theta_h$
 
 Setting $f = \langle\theta,\phi\rangle$ gives $\nabla_\theta f = \phi$ and $\Sigma_h = \sum_k\phi\phi^\top + \lambda I$, the standard design matrix.
 
-### Line 6 — the uncertainty width
+### 3.3 Line 6 — the uncertainty width
 
 $$
 \Gamma_h(s,a) \leftarrow \beta\sqrt{\nabla_\theta f(\hat\theta_h,\phi(s,a))^\top\Sigma_h^{-1}\nabla_\theta f(\hat\theta_h,\phi(s,a))} + \tilde{O}(1/K)
@@ -106,7 +106,7 @@ Under linearity this is the elliptical bonus $\beta\|\phi\|_{\Sigma_h^{-1}}$ fro
 
 The $\tilde{O}(1/K)$ tail is stated in the paper to be "for theoretical reason only" — a higher-order correction to make the confidence bound valid, negligible at any practical $K$.
 
-### Lines 7–8 — subtract, then clip
+### 3.4 Lines 7–8 — subtract, then clip
 
 $$
 \bar Q_h \leftarrow f(\hat\theta_h,\phi) - \Gamma_h,
@@ -116,7 +116,7 @@ $$
 
 Line 7 is the lower confidence bound. Line 8 is free accuracy from known structure: with rewards in $[0,1]$ and $H-h+1$ stages remaining, no true value can exceed $H-h+1$ or fall below $0$, so any estimate outside that interval is provably wrong and clipping strictly improves it. Standard in this literature and it tightens the analysis.
 
-### Line 9 — greedy extraction
+### 3.5 Line 9 — greedy extraction
 
 $$
 \hat\pi_h \leftarrow \arg\max_{\pi_h}\langle \hat Q_h(\cdot,\cdot),\pi_h(\cdot|\cdot)\rangle_\mathcal{A},
@@ -126,7 +126,7 @@ $$
 
 The inner product is over the action space, so this is $\arg\max_a$ and $\max_a$ written to permit stochastic $\pi_h$. Nothing exotic — but note *which* $Q$ it maximizes, which is the next section.
 
-## Why the pessimism goes inside the backup
+## 4. Why the pessimism goes inside the backup
 
 The single most important structural point, and easy to miss because it lives in the *ordering* rather than in any one line.
 
@@ -144,7 +144,7 @@ Vanilla FQI backs up $20$; PFQL backs up $9$.
 
 **Contrast with penalizing at extraction only.** Running plain FQI to completion and subtracting a penalty just before choosing actions gives a cautious final policy computed from values that were already contaminated during the backups. Different, and weaker. The penalty has to be in the loop.
 
-## Hyperparameters and conditions
+## 5. Hyperparameters and conditions
 
 | Quantity | Setting | Why |
 |---|---|---|
@@ -154,7 +154,7 @@ Vanilla FQI backs up $20$; PFQL backs up $9$.
 
 The burn-in is a covering-argument artifact: the guarantee needs $\hat\theta_h$ already close enough to $\theta^*_h$ for the local linearization to be meaningful, and that requires enough data before anything can be said at all.
 
-## Specializations
+## 6. Specializations
 
 **Linear MDPs.** $f = \langle\theta,\phi\rangle$, so $\nabla_\theta f = \phi$, $\Sigma_h = \sum_k\phi\phi^\top+\lambda I$, $\Gamma_h = \beta\|\phi\|_{\Sigma_h^{-1}}$. Algorithm 1 becomes PEVI (Jin et al. 2021b) exactly, and Theorem 3.2 collapses to its bound. PFQL is a strict generalization, not a parallel construction.
 
@@ -162,7 +162,7 @@ The burn-in is a covering-argument artifact: the guarantee needs $\hat\theta_h$ 
 
 **GLM (Corollary 3.3).** With $f(\theta,\phi) = g(\langle\theta,\phi\rangle)$, the chain rule puts the link derivative into the width: $\Gamma_h \propto \sqrt{g'(\langle\hat\theta_h,\phi\rangle)^2\,\phi^\top\Sigma_h^{-1}\phi}$. Where the link is flat, the model is insensitive to $\theta$ there and the effective uncertainty shrinks accordingly.
 
-## VAFQL — the one-line diff
+## 7. VAFQL — the one-line diff
 
 Algorithm 3 changes **only line 4**, dividing each squared residual by an estimated conditional variance:
 
@@ -172,7 +172,7 @@ $$
 
 with $\sigma^{\star2}_h := \max\{1,\text{Var}_{P_h}V^*_{h+1}\}$. High-noise transitions carry less weight. $\Sigma_h$ becomes the variance-weighted $\Lambda_h$, and $\beta$ drops from $8dH\iota$ to $8d\iota$ — a full factor of $H$, since $\text{Var}_{P_h}V^*_{h+1}\le H^2$. On deterministic transitions $\sigma^\star_h\approx 0$, $\Lambda_h^{\star-1}\to 0$, and the rate improves to $O(1/K)$.
 
-## Where the guarantee comes from
+## 8. Where the guarantee comes from
 
 Following Jin et al. (2021b), the suboptimality decomposes as
 
@@ -188,12 +188,38 @@ Two consequences worth extracting.
 
 **Where the nonlinearity bites.** The whole guarantee rests on that validity condition, and there is a circularity in establishing it: $\Gamma_h$ is computed from $\hat\theta_h$, so the penalty meant to protect against a bad fit is itself built from the fit. Plug in an arbitrary $\theta$ and $\Gamma_h$ is meaningless, possibly harmful. In a linear MDP no such issue arises — $\phi^\top(\Sigma_h^\text{linear})^{-1}\phi$ has no parameter dependence. [[Yin2023Offline]] breaks the circle with a non-asymptotic $\|\theta_{\mathcal{T}\hat V_{h+1}} - \hat\theta_h\|_2 = \tilde{O}(\sqrt{dH}/(\kappa\sqrt{K}))$, obtained by reducing to Chen & Jiang's GFA analysis plus covering — the OPE predecessor (Zhang et al. 2022a) had only an asymptotic $B(\delta)/\sqrt{K}$, which could hide an $e^H$ and destroy sample efficiency.
 
-## What Algorithm 1 does not do
+## 9. What Algorithm 1 does not do
 
 - **No computational guarantee.** Line 4 is a nonconvex argmin, analyzed as exactly solved. "Provably efficient" in this paper means *statistically* efficient.
 - **No misspecification.** Theorems 3.2 and 4.1 assume $\epsilon_\mathcal{F} = 0$ (exact Bellman completeness); the $\epsilon_\mathcal{F} > 0$ case is deferred to Appendix H.
 - **No single-policy coverage.** Assumption 2.3 is uniform over $\Theta$, stronger than the single-policy concentrability Xie et al. (2021a) achieve for GFA.
 - **No experiments.** The paper is purely theoretical; PFQL is not run on a benchmark.
+
+## Provenance
+
+*Source.* Everything in §1–§9 follows Algorithm 1 of
+[[Yin2023Offline]] (Yin, Duan, Wang & Wang, *Offline RL with
+Differentiable Function Approximation is Provably Efficient*, ICLR
+2023), read against the paper on 2026-08-19. The line numbering is
+theirs; the section titles, the line-by-line commentary and the
+reasons given for each step are this page's.
+
+*Quoted.* The algorithm itself, Assumption 2.3, the hyperparameter
+conditions of §5, the guarantee cited in §8 (their Theorems 3.2 and
+4.1), and the VAFQL variant of §7.
+
+*This page's own, not the paper's.* The framing of §4 — that the
+whole modification is pessimism inside the backup rather than at
+policy extraction, so lines 4 and 9 alone are plain FQI — is how this
+page organises the algorithm, not a claim the paper makes in those
+words. The same goes for the four limitations in §9, which are
+inferred from what the theorems assume rather than stated as
+limitations by the authors.
+
+*Not checked.* The comparison in §9 to the single-policy
+concentrability of Xie et al. (2021a) is taken from the paper's own
+related-work framing and has not been verified against Xie et al.
+directly; that paper is `xie2021Bellmanconsistent`, uningested.
 
 ## Key Papers
 
@@ -212,4 +238,4 @@ Two consequences worth extracting.
 
 ## Current State
 
-Current as of its source (ICLR 2023) and unsuperseded in the vault. Its open edges are the ones §"What Algorithm 1 does not do" names: no computational guarantee for the nonconvex line-4 argmin, exact Bellman completeness in the main theorems, uniform rather than single-policy coverage, and no experiments.
+Current as of its source (ICLR 2023) and unsuperseded in the vault. Its open edges are the ones §9 names: no computational guarantee for the nonconvex line-4 argmin, exact Bellman completeness in the main theorems, uniform rather than single-policy coverage, and no experiments.

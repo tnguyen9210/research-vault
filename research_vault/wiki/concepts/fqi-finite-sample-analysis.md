@@ -7,11 +7,21 @@ source: raw/papers/Jiang2020Fitted.pdf   # Nan Jiang, "Notes on Fitted Q-iterati
 
 # FQI Finite-Sample Analysis (Jiang 2020 note)
 
-> Verbatim walkthrough (2026-09-01) of Nan Jiang's "Notes on
-> Fitted Q-iteration" (Aug 30, 2020): the $J(\pi^*)-J(\hat\pi)$
-> bound for [[fitted-q-iteration]] under realizability +
-> completeness + coverage, and the Bernstein fast rate.
-> Family hub: [[fitted-q-iteration]].
+> **Scope.** A line-by-line walkthrough (2026-09-01) of Nan Jiang's
+> *Notes on Fitted Q-iteration* (30 Aug 2020): the
+> $J(\pi^*)-J(\widehat\pi)$ bound for [[fitted-q-iteration]] under
+> realizability, Bellman completeness and uniform concentrability,
+> together with the Bernstein fast rate.
+>
+> **Assumed, not restated here:** the FQI template and the MDP
+> notation, on [[fitted-q-iteration]]. **Left to other pages:** what
+> the coverage assumption rules out, [[extrapolation-error]]; the
+> single-policy and instance-dependent successors,
+> [[pessimistic-fitted-q-learning]] and [[pfql-algorithm-1]]; the
+> horizon-one case, where the coverage story appears without
+> bootstrapping, [[value-based-offline-bandits]]. Nothing here is
+> pessimistic — this is the analysis of plain FQI. §35 records what
+> was checked against the source and what was not.
 
 The proof becomes much easier once we separate it into three
 questions:
@@ -38,6 +48,28 @@ Then the proof plugs C into B and B into A. That is the entire high-level
 structure of the analysis on pages 2–3.
 
 I will follow the note line by line.
+
+## Reading path
+
+2489 lines in 35 sections; these are the entry points.
+
+- **The whole argument at once** — §24 chains every step into a
+  single display. Read it first for the shape, or last as a check.
+- **Block A, suboptimality to $Q$-error** (§1–§7). §1–§5 reduce
+  $J(\pi^*)-J(\widehat\pi)$ to an $L_2$ norm under the distributions
+  that matter; §6–§7 state and prove Lemma 1, which converts value
+  error into $Q$-function error.
+- **Block B, the recursion** (§8–§16). The change of measure onto the
+  offline distribution (§10–§12, with §12 the starred step), Jensen
+  (§13), and the recursive structure that results (§16).
+- **Block C, regression error** (§17–§23). Why squared loss is exactly
+  Bellman error (§17), where Bellman completeness is actually used
+  (§19), and the initial error $e_0$ (§22).
+- **The fast rate** (§25–§31). §25 explains why the first analysis
+  stalls at $n^{-1/4}$; §26–§31 redo it with Bernstein on excess loss.
+- **Reference** — §33 lists where each assumption was used, §34 states
+  the idea the proof turns on, and §32 records a rigor gap in the
+  source together with how to close it.
 
 ---
 
@@ -2478,6 +2510,32 @@ Lemma 1 changes, and whether the regression-error identity still lets
 you control the one-step operator error.
 
 ---
+
+## 35. Provenance
+
+*Source.* §0–§34 follow Nan Jiang, *Notes on Fitted Q-iteration*
+(30 Aug 2020), worked through on 2026-09-01. The argument, the lemma
+statements and both rate results are the note's; the section titles,
+the A/B/C decomposition at the top and the commentary are this page's.
+
+*The source is not archived.* The frontmatter points at
+`raw/papers/Jiang2020Fitted.pdf`, which does not exist — the note was
+read at the time and never mirrored, and nothing here has been
+re-checked against it since. Treat any quotation as recorded from
+memory until that PDF is in `raw/`. This is the page's one outstanding
+provenance gap.
+
+*This page's own, not the note's.* §32, which observes that the
+fast-rate bound is stated for a fixed $f'$ while FQI substitutes the
+data-dependent $f_{k-1}$, and proposes union-bounding over
+$\mathcal F\times\mathcal F$ at a cost of $2\log|\mathcal F|$. Also
+§34's closing question about whether the argument survives a
+soft or log-avg-exp backup, which connects to [[smooth-aggregators]].
+
+*Not checked.* Munos & Szepesvári (2008) is described as the
+Approximate Value Iteration analysis the note scrutinises. That
+characterisation is the note's; their paper is uningested and has not
+been consulted directly.
 
 ## Key Papers
 
