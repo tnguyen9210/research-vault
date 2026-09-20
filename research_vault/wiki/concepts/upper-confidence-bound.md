@@ -28,19 +28,19 @@ with $\bar\mu_{i,t-1}$ the empirical mean and $n_{i,t-1}$ the pull count. This a
 
 **Structured generalizations** replace the count-based width with a geometry-aware one: $\|\phi\|_{\Sigma^{-1}}$ in linear bandits, and $\|\nabla_\theta f\|_{\Sigma^{-1}}$ under [[differentiable-function-approximation]]. The pattern — an empirical estimate plus a width measured in the inverse information matrix — recurs throughout this vault in both signs.
 
-**Budget-limited variant.** When each arm carries a cost $c_i$ and a shared budget $B$ caps total spend, the relevant object is the reward *density* $\mu_i/c_i$ rather than $\mu_i$. Fractional [[kube]] applies UCB to densities and is described in [[TranThanh2012Knapsack]] as the budget-limited analogue of UCB.
+**Budget-limited variant.** When each arm carries a cost $c_i$ and a shared budget $B$ caps total spend, the relevant object is the reward *density* $\mu_i/c_i$ rather than $\mu_i$. Fractional [[budget-limited-mab-kube]] applies UCB to densities and is described in [[TranThanh2012Knapsack]] as the budget-limited analogue of UCB.
 
 ## Key Papers
 
 - Lai & Robbins (1985) — the asymptotic instance-dependent lower bound UCB matches
 - Auer, Cesa-Bianchi & Fischer (2002) — UCB1; the finite-time logarithmic regret analysis
-- [[TranThanh2010Epsilon]] — uses UCB purely as an *exploration* subroutine inside an [[epsilon-first]] shell, and finds it performs no better than uniform sampling: the $B^{2/3}$ ceiling comes from the phase split, not the sampling rule
-- [[TranThanh2012Knapsack]] — fractional [[kube]] as the budget-limited analogue of UCB; [[kube]] itself solves a UCB-augmented knapsack each step
+- [[TranThanh2010Epsilon]] — uses UCB purely as an *exploration* subroutine inside an [[budget-limited-mab-epsilon-first]] shell, and finds it performs no better than uniform sampling: the $B^{2/3}$ ceiling comes from the phase split, not the sampling rule
+- [[TranThanh2012Knapsack]] — fractional [[budget-limited-mab-kube]] as the budget-limited analogue of UCB; [[budget-limited-mab-kube]] itself solves a UCB-augmented knapsack each step
 - Abbasi-Yadkori et al. (2011) — self-normalized confidence sets for linear bandits; the source of the elliptical-bonus form reused throughout
 
 ## Variants & Related Concepts
 
-- [[kube]] / [[budget-limited-mab]] — UCB adapted to reward densities under a shared budget
+- [[budget-limited-mab-kube]] / [[budget-limited-mab]] — UCB adapted to reward densities under a shared budget
 - [[pessimism-principle]] — the offline mirror image: same confidence widths, subtracted rather than added
 - [[best-arm-identification]] — pure exploration uses confidence bounds toward a different objective (identify the best arm) with a different optimality notion (sample complexity, not regret)
 - **Thompson sampling** — the Bayesian alternative; comparable regret, often better empirically (see [[Yang2025Stochastically]])

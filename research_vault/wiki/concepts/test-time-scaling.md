@@ -25,7 +25,7 @@ $$V_N(s) = \mathbb{E}\!\left[\max_{1 \leq i \leq N} R_s^{(i)}\right], \quad R_s^
 - [[Foster2025Foundation]] — the theoretical case for inference-time compute: SpannerSampling meets the [[coverage-coefficient]] lower bound with only a sampling oracle, while training-time interventions (DPO/XPO) cannot be simultaneously data- and compute-efficient under ETH
 
 ## Variants & Related Concepts
-- [[slg-search]] — adaptive two-stage search using predicted scaling laws
+- [[test-time-scaling-slg-search]] — adaptive two-stage search using predicted scaling laws
 - **Tree of Thoughts / MCTS** — deeper tree-structured search; [[monte-carlo-tree-search]] is a related planning framework
 - **Process Reward Models (PRMs)** — score intermediate steps rather than final responses; complement to outcome reward models
 - [[coverage-coefficient]] — the quantity governing when inference-time exploration is computationally feasible

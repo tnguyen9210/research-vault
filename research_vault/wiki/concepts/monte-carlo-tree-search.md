@@ -33,7 +33,7 @@ Quality measured by convergence rate $r(t)$: $|\mathbb{E}[\hat{V}_n(s_0)] - V^*(
 - [[Foster2025Foundation]] — MTSS: token-level DP backward induction for autoregressive LM alignment; exponentially better runtime by replacing sequence-level $C_\text{cov}$ with token-level $C_\text{cond}$
 
 ## Variants & Related Concepts
-- [[power-mean-mcts]] — power mean backup operator; generalizes average and max
+- [[monte-carlo-tree-search-power-mean]] — power mean backup operator; generalizes average and max
 - **UCT** (Kocsis & Szepesvári 2006) — logarithmic bonus; flawed theory in stochastic settings
 - **Fixed-Depth-MCTS** (Shah et al. 2022) — polynomial bonus; deterministic environments only
 - [[best-arm-identification]] — BAI theory underlies action selection at each node

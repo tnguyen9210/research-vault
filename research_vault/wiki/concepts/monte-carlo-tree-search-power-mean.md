@@ -1,6 +1,7 @@
 ---
 title: "Power Mean MCTS (Stochastic-Power-UCT)"
 tags: [mcts, planning, power-mean, convergence]
+aliases: [power-mean-mcts]
 introduced_by: [[Dam2024Power]]
 ---
 

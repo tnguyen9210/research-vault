@@ -6,7 +6,7 @@ tags: [bandits, pure-exploration, cost-aware]
 # Cost-Aware Best Arm Identification
 
 ## Overview
-The literature extending [[best-arm-identification]] (see the concept page for the paradigm, lower bound, and TAS) with **heterogeneous arm costs** — the vault's most developed pure-exploration thread. Cost enters in fundamentally different roles across the papers: as the objective to minimize ([[cabai]], where the optimal allocation shifts to $\sqrt{c_a}$ proportions), as a feasibility constraint ([[constrained-bai]]), and under a fixed budget with multiple stochastic constraints (BFAI). The paradigm's mature machinery (transportation-cost lower bounds, Track-and-Stop) carries over, but each cost role reshapes the optimal allocation differently.
+The literature extending [[best-arm-identification]] (see the concept page for the paradigm, lower bound, and TAS) with **heterogeneous arm costs** — the vault's most developed pure-exploration thread. Cost enters in fundamentally different roles across the papers: as the objective to minimize ([[best-arm-identification-cost-aware]], where the optimal allocation shifts to $\sqrt{c_a}$ proportions), as a feasibility constraint ([[best-arm-identification-constrained]]), and under a fixed budget with multiple stochastic constraints (BFAI). The paradigm's mature machinery (transportation-cost lower bounds, Track-and-Stop) carries over, but each cost role reshapes the optimal allocation differently.
 
 ## Key Papers
 

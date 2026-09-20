@@ -81,7 +81,7 @@ Evaluated on AMC23, AIME24, AIME25 with Llama-3.2-1B-Instruct and Qwen2.5-7B-Ins
 ## Connections
 
 - [[test-time-scaling]] — the broader phenomenon this paper characterizes and improves
-- [[slg-search]] — the algorithm introduced here
+- [[test-time-scaling-slg-search]] — the algorithm introduced here
 - Muheng Li — first author
 - Jian Qian — second author
 - Wenlong Mou — third/senior author

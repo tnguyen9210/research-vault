@@ -49,14 +49,14 @@ Its reciprocal-square, $m(s,a) := (g_\theta^\top\Sigma_h^{-1}g_\theta)^{-1}$, is
 ## Key Papers
 
 - Zhang et al. (2022a) — introduces differentiable function classes for off-policy *evaluation*; obtains asymptotic guarantees via Prohorov's theorem
-- [[Yin2023Offline]] — adopts DFA for policy *learning*; first non-asymptotic, instance-dependent offline RL bound over a nonlinear class, via [[pessimistic-fitted-q-learning]]
+- [[Yin2023Offline]] — adopts DFA for policy *learning*; first non-asymptotic, instance-dependent offline RL bound over a nonlinear class, via [[fitted-q-iteration-pessimistic]]
 - Jin et al. (2021b) — PEVI for linear MDPs; the special case $f = \langle\theta,\phi\rangle$
 - Chen & Jiang (2019), Xie et al. (2021a) — general function approximation; the weaker-assumption, worst-case-bound alternative
 
 ## Variants & Related Concepts
 
 - [[instance-dependent-bounds]] — what the differentiable structure is *for*
-- [[pessimistic-fitted-q-learning]] — the algorithm analyzed over this class
+- [[fitted-q-iteration-pessimistic]] — the algorithm analyzed over this class
 - [[realizability]] — required alongside Bellman completeness (Assumption 2.1)
 - [[coverage-coefficient]] — DFA's uniform coverage is a coverage condition depending jointly on the MDP and the function class, unlike pure concentrability which depends on the MDP alone
 - **Eluder dimension** (Russo & Van Roy 2013; Jin et al. 2021a) — an alternative structural handle; its tractable instances are still essentially linear-in-features, which is the comparison [[Yin2023Offline]] draws

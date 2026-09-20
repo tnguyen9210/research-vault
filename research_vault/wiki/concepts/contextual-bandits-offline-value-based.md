@@ -1,14 +1,14 @@
 ---
 title: "Value-Based Offline Contextual Bandits"
 tags: [contextual-bandits, offline-contextual-bandits, pessimism, learning-theory]
-aliases: [value-based learning, regression-then-greedy, plug-in policy, LCB for contextual bandits]
+aliases: [value-based learning, regression-then-greedy, plug-in policy, LCB for contextual bandits, value-based-offline-bandits]
 ---
 
 # Value-Based Offline Contextual Bandits
 
 **Definition:** The family of offline contextual-bandit methods that fit a model $\hat q$ of the mean reward by least-squares regression on the logged triples and derive a policy from it — greedily, $\hat\pi=\pi_{\hat q}$, or pessimistically, $\hat\pi(x)\in\arg\max_a\hat q(x,a)-\Gamma(x,a)$ — without ever using the logged propensities.
 
-> **Scope.** The problem setup, notation and the value-vs-policy taxonomy live in [[offline-contextual-bandits]]; this page assumes them and treats the value-based family alone: its estimators, algorithms, assumptions and guarantees. The two constructions that straddle the families — the doubly robust estimator and class-restricted learning with imputed rewards — are on the setting page, as is the comparison of the two routes. Notation follows the Overleaf research log, `02_offline_contextual_bandits.tex`.
+> **Scope.** The problem setup, notation and the value-vs-policy taxonomy live in [[contextual-bandits-offline]]; this page assumes them and treats the value-based family alone: its estimators, algorithms, assumptions and guarantees. The two constructions that straddle the families — the doubly robust estimator and class-restricted learning with imputed rewards — are on the setting page, as is the comparison of the two routes. Notation follows the Overleaf research log, `02_offline_contextual_bandits.tex`.
 >
 > **What is derived here rather than quoted** is stated per result; §8.1 records what has been verified against the PDFs and §8.3 what has not.
 
@@ -47,13 +47,13 @@ Both versions use the data through $\hat q$ (and $\Gamma$) alone: the propensiti
 
 ### 1.3 The alternative formulation, and how it relates
 
-The other way to write an offline learner is *estimate, then select*: form an estimate $\widehat J(\pi)$ of every candidate's value and output $\arg\max_{\pi\in\Pi}\widehat J(\pi)$ — or, pessimistically, $\arg\max_\pi\widehat J(\pi)-W_\pi$ with per-policy widths. This is the **policy-optimization** view. It is the natural home of the policy-based route (importance-weighted estimates: see [[offline-contextual-bandits]]), but it can also be run with value-based estimates: the **direct method** plugs the reward model into every policy's value, $\widehat J^{\mathrm{DM}}(\pi)=\frac1T\sum_t\hat q(x_t,\pi)$ (§5), and the doubly robust estimator combines the two (in [[offline-contextual-bandits]]). Its relation to §1.1 is exact:
+The other way to write an offline learner is *estimate, then select*: form an estimate $\widehat J(\pi)$ of every candidate's value and output $\arg\max_{\pi\in\Pi}\widehat J(\pi)$ — or, pessimistically, $\arg\max_\pi\widehat J(\pi)-W_\pi$ with per-policy widths. This is the **policy-optimization** view. It is the natural home of the policy-based route (importance-weighted estimates: see [[contextual-bandits-offline]]), but it can also be run with value-based estimates: the **direct method** plugs the reward model into every policy's value, $\widehat J^{\mathrm{DM}}(\pi)=\frac1T\sum_t\hat q(x_t,\pi)$ (§5), and the doubly robust estimator combines the two (in [[contextual-bandits-offline]]). Its relation to §1.1 is exact:
 
 - **Unrestricted class.** If $\Pi=\mathcal A^{\mathcal X}$, the maximizer of $\widehat J^{\mathrm{DM}}$ over $\Pi$ is the greedy policy $\pi_{\hat q}$ on the logged contexts, and the maximizer of the pessimistic plug-in value $\frac1T\sum_t[\hat q-\Gamma](x_t,\pi)$ is (LCB): the maximization decouples across contexts (Proposition 6.1). Estimate-then-select with plug-in values *is* regression-then-greedy.
-- **Restricted class.** If $\Pi\subsetneq\mathcal A^{\mathcal X}$, maximizing $\widehat J^{\mathrm{DM}}$ over $\Pi$ is cost-sensitive classification with the imputed reward vector $\hat q(x_t,\cdot)$ — the "direct method for policy optimization" of Dudík et al. (2011), the Offset Tree's regression baseline, and, with doubly robust scores in place of $\hat q$, the policy learning of Athey & Wager (2021) and Zhou, Athey & Wager (2023). Its guarantee is a uniform-deviation bound over $\Pi$ (stated in [[offline-contextual-bandits]]), and it is what one uses when the deployed policy must lie in a given class.
+- **Restricted class.** If $\Pi\subsetneq\mathcal A^{\mathcal X}$, maximizing $\widehat J^{\mathrm{DM}}$ over $\Pi$ is cost-sensitive classification with the imputed reward vector $\hat q(x_t,\cdot)$ — the "direct method for policy optimization" of Dudík et al. (2011), the Offset Tree's regression baseline, and, with doubly robust scores in place of $\hat q$, the policy learning of Athey & Wager (2021) and Zhou, Athey & Wager (2023). Its guarantee is a uniform-deviation bound over $\Pi$ (stated in [[contextual-bandits-offline]]), and it is what one uses when the deployed policy must lie in a given class.
 - **Policy-level pessimism.** Pessimism can also be applied to policy values rather than to action values: choose $\arg\max_{\pi}\min_{f\in\mathcal F_\varepsilon}\widehat J_f(\pi)$ over a version space $\mathcal F_\varepsilon$ of reward models consistent with the data. This is Bellman-consistent pessimism at horizon one (Xie et al. 2021; Theorem 4.4) and the $\hat\pi_2$ rule of Li, Ma & Srebro (2022). Their framework — a confidence set $\Theta\ni\theta^*$ induces the pessimistic value $\hat V(\pi):=\inf_{\theta\in\Theta}\mathbb E_x[\phi(x,\pi(x))^\top\theta]$, then $\hat\pi:=\arg\max_\pi\hat V(\pi)$ — is exactly estimate-then-select with pessimistic plug-in values, and it contains both forms: the $\ell_2$ set gives $\hat\pi_2=$ BCP, the $\ell_\infty$ set gives $\hat\pi_\infty$ (PUNC), which reduces to tabular LCB and is adaptively minimax optimal, strictly dominating $\hat\pi_2$ (§4.4). It is the right tool when no pointwise uncertainty quantifier is available (general $\mathcal F$).
 
-So the literature's value-based methods are organized around (1)+(LCB); the estimate-then-select formulation is either the same object written differently (unrestricted class), the class-restricted variant, or the policy-level form of pessimism. The page follows that organization: §2 tools, §3 greedy, §4 pessimistic, §5 evaluation with the reward model, §6 the class-restricted and policy-level variants, §7 fast rates, the route comparison in [[offline-contextual-bandits]] comparison with the policy-based route.
+So the literature's value-based methods are organized around (1)+(LCB); the estimate-then-select formulation is either the same object written differently (unrestricted class), the class-restricted variant, or the policy-level form of pessimism. The page follows that organization: §2 tools, §3 greedy, §4 pessimistic, §5 evaluation with the reward model, §6 the class-restricted and policy-level variants, §7 fast rates, the route comparison in [[contextual-bandits-offline]] comparison with the policy-based route.
 
 ## 2. Technical toolkit
 
@@ -149,7 +149,7 @@ q^*(x,\pi^*(x))-q^*(x,\hat\pi(x))\ \le\ 2\,\Gamma(x,\pi^*(x)) .
 $$
 *Proof.* $q^*(x,\hat\pi(x))\ge\hat q(x,\hat\pi(x))-\Gamma(x,\hat\pi(x))\ge\hat q(x,\pi^*(x))-\Gamma(x,\pi^*(x))\ge q^*(x,\pi^*(x))-2\Gamma(x,\pi^*(x))$, using the quantifier, the definition of (LCB), and the quantifier again. $\square$
 
-The difference between the two is the whole story. The plug-in rule is charged for the error at the action *it* chose, which is random and is systematically the over-estimated one; the pessimistic rule is charged only at the action the *optimal* policy chooses. Lemma 2.14 is Theorem 4.2 of Jin, Yang & Wang (2021) at horizon one and the core of the LCB analysis in Rashidinejad et al. (2021). (Read with policies in place of actions and $\widehat J(\pi)$ in place of $\hat q(x,a)$, the same two inequalities give the MaxIPW and PES guarantees of the policy-based route; the route comparison in [[offline-contextual-bandits]].)
+The difference between the two is the whole story. The plug-in rule is charged for the error at the action *it* chose, which is random and is systematically the over-estimated one; the pessimistic rule is charged only at the action the *optimal* policy chooses. Lemma 2.14 is Theorem 4.2 of Jin, Yang & Wang (2021) at horizon one and the core of the LCB analysis in Rashidinejad et al. (2021). (Read with policies in place of actions and $\widehat J(\pi)$ in place of $\hat q(x,a)$, the same two inequalities give the MaxIPW and PES guarantees of the policy-based route; the route comparison in [[contextual-bandits-offline]].)
 
 ## 3. The greedy policy
 
@@ -398,7 +398,7 @@ So estimate-then-select with plug-in values is regression-then-greedy written di
 | estimate-then-select, plug-in values, $\Pi$ restricted (§6.2) | $\arg\max_{\pi\in\Pi}\widehat J^{\mathrm{DM}}$ | $q^*\in\mathcal F$ | whole class, $C_\Pi$ |
 | policy-level pessimism, version space (§4.5, §6.2) | $\arg\max_\pi\min_{f\in\mathcal F_\varepsilon}\widehat J_f(\pi)$ | $q^*\in\mathcal F$ | class-dependent, $C_{\mathcal F}(\pi^*_\Pi)$ |
 | estimate-then-select, DR scores (§6.2) | $\arg\max_{\pi\in\Pi}\widehat J^{\mathrm{DR}}$ | $\mu$ or $\hat\mu$, and $\hat q$ | whole class, via the DR variance |
-| estimate-then-select, IPW scores (the route comparison in [[offline-contextual-bandits]]) | $\arg\max_{\pi\in\Pi}\widehat J^{\mathrm{IPW}}$ (MaxIPW / PES) | $\mu$ | $C^{\pi}_2$ over the class, resp. $C^{\pi^*_\Pi}_2$ |
+| estimate-then-select, IPW scores (the route comparison in [[contextual-bandits-offline]]) | $\arg\max_{\pi\in\Pi}\widehat J^{\mathrm{IPW}}$ (MaxIPW / PES) | $\mu$ | $C^{\pi}_2$ over the class, resp. $C^{\pi^*_\Pi}_2$ |
 
 ## 7. Instance dependence and fast rates
 
@@ -468,12 +468,12 @@ Resolved 2026-09-19: Rashidinejad's penalty constant is verified — $\Gamma=\sq
 
 ## Variants & Related Concepts
 
-- [[offline-contextual-bandits]] — the setting, the notation, and the comparison with the policy route
+- [[contextual-bandits-offline]] — the setting, the notation, and the comparison with the policy route
 - [[pessimism-principle]] — the mechanism of §4, in one page
 - [[coverage-coefficient]] — the coefficients of §2.3
 - [[realizability]] — assumption (A3), on which every rate here depends
 - [[extrapolation-error]] — the greedy failure mode of §3.4, in RL language
-- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis; Theorem 2.6 is its "part C", Lemma 2.13 its "part A" without error propagation
+- [[fitted-q-iteration-finite-sample-analysis]] — the horizon-$H$ analysis; Theorem 2.6 is its "part C", Lemma 2.13 its "part A" without error propagation
 - [[instance-dependent-bounds]] — §7
 - [[importance-weighting]] — the other route's estimator
 - [[Ryu2025Improved]] — the policy-side second-order bound that §7.1 mirrors

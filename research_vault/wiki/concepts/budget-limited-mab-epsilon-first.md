@@ -1,6 +1,7 @@
 ---
 title: "Epsilon-First Policies"
 tags: [multi-armed-bandits, exploration, budget-limited-mab, explore-then-commit]
+aliases: [epsilon-first]
 introduced_by: [[TranThanh2010Epsilon]]
 ---
 
@@ -18,7 +19,7 @@ The weakness is structural, not incidental. Splitting the budget means:
 2. **Exploitation learns nothing.** Estimates freeze at the phase boundary, so a mistake made with the exploration budget is paid for over the entire remaining $(1-\varepsilon)B$.
 3. **$\varepsilon$ must be set in advance**, and the optimal value depends on quantities not yet estimated — in the budget-limited MAB, on the spread of reward densities $D_{\max}$.
 
-These are exactly the losses that [[kube]] recovers by folding exploration into the exploitation objective, which is how it improves $O(B^{2/3})$ to $O(\ln B)$.
+These are exactly the losses that [[budget-limited-mab-kube]] recovers by folding exploration into the exploitation objective, which is how it improves $O(B^{2/3})$ to $O(\ln B)$.
 
 ## Formal Description
 
@@ -41,14 +42,14 @@ The two terms move in opposite directions in $\varepsilon$, which is the whole d
 ## Key Papers
 
 - [[TranThanh2010Epsilon]] — introduces the budgeted $\varepsilon$-first policy; Theorem 1 (any exploration policy) and Corollary 2 (uniform pull)
-- [[TranThanh2012Knapsack]] — shows the family is stuck at $O(B^{2/3})$ and replaces it with interleaved [[kube]] at $O(\ln B)$, with a matching lower bound
+- [[TranThanh2012Knapsack]] — shows the family is stuck at $O(B^{2/3})$ and replaces it with interleaved [[budget-limited-mab-kube]] at $O(\ln B)$, with a matching lower bound
 - Auer, Cesa-Bianchi & Fischer (2002) — $\varepsilon_n$-greedy, the decaying-$\varepsilon$ relative that keeps exploring forever; the baseline $\varepsilon$-first is compared against
 
 ## Variants & Related Concepts
 
 - **$\varepsilon_n$-greedy / $\varepsilon$-greedy** — exploration probability decays over time rather than being confined to a prefix; keeps learning throughout, but in a budget-limited setting can lock onto a wrong arm and lack the budget to recover
 - **Explore-then-commit (ETC)** — the same idea in standard bandits, where the phase length is chosen in rounds rather than as a budget fraction; known to be suboptimal against UCB for the same structural reason
-- [[kube]] — the interleaved successor; exploration bonus enters the knapsack objective instead of occupying its own phase
+- [[budget-limited-mab-kube]] — the interleaved successor; exploration bonus enters the knapsack objective instead of occupying its own phase
 - [[upper-confidence-bound]] — can be dropped into the exploration phase, but does not lift the $B^{2/3}$ ceiling
 - [[budget-limited-mab]] — the setting this family was designed for
 

@@ -1,6 +1,6 @@
 ---
 title: "Cost Aware Best Arm Identification (CABAI)"
-aliases: [CABAI, cost-aware BAI]
+aliases: [CABAI, cost-aware BAI, cabai]
 tags: [bandits, pure-exploration, cost-aware, cabai]
 introduced_by: [[Kanarios2024Cost]]
 ---
@@ -37,8 +37,8 @@ Non-trivial structural result: optimal cost proportion $w^*_a \propto \sqrt{c_a}
 
 ## Variants & Related Concepts
 - [[best-arm-identification]] — CABAI reduces to standard BAI when all $c_a$ equal
-- [[constrained-bai]] — **distinct formulation**: CBAI constrains *mean arm cost* $\leq \gamma$; CABAI minimizes *cumulative testing cost* $\sum_t C_t$. Different lower bounds and optimal proportions. See [[Lardy2025Constrained]].
+- [[best-arm-identification-constrained]] — **distinct formulation**: CBAI constrains *mean arm cost* $\leq \gamma$; CABAI minimizes *cumulative testing cost* $\sum_t C_t$. Different lower bounds and optimal proportions. See [[Lardy2025Constrained]].
 - **BAI with safety constraints** — constraint is on safety, not cost; agent can be restricted from certain arms
 
 ## Current State
-Open: CO's optimality for $K > 2$ arms; cost-aware regret minimization; ETC variant for CABAI. The complementary [[constrained-bai]] formulation (cost as constraint, not metric) is now resolved for three model families.
+Open: CO's optimality for $K > 2$ arms; cost-aware regret minimization; ETC variant for CABAI. The complementary [[best-arm-identification-constrained]] formulation (cost as constraint, not metric) is now resolved for three model families.

@@ -9,7 +9,7 @@ source: raw/papers/TranThanh2010Epsilon.pdf
 
 # Epsilon-First Policies for Budget-Limited Multi-Armed Bandits
 
-**TL;DR:** The paper that **introduces the [[budget-limited-mab]]** — arms have heterogeneous pull costs $c_i$ and a single budget $B$ caps exploration *and* exploitation — and identifies its full-information optimum as an **unbounded knapsack** problem on reward densities $\mu_i/c_i$. It solves the problem with an [[epsilon-first]] policy (uniform exploration on $\varepsilon B$, density-ordered greedy exploitation on $(1-\varepsilon)B$) and proves the first loss bound for it.
+**TL;DR:** The paper that **introduces the [[budget-limited-mab]]** — arms have heterogeneous pull costs $c_i$ and a single budget $B$ caps exploration *and* exploitation — and identifies its full-information optimum as an **unbounded knapsack** problem on reward densities $\mu_i/c_i$. It solves the problem with an [[budget-limited-mab-epsilon-first]] policy (uniform exploration on $\varepsilon B$, density-ordered greedy exploitation on $(1-\varepsilon)B$) and proves the first loss bound for it.
 
 ## Problem
 
@@ -78,15 +78,15 @@ The tie in the homogeneous case is expected and honestly explained: when costs a
 
 **Strengths.** The contribution that lasted is the **problem formulation**, and it is a good one: a small change to the standard MAB (one budget, both phases) that genuinely breaks the standard solution concept and connects bandits to combinatorial optimization. The knapsack reduction is exactly right and is still the frame the whole line uses. The worked three-arm counterexample earns its space — it shows in four lines why single-best-arm exploration is the wrong objective. Theorem 1 is stated for *arbitrary* exploration, which is more than the algorithm needs. The experimental design isolates the mechanism (cost diversity) rather than just reporting wins, and reports the tie in the homogeneous case rather than hiding it.
 
-**Limitations.** No lower bound, so nothing here says whether $\varepsilon$-first is close to optimal — as it turns out, it is not. The headline theorem is admitted to be unusable and only Corollary 2 is actionable. Confidence degrades as $(1-\delta)^k$ in the number of arms. The $\varepsilon$-first structure is the real limitation: separating the phases means the exploration budget yields no exploitation value and the estimates never improve during exploitation, which is precisely the slack [[kube]] later exploits by interleaving. Experiments are small (6 arms, one reward distribution family, three cost configurations). Finally, the paper only explores one exploration/exploitation pairing and says so, deferring other combinations to future work.
+**Limitations.** No lower bound, so nothing here says whether $\varepsilon$-first is close to optimal — as it turns out, it is not. The headline theorem is admitted to be unusable and only Corollary 2 is actionable. Confidence degrades as $(1-\delta)^k$ in the number of arms. The $\varepsilon$-first structure is the real limitation: separating the phases means the exploration budget yields no exploitation value and the estimates never improve during exploitation, which is precisely the slack [[budget-limited-mab-kube]] later exploits by interleaving. Experiments are small (6 arms, one reward distribution family, three cost configurations). Finally, the paper only explores one exploration/exploitation pairing and says so, deferring other combinations to future work.
 
 ## Connections
 
 - [[budget-limited-mab]] — **introduced here**, along with the unbounded-knapsack characterization of its optimum and the reward-density $\mu_i/c_i$ statistic
-- [[epsilon-first]] — the policy family this paper proposes and bounds
-- **Superseded by:** [[TranThanh2012Knapsack]] — same problem, same group; [[kube]] interleaves exploration and exploitation through a UCB-augmented knapsack and reaches the optimal $O(\ln B)$ with a matching lower bound
+- [[budget-limited-mab-epsilon-first]] — the policy family this paper proposes and bounds
+- **Superseded by:** [[TranThanh2012Knapsack]] — same problem, same group; [[budget-limited-mab-kube]] interleaves exploration and exploitation through a UCB-augmented knapsack and reaches the optimal $O(\ln B)$ with a matching lower bound
 - [[upper-confidence-bound]] — used here only as an *exploration* baseline inside the $\varepsilon$-first shell, and shown not to help; the 2012 paper instead puts UCB inside the knapsack objective itself, which does help
-- [[kube]] — the successor algorithm
+- [[budget-limited-mab-kube]] — the successor algorithm
 - Long Tran-Thanh, Archie Chapman, Enrique Munoz de Cote, Alex Rogers, Nicholas R. Jennings — authors
 
 ## Open Questions

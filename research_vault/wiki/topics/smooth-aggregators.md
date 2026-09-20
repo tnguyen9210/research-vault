@@ -11,7 +11,7 @@ A cross-cutting pattern, now instantiated three independent times in the vault: 
 
 | Instance | Aggregator | Parameter | Where |
 |---|---|---|---|
-| Power-mean MCTS backups ([[power-mean-mcts]]) | power mean | $p$ (avg $p{=}1$ → max $p{\to}\infty$) | [[Dam2024Power]] |
+| Power-mean MCTS backups ([[monte-carlo-tree-search-power-mean]]) | power mean | $p$ (avg $p{=}1$ → max $p{\to}\infty$) | [[Dam2024Power]] |
 | Softmax DQN targets ([[softmax-bellman-operator]]) | softmax / log-sum-exp | $\tau$ (avg $\tau{\to}0$ → max $\tau{\to}\infty$) | [[Song2019Revisiting]] |
 | Upper expectiles in offline RL ([[expectile-regression]]) | $\tau$-expectile | $\tau$ (mean $\tau{=}0.5$ → max $\tau{\to}1$) | [[Kostrikov2022Offline]] |
 

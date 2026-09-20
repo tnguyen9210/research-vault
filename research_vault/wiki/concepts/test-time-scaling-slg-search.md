@@ -1,6 +1,7 @@
 ---
 title: "Scaling-Law Guided (SLG) Search"
 tags: [llm, test-time-scaling, search, best-of-n]
+aliases: [slg-search]
 introduced_by: [[Li2026Predicting]]
 ---
 

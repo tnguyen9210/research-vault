@@ -37,10 +37,10 @@ where $\hat{\mu}_{a,b}$ is the pull-weighted mixture mean.
 ## Variants & Related Concepts
 
 - [[instance-dependent-bounds]] — BAI is the setting where instance-optimality is most fully realized; the characteristic time $T^*(\mu)$ is the canonical instance functional
-- [[cabai]] — cost-aware BAI; minimize cumulative cost not rounds; $w^*_a \propto \sqrt{c_a}$
-- [[constrained-bai]] — cost-threshold BAI; find best arm with mean cost $\leq \gamma$; handles dependent reward-cost
+- [[best-arm-identification-cost-aware]] — cost-aware BAI; minimize cumulative cost not rounds; $w^*_a \propto \sqrt{c_a}$
+- [[best-arm-identification-constrained]] — cost-threshold BAI; find best arm with mean cost $\leq \gamma$; handles dependent reward-cost
 - **BAI with safety constraints** (Wang et al. 2022) — agent constrained; distinct from CABAI/CBAI where any arm can be pulled
 - **Multi-fidelity BAI** — costs are known a priori and controllable; differs from CABAI's random unknown costs
 
 ## Current State
-Theoretical foundation is mature: matching lower/upper bounds via TAS. Active extensions: cost-awareness ([[cabai]], [[constrained-bai]] — surveyed in [[cost-aware-bai]]), safety constraints, multi-fidelity, and dependent arm distributions. Regret-minimization and BAI are studied as largely separate paradigms.
+Theoretical foundation is mature: matching lower/upper bounds via TAS. Active extensions: cost-awareness ([[best-arm-identification-cost-aware]], [[best-arm-identification-constrained]] — surveyed in [[cost-aware-bai]]), safety constraints, multi-fidelity, and dependent arm distributions. Regret-minimization and BAI are studied as largely separate paradigms.

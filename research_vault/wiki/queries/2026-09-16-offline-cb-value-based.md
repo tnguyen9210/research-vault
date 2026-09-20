@@ -10,8 +10,8 @@ The self-contained account this query produced has been split into two maintaine
 
 ## Where the answer lives
 
-- **[[offline-contextual-bandits]]** — the setting. Offline data and the learning objective, mean reward / value / optimal policy, function approximation with the tabular and linear models, coverage coefficients, standing assumptions, the relation to offline RL, and the taxonomy of the two families. It also holds the material that straddles them: the doubly robust estimator, class-restricted learning with imputed rewards, and the route comparison.
-- **[[value-based-offline-bandits]]** — the reward-model family in full. The representative formulation, the technical toolkit, the greedy rule and its tabular and linear instantiations, the pessimistic rule with the tabular, linear, version-space and neural cases, Rashidinejad et al.'s Theorem 4 with a complete proof, the direct method, estimate-then-select, fast rates, and per-result provenance.
+- **[[contextual-bandits-offline]]** — the setting. Offline data and the learning objective, mean reward / value / optimal policy, function approximation with the tabular and linear models, coverage coefficients, standing assumptions, the relation to offline RL, and the taxonomy of the two families. It also holds the material that straddles them: the doubly robust estimator, class-restricted learning with imputed rewards, and the route comparison.
+- **[[contextual-bandits-offline-value-based]]** — the reward-model family in full. The representative formulation, the technical toolkit, the greedy rule and its tabular and linear instantiations, the pessimistic rule with the tabular, linear, version-space and neural cases, Rashidinejad et al.'s Theorem 4 with a complete proof, the direct method, estimate-then-select, fast rates, and per-result provenance.
 - A third page on policy-based methods (IPW / IX / LS, MaxIPW, PES) is still to be written; until it exists, the policy route is covered only by the one-paragraph sketch and the comparison on the setting page.
 
 ## What the query settled
@@ -23,11 +23,11 @@ The self-contained account this query produced has been split into two maintaine
 
 ## Reading order
 
-Kept with the technical account, in [[value-based-offline-bandits]] §8.2.
+Kept with the technical account, in [[contextual-bandits-offline-value-based]] §8.2.
 
 ## Open follow-ups
 
-- Ingest the four papers cited author–year throughout [[value-based-offline-bandits]], which have no paper pages yet. Citekeys resolved 2026-09-19 (postponed, not yet ingested):
+- Ingest the four papers cited author–year throughout [[contextual-bandits-offline-value-based]], which have no paper pages yet. Citekeys resolved 2026-09-19 (postponed, not yet ingested):
   - `rashidinejad2021Bridging` — NeurIPS 2021. PDF already mirrored and md5-matched; the mirrored copy is arXiv v2 (Jul 2023), whose own note says "part of the paper has been published at Neurips 2021". The numbering §4.7 was verified against — Definition 1, Proposition 1, Theorems 4 and 5, Lemmas 13 and 14 — is v2's and checks out.
   - `jin2021Pessimism` — *Is Pessimism Provably Efficient for Offline RL?*, ICML 2021.
   - `xie2021Bellmanconsistent` — *Bellman-consistent Pessimism for Offline RL*, NeurIPS 2021.
@@ -35,11 +35,11 @@ Kept with the technical account, in [[value-based-offline-bandits]] §8.2.
   - All four were keyed to arXiv revision years until 2026-09-19; the keys above are the corrected ones. Confirm they are pinned before ingesting, since the citekey is the page filename, the link target and the mirror filename.
 - Write the policy-based page; move the route comparison to it, or keep it on the setting page as the cross-family home.
 - A topic page is still not earned: revisit once the four papers above have pages.
-- `jun2026CS703Q10` (K.-S. Jun, *CS703Q10: Offline contextual bandits*, CSED703Q, Spring 2026) is the reference point for the policy route. Read 2026-09-19 and mirrored; no paper page yet. What it settles: MaxIPW and PES are its Lemmas 1–2 (now credited in [[offline-contextual-bandits]] §7), IX is its Theorem 3 with bias exactly $\gamma C_\gamma(\pi)$ and weights bounded by $1/\gamma$, LS its Theorem 6 with $bD_b(\pi^*)$ and $D_b\le C_b$ but *unbounded* weights, and the hyperparameter-adaptation sketch is [[Ryu2025Improved]]. Its own open ends are offpolicy learning and the loss-vs-reward asymmetry, both marked TODO in the note.
+- `jun2026CS703Q10` (K.-S. Jun, *CS703Q10: Offline contextual bandits*, CSED703Q, Spring 2026) is the reference point for the policy route. Read 2026-09-19 and mirrored; no paper page yet. What it settles: MaxIPW and PES are its Lemmas 1–2 (now credited in [[contextual-bandits-offline]] §7), IX is its Theorem 3 with bias exactly $\gamma C_\gamma(\pi)$ and weights bounded by $1/\gamma$, LS its Theorem 6 with $bD_b(\pi^*)$ and $D_b\le C_b$ but *unbounded* weights, and the hyperparameter-adaptation sketch is [[Ryu2025Improved]]. Its own open ends are offpolicy learning and the loss-vs-reward asymmetry, both marked TODO in the note.
 
 ## Connections
 
-- [[offline-contextual-bandits]] / [[value-based-offline-bandits]] — the two pages this split into
+- [[contextual-bandits-offline]] / [[contextual-bandits-offline-value-based]] — the two pages this split into
 - [[pessimism-principle]] — the shared mechanism
-- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis the bandit case specializes
+- [[fitted-q-iteration-finite-sample-analysis]] — the horizon-$H$ analysis the bandit case specializes
 - [[contextual-bandits]] — the online problem this is the batch version of

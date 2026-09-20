@@ -30,7 +30,7 @@ Benchmark class $\Lambda$ determines the regret notion:
 
 ## Variants & Related Concepts
 
-- [[offline-contextual-bandits]] — the batch version: one fixed logged dataset, no interaction, and coverage in place of exploration
+- [[contextual-bandits-offline]] — the batch version: one fixed logged dataset, no interaction, and coverage in place of exploration
 - [[oracle-efficiency]] — computational tractability via oracle reductions
 - [[offline-regression-oracle]] — practical oracle model
 - [[importance-weighting]] — core primitive for offline/off-policy evaluation

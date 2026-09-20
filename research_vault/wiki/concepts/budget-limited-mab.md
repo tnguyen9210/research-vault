@@ -26,8 +26,8 @@ The optimal density arm is $I^* = \arg\max_i \mu_i/c_i$; the minimal density gap
 
 ## Key Papers
 
-- [[TranThanh2010Epsilon]] — **introduces the model**, the unbounded-knapsack characterization of its optimum, and the reward-density statistic $\mu_i/c_i$; solves it with an [[epsilon-first]] policy and gives the first loss bound
-- [[TranThanh2012Knapsack]] — provides the first $O(\ln B)$ algorithms ([[kube]] and fractional KUBE) and the matching lower bound; also the source of the $O(B^{2/3})$ characterization of $\varepsilon$-first
+- [[TranThanh2010Epsilon]] — **introduces the model**, the unbounded-knapsack characterization of its optimum, and the reward-density statistic $\mu_i/c_i$; solves it with an [[budget-limited-mab-epsilon-first]] policy and gives the first loss bound
+- [[TranThanh2012Knapsack]] — provides the first $O(\ln B)$ algorithms ([[budget-limited-mab-kube]] and fractional KUBE) and the matching lower bound; also the source of the $O(B^{2/3})$ characterization of $\varepsilon$-first
 
 ## Variants & Related Concepts
 
@@ -35,7 +35,7 @@ The optimal density arm is $I^* = \arg\max_i \mu_i/c_i$; the minimal density gap
 - [[Kanarios2024Cost]] / cost-aware BAI — attaches per-arm costs but in the fixed-confidence pure-exploration regime (minimize cost to identify the best arm), a different objective from the shared-budget cumulative-reward setting here
 - [[upper-confidence-bound]] — the confidence-width machinery KUBE inherits
 - Knapsack / unbounded knapsack — the full-information optimal policy is a knapsack solution
-- [[epsilon-first]] — the first policy family proposed for this model; capped at $O(B^{2/3})$ by its phase split
+- [[budget-limited-mab-epsilon-first]] — the first policy family proposed for this model; capped at $O(B^{2/3})$ by its phase split
 
 ## Current State
 

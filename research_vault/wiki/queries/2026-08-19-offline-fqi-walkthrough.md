@@ -5,7 +5,7 @@ question: "What is Fitted Q-Iteration, does it differ between offline and online
 
 # Offline FQI — A Walkthrough
 
-A study thread working from the FQI template down to one concrete offline algorithm. Reference material lives on the [[fitted-q-iteration]], [[extrapolation-error]] and [[pessimistic-fitted-q-learning]] pages; this page is the *path through* them, keeping the questions in the order they actually arose.
+A study thread working from the FQI template down to one concrete offline algorithm. Reference material lives on the [[fitted-q-iteration]], [[extrapolation-error]] and [[fitted-q-iteration-pessimistic]] pages; this page is the *path through* them, keeping the questions in the order they actually arose.
 
 ## 1. What is FQI, and what is being fitted?
 
@@ -56,7 +56,7 @@ This also explains why concentrability and [[coverage-coefficient]]-style condit
 
 | | Mechanism | Vault page |
 |---|---|---|
-| Penalize the query | subtract an uncertainty width from $\widehat{Q}$ | [[pessimism-principle]], [[pessimistic-fitted-q-learning]] |
+| Penalize the query | subtract an uncertainty width from $\widehat{Q}$ | [[pessimism-principle]], [[fitted-q-iteration-pessimistic]] |
 | Refuse the query | restrict the max to in-sample actions, smoothed as an upper expectile | [[implicit-q-learning]] |
 
 Worth noting that vanilla FQI genuinely maximizes over all of $\mathcal{A}$, *not* over dataset-supported actions. Those are different algorithms — and the second one is essentially what IQL implements.
@@ -67,7 +67,7 @@ PFQL is the FQI template with pessimism inserted **inside the backup**. Lines 4 
 
 The placement is the design. $\hat V_h$ becomes the *next* iteration's target, so the value being backed up already has $\Gamma_h$ subtracted — an unsupported action gets a large penalty and loses the max before it can contaminate anything downstream. Penalizing only at policy extraction would give a cautious policy computed from values that were already poisoned.
 
-Line-by-line reading, the finite-horizon indexing, the hyperparameter conditions, the linear/tabular/GLM specializations, and the circularity in $\Gamma_h$ (it is built from the very $\hat\theta_h$ it protects against): [[pfql-algorithm-1]]. Concept-level treatment: [[pessimistic-fitted-q-learning]].
+Line-by-line reading, the finite-horizon indexing, the hyperparameter conditions, the linear/tabular/GLM specializations, and the circularity in $\Gamma_h$ (it is built from the very $\hat\theta_h$ it protects against), and the concept-level treatment: all on [[fitted-q-iteration-pessimistic]].
 
 ## Where this leaves the open questions
 

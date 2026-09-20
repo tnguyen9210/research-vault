@@ -1,7 +1,7 @@
 ---
 title: "Offline Contextual Bandits"
 tags: [contextual-bandits, offline-contextual-bandits, pessimism, learning-theory]
-aliases: [offline CB, batch contextual bandits, offline bandit policy learning]
+aliases: [offline CB, batch contextual bandits, offline bandit policy learning, offline-contextual-bandits]
 ---
 
 # Offline Contextual Bandits
@@ -15,10 +15,10 @@ aliases: [offline CB, batch contextual bandits, offline bandit policy learning]
 > coefficients, and the two routes with the constructions that
 > straddle them (§5) and their comparison (§6). **Left to other
 > pages:** the value-based family in full — estimators, algorithms,
-> assumptions, guarantees — on [[value-based-offline-bandits]]; the
+> assumptions, guarantees — on [[contextual-bandits-offline-value-based]]; the
 > policy-based family, which has no page yet and is covered here only
 > by §4.2 and §6; the horizon-$H$ analysis the bandit case
-> specializes, on [[fqi-finite-sample-analysis]]. §7 records what was
+> specializes, on [[fitted-q-iteration-finite-sample-analysis]]. §7 records what was
 > checked against sources and what was not.
 
 ## 1. Intuition
@@ -27,7 +27,7 @@ Online, an algorithm that is unsure about an action can play it. Offline it cann
 
 ## 2. Formal Description
 
-Notation follows the Overleaf research log (`02_offline_contextual_bandits.tex`, §1) and is shared with [[value-based-offline-bandits]].
+Notation follows the Overleaf research log (`02_offline_contextual_bandits.tex`, §1) and is shared with [[contextual-bandits-offline-value-based]].
 
 ### 2.1 Offline data
 
@@ -49,7 +49,7 @@ For any $f:\mathcal X\times\mathcal A\to\mathbb R$ and any policy $\pi$ write $f
 $$
 J(\pi):=\mathbb E_{x\sim\nu,\ a\sim\pi(\cdot\mid x)}\big[q^*(x,a)\big]=\mathbb E_{x\sim\nu}\big[q^*(x,\pi)\big],
 $$
-and $\pi^*$ is greedy with respect to $q^*$, $\ \pi^*(x)\in\arg\max_aq^*(x,a)$. Because the maximization decouples across contexts, $J(\pi^*)=\mathbb E_{x\sim\nu}[V^*(x)]$ and $\pi^*$ maximizes $J$ over *all* policies. We may therefore take $\pi^*$ deterministic, and no policy class has to be fixed as part of the problem definition. A policy class $\Pi$ enters only when an algorithm restricts its search to $\Pi$, in which case the comparator becomes $\pi^*_\Pi:=\arg\max_{\pi\in\Pi}J(\pi)$ ([[value-based-offline-bandits]], the comparison below).
+and $\pi^*$ is greedy with respect to $q^*$, $\ \pi^*(x)\in\arg\max_aq^*(x,a)$. Because the maximization decouples across contexts, $J(\pi^*)=\mathbb E_{x\sim\nu}[V^*(x)]$ and $\pi^*$ maximizes $J$ over *all* policies. We may therefore take $\pi^*$ deterministic, and no policy class has to be fixed as part of the problem definition. A policy class $\Pi$ enters only when an algorithm restricts its search to $\Pi$, in which case the comparator becomes $\pi^*_\Pi:=\arg\max_{\pi\in\Pi}J(\pi)$ ([[contextual-bandits-offline-value-based]], the comparison below).
 
 ### 2.3 Learning objective
 
@@ -74,11 +74,11 @@ $$
 \|g\|^2_{\nu\times\pi}:=\mathbb E_{x\sim\nu,\ a\sim\pi(\cdot\mid x)}\big[g(x,a)^2\big],\qquad
 \|g\|_{L_1(\nu\times\pi)}:=\mathbb E_{(x,a)\sim d^\pi}\big|g(x,a)\big| ,
 $$
-so that $\|\cdot\|_{\nu\times\mu}$ is the norm under the data distribution. Since $q^*$ is the Bayes regressor, $\mathcal L(f)-\mathcal L(q^*)=\|f-q^*\|^2_{\nu\times\mu}$ for every $f$ (the Pythagorean identity in [[value-based-offline-bandits]]) — an identity needing only that $q^*$ is the conditional mean. What realizability adds is that $q^*$ is the population minimizer *within* $\mathcal F$, so the excess loss of the empirical minimizer over its own class is exactly its squared estimation error. This is the assumption that at $H=1$ plays the role Bellman completeness plays in fitted $Q$-iteration, and it is what converts a statement about the empirical loss into one about the estimation error of $\hat q$.
+so that $\|\cdot\|_{\nu\times\mu}$ is the norm under the data distribution. Since $q^*$ is the Bayes regressor, $\mathcal L(f)-\mathcal L(q^*)=\|f-q^*\|^2_{\nu\times\mu}$ for every $f$ (the Pythagorean identity in [[contextual-bandits-offline-value-based]]) — an identity needing only that $q^*$ is the conditional mean. What realizability adds is that $q^*$ is the population minimizer *within* $\mathcal F$, so the excess loss of the empirical minimizer over its own class is exactly its squared estimation error. This is the assumption that at $H=1$ plays the role Bellman completeness plays in fitted $Q$-iteration, and it is what converts a statement about the empirical loss into one about the estimation error of $\hat q$.
 
 In the **tabular model**, $|\mathcal X|=S<\infty$ and $\mathcal F$ is unrestricted, so there are $SK$ unknown means. Writing $N(x,a):=\sum_t\mathbb 1\{(x_t,a_t)=(x,a)\}$ for the number of times the pair appears in $\mathcal D$, the least-squares fit reduces to the per-cell empirical mean $\hat q(x,a)=N(x,a)^{-1}\sum_{t:(x_t,a_t)=(x,a)}r_t$ at every pair with $N(x,a)\ge1$. A pair with $N(x,a)=0$ is left undetermined by the data, since any value in $[0,1]$ minimizes the empirical loss there; how such pairs are treated is what separates a greedy rule from a pessimistic one, and it is why the coverage coefficients below are needed.
 
-In the **linear model**, a known feature map $\phi:\mathcal X\times\mathcal A\to\mathbb R^d$ with $\|\phi\|_2\le1$ satisfies $q^*(x,a)=\phi(x,a)^\top\theta^*$ for an unknown $\theta^*$ with $\|\theta^*\|_2\le B$, and the least-squares fit is the ordinary or ridge estimate of $\theta^*$, with regularized Gram matrix $\Lambda:=\lambda I+\sum_t\phi_t\phi_t^\top$, population Gram matrix $\Sigma_\mu:=\mathbb E_{d^\mu}[\phi\phi^\top]$, and confidence radius $\beta_\delta$ (both fixed in [[value-based-offline-bandits]]). The tabular model is recovered by $\phi(x,a)=e_{(x,a)}$, with $d=SK$.
+In the **linear model**, a known feature map $\phi:\mathcal X\times\mathcal A\to\mathbb R^d$ with $\|\phi\|_2\le1$ satisfies $q^*(x,a)=\phi(x,a)^\top\theta^*$ for an unknown $\theta^*$ with $\|\theta^*\|_2\le B$, and the least-squares fit is the ordinary or ridge estimate of $\theta^*$, with regularized Gram matrix $\Lambda:=\lambda I+\sum_t\phi_t\phi_t^\top$, population Gram matrix $\Sigma_\mu:=\mathbb E_{d^\mu}[\phi\phi^\top]$, and confidence radius $\beta_\delta$ (both fixed in [[contextual-bandits-offline-value-based]]). The tabular model is recovered by $\phi(x,a)=e_{(x,a)}$, with $d=SK$.
 
 ### 2.5 Coverage
 
@@ -90,32 +90,32 @@ the second equality because $\pi^*$ is deterministic, and the **uniform** coeffi
 $$
 C_{\mathrm{unif}}:=\max_\pi\max_{(x,a):\,d^\pi(x,a)>0}\frac{d^\pi(x,a)}{d^\mu(x,a)}=\max_{x:\,\nu(x)>0}\max_{a\in\mathcal A}\frac1{\mu(a\mid x)}=\frac1{\mu_{\min}} .
 $$
-Restricting each maximum to the pairs its numerator charges is not a formality: without it, a context of probability zero at which $\mu$ never plays the optimal action would send both coefficients to infinity, although such a context never occurs and no algorithm can be penalized for it. Always $C^*\le C_{\mathrm{unif}}$, and $C^*$ can be finite while $C_{\mathrm{unif}}$ is infinite — the behavior policy only has to cover the actions $\pi^*$ actually takes. Exploiting that gap is the purpose of pessimism. The coverage section of [[value-based-offline-bandits]] gives the full family ($C^\pi$, the second-moment $C^\pi_2$ with $\bar C^*:=C^{\pi^*}_2$ and $\bar C_{\mathrm{unif}}$, and the class-dependent $C_{\mathcal F}(\pi)$) together with the change of measure that uses them.
+Restricting each maximum to the pairs its numerator charges is not a formality: without it, a context of probability zero at which $\mu$ never plays the optimal action would send both coefficients to infinity, although such a context never occurs and no algorithm can be penalized for it. Always $C^*\le C_{\mathrm{unif}}$, and $C^*$ can be finite while $C_{\mathrm{unif}}$ is infinite — the behavior policy only has to cover the actions $\pi^*$ actually takes. Exploiting that gap is the purpose of pessimism. The coverage section of [[contextual-bandits-offline-value-based]] gives the full family ($C^\pi$, the second-moment $C^\pi_2$ with $\bar C^*:=C^{\pi^*}_2$ and $\bar C_{\mathrm{unif}}$, and the class-dependent $C_{\mathcal F}(\pi)$) together with the change of measure that uses them.
 
 
 ### 2.6 Standing assumptions
 
-**Standing assumptions**, invoked by name below. (A1) *Data:* $(x_t,a_t,r_t)$ i.i.d. as in the offline-data paragraph above. (A2) *Boundedness:* rewards in $[0,1]$, every $f\in\mathcal F$ maps into $[0,1]$, $K<\infty$. (A3) *Realizability:* $q^*\in\mathcal F$. (A4) *Finite class:* $|\mathcal F|<\infty$; for infinite classes $\ln|\mathcal F|$ becomes a covering number or pseudo-dimension and the rates are unchanged. (A5) *Comparator:* value-based methods place no restriction on the policy, so the comparator is the global optimum $\pi^*$; where a class $\Pi$ is used (below, and in [[value-based-offline-bandits]]) it is $\pi^*_\Pi$.
+**Standing assumptions**, invoked by name below. (A1) *Data:* $(x_t,a_t,r_t)$ i.i.d. as in the offline-data paragraph above. (A2) *Boundedness:* rewards in $[0,1]$, every $f\in\mathcal F$ maps into $[0,1]$, $K<\infty$. (A3) *Realizability:* $q^*\in\mathcal F$. (A4) *Finite class:* $|\mathcal F|<\infty$; for infinite classes $\ln|\mathcal F|$ becomes a covering number or pseudo-dimension and the rates are unchanged. (A5) *Comparator:* value-based methods place no restriction on the policy, so the comparator is the global optimum $\pi^*$; where a class $\Pi$ is used (below, and in [[contextual-bandits-offline-value-based]]) it is $\pi^*_\Pi$.
 
 ## 3. Relation to offline RL
 
-A contextual bandit is the one-step, $H=1$ case of offline reinforcement learning. Its action value is the immediate conditional mean reward, so there is no estimated next-state value, no Bellman-error propagation across iterations, and no need for a transition model. See [[fqi-finite-sample-analysis]] for the horizon-$H$ statement this specializes.
+A contextual bandit is the one-step, $H=1$ case of offline reinforcement learning. Its action value is the immediate conditional mean reward, so there is no estimated next-state value, no Bellman-error propagation across iterations, and no need for a transition model. See [[fitted-q-iteration-finite-sample-analysis]] for the horizon-$H$ statement this specializes.
 
 
 ## 4. The two families of methods
 
-Two families are considered. **Value-based** algorithms fit an action-value model $\hat q$, possibly subtract an uncertainty penalty $\Gamma$ to obtain a lower confidence bound $\underline q$, and return the greedy policy $\hat\pi(x)\in\arg\max_a\underline q(x,a)$. **Policy-level** algorithms instead optimize a criterion directly over a policy class $\Pi$, possibly using importance weights or a worst-case policy value over a confidence set of reward models. Each family has its own page: [[value-based-offline-bandits]] and (forthcoming) `policy-based-offline-bandits`.
+Two families are considered. **Value-based** algorithms fit an action-value model $\hat q$, possibly subtract an uncertainty penalty $\Gamma$ to obtain a lower confidence bound $\underline q$, and return the greedy policy $\hat\pi(x)\in\arg\max_a\underline q(x,a)$. **Policy-level** algorithms instead optimize a criterion directly over a policy class $\Pi$, possibly using importance weights or a worst-case policy value over a confidence set of reward models. Each family has its own page: [[contextual-bandits-offline-value-based]] and (forthcoming) `policy-based-offline-bandits`.
 
 
 
 
 ### 4.1 The value-based route, in one paragraph
 
-Fit a reward model $\hat q$ by least-squares regression on the logged triples and act greedily on it, $\hat\pi(x)\in\arg\max_a\hat q(x,a)$; in the modern form, subtract a computable uncertainty penalty first, $\hat\pi(x)\in\arg\max_a\hat q(x,a)-\Gamma(x,a)$. The propensities are never used, the behavior policy may be deterministic, and no policy class is specified, so the comparator is the global optimum $\pi^*$. Coverage enters only through the analysis. Full treatment: [[value-based-offline-bandits]].
+Fit a reward model $\hat q$ by least-squares regression on the logged triples and act greedily on it, $\hat\pi(x)\in\arg\max_a\hat q(x,a)$; in the modern form, subtract a computable uncertainty penalty first, $\hat\pi(x)\in\arg\max_a\hat q(x,a)-\Gamma(x,a)$. The propensities are never used, the behavior policy may be deterministic, and no policy class is specified, so the comparator is the global optimum $\pi^*$. Coverage enters only through the analysis. Full treatment: [[contextual-bandits-offline-value-based]].
 
 ### 4.2 The policy-based route, in one paragraph
 
-The policy-based route estimates $J(\pi)$ for $\pi\in\Pi$ by importance weighting, $\widehat J^{\mathrm{IPW}}(\pi):=\frac1T\sum_t\frac{\pi(a_t\mid x_t)}{\mu(a_t\mid x_t)}r_t$, unbiased by the change of measure $\mathbb E_{a\sim\mu(x)}[\frac{\pi(a|x)}{\mu(a|x)}q^*(x,a)]=\mathbb E_{a\sim\pi(x)}[q^*(x,a)]$, and selects by MaxIPW ($\arg\max_\pi\widehat J^{\mathrm{IPW}}$) or PES ($\arg\max_\pi\widehat J^{\mathrm{IPW}}(\pi)-W^U_\pi$); implicit exploration (IX, weights $\pi/(\mu+\gamma)$, bias $\gamma C_\gamma(\pi)$ with $C_\gamma(\pi):=\mathbb E_x\sum_a\frac{\pi(a|x)q^*(x,a)}{\mu(a|x)+\gamma}$) and logarithmic smoothing (LS) tame unbounded weights. It needs an explicit $\Pi$, the propensities, a stochastic $\mu$ with $\mu(a\mid x)>0$ wherever $\pi$ puts mass, and nothing about $\rho$ beyond $r\in[0,1]$. the comparison below compares the two routes; the only fact about this route used before the comparison below is the Hoeffding width $|\widehat J^{\mathrm{IPW}}(\pi)-J(\pi)|\le\frac1{\mu_{\min}}\sqrt{\ln(2|\Pi|/\delta)/(2T)}$, valid for all $\pi\in\Pi$ simultaneously with probability at least $1-\delta$ (Hoeffding (see [[value-based-offline-bandits]])).
+The policy-based route estimates $J(\pi)$ for $\pi\in\Pi$ by importance weighting, $\widehat J^{\mathrm{IPW}}(\pi):=\frac1T\sum_t\frac{\pi(a_t\mid x_t)}{\mu(a_t\mid x_t)}r_t$, unbiased by the change of measure $\mathbb E_{a\sim\mu(x)}[\frac{\pi(a|x)}{\mu(a|x)}q^*(x,a)]=\mathbb E_{a\sim\pi(x)}[q^*(x,a)]$, and selects by MaxIPW ($\arg\max_\pi\widehat J^{\mathrm{IPW}}$) or PES ($\arg\max_\pi\widehat J^{\mathrm{IPW}}(\pi)-W^U_\pi$); implicit exploration (IX, weights $\pi/(\mu+\gamma)$, bias $\gamma C_\gamma(\pi)$ with $C_\gamma(\pi):=\mathbb E_x\sum_a\frac{\pi(a|x)q^*(x,a)}{\mu(a|x)+\gamma}$) and logarithmic smoothing (LS) tame unbounded weights. It needs an explicit $\Pi$, the propensities, a stochastic $\mu$ with $\mu(a\mid x)>0$ wherever $\pi$ puts mass, and nothing about $\rho$ beyond $r\in[0,1]$. the comparison below compares the two routes; the only fact about this route used before the comparison below is the Hoeffding width $|\widehat J^{\mathrm{IPW}}(\pi)-J(\pi)|\le\frac1{\mu_{\min}}\sqrt{\ln(2|\Pi|/\delta)/(2T)}$, valid for all $\pi\in\Pi$ simultaneously with probability at least $1-\delta$ (Hoeffding (see [[contextual-bandits-offline-value-based]])).
 
 
 ## 5. Where the families meet
@@ -154,30 +154,30 @@ a cost-sensitive classification problem with the imputed reward vector $\hat q(x
 $$
 \Delta_\Pi(\hat\pi_\Pi)\ \le\ 2\max_{\pi\in\Pi}\big|\widehat J^{\mathrm{DM}}(\pi)-J(\pi)\big|\ \le\ 2\sqrt{C_\Pi}\;\|\hat q-q^*\|_{\nu\times\mu}+2\sqrt{\frac{\ln(2|\Pi|/\delta)}{2m}},\qquad C_\Pi:=\max_{\pi\in\Pi}\min\{C^\pi_2,C_{\mathcal F}(\pi)\}.
 $$
-*Proof.* $J(\pi^*_\Pi)-J(\hat\pi_\Pi)\le[J(\pi^*_\Pi)-\widehat J^{\mathrm{DM}}(\pi^*_\Pi)]+[\widehat J^{\mathrm{DM}}(\hat\pi_\Pi)-J(\hat\pi_\Pi)]$ since $\widehat J^{\mathrm{DM}}(\hat\pi_\Pi)\ge\widehat J^{\mathrm{DM}}(\pi^*_\Pi)$; bound both brackets by the uniform version of the direct-method bound in [[value-based-offline-bandits]]. $\square$
+*Proof.* $J(\pi^*_\Pi)-J(\hat\pi_\Pi)\le[J(\pi^*_\Pi)-\widehat J^{\mathrm{DM}}(\pi^*_\Pi)]+[\widehat J^{\mathrm{DM}}(\hat\pi_\Pi)-J(\hat\pi_\Pi)]$ since $\widehat J^{\mathrm{DM}}(\hat\pi_\Pi)\ge\widehat J^{\mathrm{DM}}(\pi^*_\Pi)$; bound both brackets by the uniform version of the direct-method bound in [[contextual-bandits-offline-value-based]]. $\square$
 
-The coverage is now that of the *whole class* — both $\pi^*_\Pi$ and the selected policy appear, exactly as in the $L_2$-form greedy bound in [[value-based-offline-bandits]] — so the class-restricted plug-in learner inherits the greedy rule's need for coverage of everything it might select. Pessimism restores single-policy coverage at the level of policies: the rule $\arg\max_{\pi\in\Pi}\min_{f\in\mathcal F_\varepsilon}\widehat J_f(\pi)$ satisfies, by the proof of the version-space theorem in [[value-based-offline-bandits]] with $\Pi$ in place of $\Pi_{\mathcal F}$,
+The coverage is now that of the *whole class* — both $\pi^*_\Pi$ and the selected policy appear, exactly as in the $L_2$-form greedy bound in [[contextual-bandits-offline-value-based]] — so the class-restricted plug-in learner inherits the greedy rule's need for coverage of everything it might select. Pessimism restores single-policy coverage at the level of policies: the rule $\arg\max_{\pi\in\Pi}\min_{f\in\mathcal F_\varepsilon}\widehat J_f(\pi)$ satisfies, by the proof of the version-space theorem in [[contextual-bandits-offline-value-based]] with $\Pi$ in place of $\Pi_{\mathcal F}$,
 $$
 \Delta_\Pi\ \le\ \sqrt{\frac{20\,C_{\mathcal F}(\pi^*_\Pi)\ln(|\mathcal F|/\delta)}{T_{\mathrm{reg}}}}+2\sqrt{\frac{\ln(2N|\Pi|/\delta)}{2m}},
 $$
-which is the shape of Hoeffding (see [[value-based-offline-bandits]]) of Xie et al. (2021), with $\log(|\mathcal F||\Pi|/\delta)$ and the coverage of the comparator only. With doubly robust scores in place of $\hat q(x,\cdot)$, (DM-Π) becomes the policy learning of Athey & Wager (2021) and Zhou, Athey & Wager (2023): the same argmax over $\Pi$, a uniform-deviation bound driven by the DR variance of Proposition 1 and the complexity of $\Pi$, and cross-fitting for the nuisance estimates — a hybrid that uses the reward model as a control variate and the propensities for unbiasedness.
+which is the shape of Hoeffding (see [[contextual-bandits-offline-value-based]]) of Xie et al. (2021), with $\log(|\mathcal F||\Pi|/\delta)$ and the coverage of the comparator only. With doubly robust scores in place of $\hat q(x,\cdot)$, (DM-Π) becomes the policy learning of Athey & Wager (2021) and Zhou, Athey & Wager (2023): the same argmax over $\Pi$, a uniform-deviation bound driven by the DR variance of Proposition 1 and the complexity of $\Pi$, and cross-fitting for the nuisance estimates — a hybrid that uses the reward model as a control variate and the propensities for unbiasedness.
 
 
 ## 6. Comparing the two routes
 
-The policy-based route sketched above is estimate-then-select with importance-weighted scores. Its guarantees are the same two inequalities as the two suboptimality lemmas in [[value-based-offline-bandits]], read over policies.
+The policy-based route sketched above is estimate-then-select with importance-weighted scores. Its guarantees are the same two inequalities as the two suboptimality lemmas in [[contextual-bandits-offline-value-based]], read over policies.
 
-**Proposition 6.1 (MaxIPW and PES).** Let $\Pi$ be finite and $W_\pi:=\frac1{\mu_{\min}}\sqrt{\ln(2|\Pi|/\delta)/(2T)}$, so that $|\widehat J^{\mathrm{IPW}}(\pi)-J(\pi)|\le W_\pi$ for all $\pi\in\Pi$ with probability at least $1-\delta$ (Hoeffding, as in [[value-based-offline-bandits]]; summands in $[0,1/\mu_{\min}]$). Then MaxIPW satisfies $\Delta_\Pi\le W_{\pi^*_\Pi}+W_{\hat\pi}$ and PES with any valid per-policy widths satisfies $\Delta_\Pi\le W^L_{\pi^*_\Pi}+W^U_{\pi^*_\Pi}$.
-*Proof.* the plug-in decomposition in [[value-based-offline-bandits]]'s first inequality with $f\to\widehat J^{\mathrm{IPW}}$, $q^*\to J$, actions $\to$ policies; and the pessimism lemma in [[value-based-offline-bandits]] likewise. $\square$
+**Proposition 6.1 (MaxIPW and PES).** Let $\Pi$ be finite and $W_\pi:=\frac1{\mu_{\min}}\sqrt{\ln(2|\Pi|/\delta)/(2T)}$, so that $|\widehat J^{\mathrm{IPW}}(\pi)-J(\pi)|\le W_\pi$ for all $\pi\in\Pi$ with probability at least $1-\delta$ (Hoeffding, as in [[contextual-bandits-offline-value-based]]; summands in $[0,1/\mu_{\min}]$). Then MaxIPW satisfies $\Delta_\Pi\le W_{\pi^*_\Pi}+W_{\hat\pi}$ and PES with any valid per-policy widths satisfies $\Delta_\Pi\le W^L_{\pi^*_\Pi}+W^U_{\pi^*_\Pi}$.
+*Proof.* the plug-in decomposition in [[contextual-bandits-offline-value-based]]'s first inequality with $f\to\widehat J^{\mathrm{IPW}}$, $q^*\to J$, actions $\to$ policies; and the pessimism lemma in [[contextual-bandits-offline-value-based]] likewise. $\square$
 
-With the Hoeffding width the two bounds coincide because the width is policy-independent; with variance-adaptive widths — the IPW summands have variance at most $\mathbb E_{d^\mu}[(\pi/\mu)^2r^2]\le C^\pi_2$, so Bernstein (see [[value-based-offline-bandits]]) gives $W_\pi\asymp\sqrt{2C^\pi_2\ln(4|\Pi|/\delta)/T}+2\ln(4|\Pi|/\delta)/(3\mu_{\min}T)$ — PES is governed by $C^{\pi^*_\Pi}_2$ alone while MaxIPW is governed by $\max_\pi C^\pi_2$, the policy-level version of uniform versus single-policy coverage. (Making such widths data-driven is the hyperparameter-adaptation problem of `jun2026CS703Q10`, proposed in [[Ryu2025Improved]]. The two smoothed estimators are not interchangeable: IX, $\pi/(\mu+\gamma)$, bounds the weights by $1/\gamma$ and pays a bias of exactly $\gamma C_\gamma(\pi)$; LS, $b^{-1}\ln(1+b\hat r)$, is *not* bounded for fixed $b$, and pays $bD_b(\pi^*)$ with $D_b(\pi)\le C_b(\pi)$ — hence the better of the two bounds.)
+With the Hoeffding width the two bounds coincide because the width is policy-independent; with variance-adaptive widths — the IPW summands have variance at most $\mathbb E_{d^\mu}[(\pi/\mu)^2r^2]\le C^\pi_2$, so Bernstein (see [[contextual-bandits-offline-value-based]]) gives $W_\pi\asymp\sqrt{2C^\pi_2\ln(4|\Pi|/\delta)/T}+2\ln(4|\Pi|/\delta)/(3\mu_{\min}T)$ — PES is governed by $C^{\pi^*_\Pi}_2$ alone while MaxIPW is governed by $\max_\pi C^\pi_2$, the policy-level version of uniform versus single-policy coverage. (Making such widths data-driven is the hyperparameter-adaptation problem of `jun2026CS703Q10`, proposed in [[Ryu2025Improved]]. The two smoothed estimators are not interchangeable: IX, $\pi/(\mu+\gamma)$, bounds the weights by $1/\gamma$ and pays a bias of exactly $\gamma C_\gamma(\pi)$; LS, $b^{-1}\ln(1+b\hat r)$, is *not* bounded for fixed $b$, and pays $bD_b(\pi^*)$ with $D_b(\pi)\le C_b(\pi)$ — hence the better of the two bounds.)
 
 | | Policy-based (IPW → MaxIPW / PES → IX / LS) | Value-based (regression → greedy / (LCB)) |
 |---|---|---|
 | Object estimated | $J(\pi)$ for each $\pi\in\Pi$ | the function $q^*$ on $\mathcal X\times\mathcal A$ |
 | What must be well-specified | propensities $\mu$ (stochastic, known) | $\mathcal F\ni q^*$ (realizability, (A3)) |
 | Source of bias | none (IPW); chosen, $\gamma C_\gamma(\pi)$ (IX) | misspecification, $\mathrm{dist}(q^*,\mathcal F)$; does not vanish with $T$ (Prop. 5.4) |
-| Source of variance | ratios $\pi/\mu$, possibly unbounded | bounded regression; none from $\mu$ (the direct-method bias/variance identities in [[value-based-offline-bandits]]) |
+| Source of variance | ratios $\pi/\mu$, possibly unbounded | bounded regression; none from $\mu$ (the direct-method bias/variance identities in [[contextual-bandits-offline-value-based]]) |
 | Deficient support | fatal: weights undefined | tolerated through $C_{\mathcal F}$ (Lemma 2.9(c)) |
 | Comparator | best in $\Pi$ | global optimum $\pi^*$ |
 | Uncertainty quantified | per policy, $W_\pi$ | per pair, $b(x,a)$ / $\Gamma(x,a)$ (Def. 2.10) |
@@ -197,7 +197,7 @@ With the Hoeffding width the two bounds coincide because the width is policy-ind
 
 *Notation.* §2 follows the Overleaf research log
 (`02_offline_contextual_bandits.tex`, §1) and is shared verbatim with
-[[value-based-offline-bandits]]; the two pages are meant to be read
+[[contextual-bandits-offline-value-based]]; the two pages are meant to be read
 with one set of symbols.
 
 *Quoted.* Proposition 5.1 is Dudík, Langford & Li (2011), Theorems
@@ -213,14 +213,14 @@ and two-sided widths $W^L_i,W^U_i$, with MaxIPW giving
 $\mu_1-\mu_J\le W^L_1+W^U_J$ and PES giving $\mu_1-\mu_J\le
 W^L_1+W^U_1$. Read over policies rather than indices these are the
 same two inequalities as the suboptimality lemmas of
-[[value-based-offline-bandits]] §2.5, which is why the proof below is
+[[contextual-bandits-offline-value-based]] §2.5, which is why the proof below is
 a substitution.
 
 *Derived here rather than quoted.* The route comparison in §6 is this
 page's synthesis, not a table from the literature.
 
 *Verify before citing.* The per-claim record for everything cited in
-§5 and §6 is kept in one place, [[value-based-offline-bandits]] §8.3,
+§5 and §6 is kept in one place, [[contextual-bandits-offline-value-based]] §8.3,
 rather than duplicated here. Two entries there bear directly on this
 page: the Singh & Yee (1994) attribution and the Athey & Wager /
 Zhou–Athey–Wager theorem forms are both still recorded from memory.
@@ -236,14 +236,14 @@ Zhou–Athey–Wager theorem forms are both still recorded from memory.
 
 ## Variants & Related Concepts
 
-- [[value-based-offline-bandits]] — the reward-model family: estimators, algorithms, assumptions, guarantees
+- [[contextual-bandits-offline-value-based]] — the reward-model family: estimators, algorithms, assumptions, guarantees
 - [[contextual-bandits]] — the online problem this is the batch version of
 - [[pessimism-principle]] — the mechanism that converts uniform coverage into single-policy coverage
 - [[coverage-coefficient]] — the quantity the whole theory is graded on
 - [[importance-weighting]] — the policy route's estimator
 - [[extrapolation-error]] — the greedy rule's failure mode, in RL language
 - [[offline-reinforcement-learning]] — the $H>1$ generalization
-- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis this specializes
+- [[fitted-q-iteration-finite-sample-analysis]] — the horizon-$H$ analysis this specializes
 - [[offline-oracle-efficient-bandits]] — a different sense of "offline"; see the terminology guard
 
 ## Current State

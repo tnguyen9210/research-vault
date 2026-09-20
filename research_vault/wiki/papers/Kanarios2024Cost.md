@@ -66,7 +66,7 @@ CTAS optimal proportions $w^*=(0.23, 0.72, 0.05)$ vs. TAS $(0.46, 0.46, 0.08)$: 
 ## Connections
 
 - [[best-arm-identification]] — CABAI extends fixed-confidence BAI with heterogeneous per-arm costs
-- [[cabai]] — the novel problem formulation introduced here
+- [[best-arm-identification-cost-aware]] — the novel problem formulation introduced here
 - Kellen Kanarios — first author
 - Qining Zhang — second author (U. Michigan; distinct from advisor Chicheng Zhang)
 - Lei Ying — third/senior author

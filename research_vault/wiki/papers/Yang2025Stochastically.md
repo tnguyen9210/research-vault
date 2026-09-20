@@ -16,7 +16,7 @@ source: raw/papers/Yang2025Stochastically.pdf
 
 **Best Feasible Arm Identification (BFAI):** $k$ arms, each pull yielding an $(m+1)$-dimensional sample $\mathbf{X}_{t,i} = [X_{t,i0}, X_{t,i1}, \ldots, X_{t,im}]^\top$ where $X_{t,ij} \sim \mathcal{N}(\mu_{ij}, \sigma_{ij}^2)$ with known variances. Arm $i$ is *feasible* if $\mu_{ij} \leq \gamma_j$ for all $j = 1, \ldots, m$. Goal: within a fixed budget of $n$ rounds, find $I^* = \arg\max_{i \in \mathcal{F}} \mu_{i0}$, minimizing the probability of false selection (PFS) $1 - P_{n,1}$.
 
-This is the **fixed-budget** analogue of [[constrained-bai]] (which is fixed-confidence). The paper calls it BFAI; the same problem structure appears in the simulation optimization literature as constrained ranking-and-selection (R&S).
+This is the **fixed-budget** analogue of [[best-arm-identification-constrained]] (which is fixed-confidence). The paper calls it BFAI; the same problem structure appears in the simulation optimization literature as constrained ranking-and-selection (R&S).
 
 Four arm categories drive the analysis:
 - $I^*$: best feasible arm
@@ -76,9 +76,9 @@ PFS on log scale shows linear decay for BFAI-TS — confirming the exponential c
 
 ## Connections
 
-- [[constrained-bai]] — complementary regime: this paper is **fixed-budget** (fixed $n$, minimize PFS); [[Lardy2025Constrained]] is **fixed-confidence** (minimize $\mathbb{E}[\tau_\delta]$). Same problem structure, different theoretical frameworks.
+- [[best-arm-identification-constrained]] — complementary regime: this paper is **fixed-budget** (fixed $n$, minimize PFS); [[Lardy2025Constrained]] is **fixed-confidence** (minimize $\mathbb{E}[\tau_\delta]$). Same problem structure, different theoretical frameworks.
 - [[best-arm-identification]] — BFAI extends fixed-budget BAI to $m$ stochastic constraints
-- [[cabai]] — distinct: CABAI minimizes cumulative testing cost; BFAI minimizes false selection probability within a fixed budget
+- [[best-arm-identification-cost-aware]] — distinct: CABAI minimizes cumulative testing cost; BFAI minimizes false selection probability within a fixed budget
 - Le Yang — first author
 - Yi Wang — senior author
 - **Extends:** Russo 2020 (top-two TS for unconstrained BAI) — BFAI-TS adds feasibility tracking to the top-two TS framework
