@@ -27,7 +27,12 @@ Kept with the technical account, in [[value-based-offline-bandits]] §8.2.
 
 ## Open follow-ups
 
-- Ingest Rashidinejad et al. (2021), Jin–Yang–Wang (2021), Brandfonbrener et al. (2021), Xie et al. (2021) — all four are cited author–year here because no paper page exists yet.
+- Ingest the four papers cited author–year throughout [[value-based-offline-bandits]], which have no paper pages yet. Citekeys resolved 2026-09-19 (postponed, not yet ingested):
+  - `rashidinejad2021Bridging` — NeurIPS 2021. PDF already mirrored and md5-matched; the mirrored copy is arXiv v2 (Jul 2023), whose own note says "part of the paper has been published at Neurips 2021". The numbering §4.7 was verified against — Definition 1, Proposition 1, Theorems 4 and 5, Lemmas 13 and 14 — is v2's and checks out.
+  - `jin2021Pessimism` — *Is Pessimism Provably Efficient for Offline RL?*, ICML 2021.
+  - `xie2021Bellmanconsistent` — *Bellman-consistent Pessimism for Offline RL*, NeurIPS 2021.
+  - `brandfonbrener2021OfflineCB` — *Offline Contextual Bandits with Overparameterized Models*, ICML 2021 (arXiv 2006.15368). **Not** `brandfonbrener2021Offline`, which is *Offline RL Without Off-Policy Evaluation*, NeurIPS 2021, by the same four authors in the same year. Checked: the NeurIPS PDF contains "action-stab" and "overparameteriz" zero times, so none of what this vault attributes to Brandfonbrener is in it.
+  - All four were keyed to arXiv revision years until 2026-09-19; the keys above are the corrected ones. Confirm they are pinned before ingesting, since the citekey is the page filename, the link target and the mirror filename.
 - Write the policy-based page; move the route comparison to it, or keep it on the setting page as the cross-family home.
 - A topic page is still not earned: revisit once the four papers above have pages.
 - Drop K.-S. Jun's CSED703Q note into `raw/papers/Jun2026Offline.pdf`; it is the reference point for the policy route.
