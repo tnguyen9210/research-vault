@@ -18,8 +18,9 @@ aliases: [offline CB, batch contextual bandits, offline bandit policy learning, 
 > assumptions, guarantees — on [[contextual-bandits-offline-value-based]]; the
 > policy-based family, which has no page yet and is covered here only
 > by §4.2 and §6; the horizon-$H$ analysis the bandit case
-> specializes, on [[fqi-finite-sample-analysis]]. §7 records what was
-> checked against sources and what was not.
+> specializes, on [[fqi-finite-sample-analysis]]. The Provenance
+> section at the end records what was checked against sources and
+> what was not.
 
 ## 1. Intuition
 
@@ -102,21 +103,35 @@ Restricting each maximum to the pairs its numerator charges is not a formality: 
 A contextual bandit is the one-step, $H=1$ case of offline reinforcement learning. Its action value is the immediate conditional mean reward, so there is no estimated next-state value, no Bellman-error propagation across iterations, and no need for a transition model. See [[fqi-finite-sample-analysis]] for the horizon-$H$ statement this specializes.
 
 
-## 4. The two families of methods
+## 4. Literature Survey
 
-Two families are considered. **Value-based** algorithms fit an action-value model $\hat q$, possibly subtract an uncertainty penalty $\Gamma$ to obtain a lower confidence bound $\underline q$, and return the greedy policy $\hat\pi(x)\in\arg\max_a\underline q(x,a)$. **Policy-level** algorithms instead optimize a criterion directly over a policy class $\Pi$, possibly using importance weights or a worst-case policy value over a confidence set of reward models. Each family has its own page: [[contextual-bandits-offline-value-based]] and (forthcoming) `policy-based-offline-bandits`.
+The field splits into two families by *what is estimated*. **Value-based** algorithms fit an action-value model $\hat q$, possibly subtract an uncertainty penalty $\Gamma$ to obtain a lower confidence bound, and return the greedy policy $\hat\pi(x)\in\arg\max_a\underline q(x,a)$. **Policy-based** algorithms optimize a criterion directly over a policy class $\Pi$, using importance weights or a worst-case value over a confidence set. Three further directions cut across them: the estimators that combine both, learning restricted to a policy class, and the instance-dependent question of when the worst-case rate can be beaten.
 
-
-
-
-### 4.1 The value-based route, in one paragraph
+### 4.1 Value-based: regression, then act
 
 Fit a reward model $\hat q$ by least-squares regression on the logged triples and act greedily on it, $\hat\pi(x)\in\arg\max_a\hat q(x,a)$; in the modern form, subtract a computable uncertainty penalty first, $\hat\pi(x)\in\arg\max_a\hat q(x,a)-\Gamma(x,a)$. The propensities are never used, the behavior policy may be deterministic, and no policy class is specified, so the comparator is the global optimum $\pi^*$. Coverage enters only through the analysis. Full treatment: [[contextual-bandits-offline-value-based]].
 
-### 4.2 The policy-based route, in one paragraph
+
+*The direction's literature.* Its origins are pre-pessimism: the plug-in individualized-treatment rule of Murphy (JMLR 2005), restated as (3.1) in Qian & Murphy (Ann. Statist. 2011), and "the regression approach" of Beygelzimer & Langford (KDD 2009, §6.1), whose Theorem 6.1 bounds $\mathrm{reg}(\pi_f)\le2\sqrt{K\,\mathrm{reg}_r(f)}$ and shows it tight. Brandfonbrener et al. (ICML 2021) named the value-based/policy-based split itself and showed value-based objectives are action-stable where policy-based ones are not. The modern form subtracts a penalty before the $\arg\max$: Rashidinejad et al. (NeurIPS 2021) for tabular LCB under single-policy concentrability with a matching lower bound; Jin, Yang & Wang (ICML 2021) for the uncertainty-quantifier framework the analysis is written in; Xie et al. (NeurIPS 2021) for pessimism over a version space; Li, Ma & Srebro (NeurIPS 2022) for the $\ell_p$ family, pessimism-validity and adaptive minimax optimality; Nguyen-Tang et al. (ICLR 2022) for the neural case.
+
+### 4.2 Policy-based: importance weighting and pessimistic selection
 
 The policy-based route estimates $J(\pi)$ for $\pi\in\Pi$ by importance weighting, $\widehat J^{\mathrm{IPW}}(\pi):=\frac1T\sum_t\frac{\pi(a_t\mid x_t)}{\mu(a_t\mid x_t)}r_t$, unbiased by the change of measure $\mathbb E_{a\sim\mu(x)}[\frac{\pi(a|x)}{\mu(a|x)}q^*(x,a)]=\mathbb E_{a\sim\pi(x)}[q^*(x,a)]$, and selects by MaxIPW ($\arg\max_\pi\widehat J^{\mathrm{IPW}}$) or PES ($\arg\max_\pi\widehat J^{\mathrm{IPW}}(\pi)-W^U_\pi$); implicit exploration (IX, weights $\pi/(\mu+\gamma)$, bias $\gamma C_\gamma(\pi)$ with $C_\gamma(\pi):=\mathbb E_x\sum_a\frac{\pi(a|x)q^*(x,a)}{\mu(a|x)+\gamma}$) and logarithmic smoothing (LS) tame unbounded weights. It needs an explicit $\Pi$, the propensities, a stochastic $\mu$ with $\mu(a\mid x)>0$ wherever $\pi$ puts mass, and nothing about $\rho$ beyond $r\in[0,1]$. the comparison below compares the two routes; the only fact about this route used before the comparison below is the Hoeffding width $|\widehat J^{\mathrm{IPW}}(\pi)-J(\pi)|\le\frac1{\mu_{\min}}\sqrt{\ln(2|\Pi|/\delta)/(2T)}$, valid for all $\pi\in\Pi$ simultaneously with probability at least $1-\delta$ (Hoeffding (see [[contextual-bandits-offline-value-based]])).
 
+
+*The direction's literature.* Importance weighting is Horvitz & Thompson (1952). The selection analysis — MaxIPW governed by the *largest* width over the class, PES by the optimal policy's alone — is Lemmas 1 and 2 of `jun2026CS703Q10`. Before implicit exploration, bounded weights had to be assumed, $\inf_{x,a}\mu(a\mid x)\ge c$, so that empirical-Bernstein bounds applied; Swaminathan & Joachims (2015) is the clipped-IPW-with-variance-penalty instance of that era. IX (Gabbianelli, Lattimore & Neu, ALT 2024) was the first to prove a valid guarantee without the boundedness assumption. LS (Sakhi et al., NeurIPS 2024) smooths logarithmically instead, is *not* bounded for fixed $b$, and pays $bD_b(\pi^*)$ with $D_b\le C_b$ — the better of the two bounds. [[Ryu2025Improved]] (COLT 2025) replaces $D_b$ with a variance and adds adaptation to the best hyperparameter.
+
+### 4.3 Estimators that combine the two
+
+The direct method, IPS and the doubly robust estimator are named and compared in Dudík, Langford & Li (2011), which credits DR to Cassel, Särndal & Wretman (1976) and double robustness to Robins, Rotnitzky & Zhao (1994). Wang, Agarwal & Dudík (ICML 2017) give the minimax lower bound for off-policy evaluation, matched by IPS and DR but not by the direct method alone, together with SWITCH. The estimator and its bias–variance identity are in §5.1.
+
+### 4.4 Learning within a policy class
+
+When the deployed policy must lie in a given $\Pi$, maximizing an estimate over $\Pi$ becomes cost-sensitive classification with imputed rewards — Dudík et al.'s §5.1.3, the Offset Tree's regression baseline, and, with doubly robust scores in place of $\hat q$, the policy learning of Athey & Wager (Econometrica 2021) and Zhou, Athey & Wager (Oper. Res. 2023). Qian & Murphy's §3 toy example is the standing warning that validation loss and best policy are different objectives. The guarantee is in §5.2.
+
+### 4.5 Instance dependence, fast rates and lower bounds
+
+Rashidinejad et al.'s Theorem 5 is the information-theoretic limit matching their tabular rate. Xiao et al. (ICML 2021) show the sharper negative result that *no* instance-dependent optimality is achievable in the batch setting, and that every confidence-adjusted index rule is minimax optimal — so pessimism buys single-policy coverage, not a better instance rate. Faster-than-$\sqrt{T}$ rates come instead from gap and margin conditions and from variance-aware quantifiers, treated on [[contextual-bandits-offline-value-based]] §7. Hu, Kallus & Uehara (COLT 2021) give the related exponentiation phenomenon at $H>1$.
 
 ## 5. Where the families meet
 
@@ -193,7 +208,44 @@ With the Hoeffding width the two bounds coincide because the width is policy-ind
 **Rule of thumb.** Trust the value-based route when a good reward model is plausible (rich features, dense actions, deterministic or unlogged $\mu$, large models); trust the policy-based route when the policy class is simple, $\mu$ is logged and stochastic, and rewards are hard to model. DR and SWITCH exist because the honest answer is usually "both, partially".
 
 
-## 7. Provenance
+## Key Papers
+
+- Rashidinejad, Zhu, Ma, Jiao & Russell (NeurIPS 2021) — single-policy concentrability; the $(C^*-1)$ regimes; the lower bound
+- Jin, Yang & Wang (ICML 2021) — uncertainty quantifiers and pessimistic value iteration, at horizon one
+- Brandfonbrener, Whitney, Ranganath & Bruna (ICML 2021) — the value-based / policy-based distinction itself, and action-stability
+- Dudík, Langford & Li (2011) — the direct method, IPS and doubly robust estimators, and the taxonomy the field still uses
+- Xiao, Wu, Lattimore et al. (ICML 2021) — what pessimism does and does not buy in the batch setting
+- [[Ryu2025Improved]] — the policy-side second-order route
+
+## Variants
+
+- [[contextual-bandits-offline-value-based]] — the reward-model family in full: estimators, algorithms, assumptions, guarantees. §4.1 is its summary
+- A policy-based counterpart page does not exist yet; §4.2 and §6 are all the vault has on that family
+- [[offline-reinforcement-learning]] — the $H>1$ generalization, where the same coverage story acquires error propagation
+
+## Related Concepts
+
+- [[contextual-bandits-online]] — the interactive protocol this is the batch variant of: the learner collects its own data, and exploration does the work coverage does here
+- [[pessimism-principle]] — the mechanism that converts uniform coverage into single-policy coverage
+- [[coverage-coefficient]] — the quantity the whole theory is graded on
+- [[importance-weighting]] — the policy route's estimator
+- [[extrapolation-error]] — the greedy rule's failure mode, in RL language
+- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis this specializes
+- [[offline-oracle-efficient-bandits]] — a different sense of "offline"; see the terminology guard
+
+## Current State and Open Problems
+
+Active. The tabular case is settled up to constants — matching upper and lower bounds in $S$, $C^*$ and $T$ — and the linear case is settled for the policy-level rules, where the $\ell_\infty$ confidence set is adaptively minimax optimal. What is open is mostly on the value-based side and is recorded there: pointwise quantifiers for general classes, whether pessimism at the level of policies rather than contexts buys anything, and instance-dependent rates that are not driven by a worst-case coverage constant.
+
+What is open, in the vault's own terms:
+
+- **Pointwise quantifiers for general classes.** The tabular and linear quantifiers are explicit; nothing comparable exists for a general $\mathcal F$ without going through a version space.
+- **Whether policy-level pessimism buys anything** over per-context pessimism when $\Pi=\mathcal A^{\mathcal X}$, where Proposition 6.1 of [[contextual-bandits-offline-value-based]] shows they coincide.
+- **Instance-dependent rates not driven by a worst-case coverage constant** — blocked by Xiao et al.'s negative result (§4.5), so the question is what weaker notion of instance-optimality survives.
+- **Making the widths data-driven.** The hyperparameter-adaptation problem of `jun2026CS703Q10`, partially answered by [[Ryu2025Improved]].
+- **Four uningested papers.** Rashidinejad et al., Jin–Yang–Wang, Xie et al. and Brandfonbrener et al. are cited author–year throughout this page and its value-based sibling with no paper pages behind them.
+
+## Provenance
 
 *Notation.* §2 follows the Overleaf research log
 (`02_offline_contextual_bandits.tex`, §1) and is shared verbatim with
@@ -217,35 +269,25 @@ same two inequalities as the suboptimality lemmas of
 a substitution.
 
 *Derived here rather than quoted.* The route comparison in §6 is this
-page's synthesis, not a table from the literature.
+page's synthesis, not a table from the literature. So is the division
+of §4 into five directions and the relative weight given to each,
+which reflects what this vault holds rather than the field's own
+proportions.
+
+*The survey's sources.* §4.1 and §4.3–§4.5 draw on the per-result
+record in [[contextual-bandits-offline-value-based]] §8.1, written
+against the PDFs on 2026-09-17. §4.2 draws on `jun2026CS703Q10`, read
+2026-09-19 — the only source the vault has for the policy route, which
+is why that subsection is the least redundantly checked part of the
+page. Two attributions in §4.2 come from the note's own "Loose ends"
+and have not been verified against the papers themselves: IX to
+`gabbianelli2023ImportanceWeighted` (ALT 2024) and LS to Sakhi et al.
+(NeurIPS 2024). Swaminathan & Joachims (2015), Horvitz & Thompson
+(1952), and the Robins/Cassel attributions in §4.3 are as Dudík et al.
+and the note report them, not checked at source.
 
 *Verify before citing.* The per-claim record for everything cited in
 §5 and §6 is kept in one place, [[contextual-bandits-offline-value-based]] §8.3,
 rather than duplicated here. Two entries there bear directly on this
 page: the Singh & Yee (1994) attribution and the Athey & Wager /
 Zhou–Athey–Wager theorem forms are both still recorded from memory.
-
-## Key Papers
-
-- Rashidinejad, Zhu, Ma, Jiao & Russell (NeurIPS 2021) — single-policy concentrability; the $(C^*-1)$ regimes; the lower bound
-- Jin, Yang & Wang (ICML 2021) — uncertainty quantifiers and pessimistic value iteration, at horizon one
-- Brandfonbrener, Whitney, Ranganath & Bruna (ICML 2021) — the value-based / policy-based distinction itself, and action-stability
-- Dudík, Langford & Li (2011) — the direct method, IPS and doubly robust estimators, and the taxonomy the field still uses
-- Xiao, Wu, Lattimore et al. (ICML 2021) — what pessimism does and does not buy in the batch setting
-- [[Ryu2025Improved]] — the policy-side second-order route
-
-## Variants & Related Concepts
-
-- [[contextual-bandits-offline-value-based]] — the reward-model family: estimators, algorithms, assumptions, guarantees
-- [[contextual-bandits]] — the online problem this is the batch version of
-- [[pessimism-principle]] — the mechanism that converts uniform coverage into single-policy coverage
-- [[coverage-coefficient]] — the quantity the whole theory is graded on
-- [[importance-weighting]] — the policy route's estimator
-- [[extrapolation-error]] — the greedy rule's failure mode, in RL language
-- [[offline-reinforcement-learning]] — the $H>1$ generalization
-- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis this specializes
-- [[offline-oracle-efficient-bandits]] — a different sense of "offline"; see the terminology guard
-
-## Current State
-
-Active. The tabular case is settled up to constants — matching upper and lower bounds in $S$, $C^*$ and $T$ — and the linear case is settled for the policy-level rules, where the $\ell_\infty$ confidence set is adaptively minimax optimal. What is open is mostly on the value-based side and is recorded there: pointwise quantifiers for general classes, whether pessimism at the level of policies rather than contexts buys anything, and instance-dependent rates that are not driven by a worst-case coverage constant.
