@@ -16,7 +16,7 @@ research_vault/
     ├── index.md       ← master catalog of all wiki pages (you maintain this)
     ├── log.md         ← append-only operation log (you maintain this)
     ├── papers/        ← one wiki page per ingested paper
-    ├── concepts/      ← method/concept pages (attention, LoRA, RLHF, ...) — flat
+    ├── concepts/      ← method/concept pages (pessimism-principle, fqi, bai, ...) — flat
     ├── topics/        ← broad topic synthesis pages (e.g., "PEFT Methods")
     └── queries/       ← saved analysis and query answers
 ```
@@ -47,23 +47,33 @@ The canonical ID for every paper is its **Better BibTeX citekey** (format `auth.
 | Category | Pattern | Example |
 |----------|---------|---------|
 | Paper wiki page | `wiki/papers/<citekey>.md` | `wiki/papers/munos2008FiniteTime.md` |
-| Concept page | `wiki/concepts/<slug>.md` | `wiki/concepts/attention.md` |
-| Topic page | `wiki/topics/<slug>.md` | `wiki/topics/peft-methods.md` |
+| Concept page | `wiki/concepts/<slug>.md` | `wiki/concepts/pessimism-principle.md` |
+| Topic page | `wiki/topics/<slug>.md` | `wiki/topics/smooth-aggregators.md` |
 | Query page | `wiki/queries/<YYYY-MM-DD-slug>.md` | `wiki/queries/2026-05-27-scaling-laws-comparison.md` |
 
 Use lowercase slugs, hyphens not underscores, no spaces in filenames.
 
 **Concept naming rules:**
 
-1. **Lowercase kebab-case, named by the concept's most citable standard name** — what a paper's prose would call it (`fitted-q-iteration`, `coverage-coefficient`). This is what fuzzy finders (Ctrl+P, Obsidian quick switcher) match and what Claude resolves from paper text.
-2. **Acronym filenames only when the acronym IS the spoken name** (`kube`, `cabai`, `slg-search`). Short/ambiguous acronyms are spelled out (`decision-estimation-coefficient`, not `dec`).
-3. **Short forms go in frontmatter `aliases:`** (e.g. `aliases: [DEC]`) so `[[DEC]]` autocompletes in Obsidian and search finds both forms.
-4. **Hub-prefix only for members with no standalone name** (`pfql-algorithm-1`). A concept with its own citable name keeps it — never `fqi-implicit-q-learning`.
-5. **Name shape encodes page type:** citekeys / capitalized legacy names = papers; kebab-case object names = concepts; kebab-case scope names (`cost-aware-bai`, `smooth-aggregators`) = topics.
+1. **Lowercase kebab-case, named by the concept's most citable standard name** — what a paper's prose would call it (`coverage-coefficient`, `pessimism-principle`). This is what fuzzy finders (Ctrl+P, Obsidian quick switcher) match and what Claude resolves from paper text.
+2. **Family prefix, broadest to narrowest**, when the name is a qualification of a broader concept: `bai-cost-aware`, `fqi-pessimistic`, `contextual-bandits-offline`. This keeps each family alphabetically contiguous in a flat directory. Two conditions, both required:
+   - the prefix names a **real family** — either an existing page (`bai`, `fqi`, `mcts`) or an umbrella not worth a page of its own (`contextual-bandits-`, whose bare form is an alias on [[contextual-bandits-online]]);
+   - the child is a **genuine specialization**, and the prefixed name reads the way the literature speaks it: "cost-aware BAI", "pessimistic FQI", "offline contextual bandits".
+
+   **Cap at three levels.** [[oracle-efficiency]] and its cluster are deliberately left unprefixed: a consistent prefix would need a fourth (`contextual-bandits-oracle-efficiency-offline-regression-oracle`, 62 chars), and prefixing the parent alone would separate it from its own children.
+3. **A standalone citable name keeps it.** [[implicit-q-learning]] is not `offline-reinforcement-learning-implicit-q-learning`; likewise [[deep-q-network]], [[expectile-regression]], [[spanner-sampling]]. The test is rule 2's second condition — nobody says "offline-RL implicit Q-learning". The one exception is a name that is **cryptic alone**: `budget-limited-mab-kube` and `test-time-scaling-slg-search` are prefixed because the bare acronym supplies no context, not because the literature speaks them that way.
+4. **Acronym filenames only when the acronym IS the spoken name and is unambiguous _in this vault_** — `bai`, `fqi`, `mcts`. Ambiguous ones are spelled out: `decision-estimation-coefficient`, never `dec`. **Not `cb`** for contextual bandits: measured across wiki pages on 2026-09-21, LCB appears 51 times and UCB 43 against CB's 9, so those two letters almost always end a confidence-bound acronym here; and [[upper-confidence-bound]] is itself a page. Abbreviate a family only if the parent is abbreviated too — `fqi-...` must never sit beside a `fitted-q-iteration` page.
+5. **Mark the default variant only when both hold**: a contrasting variant has its own page, *and* the marked form is itself used in the literature. [[contextual-bandits-online]] passes both, so "online" is explicit rather than implied. [[decision-estimation-coefficient]] fails the second — DEC is the established name and "online DEC" is not a term — so it stays unmarked beside [[decision-offline-estimation-coefficient]]. Marking a default to satisfy an internal convention, when the field does not, makes the vault disagree with its own sources.
+6. **Old names go into frontmatter `aliases:` on every rename** (`aliases: [FQI, fitted-q-iteration]`), so existing links, muscle memory, and the append-only `log.md` keep resolving. A page must never alias itself.
+7. **Rename in its own commit.** `git mv` plus the inbound relinks first; any rewrite of the body second. A rename committed together with a substantial rewrite falls below git's similarity threshold, is recorded as an unrelated add + delete, and `git log --follow` dead-ends there.
+
+**A filename is also its link text.** Obsidian renders a bare `[[slug]]` as the slug, so names are read in running prose, not just in the file list. That is the reason to stop at `bai`/`fqi`/`mcts` — where the acronym reads naturally in a sentence — and not to generalize.
+
+**Page type is encoded by the directory, not by the name.** Concepts and topics are both kebab-case scope names and are not distinguishable by shape: topic `budget-limited-bandits` sits beside concept `budget-limited-mab`, and topic `cost-aware-bai` is a near-anagram of concept `bai-cost-aware`. Basenames must stay unique vault-wide — `[[slug]]` resolves by basename, and macOS is case-insensitive — so check every page directory before naming a page.
 
 **Legacy paper pages.** Pages created before the Zotero wiring use `<LastnameYearTitleFirstWord>` (e.g. `Vaswani2017Attention`). Keep their names — renaming breaks links, and macOS filesystems are case-insensitive, so a citekey twin (`vaswani2017Attention.md`) must NEVER be created alongside one. One page per paper: if a legacy page exists, keep using it and add `citekey:` to its frontmatter when you next touch it.
 
-**Concept families.** `wiki/concepts/` is fully flat. A tightly related family (e.g. the FQI variants) is expressed by a **hub page** ([[fitted-q-iteration]]) that lists its members, plus links back from each member — never by a subfolder. Filenames must stay unique across the whole vault, or `[[slug]]` becomes ambiguous.
+**Concept families.** `wiki/concepts/` is fully flat — never a subfolder. A family is expressed three ways at once: the shared name prefix of rule 2, a **hub page** that lists its members ([[fqi]]), and a link back from each member to the hub.
 
 ---
 
@@ -308,7 +318,7 @@ When the user says **"lint"** (or `/rv-lint`):
 
 ## Cross-referencing Rules
 
-- When you mention a concept that has a wiki page, always link it: `[[attention]]`.
+- When you mention a concept that has a wiki page, always link it: `[[pessimism-principle]]`.
 - When you create a new paper page, search for existing concept/topic pages that should link back to it and update them.
 - Never leave a page as a complete island — every page must link to at least one other page, and be linked from at least one other page.
 - Prefer depth over breadth: a few meaningful cross-references are better than a dozen superficial ones.
