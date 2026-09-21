@@ -34,7 +34,7 @@ This estimator is unbiased: $\mathbb{E}[\hat{\mu}_n^\text{IW}(\pi)] = \mu(\pi)$.
 - **Clipped IW** — truncates $w_t^\pi$ at a threshold; biased but variance-controlled
 - **Logarithmic smoothing** (Sakhi et al. 2024) — uses $\phi^\text{LS}(x) = \ln(1+x)$ as the score function in the pessimistic objective
 - **Freezing** — $\phi^\text{freeze}(x) = \ln(1 + x \cdot \mathbf{1}\{x \leq 1\})$; zeros out large IW samples; reduces variance at cost of bias, preferred in small-data regimes
-- [[contextual-bandits]] — offline policy optimization is the primary application of IW in this vault
+- [[contextual-bandits-online]] — offline policy optimization is the primary application of IW in this vault
 - [[pessimism-principle]] — applying pessimism (select policy with highest LCB on $\mu(\pi)$) to IW estimates yields variance-adaptive guarantees
 - [[fqi-pessimistic]] — the sequential-RL counterpart: the same pessimism principle, but the uncertainty is an elliptical/gradient-geometry penalty on the fitted Q-function rather than a concentration bound on IW estimates
 

@@ -30,9 +30,9 @@ Format: `- [[slug]] — one-line description`
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
 - [[budget-limited-mab-epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
 - [[budget-limited-mab-kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
-- [[contextual-bandits]] — sequential decision-making with side information; minimize regret vs. best per-context action
 - [[contextual-bandits-offline]] — the batch contextual bandit: fixed logged data, no interaction; setup, coverage coefficients, and the value-based / policy-based taxonomy
 - [[contextual-bandits-offline-value-based]] — fit $\hat q$ by regression, then act greedily or pessimistically; toolkit, greedy and LCB guarantees, Rashidinejad's Theorem 4 with proof
+- [[contextual-bandits-online]] — the interactive protocol: side information each round, exploration against exploitation; sibling of [[contextual-bandits-offline]]
 - [[coverage-coefficient]] — $C_\text{cov}(\pi^*_\beta)$: measures how well $\pi_\text{ref}$ covers the optimal policy; lower bounds sampling oracle calls in [[Foster2025Foundation]]
 - [[decision-estimation-coefficient]] — DEC; complexity measure for online-oracle-efficient contextual bandits (Foster et al. 2021a)
 - [[decision-offline-estimation-coefficient]] — DOEC; complexity measure for offline-oracle-efficient bandits; introduced in [[Qin2026Taming]]

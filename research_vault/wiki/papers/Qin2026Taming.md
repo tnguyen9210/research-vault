@@ -82,7 +82,7 @@ Regret of OE2D (finite $\mathcal{F}$, ERM oracle):
 - [[exploitative-f-design]] — the key algorithmic primitive
 - [[offline-regression-oracle]] — the computational model
 - [[oracle-efficiency]] — the broader research context
-- [[contextual-bandits]] — the problem setting
+- [[contextual-bandits-online]] — the problem setting
 - [[epsilon-sec]] — bounds DOEC from above (Theorem 3)
 - Chicheng Zhang — second author (advisor)
 - Hao Qin — first author

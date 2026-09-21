@@ -65,7 +65,7 @@ $$
 - [[realizability]] — key assumption enabling the result; without it, FALCON's implicit optimality conditions do not hold
 - [[oracle-efficiency]] — FALCON is the milestone offline-oracle result for discrete actions
 - [[offline-regression-oracle]] — the oracle type; standard ERM qualifies
-- [[contextual-bandits]] — the problem setting
+- [[contextual-bandits-online]] — the problem setting
 - [[offline-oracle-efficient-bandits]] — this paper's central place in that research line
 - David Simchi-Levi — first author
 - Yunzong Xu — second author

@@ -44,7 +44,7 @@ Direct contextual bandit algorithms are computationally hard in general (related
 - [[offline-regression-oracle]]
 - [[decision-estimation-coefficient]] — governs online-oracle efficiency
 - [[decision-offline-estimation-coefficient]] — governs offline-oracle efficiency
-- [[contextual-bandits]]
+- [[contextual-bandits-online]]
 
 ## Current State
 

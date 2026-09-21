@@ -37,7 +37,7 @@ An online regression oracle $\mathcal{O}_\mathrm{on}(\mathcal{F})$ receives tupl
 
 - [[oracle-efficiency]]
 - [[decision-offline-estimation-coefficient]] — the complexity measure that governs regret when using offline oracles
-- [[contextual-bandits]]
+- [[contextual-bandits-online]]
 
 ## Current State
 

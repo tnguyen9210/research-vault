@@ -51,7 +51,7 @@ This bridges the design principles of offline- and online-oracle efficient algor
 ## Variants & Related Concepts
 
 - [[decision-offline-estimation-coefficient]] — offline-oracle analogue; upper bounds DEC
-- [[contextual-bandits]]
+- [[contextual-bandits-online]]
 - [[oracle-efficiency]]
 
 ## Current State

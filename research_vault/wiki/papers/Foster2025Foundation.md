@@ -61,7 +61,7 @@ This can be exponentially smaller: $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_
 - [[coverage-coefficient]] — the central complexity measure; governs $T_\text{comp}$ lower and upper bounds
 - [[spanner-sampling]] — the two-phase improper exploration algorithm introduced here; attains the $C_\text{cov}$ lower bound
 - [[linear-softmax-policy]] — the policy parameterization studied throughout
-- [[contextual-bandits]] — alignment is cast as a contextual bandit with KL regularization
+- [[contextual-bandits-online]] — alignment is cast as a contextual bandit with KL regularization
 - [[mcts]] — MTSS's multi-turn DP is a token-level analogue; [[Dam2024Power]] studies MCTS convergence in a related stochastic setting
 - [[test-time-scaling]] — SpannerSampling formalizes *why* inference-time compute (rather than training-time) enables computationally efficient exploration; direct theoretical backing for MCTS/BoN approaches
 - [[realizability]] — Assumption 1.1 (policy realizability) parallels FALCON's realizability; [[SimchiLevi2022Bypassing]]
