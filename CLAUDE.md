@@ -13,7 +13,8 @@ research_vault/
     ├── index.md       ← master catalog of all wiki pages (you maintain this)
     ├── log.md         ← append-only operation log (you maintain this)
     ├── papers/        ← one wiki page per ingested paper
-    ├── concepts/      ← method/concept pages (pessimism-principle, fqi, bai, ...) — flat
+    ├── concepts/      ← method/concept pages (pessimism-principle, fqi, ...) — flat
+    │   └── inactive/  ← parked while the focus is elsewhere; links still resolve
     └── queries/       ← saved analysis and query answers
 ```
 
@@ -69,7 +70,9 @@ Use lowercase slugs, hyphens not underscores, no spaces in filenames.
 
 **Legacy paper pages.** Pages created before the Zotero wiring use `<LastnameYearTitleFirstWord>` (e.g. `Vaswani2017Attention`). Keep their names — renaming breaks links, and macOS filesystems are case-insensitive, so a citekey twin (`vaswani2017Attention.md`) must NEVER be created alongside one. One page per paper: if a legacy page exists, keep using it and add `citekey:` to its frontmatter when you next touch it.
 
-**Concept families.** `wiki/concepts/` is fully flat — never a subfolder. A family is expressed three ways at once: the shared name prefix of rule 2, a **hub page** that lists its members ([[fqi]]), and a link back from each member to the hub.
+**Concept families.** A family is never expressed by a subfolder. It is expressed three ways at once: the shared name prefix of rule 2, a **hub page** that lists its members ([[fqi]]), and a link back from each member to the hub.
+
+**The one permitted subfolder is `concepts/inactive/`.** It marks *status*, not subject — pages parked while the focus is elsewhere. This is the exception that proves the flat rule: filing by topic forces a judgement call on every page and buys nothing, whereas active/inactive is one binary that keeps the working set legible. Because `[[slug]]` resolves by basename, moving a page in or out changes no link and needs no relinking; basenames stay unique across both. `index.md` lists inactive pages under their own `### Inactive` heading, so nothing becomes unfindable. Anything that walks `concepts/*.md` must walk `concepts/inactive/*.md` too, or it will silently skip them.
 
 ---
 
@@ -86,7 +89,7 @@ Practical rules:
 4. **Zotero collections are not pages.** Category views come from `library.json` on demand (saved under `wiki/queries/` when worth keeping) — never as folders or member-list "topics".
 5. **No author pages.** Zotero + `library.json` already answer "what do I have by X"; an author profile is generated on demand from the library plus paper pages, not maintained. In paper Connections, name authors as plain text.
 
-The wiki is **flat**: links resolve by basename, so folders add filing decisions without adding navigation; grouping is expressed by name prefixes, hub pages, links, `index.md`, and generated views.
+The wiki is **flat** apart from `concepts/inactive/`: links resolve by basename, so topical folders add filing decisions without adding navigation. Grouping is expressed by name prefixes, hub pages, links, `index.md`, and generated views.
 
 ---
 
@@ -281,7 +284,7 @@ When the user asks a question:
 
 When the user says **"lint"** (or `/rv-lint`):
 
-1. Scan all pages for `[[links]]` that don't resolve to an existing file — report as broken links.
+1. Scan all pages — including `concepts/inactive/` — for `[[links]]` that don't resolve to an existing file; report as broken links.
 2. Check for concept pages that are referenced but don't exist yet — list as stubs to create.
 3. Look for pages with no inbound links (orphans).
 4. Identify claims that newer papers contradict — flag for review.

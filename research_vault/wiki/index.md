@@ -23,13 +23,6 @@ Format: `- [[slug]] — one-line description`
 - [[Yin2023Offline]] — PFQL/VAFQL: first instance-dependent offline RL bound under nonlinear (differentiable) function approximation; minimax-optimal up to $\sqrt{d}$ (ICLR 2023)
 
 ## Concepts
-
-- [[bai]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
-- [[bai-constrained]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
-- [[bai-cost-aware]] — cost-aware pure exploration; cost as objective (CABAI, proportions $\propto \sqrt{c_a}$), as constraint (CBAI), or under a fixed budget
-- [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
-- [[budget-limited-mab-epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
-- [[budget-limited-mab-kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
 - [[contextual-bandits-offline]] — the batch contextual bandit: fixed logged data, no interaction; setup, coverage coefficients, and the value-based / policy-based taxonomy
 - [[contextual-bandits-offline-value-based]] — fit $\hat q$ by regression, then act greedily or pessimistically; toolkit, greedy and LCB guarantees, Rashidinejad's Theorem 4 with proof
 - [[contextual-bandits-online]] — the interactive protocol: side information each round, exploration against exploitation; sibling of [[contextual-bandits-offline]]
@@ -50,8 +43,6 @@ Format: `- [[slug]] — one-line description`
 - [[importance-weighting]] — IW estimator for offline policy evaluation; variance control via pessimism and score functions; core primitive in off-policy learning
 - [[instance-dependent-bounds]] — hub: guarantees driven by the individual instance (gaps, variance, gradient geometry, coverage) rather than a worst case over the class
 - [[linear-softmax-policy]] — $\pi_\theta(y|x) \propto \pi_\text{ref}(y|x)\exp(\beta^{-1}\langle\theta,\phi(x,y)\rangle)$; natural RLHF parameterization studied in [[Foster2025Foundation]]
-- [[mcts]] — online planning via bandit-guided tree simulation; UCT and successors
-- [[mcts-power-mean]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[offline-reinforcement-learning]] — policy learning from a fixed dataset, no interaction; distributional shift is the binding constraint; four algorithm families
 - [[oracle-efficiency]] — reducing bandit learning to few regression-oracle calls; the $O(\log T)$ call-count line from FALCON to OE2D, online vs. offline oracle
@@ -61,11 +52,24 @@ Format: `- [[slug]] — one-line description`
 - [[smooth-aggregators]] — power-mean MCTS, softmax DQN and expectile IQL as one parameterized average$\to$max family; no unified analysis exists
 - [[softmax-bellman-operator]] — replaces max in Bellman backup with softmax-weighted average at inverse temperature $\tau$; reduces overestimation; exponential convergence to $\mathcal{T}$; introduced in [[Song2019Revisiting]]
 - [[spanner-sampling]] — two-phase improper exploration algorithm achieving optimal $T_\text{comp} = \tilde{O}(C_\text{cov})$; introduced in [[Foster2025Foundation]]
-- [[test-time-scaling]] — LLM inference-time compute scaling; Best-of-$N$ and adaptive alternatives
-- [[test-time-scaling-slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[Li2026Predicting]]
 - [[upper-confidence-bound]] — optimism in the face of uncertainty; gap-dependent $O(\sum_i \log T/\Delta_i)$ regret; the online mirror of [[pessimism-principle]]
 
+### Inactive
 
+> Parked while the focus is contextual bandits and RL. Files live in
+> `concepts/inactive/`; links resolve by basename, so every `[[slug]]`
+> still works and nothing needed relinking.
+
+- [[bai]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
+- [[bai-constrained]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
+- [[bai-cost-aware]] — cost-aware pure exploration; cost as objective (CABAI, proportions $\propto \sqrt{c_a}$), as constraint (CBAI), or under a fixed budget
+- [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
+- [[budget-limited-mab-epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
+- [[budget-limited-mab-kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
+- [[mcts]] — online planning via bandit-guided tree simulation; UCT and successors
+- [[mcts-power-mean]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
+- [[test-time-scaling]] — LLM inference-time compute scaling; Best-of-$N$ and adaptive alternatives
+- [[test-time-scaling-slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[Li2026Predicting]]
 ## Queries
 
 - [[2026-06-16-foster2025-sections-1-4]] — section-by-section summary of Foster2025Foundation Sections 1–4: setup, coverage lower bound, SpannerSampling, hardness of proper exploration
