@@ -32,7 +32,7 @@ $$
 \begin{aligned}
 &\textbf{Input: } \text{unknown MDP } M=(\mathcal S,\mathcal A,H,P,L),\ \text{episode budget } T \\
 &\textbf{for } t = 1,\dots,T: \\
-&\qquad \pi_t=(\pi_{t,h})_{h\in[H]} \leftarrow \textsc{Alg}\big(\text{everything observed in episodes } 1,\dots,k-1\big) \\
+&\qquad \pi_t=(\pi_{t,h})_{h\in[H]} \leftarrow \mathsf{Alg}\big(\text{everything observed in episodes } 1,\dots,t-1\big) \\
 &\qquad s^t_1 \leftarrow s_1 \qquad\qquad\qquad\qquad\ \triangleright\ \text{fixed start state, WLOG} \\
 &\qquad \textbf{for } h = 1,\dots,H: \\
 &\qquad\qquad a^t_h \leftarrow \pi_{t,h}(s^t_h) \\
@@ -47,7 +47,7 @@ Three features of this loop carry the whole difficulty. The policy is **committe
 
 ### Learning objective
 
-For a policy $\pi$, $V^\pi_h(s)$ is the expected **loss-to-go** from $s$ at step $h$; the optimal policy and value minimize it, $\pi^* \in \arg\min_{\pi \in \Pi_M} V^\pi_1(s_1)$ and $V^* = V^{\pi^*}_1(s_1)$, with deterministic Markov policies known to be optimal among all history-dependent ones. The objective is cumulative regret over $K$ episodes,
+For a policy $\pi$, $V^\pi_h(s)$ is the expected **loss-to-go** from $s$ at step $h$; the optimal policy and value minimize it, $\pi^* \in \arg\min_{\pi \in \Pi_M} V^\pi_1(s_1)$ and $V^* = V^{\pi^*}_1(s_1)$, with deterministic Markov policies known to be optimal among all history-dependent ones. The objective is cumulative regret over $T$ episodes,
 
 $$
 \mathrm{Reg}(T) \;=\; \sum_{t \in [T]} \Big( V^{\pi_t}_1(s_1) - V^*_1(s_1) \Big).
@@ -125,7 +125,7 @@ The $+1$ in both denominators is load-bearing rather than a regularizer: it is e
 
 **Corollary 2 (why optimism holds).** For iid non-negative $X_i$ with mean $\mu$ and any $c \ge 1/12$, $\Pr\big[\sum_{i=1}^n X_i/(n+c) < \mu\big] \ge 1/13$. Follows from Feige (2004, Thm 1). This is the first-moment fact; the optimism half of Lemma 1 is a Chernoff bound on the binomial count of optimistic batches, and the bias half is the same argument with Freedman's inequality in place of Corollary 2.
 
-**Lemma 5 (good event for optimism).** With $\alpha = 1/65$ and $B \ge 26\log(5SHT\delta^{-1})$, w.p. $\ge 1 - \delta/5$, simultaneously for all $h, s, k$: $q_\alpha\big([\hat\ell^{t,b}_h + \hat P^{t,b}_h V^*_{h+1}](s,\pi^*_h(s)), b\in[B]\big) \le [\ell_h + P_h V^*_{h+1}](s, \pi^*_h(s))$. Note $V^*$, not $\hat V$ — this substitution is what keeps $B$ logarithmic rather than linear in $S$.
+**Lemma 5 (good event for optimism).** With $\alpha = 1/65$ and $B \ge 26\log(5SHT\delta^{-1})$, w.p. $\ge 1 - \delta/5$, simultaneously for all $h, s, t$: $q_\alpha\big([\hat\ell^{t,b}_h + \hat P^{t,b}_h V^*_{h+1}](s,\pi^*_h(s)), b\in[B]\big) \le [\ell_h + P_h V^*_{h+1}](s, \pi^*_h(s))$. Note $V^*$, not $\hat V$ — this substitution is what keeps $B$ logarithmic rather than linear in $S$.
 
 **Theorem 4 (main result).** With $\alpha = 1/65$, $B = 26\log(5SKHT\delta^{-1})$ and $\kappa = \log(20HS^2KT\delta^{-1})$, w.p. $\ge 1-\delta$,
 
