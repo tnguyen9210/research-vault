@@ -27,6 +27,7 @@ The instance is the offline one — context space $\mathcal X$, finite action se
 $$
 \mathrm{Reg}_\Lambda(T) := \sum_{t=1}^T \Big( \max_{\lambda \in \Lambda} q^*(x_t, \lambda) \;-\; q^*(x_t, p_t) \Big).
 $$
+
 The benchmark class fixes which regret is meant:
 - $\Lambda = \{\delta_a : a \in \mathcal A\}$, the point masses — **standard regret**, against the best action per context, so the round-$t$ term is $V^*(x_t) - q^*(x_t, p_t)$;
 - $\Lambda$ = the $h$-smooth distributions over $\mathcal A$ with respect to a fixed base measure — **$h$-smoothed regret**, in which the general-action-space results are stated.

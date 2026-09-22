@@ -29,6 +29,7 @@ A value-based method never estimates the value of a candidate policy. It estimat
 $$
 \hat q:=\arg\min_{f\in\mathcal F}\ \frac1T\sum_{t=1}^T\big(f(x_t,a_t)-r_t\big)^2, \tag{1}
 $$
+
 and then *derives* a policy from $\hat q$ by choosing, in each context, the action the model rates highest. Two versions exist.
 
 - **Greedy (plug-in).** $\hat\pi(x)\in\arg\max_a\hat q(x,a)$, i.e. $\hat\pi=\pi_{\hat q}$. This is "the regression approach" of Beygelzimer & Langford (2009), the plug-in individualized-treatment rule of Murphy (2005) and Qian & Murphy (2011), and "value-based learning" in Brandfonbrener et al. (2021): "first learn the $Q$ function and then use a greedy policy with respect to this estimated $Q$ function."
@@ -37,6 +38,7 @@ and then *derives* a policy from $\hat q$ by choosing, in each context, the acti
 $$
 \hat\pi(x)\in\arg\max_{a\in\mathcal A}\ \hat q(x,a)-\Gamma(x,a). \tag{LCB}
 $$
+
 This is LCB in Rashidinejad et al. (2021), pessimistic value iteration at horizon one in Jin, Yang & Wang (2021), the confidence-adjusted index rule with $\alpha=-\beta_\delta$ in Xiao et al. (2021), NeuraLCB in Nguyen-Tang et al. (2022), and, in the tabular case, the $\hat\pi_\infty$ (PUNC) rule of Li, Ma & Srebro (2022).
 
 Both versions use the data through $\hat q$ (and $\Gamma$) alone: the propensities $\mu(a_t\mid x_t)$ are never used, the behavior policy may be deterministic, and no policy class is specified — the policy ranges over all of $\mathcal A^{\mathcal X}$, so the comparator is the global optimum.
@@ -90,11 +92,13 @@ The variance bound is a *Bernstein condition* — the fluctuation of the excess 
 $$
 \mathbb E[Y(f)]-\frac1T\sum_{i=1}^nY_i(f)\ \le\ \sqrt{8\,\mathbb E[Y(f)]\,L}+2L, \tag{2}
 $$
+
 and consequently
 
 $$
 \|\hat q-q^*\|^2_{\nu\times\mu}\ \le\ 12\,L\ =\ \frac{12\ln(|\mathcal F|/\delta)}{T}. \tag{3}
 $$
+
 *Proof.* (2) is Theorem 2.2 with $s^2=4\,\mathbb E[Y(f)]$ and $c=3$ (Lemma 2.5) at confidence $\delta/N$, union-bounded over $\mathcal F$. Because $q^*\in\mathcal F$ and $\hat q$ minimizes the empirical loss, $\frac1T\sum_iY_i(\hat q)=\mathcal L_{\mathcal D}(\hat q)-\mathcal L_{\mathcal D}(q^*)\le0$. Applying (2) at $f=\hat q$ and writing $x:=\|\hat q-q^*\|^2_{\nu\times\mu}$: $x\le\sqrt{8xL}+2L\le x/2+4L+2L$, i.e. $x\le12L$. $\square$
 
 **Corollary 2.7 (version space).** On the event of Theorem 2.6, with $\varepsilon:=4L$, the set $\mathcal F_\varepsilon:=\{f\in\mathcal F:\mathcal L_{\mathcal D}(f)\le\mathcal L_{\mathcal D}(\hat q)+\varepsilon\}$ satisfies (i) $q^*\in\mathcal F_\varepsilon$ and (ii) $\|f-q^*\|^2_{\nu\times\mu}\le20L$ for every $f\in\mathcal F_\varepsilon$.
@@ -111,6 +115,7 @@ C^\pi:=\sup_{x,a}\frac{d^\pi(x,a)}{d^\mu(x,a)}=\sup_{x,a:\ \pi(a|x)>0}\frac{\pi(
 C^\pi_2:=\mathbb E_{d^\mu}\Big[\Big(\frac{\pi}{\mu}\Big)^2\Big]=\mathbb E_{x\sim\nu}\sum_a\frac{\pi(a\mid x)^2}{\mu(a\mid x)},\qquad
 C_{\mathcal F}(\pi):=\sup_{f\in\mathcal F,\ f\ne q^*}\frac{\|f-q^*\|^2_{\nu\times\pi}}{\|f-q^*\|^2_{\nu\times\mu}},
 $$
+
 with $c/0:=\infty$ for $c>0$. $C^\pi$ is the **single-policy concentrability** coefficient (Rashidinejad et al. 2021, Definition 1), $C^*:=C^{\pi^*}$; the **uniform** coefficient is $C_{\mathrm{unif}}:=\sup_\pi C^\pi=1/\mu_{\min}$. $C^\pi_2$ is the second moment of the importance weights, and $\bar C^*:=C^{\pi^*}_2$. $C_{\mathcal F}(\pi)$ is the class-dependent coefficient of Xie et al. (2021, Definition 1) at horizon one, where the Bellman residual $f-\mathcal T^\pi f$ is $f-q^*$. For deterministic $\pi$: $C^\pi=\sup_x1/\mu(\pi(x)\mid x)$ and $C^\pi_2=\mathbb E_x[1/\mu(\pi(x)\mid x)]$. Always $C^\pi_2\le C^\pi\le C_{\mathrm{unif}}$ and $C_{\mathcal F}(\pi)\le C^\pi$; $C^\pi_2$ and $C_{\mathcal F}(\pi)$ are not ordered in general.
 
 **Lemma 2.9 (change of measure).** (a) For any $g:\mathcal X\times\mathcal A\to\mathbb R$ and any $\pi$, $\ \big|\mathbb E_{d^\pi}[g]\big|\le\|g\|_{L_1(\nu\times\pi)}\le\sqrt{C^\pi_2}\,\|g\|_{\nu\times\mu}$.
@@ -132,6 +137,7 @@ $$
 b^{\mathrm H}(x,a):=\min\Big\{1,\sqrt{\tfrac{\ln(2SK/\delta)}{2\,N(x,a)}}\Big\},\qquad
 b^{\mathrm B}(x,a):=\min\Big\{1,\sqrt{\tfrac{2\sigma^2(x,a)\ln(2SK/\delta)}{N(x,a)}}+\tfrac{2\ln(2SK/\delta)}{3\,N(x,a)}\Big\}
 $$
+
 is a $\delta$-uncertainty quantifier.
 *Proof.* Given the design, the rewards in cell $(x,a)$ are $N(x,a)$ i.i.d. draws from $\rho(x,a)$. $b^{\mathrm H}$: Theorem 2.1 at confidence $\delta/(SK)$, union bound over cells. $b^{\mathrm B}$: Theorem 2.2 on both sides with $s^2=\sigma^2(x,a)$, $c=1$, at confidence $\delta/(2SK)$, union bound over cells and sides. Empty cells use $|\hat q-q^*|\le1$. $\square$
 
@@ -149,6 +155,7 @@ Both lemmas are pointwise in $x$; regret bounds follow by averaging over $x\sim\
 $$
 q^*(x,a^*)-q^*(x,\hat a)\ \le\ (q^*-f)(x,a^*)+(f-q^*)(x,\hat a)\ \le\ |g(x,a^*)|+|g(x,\hat a)|\ \le\ 2\max_a|g(x,a)| .
 $$
+
 *Proof.* $q^*(x,a^*)-q^*(x,\hat a)=(q^*-f)(x,a^*)+\big(f(x,a^*)-f(x,\hat a)\big)+(f-q^*)(x,\hat a)$, and the middle term is $\le0$ by the definition of $\pi_f$. $\square$
 
 **Lemma 2.14 (pessimism).** Let $\Gamma$ satisfy $|\hat q(x,a)-q^*(x,a)|\le\Gamma(x,a)$ for all $(x,a)$ and let $\hat\pi$ be the rule (LCB). Then for every $x$,
@@ -156,6 +163,7 @@ $$
 $$
 q^*(x,\pi^*(x))-q^*(x,\hat\pi(x))\ \le\ 2\,\Gamma(x,\pi^*(x)) .
 $$
+
 *Proof.* $q^*(x,\hat\pi(x))\ge\hat q(x,\hat\pi(x))-\Gamma(x,\hat\pi(x))\ge\hat q(x,\pi^*(x))-\Gamma(x,\pi^*(x))\ge q^*(x,\pi^*(x))-2\Gamma(x,\pi^*(x))$, using the quantifier, the definition of (LCB), and the quantifier again. $\square$
 
 The difference between the two is the whole story. The plug-in rule is charged for the error at the action *it* chose, which is random and is systematically the over-estimated one; the pessimistic rule is charged only at the action the *optimal* policy chooses. Lemma 2.14 is Theorem 4.2 of Jin, Yang & Wang (2021) at horizon one and the core of the LCB analysis in Rashidinejad et al. (2021). (Read with policies in place of actions and $\widehat J(\pi)$ in place of $\hat q(x,a)$, the same two inequalities give the MaxIPW and PES guarantees of the policy-based route; the route comparison in [[contextual-bandits-offline]].)
@@ -173,6 +181,7 @@ Fit $\hat q$ by (1) on all $T$ triples and output $\hat\pi=\pi_{\hat q}$. No pro
 $$
 \Delta(\pi_{\hat q})\ \le\ \mathbb E_x\big[b(x,\pi^*(x))\big]+\mathbb E_x\big[b(x,\pi_{\hat q}(x))\big]\ \le\ \mathbb E_x\big[b(x,\pi^*(x))\big]+\mathbb E_x\Big[\max_ab(x,a)\Big].
 $$
+
 *Proof.* Lemma 2.13 with $|g|\le b$, averaged over $x\sim\nu$. $\square$
 
 **Reading Theorem 3.1.** The greedy rule can be wrong at a context only when the model error there is at least as large as the true gap it has to resolve, so its loss is controlled by the accuracy of $\hat q$ at two actions only: the one $\pi^*$ takes, and the one the rule itself takes. The first term is unavoidable — up to a factor of two it is the *only* term the pessimistic rule pays (Lemma 2.14) — so the second term is the entire difference between the two approaches. That term is the price of letting the data choose the action: the rule commits to whichever action the regression rates highest, so accuracy at the remaining actions does not help it, and relaxing it to $\mathbb E_x[\max_ab(x,a)]$ is the most that can be said in general, because the rule has to be accurate wherever it might land.
@@ -186,6 +195,7 @@ $$
 $$
 \Delta(\pi_f)\ \le\ \Big(\sqrt{C^{\pi^*}_2}+\sqrt{C^{\pi_f}_2}\Big)\,\|f-q^*\|_{\nu\times\mu}\ \le\ 2\sqrt{C_{\mathrm{unif}}}\;\|f-q^*\|_{\nu\times\mu}.
 $$
+
 *Proof.* Average the middle expression of Lemma 2.13 over $x$ and apply Lemma 2.9(a) to each term, with $\pi=\pi^*$ and $\pi=\pi_f$ (both deterministic); then $C^{\pi_f}_2\le C^{\pi_f}\le C_{\mathrm{unif}}$. $\square$
 
 **Reading Theorem 3.2.** This answers a different question. Theorem 2.6 controls an average squared error under $d^\mu$ and nothing more, and Theorem 3.2 converts that average into a statement about the decision loss. The conversion is the Cauchy–Schwarz step of Lemma 2.9(a), which is why the coverage coefficient enters under a square root, and why a squared error of order $1/T$ can only become a regret of order $1/\sqrt T$. The two results are therefore two currencies for the same fact: Theorem 3.1 is the sharper of them but needs pointwise accuracy, which Theorem 2.6 does not deliver without further structure (§2.4), while Theorem 3.2 needs only what Theorem 2.6 does deliver, and pays for it with a coefficient that ranges over all actions rather than the optimal one.
@@ -218,11 +228,13 @@ Theorem 3.1 is stated for an abstract quantifier; inserting the quantifiers of �
 $$
 \Delta(\pi_{\hat q})\ \le\ \mathbb E_x\Big[\min\Big\{1,\sqrt{\tfrac{\ln(2SK/\delta)}{2\,N(x,\pi^*(x))}}\Big\}\Big]+\mathbb E_x\Big[\min\Big\{1,\sqrt{\tfrac{\ln(2SK/\delta)}{2\,N_{\min}(x)}}\Big\}\Big].
 $$
+
 If in addition $T\,\nu(x)\mu(a\mid x)\ge8\ln(SK/\delta')$ at every pair with $\nu(x)>0$, then with probability at least $1-\delta-\delta'$,
 
 $$
 \Delta(\pi_{\hat q})\ \le\ \sqrt{\frac{S\ln(2SK/\delta)}{T}}\Big(\sqrt{\bar C^*}+\sqrt{\bar C_{\mathrm{unif}}}\Big)\ \le\ 2\sqrt{\frac{S\,C_{\mathrm{unif}}\ln(2SK/\delta)}{T}} .
 $$
+
 *Proof.* Theorem 3.1 with $b=b^{\mathrm H}$ (Proposition 2.11), valid conditional on the design. The map $t\mapsto\min\{1,\sqrt{c/2t}\}$ is nonincreasing, so $\max_ab^{\mathrm H}(x,a)$ is attained at the smallest count and equals the second term, an empty cell giving the value $1$. For the second display the counts are binomial and the multiplicative Chernoff bound, union-bounded over the at most $SK$ pairs with $\nu(x)>0$, gives $N(x,a)\ge T\nu(x)\mu(a\mid x)/2$ at all of them with probability at least $1-\delta'$; discard the truncations ($\min\{1,u\}\le u$) and apply Cauchy–Schwarz over the at most $S$ contexts to each term separately, exactly as in Theorem 4.2, which yields $\sqrt{S\bar C^*}$ from the first and $\sqrt{S\bar C_{\mathrm{unif}}}$ from the second. Finally $\bar C^*\le\bar C_{\mathrm{unif}}\le C_{\mathrm{unif}}$. $\square$
 
 **Greedy against pessimism, in one symbol.** Theorem 3.5 and Theorem 4.2 differ only in $C_{\mathrm{unif}}$ versus $C^*$, and their count conditions differ in the same way: greedy needs all $SK$ cells filled, pessimism only the $S$ cells of $\pi^*$. Before either coefficient is relaxed the comparison is sharper still — pessimism pays $\sqrt{\bar C^*}+\sqrt{\bar C^*}$ where greedy pays $\sqrt{\bar C^*}+\sqrt{\bar C_{\mathrm{unif}}}$ — so the penalty in (LCB) buys a second copy of the first term in place of a charge at the worst-covered action. The ratio of the relaxed bounds is exactly $\sqrt{C_{\mathrm{unif}}/C^*}$, that of the unrelaxed ones $\tfrac12(1+\sqrt{\bar C_{\mathrm{unif}}/\bar C^*})$.
@@ -234,6 +246,7 @@ Two consequences. First, $\bar C_{\mathrm{unif}}\ge K$ always, since the $K$ pro
 $$
 \Delta(\pi_{\hat q})\ \le\ \beta_\delta\Big(\mathbb E_x\big\|\phi(x,\pi^*(x))\big\|_{\Lambda^{-1}}+\mathbb E_x\Big[\max_a\big\|\phi(x,a)\big\|_{\Lambda^{-1}}\Big]\Big),
 $$
+
 and $\Delta(\pi_{\hat q})\le2\beta_\delta/\sqrt{\kappa T}=\tilde O\big(\sqrt{d/(\kappa T)}\big)$ if $\Lambda\succeq\kappa nI$.
 *Proof.* Theorem 3.1 with Proposition 2.12; then $\|\phi(x,a)\|_{\Lambda^{-1}}\le\|\phi(x,a)\|_2/\sqrt{\kappa T}\le1/\sqrt{\kappa T}$ at every pair, and $\beta_\delta=\tilde O(\sqrt d)$. $\square$
 
@@ -254,6 +267,7 @@ Fit $\hat q$ by (1) on all $T$ triples, take a computable penalty $\Gamma$ that 
 $$
 \boxed{\ \Delta(\hat\pi)\ \le\ 2\,\mathbb E_{x\sim\nu}\big[\Gamma(x,\pi^*(x))\big]\ } \tag{4}
 $$
+
 *Proof.* Lemma 2.14 averaged over $x\sim\nu$. $\square$
 
 Only the optimal policy's uncertainty appears: a poorly covered action costs nothing unless $\pi^*$ uses it. This is the horizon-one case of Theorem 4.2 of Jin, Yang & Wang (2021), $\Delta(\hat\pi)\le2\sum_h\mathbb E_{\pi^*}[\Gamma_h]$. Explicit rates follow by inserting the quantifiers of §2.4.
@@ -265,11 +279,13 @@ Only the optimal policy's uncertainty appears: a poorly covered action costs not
 $$
 \Delta(\hat\pi)\ \le\ 2\,\mathbb E_{x\sim\nu}\Big[\min\Big\{1,\sqrt{\tfrac{\ln(2SK/\delta)}{2\,N(x,\pi^*(x))}}\Big\}\Big].
 $$
+
 Moreover, writing $\mu_x:=\mu(\pi^*(x)\mid x)$ and using $N(x,a)\sim\mathrm{Bin}(T,\nu(x)\mu(a\mid x))$ with the multiplicative Chernoff bound $\mathbb P(\mathrm{Bin}(T,q)\le nq/2)\le e^{-nq/8}$: if $T\,\nu(x)\mu_x\ge8\ln(S/\delta')$ for all $x$, then with probability at least $1-\delta-\delta'$,
 
 $$
 \Delta(\hat\pi)\ \le\ 2\sum_x\nu(x)\sqrt{\frac{\ln(2SK/\delta)}{T\,\nu(x)\mu_x}}\ \le\ 2\sqrt{\frac{S\,\bar C^*\ln(2SK/\delta)}{T}}\ \le\ 2\sqrt{\frac{S\,C^*\ln(2SK/\delta)}{T}},
 $$
+
 using $\sum_x\sqrt{\nu(x)/\mu_x}\le\sqrt{S\sum_x\nu(x)/\mu_x}=\sqrt{S\bar C^*}$ (Cauchy–Schwarz) and $\bar C^*\le C^*$.
 *Proof.* Theorem 4.1 with Proposition 2.11; the count condition and union bound over $\mathcal X$ give $N(x,\pi^*(x))\ge T\nu(x)\mu_x/2$ for all $x$. $\square$
 
@@ -282,6 +298,7 @@ Rashidinejad et al. (2021) remove the count condition and prove the sharper $\ti
 $$
 \Delta(\hat\pi)\ \le\ 2\beta_\delta\,\mathbb E_{x\sim\nu}\big\|\phi(x,\pi^*(x))\big\|_{\Lambda^{-1}},\qquad\text{and}\qquad\Delta(\hat\pi)\le\frac{2\beta_\delta}{\sqrt{\kappa T}}=\tilde O\Big(\sqrt{\tfrac d{\kappa T}}\Big)\ \text{ if }\Lambda\succeq\kappa nI.
 $$
+
 *Proof.* Theorem 4.1 with Proposition 2.12. $\square$
 
 This is the pessimistic value iteration of Jin, Yang & Wang (2021) at horizon one, whose radius $\beta=c\,dH\sqrt{\zeta}$ carries factors of $d$ and $H$ from covering the next-state value class that are absent for bandits; they show the $\mathbb E_{\pi^*}\|\phi\|_{\Lambda^{-1}}$ form is minimax optimal for their instance class. Li, Ma & Srebro (2022) organize the linear case differently, at the level of policies (fixed design, OLS estimate $\hat\theta$, whitening matrix $\Sigma_D:=\frac1T\Phi^\top\Phi$): a confidence set $\Theta\ni\theta^*$ induces the pessimistic value $\hat V(\pi):=\inf_{\theta\in\Theta}\mathbb E_x[\phi(x,\pi(x))^\top\theta]$ and the rule $\hat\pi_\Theta:=\arg\max_\pi\hat V(\pi)$; if $\theta^*\in\Theta$ and $\sup_{\theta\in\Theta}\|\theta-\theta^*\|\le\beta$ with probability $1-\delta$ ("pessimism-validity"), then $\Delta(\hat\pi_\Theta)\le\beta\,\|\mathbb E_x\phi(x,\pi^*(x))\|_*$ in the dual norm (their Proposition 1 — the decomposition (4)–(5) of §6.1 with a policy-level width). With the $\ell_p$ sets $\Theta_p:=\{\theta:\|\Sigma_D^{1/2}(\theta-\hat\theta)\|_p\le\beta\}$, $\beta=d^{1/p}\sqrt{8\ln(d/\delta)/T}$, their Theorem 1 gives $\Delta(\hat\pi_p)\le d^{1/p}\sqrt{8\ln(d/\delta)/T}\,\big\|\Sigma_D^{-1/2}\mathbb E_x\phi(x,\pi^*(x))\big\|_q$, $1/p+1/q=1$. Three consequences for this page. (i) $\hat\pi_2$ *is* the version-space rule of §4.5: in a linear bandit the empirical Bellman error is $\|\Sigma_D^{1/2}(\theta-\hat\theta)\|_2^2$, so BCP's version space is an $\ell_2$ ball. (ii) $\hat\pi_\infty$ (PUNC) reduces to the tabular LCB of Theorem 4.2 when $\phi(x,a)=e_{xa}$ (their Corollary 1 recovers $\sqrt{SC^*\ln(SK/\delta)/T}$), but it is *not* the pointwise linear rule of Theorem 4.3: that rule (PEVI) subtracts $\beta\|\Sigma_D^{-1/2}\phi\|_2$ at every context, which amounts to an $\ell_2$ set enlarged context by context; its guarantee $\sqrt{d^2/T}\,\mathbb E_x\|\Sigma_D^{-1/2}\phi(x,\pi^*(x))\|_2$ is looser by a factor $d$ and by Jensen ($\|\Sigma_D^{-1/2}\mathbb E_x\phi\|_2\le\mathbb E_x\|\Sigma_D^{-1/2}\phi\|_2$), but holds for every test distribution at once, whereas the policy-level rules are tuned to one $\nu$. (iii) Their Theorem 2 is a minimax lower bound $\Omega(d^{1/p}\Lambda/\sqrt T)$ over the classes $\mathrm{CB}_q(\Lambda)=\{\|\Sigma_D^{-1/2}\mathbb E_x\phi(x,\pi^*(x))\|_q\le\Lambda\}$, so $\hat\pi_p$ is minimax over $\mathrm{CB}_q$, and since $\|v\|_1\le d^{1-1/q}\|v\|_q$ the $\ell_\infty$ rule is optimal over *every* class simultaneously — "adaptively minimax optimal" — and strictly dominates $\hat\pi_2$. The coverage quantity is thus the norm of the *averaged* whitened feature of $\pi^*$, a refinement of $C^*$ and of $\mathbb E_{\pi^*}\|\phi\|_{\Lambda^{-1}}$ that can be much smaller than either.
@@ -299,11 +316,13 @@ $$
 $$
 \Delta(\hat\pi)\ \le\ \sqrt{\frac{20\,C_{\mathcal F}(\pi^*)\ln(|\mathcal F|/\delta)}{T_{\mathrm{reg}}}}+2\sqrt{\frac{\ln(2|\mathcal F|^2/\delta)}{2m}} .
 $$
+
 *Proof.* Let $J_f(\pi):=\mathbb E_{x\sim\nu}[f(x,\pi(x))]$, so $J_{q^*}=J$, and $\varepsilon_m:=\sqrt{\ln(2|\mathcal F|^2/\delta)/(2m)}$. By Theorem 2.1 with a union bound over the at most $|\mathcal F|^2$ pairs $(f,\pi)\in\mathcal F\times\Pi_{\mathcal F}$, with probability at least $1-\delta$ over $\mathcal D^{\mathrm{eval}}$, $|\widehat J_f(\pi)-J_f(\pi)|\le\varepsilon_m$ for all pairs. On this event and that of Corollary 2.7,
 
 $$
 J(\hat\pi)=J_{q^*}(\hat\pi)\ \ge\ \widehat J_{q^*}(\hat\pi)-\varepsilon_m\ \ge\ \min_{f\in\mathcal F_\varepsilon}\widehat J_f(\hat\pi)-\varepsilon_m\ \ge\ \min_{f\in\mathcal F_\varepsilon}\widehat J_f(\pi^*)-\varepsilon_m\ \ge\ \min_{f\in\mathcal F_\varepsilon}J_f(\pi^*)-2\varepsilon_m ,
 $$
+
 using $q^*\in\mathcal F_\varepsilon$, then the choice of $\hat\pi$ with $\pi^*\in\Pi_{\mathcal F}$. Hence $\Delta(\hat\pi)\le\max_{f\in\mathcal F_\varepsilon}[J_{q^*}(\pi^*)-J_f(\pi^*)]+2\varepsilon_m\le\max_{f\in\mathcal F_\varepsilon}\|f-q^*\|_{L_1(\nu\times\pi^*)}+2\varepsilon_m\le\sqrt{C_{\mathcal F}(\pi^*)}\max_{f\in\mathcal F_\varepsilon}\|f-q^*\|_{\nu\times\mu}+2\varepsilon_m$ by Lemma 2.9(b), and Corollary 2.7(ii) bounds the maximum by $\sqrt{20L_{\mathrm{reg}}}$. $\square$
 
 (VS) is Eq. (3.2) of Xie et al. (2021) at horizon one — $\arg\max_\pi\min_{f\in\mathcal F_{\pi,\varepsilon}}f(s_0,\pi)$ over the version space of functions with small Bellman loss — where the Bellman loss is the squared loss, their completeness assumption is vacuous, and their coverage coefficient is $C_{\mathcal F}$; the coverage is class-dependent and can be far below $C^*$ for structured classes. The restriction to $\Pi_{\mathcal F}$ is what makes the empirical values uniformly controllable; over all of $\mathcal A^{\mathcal X}$ the supremum of an empirical average aligns with the sample and does not concentrate.
@@ -341,6 +360,7 @@ $$
 \mathbb E\big[J(\pi)-J(\hat\pi)\big]=T_1+T_2+T_3,\qquad
 T_i=\mathbb E\Big[\textstyle\sum_x\nu(x)\ell(x)\cdot\mathbb 1_i\Big],
 $$
+
 with $\mathbb 1_1=\mathbb 1\{N(x,\pi(x))=0\}$, $\mathbb 1_2=\mathbb 1\{N(x,\pi(x))\ge1\}\mathbb 1\{\mathcal E\}$, $\mathbb 1_3=\mathbb 1\{N(x,\pi(x))\ge1\}\mathbb 1\{\mathcal E^c\}$. The claim is
 
 $$
@@ -358,6 +378,7 @@ $$
 $$
 \sum_{x\in\mathcal X_3}\nu(x)\ \le\ \min\{1,\ 10(C^\pi-1)\} .
 $$
+
 Indeed coverage and the definition of $\mathcal X_3$ give $\sum_{\mathcal X_3}\nu(x)\le C^\pi\sum_{\mathcal X_3}d^\mu(x,\pi(x))\le10C^\pi\sum_{\mathcal X_3}\bar\mu(x)$, while $\sum_xd^\mu(x,\pi(x))\ge1/C^\pi$ forces $\sum_x\bar\mu(x)\le1-1/C^\pi$; multiplying gives $10C^\pi(1-1/C^\pi)=10(C^\pi-1)$. Substituting and splitting on $C^\pi\ge2$ or not yields $T_{2,3}\lesssim\sqrt{S(C^\pi-1)L/T}$. Adding the three parts and using $J(\pi)-J(\hat\pi)\le1$ gives the theorem. $\square$
 
 **What the proof turns on.** The $C^*-1$ is not a refinement of the concentration; it is the mass bound above. A behavior policy with $C^\pi$ close to $1$ puts almost all of its mass on the comparator's action, so the set of contexts where any confusion is possible is itself small, and $\sqrt{S\cdot\text{(that mass)}/T}$ is what appears. At $C^*=1$ the data are expert, $\mathcal X_3$ is empty, and only the $S/T$ missing-mass term survives.
@@ -375,6 +396,7 @@ Split $\mathcal D$ into $\mathcal D^{\mathrm{reg}}$ ($T_{\mathrm{reg}}$ triples)
 $$
 \widehat J^{\mathrm{DM}}(\pi):=\frac1m\sum_{x\in \mathcal D^{\mathrm{eval}}}\hat q(x,\pi). \tag{DM}
 $$
+
 Only the evaluation contexts are consumed. The split makes $\hat q$ independent of them; $K$-fold cross-fitting recovers the full sample at the price of a constant (Chernozhukov et al. 2018; Athey & Wager 2021). The name is due to Dudík, Langford & Li (2011): "the first, which we call the *direct method* (DM), estimates the reward function from given data and uses this estimate in place of actual reward to evaluate the policy value."
 
 ### 5.2 Analysis
@@ -387,6 +409,7 @@ $$
 \mathbb E\big[\widehat J^{\mathrm{DM}}(\pi)\big]-J(\pi)=\mathbb E_{d^\pi}[g],\qquad
 \mathrm{Var}\big(\widehat J^{\mathrm{DM}}(\pi)\big)=\frac1m\,\mathrm{Var}_{x\sim\nu}\big(\hat q(x,\pi)\big)\le\frac1{4m}.
 $$
+
 *Proof.* The summands $\hat q(x,\pi)$ are i.i.d. with mean $\mathbb E_{d^\pi}[\hat q]$, while $J(\pi)=\mathbb E_{d^\pi}[q^*]$; each summand lies in $[0,1]$. $\square$
 
 The bias is the model error averaged under the *target* policy; the variance is that of a bounded sample mean, with no dependence on $\mu$, $\pi$ or the reward noise — the mirror image of importance weighting (zero bias, variance driven by $\pi/\mu$). These are Sections 3–4 of Dudík, Langford & Li (2011).
@@ -396,6 +419,7 @@ The bias is the model error averaged under the *target* policy; the variance is 
 $$
 \big|\widehat J^{\mathrm{DM}}(\pi)-J(\pi)\big|\ \le\ \sqrt{C(\pi)}\;\|\hat q-q^*\|_{\nu\times\mu}+\sqrt{\frac{\ln(2/\delta)}{2m}} .
 $$
+
 For a finite class $\Pi$ the statement holds simultaneously for all $\pi\in\Pi$ with $\ln(2|\Pi|/\delta)$ in the second term only.
 *Proof.* Triangle inequality around $\mathbb E[\widehat J^{\mathrm{DM}}(\pi)]$: the sampling term is Theorem 2.1 for $m$ summands in $[0,1]$; the bias term is Lemma 5.1 followed by Lemma 2.9(a) and (b). The bias term is a deterministic function of $\hat q$, so a union bound over $\Pi$ touches only the sampling term. $\square$
 
@@ -437,6 +461,7 @@ So estimate-then-select with plug-in values is regression-then-greedy written di
 $$
 \Delta(\hat\pi)\ \le\ 2\,\mathbb E_{x\sim\nu}\Big[\min\Big\{1,\sqrt{\tfrac{2\sigma^2(x,\pi^*(x))\ln(2SK/\delta)}{N(x,\pi^*(x))}}+\tfrac{2\ln(2SK/\delta)}{3\,N(x,\pi^*(x))}\Big\}\Big].
 $$
+
 *Proof.* Theorem 4.1 with Proposition 2.11. $\square$
 
 The reward *variance* at $\pi^*$'s actions replaces the worst-case $1/4$; the unknown $\sigma^2$ is replaced by the sample variance through the empirical Bernstein inequality (Maurer & Pontil 2009) with the same form, and Yin & Wang (2021) give the rigorous tabular statement. This is the value-side counterpart of replacing second moments of importance weights by variances on the policy side (betting or freezing; [[ryu2025Improved]]).
@@ -450,6 +475,7 @@ Define the **action gap** at $x$ as $\mathrm{gap}(x):=q^*(x,\pi^*(x))-\max_{a\ne
 $$
 \Delta(\pi_f)\ \le\ \frac4\epsilon\,\mathbb E_x\Big[\max_ag(x,a)^2\Big]\ \le\ \frac{4\,C_{\mathrm{unif}}}{\epsilon}\,\|f-q^*\|^2_{\nu\times\mu}.
 $$
+
 *Proof.* Fix $x$, $a^*=\pi^*(x)$, $\hat a=\pi_f(x)$. If $\hat a=a^*$ the regret at $x$ is $0$. Otherwise it is at least $\epsilon$ and, by Lemma 2.13, at most $2\max_a|g(x,a)|$; hence $2\max_a|g(x,a)|\ge\epsilon$ and the regret at $x$ is at most $2\max_a|g(x,a)|\cdot\frac{2\max_a|g(x,a)|}{\epsilon}=\frac4\epsilon\max_ag(x,a)^2$. Average over $x$, then $\max_ag^2\le\sum_ag^2=\sum_a\mu(a|x)\frac{g(x,a)^2}{\mu(a|x)}\le C_{\mathrm{unif}}\sum_a\mu(a|x)g(x,a)^2$. $\square$
 
 **Corollary 7.3.** Under (A3)–(A4) and a hard gap $\epsilon$, with probability at least $1-\delta$, $\ \Delta(\pi_{\hat q})\le48\,C_{\mathrm{unif}}\ln(|\mathcal F|/\delta)/(\epsilon\,T)$ — a $1/T$ rate for the *greedy* rule, without pessimism.

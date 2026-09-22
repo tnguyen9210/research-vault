@@ -24,6 +24,7 @@ An episodic MDP $(\mathcal S, \mathcal A, \rho, P, H)$: a state space $\mathcal 
 $$
 \mathcal D := \big\{(s^t_h, a^t_h, r^t_h, s^t_{h+1})\big\}_{t \in [T],\ h \in [H]},
 $$
+
 $T$ trajectories collected by $\mu$, and outputs $\hat\pi$ without further interaction. Write $d^\pi_h$ for the distribution of $(s_h, a_h)$ under $\pi$, so $d^\mu_h$ is the distribution of the logged pairs at step $h$ — the step-$h$ version of the bandit page's $d^\pi(x,a) = \nu(x)\,\pi(a \mid x)$.
 
 **Values.** $Q^\pi_h(s,a)$ and $V^\pi_h(s)$ are the expected reward-to-go from step $h$ under $\pi$; $Q^*_h$ and $V^*_h$ the optimal ones, with $V^*_h(s) = \max_a Q^*_h(s,a)$ and $\pi^*$ greedy in $Q^*$. The value of a policy is $J(\pi) := \mathbb E_{s_1 \sim \nu}[V^\pi_1(s_1)]$, and the objective is the same suboptimality as before,

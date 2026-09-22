@@ -84,6 +84,7 @@ $$
 \hat\mu_\alpha \;=\; q_\alpha\!\Big( \tfrac{1}{|D_b|+1}\textstyle\sum_{X \in D_b} X,\ b \in [B] \Big),
 \qquad q_\alpha(\hat\mu_b, b\in[B]) := \hat\mu_{(\lceil \alpha B\rceil)},
 $$
+
 with $\hat\mu_{(1)} \le \dots \le \hat\mu_{(B)}$ the sorted batch means. **Quantile of Means** generalizes Median of Means; Cassel et al. (2025)'s Minimum of Means is the special case $\alpha = 1/B$.
 
 ### Algorithm 1 — VIBE (Value Iteration with Bootstrap Ensemble)
@@ -131,6 +132,7 @@ The $+1$ in both denominators is load-bearing rather than a regularizer: it is e
 $$
 \mathrm{Reg}(T) \;\le\; 22\sqrt{\min\{\mathcal Q^*,\, HV^*\}\,HSKT\,\kappa^2} \;+\; 1924\,H^3S^2K\kappa^3,
 $$
+
 where $\mathcal Q^* = \sum_{h\in[H]} \mathcal Q^*_h$ and $\mathcal Q^*_h = \max_{s,a} \mathrm{Var}_{s,a,h}\big(L_h + V^*_{h+1}(s_{h+1})\big)$ is the **summed** maximum conditional variance. Optimal in two regimes at once: it matches the $\Omega(\sqrt{H^3SKT})$ worst-case lower bound (Domingues et al. 2021), and in low-stochasticity environments it matches the refined variance-dependent lower bounds of Zhou et al. (2023).
 
 **Why the extension from bandits is hard.** $Q$-estimates at step $h$ depend on later value estimates through the Bellman backup, destroying the independence that makes the bandit analysis clean. A standard covering argument over value functions handles this but forces ensemble size **linear in $S$**. Logarithmic $B$ requires Lemma 5's substitution of $V^*$ for the empirical value — a technique that in prior work is always intertwined with intricate bonus constructions, and which the absence of bonuses here isolates.

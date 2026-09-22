@@ -27,6 +27,7 @@ Notation follows [[contextual-bandits-offline]] §2 and the horizon-$H$ extensio
 $$
 \mathcal Q^*_{\mathrm{ZB}} \;:=\; \max_{s,a,h}\Big[ \mathrm{Var}\,r_h(s,a) \;+\; \mathrm{Var}_{s'\sim P(\cdot\mid s,a)} V^*_{h+1}(s') \Big]
 $$
+
 — identical to the **environmental norm** of Maillard et al. (2014) — and the **max return** $G$, a deterministic upper bound on $\sum_{h} r_h(s_h,\pi_h(s_h))$ over all policies and starting states (Definition 1).
 
 **EULER** (Episodic Upper Lower Exploration in Reinforcement learning) is optimism-under-uncertainty with a two-part bonus: an empirical-Bernstein estimate of the conditional value variance, plus a correction term that explicitly accounts for value-function uncertainty by maintaining **both** a pointwise over- and under-estimate of $V^*$ — the upper and lower of the name. Azar et al. (2017) used a Bernstein–Friedman reward bonus with a different correction; the change of correction term is what converts a worst-case bound into a problem-dependent one. Same computational complexity as value iteration.
@@ -40,6 +41,7 @@ $$
 \quad\text{and}\quad
 \tilde O\Big(\sqrt{G^2 S K T} + \sqrt S\,SKH^2(\sqrt S + \sqrt H)\Big).
 $$
+
 Both forms are kept because the second is tighter than substituting $\mathcal Q^*_{\mathrm{ZB}} \le G^2$ by a factor $H$. **EULER is given neither $\mathcal Q^*_{\mathrm{ZB}}$ nor $G$.**
 
 **Corollary 1.1 (worst case).** Since $r \in [0,1]$ gives $G^2 \le H^2$: $\tilde O(\sqrt{H^2 S K T} + \sqrt S SKH^2(\sqrt S+\sqrt H))$, matching the $\Omega(\sqrt{H^2 S K T})$ lower bound (Jaksch et al. 2010; Osband & Van Roy 2016) and the minimax bound of Azar et al. (2017) in the dominant term.
@@ -49,6 +51,7 @@ Both forms are kept because the second is tighter than substituting $\mathcal Q^
 $$
 \tilde O\Big(\sqrt{S K T} + \sqrt S\,SKH^2(\sqrt S + \sqrt H)\Big) ,
 $$
+
 with **no $H$ in the dominant term** — evidence that long-horizon domains are not intrinsically harder when total reward is bounded.
 
 **Which MDPs are easy (§6).** Classes with small $\mathcal Q^*_{\mathrm{ZB}}$, all handled by the same uninformed algorithm: deterministic domains, single-goal MDPs, and high-stochasticity domains. The paper also introduces $\Phi_{\mathrm{succ}}$, the range of $V^*$ restricted to the *successor states* of a given pair, and notes $\Phi \ge \mathrm{rng}\,V^* \ge \Phi_{\mathrm{succ}}$ — so the successor-restricted range is always the sharpest of the three, and EULER adapts to it without being told.

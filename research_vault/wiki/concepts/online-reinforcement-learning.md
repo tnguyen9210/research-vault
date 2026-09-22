@@ -27,6 +27,7 @@ The same episodic MDP $(\mathcal S, \mathcal A, \rho, P, H)$, with $S := |\mathc
 $$
 \mathrm{Reg}(T) := \sum_{t=1}^T \big( J(\pi^*) - J(\pi_t) \big) = \sum_{t=1}^T \Delta(\pi_t),
 $$
+
 the sum over episodes of the offline page's suboptimality of the policy actually played. (The RL literature writes $K$ for the number of episodes; this vault reserves $K$ for $|\mathcal A|$ and writes $T$ episodes, so a rate quoted from a paper as $\sqrt{H^3 S A K}$ reads $\sqrt{H^3 S K T}$ here.) The online-to-batch conversion of [[contextual-bandits-online]] applies unchanged: the uniform mixture of $\pi_1, \dots, \pi_T$ has $\Delta(\bar\pi) = \mathrm{Reg}(T)/T$.
 
 **Minimax rate, and why two of them are quoted in this area.** The rate depends on whether transitions are allowed to vary with the step. For **time-inhomogeneous** transitions $P_h$, $\mathrm{Reg}(T) = \tilde\Theta\big(\sqrt{H^3 S K T}\big)$ ([[cassel2026Quantile]], citing Azar et al. 2017 and Domingues et al. 2021). For **stationary** transitions — a single $P$, as in [[zanette2019Tighter]] — it is $\tilde\Theta\big(\sqrt{H^2 S K T}\big)$, one factor of $\sqrt H$ cheaper because there are $H$ times fewer kernels to learn. Rates from the two lines are not directly comparable, and the papers on this page sit on opposite sides of that line.
@@ -44,6 +45,7 @@ A max is fragile — one high-variance pair anywhere sets the whole bound — wh
 $$
 \mathrm{Reg}(T) = \underbrace{\sum_{t} \big( \hat V^t_1(s_1) - J(\pi_t) \big)}_{\text{bias}} \;+\; \underbrace{\sum_{t} \big( J(\pi^*) - \hat V^t_1(s_1) \big)}_{\text{optimism}}.
 $$
+
 An optimistic algorithm is one whose estimate satisfies $\hat V^t_1 \ge V^*_1$ with high probability, making the second sum non-positive; the regret is then controlled entirely by the bias, the gap between what the learner believed and what it got. This is the exact mirror of the pessimism lemma on [[contextual-bandits-offline-value-based]], which arranges $\hat V \le V^*$ so that the *other* term drops. How optimism is established is the whole design question: by a bonus, whose size then dominates the bias analysis; or by an ensemble quantile, in which case the bias analysis is the standard one and the optimism argument is a binomial tail bound.
 
 ## Key Papers
