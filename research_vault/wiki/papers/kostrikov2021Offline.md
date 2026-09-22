@@ -85,7 +85,7 @@ Value learning and policy extraction are fully decoupled — the policy never in
 
 The gap is concentrated exactly where the paper predicts. On `antmaze-medium` and `antmaze-large`, every single-step method scores $\approx 0$ (Onestep RL: 0.3, 0.0, 0.0, 0.0), while IQL scores 71.2 / 70.0 / 39.6 / 47.5. These datasets contain essentially no near-optimal trajectories, so performance requires composing sub-optimal ones — the thing single-step methods structurally cannot do.
 
-**Toy u-maze (Fig. 2).** With 1 optimal trajectory and 99 random ones, single-step policy evaluation produces a value function that decays to zero away from the goal; IQL's closely matches $V^\star$. A clean, honest illustration of the mechanism.
+**Toy u-maze (Fig. 2).** With 1 optimal trajectory and 99 random ones, single-step policy evaluation produces a value function that decays to zero away from the goal; IQL's closely matches $V^*$. A clean, honest illustration of the mechanism.
 
 **Effect of $\tau$ (Fig. 3).** Larger $\tau$ is essential on antmaze; $\tau = 0.5$ (SARSA) fails, $\tau = 0.9$ works. On locomotion, smaller $\tau$ suffices — consistent with those datasets already containing near-optimal behavior.
 

@@ -32,7 +32,7 @@ the sum over episodes of the offline page's suboptimality of the policy actually
 
 **Variance-dependent refinement.** Both replace a worst-case $H$ factor with a variance functional of the optimal value, and the vault's two sources define it differently — a distinction worth keeping, since both are written $\mathcal Q^*$:
 - [[zanette2019Tighter]] takes a single **maximum** over all $(s,a,h)$, $\;\mathcal Q^*_{\mathrm{ZB}} := \max_{s,a,h}\big[\mathrm{Var}\,r_h(s,a) + \mathrm{Var}_{s'\sim P(\cdot\mid s,a)} V^*_{h+1}(s')\big]$, the *environmental norm* of Maillard et al. (2014), and achieves $\tilde O(\sqrt{\mathcal Q^*_{\mathrm{ZB}} S K T H})$.
-- [[cassel2026Quantile]] **sums** the per-step maxima, $\;\mathcal Q^\star := \sum_{h} \max_{s,a} \mathrm{Var}_{s,a,h}\big(r_h + V^*_{h+1}(s_{h+1})\big) \le H^2$, achieving $\tilde O\big(\sqrt{\min\{\mathcal Q^\star, H V^*\}\,H S K T}\big)$.
+- [[cassel2026Quantile]] **sums** the per-step maxima, $\;\mathcal Q^* := \sum_{h} \max_{s,a} \mathrm{Var}_{s,a,h}\big(r_h + V^*_{h+1}(s_{h+1})\big) \le H^2$, achieving $\tilde O\big(\sqrt{\min\{\mathcal Q^*, H V^*\}\,H S K T}\big)$.
 
 A max is fragile — one high-variance pair anywhere sets the whole bound — while a sum accumulates over the horizon; neither dominates the other, and which is the right account of hardness is open. Both are the online analogue of the [[instance-dependent-bounds]] the offline pages are stated in, and both are matched by lower bounds (Zhou et al. 2023 for the summed form).
 
@@ -75,7 +75,7 @@ The tabular theory is complete: minimax and variance-dependent rates are matched
 - **Ensemble size.** The naive covering argument over value functions gives $B$ linear in $S$; the logarithmic $B$ requires substituting $V^*$ for the empirical value when proving optimism. Whether that substitution survives function approximation is the technical form of the previous question.
 - **Theory for the ensembles people run.** Bootstrapped DQN, UCB Q-ensembles and SUNRISE are named by the source as the practical methods this line justifies in spirit — but none is analyzed, and the tabular method is not one of them. The gap between provable and deployed is the same one [[offline-reinforcement-learning]] records for its own side.
 - **Max or sum?** The two ingested papers measure instance hardness with incompatible variance functionals (see Formal Description). A single high-variance pair sets [[zanette2019Tighter]]'s bound however benign the rest of the MDP is; [[cassel2026Quantile]]'s accumulates over the horizon instead. Which better predicts difficulty is untested — neither paper runs experiments.
-- **Does either instance measure predict empirical difficulty?** Neither $\mathcal Q^*_{\mathrm{ZB}}$ nor $\mathcal Q^\star$ has been checked against observed hardness on any benchmark. This is the same open item [[offline-reinforcement-learning]] records for $\sum_h\mathbb E_{\pi^*}[\|\nabla_\theta f\|_{\Sigma_h^{\star-1}}]$, and it is cheap on both sides.
+- **Does either instance measure predict empirical difficulty?** Neither $\mathcal Q^*_{\mathrm{ZB}}$ nor $\mathcal Q^*$ has been checked against observed hardness on any benchmark. This is the same open item [[offline-reinforcement-learning]] records for $\sum_h\mathbb E_{\pi^*}[\|\nabla_\theta f\|_{\Sigma_h^{\star-1}}]$, and it is cheap on both sides.
 
 ## Provenance
 
