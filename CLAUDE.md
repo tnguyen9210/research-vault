@@ -103,49 +103,87 @@ The wiki is **flat** apart from `concepts/inactive/`: links resolve by basename,
 ---
 title: "<full paper title>"
 authors: [FullName1, FullName2, ...]
-year: YYYY
+year: YYYY                   # the venue year; see the citekey rule above
 venue: VENUE
 arxiv: "XXXX.XXXXX"          # omit if not on arXiv
-citekey: <citekey>           # Zotero papers; PDF = $PAPERS_DIR/<citekey>.pdf
+citekey: <citekey>           # = the filename; PDF = $PAPERS_DIR/<citekey>.pdf
 tags: [concept1, concept2]
 source: <url>                # only when there is no citekey: online-only sources
 ---
 
-# <Title>
+# <Short Title>
 
 **TL;DR:** One or two sentences — the core idea and why it matters.
 
-## Problem Setting
-What gap or limitation the paper addresses, and the formal setting: the model class, protocol, and assumptions (e.g. $K$-armed bandit with $\sigma^2$-sub-Gaussian noise, generative model vs. online access). For empirical papers this can be brief.
+## Intuition
+Why the method works, in words, before any formalism. The mechanism a
+reader should carry away if they remember nothing else. Say what the
+paper is *reacting to*: the thing everyone else does, and the move this
+one makes instead.
 
-## Notation
-Only symbols the sections below depend on, as `| symbol | meaning |` rows. Skip the section when the paper introduces nothing beyond standard notation.
+## Formal Problem Definition
 
-## Method / Algorithm
-Key technical contribution. Be precise about the architecture, objective, or algorithm.
+### Setting and learning protocol
+The model class, and then the protocol **written out as a procedure**,
+in the `\begin{aligned}` pseudocode style used by [[fqi]] — input, the
+loop, what is observed at each step, what is returned. Prose hides what
+the learner sees and when; a procedure cannot. Follow it with the two or
+three features of the loop that carry the difficulty.
 
-## Main Results
-Theoretical and/or empirical. Theorems: state the bound or rate precisely in LaTeX with its conditions, and name the proof technique in one line (e.g. self-normalized concentration + peeling). Experiments: main findings with key numbers when meaningful.
+### Learning objective
+The quantity being minimized, in the vault's symbols, related to
+$\Delta(\hat\pi)$ or $\mathrm{Reg}(T)$ on the setting page.
 
-## New Concepts
-Genuinely new concepts this paper introduces, each linked: [[slug]] — one-line gloss. These are the prime candidates for concept pages (ingest step 5).
+### How this differs from the surrounding literature
+Not a related-work dump — the specific departures that the paper turns
+into part of its claim, each one a line. What precisely improved: a
+rate, an assumption dropped, a quantity no longer needed.
 
-## Prior Work & Position
-Where this sits relative to the papers it builds on or supersedes — what precisely improved (rate, assumption, generality), with [[links]] where pages exist.
+## Assumptions
+Each assumption as stated, numbered as the paper numbers it. Then, and
+often more revealing, an explicit **"Not assumed"** line: what a reader
+would expect to be required and is not. Note any relaxation the paper
+gives and what it costs.
 
-## Strengths & Limitations
-Brief honest assessment.
+## Method
+The algorithm as a procedure (same pseudocode style), the contribution
+ideas in the order the paper claims them, and the main theorems with
+their bounds stated precisely in LaTeX and their conditions attached.
+Name the proof technique in one line where it is the interesting part.
 
 ## Connections
 - [[concept or paper]] — why it's related
+- Concepts this paper *introduces* are named here and are the candidates
+  for new concept pages (ingest step 5)
 - Authors as plain text (no author pages)
-- **Extends:** [[prior paper]]
-- **Challenged by:** [[later paper]]
-- **Used in:** [[paper that builds on this]]
+- **Extends:** [[prior paper]] / **Challenged by:** [[later paper]]
 
-## Open Questions & Research Ideas
-Questions the paper leaves unanswered, plus follow-ups worth pursuing — especially ideas relevant to active projects.
+## Open Questions
+What the paper leaves open — its own stated questions first, then what
+is untested or unclaimed — plus follow-ups worth pursuing, especially
+ideas relevant to active projects.
 ```
+
+**Notation on paper pages follows the vault, not the paper.** Use the
+anchor in [[contextual-bandits-offline]] §2 and its extensions, and open
+the formal section by naming every symbol translated, so a reader can
+still check the page against the PDF. Translate what differs only in
+spelling ($A \to K$ for $|\mathcal A|$, an episode count $K \to T$,
+$\star \to *$ on optima). Do **not** translate a choice that is
+substantive: [[cassel2026Quantile]] minimizes loss, which is why its
+optimistic quantile is the low one, so rewriting it as reward
+maximization would break its own explanation. And where a symbol means
+different things — [[zanette2019Tighter]]'s $T$ is total timesteps where
+the vault's is episodes — **restate the results, do not relabel them**,
+or the claims move by a factor of $\sqrt H$ in silence.
+
+**Two sections the old template had, and where they went.** *Prior Work
+& Position* is now the third part of the formal definition, where it
+sharpens the problem rather than trailing it. *Strengths & Limitations*
+is dissolved on purpose: strengths restate the contributions, and
+limitations split between what the paper **assumes away** (Assumptions)
+and what is **untested** (Open Questions) — both of which are more
+useful attached to the thing they qualify than collected in a verdict.
 
 ### Concept Page (`wiki/concepts/`)
 
@@ -257,10 +295,10 @@ When the user says **"ingest <citekey>"** or **"summarize <citekey>"** (or names
 1. **Resolve** the PDF at `$PAPERS_DIR/<citekey>.pdf`; if the file is missing, run `python3 scripts/fetch_paper.py <citekey>`. Pull title/authors/venue metadata from `library.json`. Never rename the PDF.
 2. **Read** the PDF.
 3. **Discuss** with the user: key takeaways, what to emphasize, any initial reactions. Keep this brief (3-5 exchanges max) unless the user wants to go deep.
-4. **Create** the paper wiki page at `wiki/papers/<citekey>.md` (unless a legacy page for this paper exists — then update it and add `citekey:` to its frontmatter).
+4. **Create** the paper wiki page at `wiki/papers/<citekey>.md`, in the template above. The filename is the citekey exactly; re-resolve it against the live Zotero API rather than a possibly-stale `library.json` before writing, since the page name, link target and mirrored PDF all depend on it.
 
 For a **non-Zotero source**: add it to Zotero first so it gets a citekey, then proceed as normal. If it is online-only and not worth a library entry, name the page `<LastnameYearTitleFirstWord>` and put the URL in `source:`; then continue from step 3.
-5. **Update or create** concept pages for the most important new concepts introduced by the paper — limit to **3 new concept pages per ingest**. Prioritize concepts that are genuinely novel contributions of the paper (not background concepts). Update the "Key Papers" section of existing concept pages.
+5. **Update or create** concept pages for the most important new concepts introduced by the paper — the ones named in its Connections section. Limit to **3 new concept pages per ingest**, and prioritize genuinely novel contributions over background. A concept fully explained on the paper page and used nowhere else does not need one: `quantile-of-means` was deliberately left unpaged on 2026-09-22 for exactly that reason.
 6. **Update** the concept pages this paper belongs to — add it under "Key Papers", fold it into "Literature Survey" if the page has one, and revise "Current State and Open Problems" if it changes them.
 7. **Update** `wiki/index.md`: add an entry for every new page created.
 8. **Append** to `wiki/log.md`: `## [YYYY-MM-DD] ingest | <Title> (<Venue Year>)`
