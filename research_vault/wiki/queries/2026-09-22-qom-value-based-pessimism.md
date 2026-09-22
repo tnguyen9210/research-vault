@@ -5,7 +5,7 @@ question: "Can the Quantile of Means idea of Cassel & Rosenberg (2026) be adapte
 
 # Quantile of Means as Value-Based Pessimism for Offline Contextual Bandits
 
-**Scope.** The tabular value-based route of [[contextual-bandits-offline-value-based]] §4, with the explicit penalty of the rule (LCB) replaced by the quantile-of-means (QoM) estimator of [[cassel2026Quantile]]. Policy-based (importance-weighted) variants are out of scope. Every step below is proved from results whose statements were checked against their sources (§8); no step rests on simulation.
+**Scope.** The tabular value-based route of [[contextual-bandits-offline-value-based]] §4, with the explicit penalty of the rule (LCB) replaced by the quantile-of-means (QoM) estimator of [[cassel2026Quantile]]. Policy-based (importance-weighted) variants are out of scope. Every step below is proved from results whose statements were checked against their sources (§8); no step rests on simulation. The simplified case with $`\sigma^2`$-sub-Gaussian rewards, with much better constants and one added assumption, is [[2026-09-22-qom-value-based-pessimism-subgaussian]].
 
 ## Short answer
 

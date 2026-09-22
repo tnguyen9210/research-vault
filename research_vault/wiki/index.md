@@ -80,3 +80,4 @@ Format: `- [[slug]] — one-line description`
 - [[2026-09-16-offline-cb-value-based]] — reading path for the value-based offline contextual bandit account; the answer now lives in [[contextual-bandits-offline]] and [[contextual-bandits-offline-value-based]]
 
 - [[2026-09-22-qom-value-based-pessimism]] — Quantile of Means as tabular value-based pessimism: Theorem 4.2-style variance-adaptive bound without a penalty, its constant price, lost $`(C^{\ast}-1)`$ adaptivity, and a [[cassel2026Quantile]] erratum
+- [[2026-09-22-qom-value-based-pessimism-subgaussian]] — QoM-LCB for $`\sigma^2`$-sub-Gaussian rewards: Theorem 4.2-style bound with $`B=3.2\ln(2SK/\delta)`$ under symmetric noise; sub-Gaussianity alone is not enough, with a counterexample
