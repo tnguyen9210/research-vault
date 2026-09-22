@@ -1,5 +1,6 @@
 ---
 title: "Is a Good Foundation Necessary for Efficient Reinforcement Learning? The Computational Role of the Base Model in Exploration"
+aliases: [Foster2025Foundation]
 authors: [Dylan J. Foster, Zakaria Mhammedi, Dhruv Rohatgi]
 year: 2025
 venue: arXiv
@@ -62,9 +63,9 @@ This can be exponentially smaller: $C_\text{cond}(\pi^*_\beta) \leq 2$ while $C_
 - [[spanner-sampling]] — the two-phase improper exploration algorithm introduced here; attains the $C_\text{cov}$ lower bound
 - [[linear-softmax-policy]] — the policy parameterization studied throughout
 - [[contextual-bandits-online]] — alignment is cast as a contextual bandit with KL regularization
-- [[mcts]] — MTSS's multi-turn DP is a token-level analogue; [[Dam2024Power]] studies MCTS convergence in a related stochastic setting
+- [[mcts]] — MTSS's multi-turn DP is a token-level analogue; [[dam2024Power]] studies MCTS convergence in a related stochastic setting
 - [[test-time-scaling]] — SpannerSampling formalizes *why* inference-time compute (rather than training-time) enables computationally efficient exploration; direct theoretical backing for MCTS/BoN approaches
-- [[realizability]] — Assumption 1.1 (policy realizability) parallels FALCON's realizability; [[SimchiLevi2022Bypassing]]
+- [[realizability]] — Assumption 1.1 (policy realizability) parallels FALCON's realizability; [[simchi-levi2022Bypassing]]
 - [[decision-estimation-coefficient]] — DEC/DOEC are complexity measures for oracle-efficient bandits; $C_\text{cov}$ plays an analogous role in the sampling oracle framework
 - **Extends:** XPO (Xie et al. 2024) — proves XPO cannot be computationally efficient (Thm 4.1)
 - **Extends:** OnlineDPO (Guo et al. 2024) — shows it is data-inefficient due to passive exploration

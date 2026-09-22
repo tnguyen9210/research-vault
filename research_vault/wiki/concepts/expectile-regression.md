@@ -1,7 +1,7 @@
 ---
 title: "Expectile Regression"
 tags: [statistics, regression, offline-reinforcement-learning, value-estimation]
-introduced_by: [[Kostrikov2022Offline]]
+introduced_by: [[kostrikov2021Offline]]
 ---
 
 # Expectile Regression
@@ -25,7 +25,7 @@ $$
 
 Conditionally, $m_\tau(\cdot) = \arg\min_{m(\cdot)} \mathbb{E}_{(x,y)\sim\mathcal{D}}[L_2^\tau(y - m(x))]$, which is directly optimizable by SGD with unbiased gradients — a one-line change to an MSE objective.
 
-Two properties do the work in [[Kostrikov2022Offline]]:
+Two properties do the work in [[kostrikov2021Offline]]:
 
 - **Monotonicity:** $\tau_1 < \tau_2 \implies m_{\tau_1} \le m_{\tau_2}$.
 - **Limit (Lemma 1):** for bounded support with supremum $x^*$, $\lim_{\tau\to 1} m_\tau = x^*$.
@@ -34,25 +34,25 @@ Two properties do the work in [[Kostrikov2022Offline]]:
 
 Quantile regression uses the asymmetric $\ell_1$ loss $|\tau - \mathbb{1}(u<0)|\,|u|$ and estimates quantiles; expectile regression uses the asymmetric $\ell_2$ loss and estimates expectiles. Expectiles are *not* quantiles: the $\tau$-expectile is defined by a balance of weighted mean deviations rather than a probability mass split, so the two coincide only at $\tau = 0.5$ for symmetric distributions.
 
-[[Kostrikov2022Offline]] prefers expectiles for a pragmatic reason — the $\ell_2$ form is a minimal modification to the MSE loss already present in TD learning — and reports it worked "somewhat better" than the $\ell_1$ alternative. No analysis is offered for why, which is an open question.
+[[kostrikov2021Offline]] prefers expectiles for a pragmatic reason — the $\ell_2$ form is a minimal modification to the MSE loss already present in TD learning — and reports it worked "somewhat better" than the $\ell_1$ alternative. No analysis is offered for why, which is an open question.
 
 ### The statistic being taken matters
 
-A subtlety that is easy to miss. Applying expectile regression to a full TD target $r + \gamma Q(s',a')$ takes an upper statistic over **both** action randomness and transition randomness, so a high value may reflect a lucky transition rather than a good action — optimism about the environment, which is unsound. [[Kostrikov2022Offline]] avoids this by taking the expectile only over actions (fitting $V_\psi$) and using plain MSE for the backup over dynamics.
+A subtlety that is easy to miss. Applying expectile regression to a full TD target $r + \gamma Q(s',a')$ takes an upper statistic over **both** action randomness and transition randomness, so a high value may reflect a lucky transition rather than a good action — optimism about the environment, which is unsound. [[kostrikov2021Offline]] avoids this by taking the expectile only over actions (fitting $V_\psi$) and using plain MSE for the backup over dynamics.
 
 ## Key Papers
 
 - Newey & Powell (1987) — introduces expectile regression in econometrics (asymmetric least squares)
 - Koenker & Hallock (2001) — quantile regression, the $\ell_1$ counterpart
-- [[Kostrikov2022Offline]] — uses upper expectiles of $Q(s,\cdot)$ to perform in-sample maximization in offline RL; Theorem 3 shows $\tau \to 1$ recovers the support-constrained optimal value
+- [[kostrikov2021Offline]] — uses upper expectiles of $Q(s,\cdot)$ to perform in-sample maximization in offline RL; Theorem 3 shows $\tau \to 1$ recovers the support-constrained optimal value
 - Dabney et al. (2018a,b) — QR-DQN / IQN use *quantile* regression in RL, but over the return distribution induced by stochastic transitions, a different statistic with a different purpose
 
 ## Related Concepts
 
 - [[implicit-q-learning]] — the algorithm built on this primitive
 - [[fqi]] — the template IQL modifies; the expectile replaces the $\max_{a'}$ in its Bellman target
-- [[softmax-bellman-operator]] — a different smooth surrogate for the max, with an explicit finite-$\tau$ approximation bound ([[Song2019Revisiting]]) that the expectile treatment lacks
-- [[mcts-power-mean]] — a third smooth-aggregator-in-place-of-max instance, in tree search ([[Dam2024Power]])
+- [[softmax-bellman-operator]] — a different smooth surrogate for the max, with an explicit finite-$\tau$ approximation bound ([[song2019Revisiting]]) that the expectile treatment lacks
+- [[mcts-power-mean]] — a third smooth-aggregator-in-place-of-max instance, in tree search ([[dam2024Power]])
 - [[overestimation-bias]] — the reason smooth surrogates are attractive in the first place
 
 ## Current State and Open Problems

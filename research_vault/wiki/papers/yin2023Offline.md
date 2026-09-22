@@ -1,5 +1,6 @@
 ---
 title: "Offline Reinforcement Learning with Differentiable Function Approximation is Provably Efficient"
+aliases: [Yin2023Offline]
 authors: [Ming Yin, Mengdi Wang, Yu-Xiang Wang]
 year: 2023
 venue: ICLR
@@ -106,7 +107,7 @@ That still requires a finite-sample bound on $\|\theta_{\mathcal{T}\hat V_{h+1}}
 
 1. **Uniform coverage 2.3 excludes overparameterized networks.** Condition $(\star)$ is an identifiability requirement: distinct parameters must induce functions that differ measurably under $\mu$. Overparameterized neural networks violate it by construction — permutation and scaling symmetries make $\theta_1 \ne \theta_2$ realize identical functions, so $\mathbb{E}_\mu[(f(\theta_1,\phi)-f(\theta_2,\phi))^2] = 0$. The paper says as much in a footnote-level remark ("2.3 can be violated for function class $\mathcal{F}$ that is *not identifiable*") and offers GLM as the representative nonlinear example. But Section 1 motivates DFA with "when $f$ is specified to be neural networks, $\theta$ corresponds to the weights of each network layer," which reads as broader reach than the theorems support.
 2. **$d$ is the parameter count, and the rate carries $d$, not $\sqrt{d}$.** For the deep models invoked in the motivation, $d$ is enormous and the bound is uninformative in exactly that regime. The authors flag this in the conclusion, attribute it to the covering argument, and ask whether $d$ is essential — a genuinely open question, honestly stated.
-3. **"Provably efficient" = statistically efficient.** $\hat\theta_h$ is the argmin of a nonconvex objective, analyzed as if exactly obtained. Nothing is claimed about finding it. This is a sharp contrast with [[Foster2025Foundation]], whose entire subject is the separation between statistical and computational efficiency.
+3. **"Provably efficient" = statistically efficient.** $\hat\theta_h$ is the argmin of a nonconvex objective, analyzed as if exactly obtained. Nothing is claimed about finding it. This is a sharp contrast with [[foster2025Good]], whose entire subject is the separation between statistical and computational efficiency.
 4. **Coverage is all-policy, not single-policy.** Xie et al. (2021a) achieve GFA guarantees under *single-policy* concentrability; 2.3 is stronger. The authors believe the DFA analogue is derivable but expect it to yield a computationally intractable algorithm, and leave it open.
 5. Main theorems assume $\epsilon_\mathcal{F} = 0$ (exact Bellman completeness); the misspecified case is deferred to Appendix H.
 
@@ -123,9 +124,9 @@ That still requires a finite-sample bound on $\|\theta_{\mathcal{T}\hat V_{h+1}}
 - [[instance-dependent-bounds]] — the guarantee type this paper delivers for nonlinear offline RL
 - [[offline-reinforcement-learning]] — the setting
 - [[realizability]] — Assumption 2.1, alongside Bellman completeness
-- [[coverage-coefficient]] — concentrability (2.2) and uniform coverage (2.3) are the offline-RL members of the coverage-condition family that [[Foster2025Foundation]] formalizes for LM alignment
-- **Theory counterpart:** [[Kostrikov2022Offline]] — IQL is the empirical face of the same problem. IQL avoids out-of-sample queries and offers only an asymptotic $\tau\to1$ guarantee with a binary support condition; PFQL queries freely but subtracts a computable uncertainty penalty and delivers the instance-dependent bound IQL lacks. Reading them together: pessimism and in-sample learning are two answers to one question, and only pessimism currently has a sharp theory.
-- **Shares the pessimism principle:** [[Ryu2025Improved]] — PUB applies betting-based LCBs to offline *policy selection*; PFQL applies a gradient-geometry LCB to offline *policy learning*
+- [[coverage-coefficient]] — concentrability (2.2) and uniform coverage (2.3) are the offline-RL members of the coverage-condition family that [[foster2025Good]] formalizes for LM alignment
+- **Theory counterpart:** [[kostrikov2021Offline]] — IQL is the empirical face of the same problem. IQL avoids out-of-sample queries and offers only an asymptotic $\tau\to1$ guarantee with a binary support condition; PFQL queries freely but subtracts a computable uncertainty penalty and delivers the instance-dependent bound IQL lacks. Reading them together: pessimism and in-sample learning are two answers to one question, and only pessimism currently has a sharp theory.
+- **Shares the pessimism principle:** [[ryu2025Improved]] — PUB applies betting-based LCBs to offline *policy selection*; PFQL applies a gradient-geometry LCB to offline *policy learning*
 - **Generalizes:** Jin et al. (2021b) PEVI (linear MDPs), Yin & Wang (2021) VPVI (tabular), Yin et al. (2022) (variance-aware linear)
 - **Contrasts with:** Chen & Jiang (2019), Xie et al. (2021a) — GFA, worst-case bounds, weaker coverage
 - Ming Yin, Mengdi Wang, Yu-Xiang Wang — authors
@@ -138,4 +139,4 @@ That still requires a finite-sample bound on $\|\theta_{\mathcal{T}\hat V_{h+1}}
 - **What replaces identifiability for overparameterized models?** Since $(\star)$ fails for neural networks, the interesting question is whether a quotient formulation — coverage on the function space or on an equivalence class of parameters, rather than on $\theta$ — restores the guarantee. This seems like the most valuable follow-up and the paper does not raise it.
 - **Is third-order smoothness necessary?** The authors ask what survives with only first- or second-order information.
 - **Parameters vs. features.** Why does $m$ never appear? If real, this is a statement about representation learning that deserves its own treatment.
-- **Does the Fisher-information measure predict empirical difficulty?** The bound separates instances in theory; nobody has checked whether $\sum_h\mathbb{E}_{\pi^*}[\|\nabla_\theta f\|_{\Sigma_h^{\star-1}}]$ correlates with observed hardness on, say, D4RL. That is a cheap and informative experiment, and would connect this line directly to [[Kostrikov2022Offline]].
+- **Does the Fisher-information measure predict empirical difficulty?** The bound separates instances in theory; nobody has checked whether $\sum_h\mathbb{E}_{\pi^*}[\|\nabla_\theta f\|_{\Sigma_h^{\star-1}}]$ correlates with observed hardness on, say, D4RL. That is a cheap and informative experiment, and would connect this line directly to [[kostrikov2021Offline]].

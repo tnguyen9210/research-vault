@@ -2,7 +2,7 @@
 title: "Scaling-Law Guided (SLG) Search"
 tags: [llm, test-time-scaling, search, best-of-n]
 aliases: [slg-search]
-introduced_by: [[Li2026Predicting]]
+introduced_by: [[li2026Predicting]]
 ---
 
 # Scaling-Law Guided (SLG) Search
@@ -16,13 +16,13 @@ BoN wastes compute sampling uniformly from the prompt. SLG first generates $K$ c
 **Input:** Prompt $x$, total budget $N$, search width $K$, estimation samples $m$.
 
 1. Generate $K$ intermediate states $\{s_i\}_{i=1}^K$ from $x$
-2. For each $s_i$: sample $m$ responses, estimate $\hat{V}_N(s_i)$ via tail extrapolation (Algorithm 1 of [[Li2026Predicting]])
+2. For each $s_i$: sample $m$ responses, estimate $\hat{V}_N(s_i)$ via tail extrapolation (Algorithm 1 of [[li2026Predicting]])
 3. Select best state: $\hat{I} = \arg\max_{i \in [K]} \hat{V}_N(s_i)$
 4. Sample $N - Km$ responses from $s_{\hat{I}}$; return highest-reward response
 
 Optimal schedule: $m(N) \approx \frac{1}{5}(\ln N)^3$, $K(N) \approx \frac{N}{2m(N)}$.
 
-**Vanishing regret (Theorem 2 of [[Li2026Predicting]]):**
+**Vanishing regret (Theorem 2 of [[li2026Predicting]]):**
 
 $$V_N(\mathcal{A}_\text{SLG}) \geq V_{\lfloor N/2m \rfloor}(\mathcal{A}^*) - c\frac{\log N}{\sqrt{m}}$$
 
@@ -31,7 +31,7 @@ $$V_N(\mathcal{A}_\text{SLG}) \geq V_{\lfloor N/2m \rfloor}(\mathcal{A}^*) - c\f
 $$V_N(\mathcal{A}_\text{SLG}) \geq V_{N^{1+\gamma}}(\mathcal{A}_\text{BoN}), \quad \gamma > 0$$
 
 ## Key Papers
-- [[Li2026Predicting]] — introduces SLG Search with full theoretical analysis
+- [[li2026Predicting]] — introduces SLG Search with full theoretical analysis
 
 ## Related Concepts
 

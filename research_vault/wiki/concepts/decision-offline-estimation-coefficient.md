@@ -2,7 +2,7 @@
 title: "Decision-Offline Estimation Coefficient (DOEC)"
 aliases: [DOEC]
 tags: [contextual-bandits, complexity-measure, oracle-efficiency]
-introduced_by: [[Qin2026Taming]]
+introduced_by: [[qin2026Taming]]
 ---
 
 # Decision-Offline Estimation Coefficient (DOEC)
@@ -46,11 +46,11 @@ $$\mathrm{doec}_{\gamma,\varepsilon}(G, \Lambda) \lesssim \frac{1}{\gamma}\,\mat
 | Per-context linear (dim $d$) | $\tilde{O}(d/\gamma \cdot \log^3(1/\varepsilon))$ | $\tilde{O}(\sqrt{dT \log\lvert\mathcal{F}\rvert})$ |
 | $h$-smoothed regret | $\log(1+1/\varepsilon)/(h\gamma)$ | $\tilde{O}(\sqrt{T/h \cdot \log\lvert\mathcal{F}\rvert})$ |
 
-**$\varepsilon$-SEC can be loose:** Proposition 3 of [[Qin2026Taming]] constructs examples where $\mathrm{SEC}_\varepsilon \geq 2^{k-2}$ but $\mathrm{doec} \lesssim \sqrt{k}/\gamma$ — exponential gap. Active experimental design (choosing $p$) can be strictly better than passive coverage.
+**$\varepsilon$-SEC can be loose:** Proposition 3 of [[qin2026Taming]] constructs examples where $\mathrm{SEC}_\varepsilon \geq 2^{k-2}$ but $\mathrm{doec} \lesssim \sqrt{k}/\gamma$ — exponential gap. Active experimental design (choosing $p$) can be strictly better than passive coverage.
 
 ## DOEC-DEC Bridge
 
-Any $p$ certifying $\mathrm{doec}_{\gamma,\varepsilon}(G,\Lambda) \leq V$ also certifies $\mathrm{dec}_\gamma(G,\Lambda) \leq V + 1/\gamma + \gamma\varepsilon$ (Theorem 5, [[Qin2026Taming]]).
+Any $p$ certifying $\mathrm{doec}_{\gamma,\varepsilon}(G,\Lambda) \leq V$ also certifies $\mathrm{dec}_\gamma(G,\Lambda) \leq V + 1/\gamma + \gamma\varepsilon$ (Theorem 5, [[qin2026Taming]]).
 
 ## Role in Regret (Theorem 1)
 
@@ -60,7 +60,7 @@ $$\mathrm{Reg} \lesssim \tilde{O}\!\left(\sqrt{T \cdot \max_x\,\mathbb{E}[\mathr
 
 ## Key Papers
 
-- [[Qin2026Taming]] — introduced DOEC
+- [[qin2026Taming]] — introduced DOEC
 
 ## Variants
 
@@ -74,4 +74,4 @@ $$\mathrm{Reg} \lesssim \tilde{O}\!\left(\sqrt{T \cdot \max_x\,\mathbb{E}[\mathr
 
 ## Current State and Open Problems
 
-Introduced in 2026 and the newest of the three measures on these pages; [[Qin2026Taming]] is the vault's only source. What is not settled is how to bound it for a given class: the [[epsilon-sec]] route is the simplest but Proposition 3 constructs an exponential gap, and the [[eluder-dimension]] route covers only discrete $\Lambda$. Active.
+Introduced in 2026 and the newest of the three measures on these pages; [[qin2026Taming]] is the vault's only source. What is not settled is how to bound it for a given class: the [[epsilon-sec]] route is the simplest but Proposition 3 constructs an exponential gap, and the [[eluder-dimension]] route covers only discrete $\Lambda$. Active.

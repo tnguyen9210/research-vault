@@ -19,9 +19,9 @@ Each instance replaces $\max_a Q(s,a)$ with an operator $\mathcal{M}_\alpha$ sat
 
 | Instance | Aggregator | Parameter | Limits | Where |
 |---|---|---|---|---|
-| Power-mean MCTS backups ([[mcts-power-mean]]) | power mean | $p$ | avg $p{=}1$ → max $p{\to}\infty$ | [[Dam2024Power]] |
-| Softmax DQN targets ([[softmax-bellman-operator]]) | softmax / log-sum-exp | $\tau$ | avg $\tau{\to}0$ → max $\tau{\to}\infty$ | [[Song2019Revisiting]] |
-| Upper expectiles in offline RL ([[expectile-regression]]) | $\tau$-expectile | $\tau$ | mean $\tau{=}0.5$ → max $\tau{\to}1$ | [[Kostrikov2022Offline]] |
+| Power-mean MCTS backups ([[mcts-power-mean]]) | power mean | $p$ | avg $p{=}1$ → max $p{\to}\infty$ | [[dam2024Power]] |
+| Softmax DQN targets ([[softmax-bellman-operator]]) | softmax / log-sum-exp | $\tau$ | avg $\tau{\to}0$ → max $\tau{\to}\infty$ | [[song2019Revisiting]] |
+| Upper expectiles in offline RL ([[expectile-regression]]) | $\tau$-expectile | $\tau$ | mean $\tau{=}0.5$ → max $\tau{\to}1$ | [[kostrikov2021Offline]] |
 
 ## Literature Survey
 
@@ -29,11 +29,11 @@ The three instances arose independently, in three subfields, for the same stated
 
 ### The instances, and what each one proves
 
-[[Song2019Revisiting]] (softmax DQN targets) is the only instance supplying a **quantitative finite-parameter bound** on the gap to the max, together with exponential convergence in $\tau$. It is therefore the reference point: it shows that the bias a smooth aggregator introduces can be controlled explicitly rather than merely assumed small.
+[[song2019Revisiting]] (softmax DQN targets) is the only instance supplying a **quantitative finite-parameter bound** on the gap to the max, together with exponential convergence in $\tau$. It is therefore the reference point: it shows that the bias a smooth aggregator introduces can be controlled explicitly rather than merely assumed small.
 
-[[Dam2024Power]] (power-mean MCTS) proves $\mathcal{O}(n^{-1/2})$ convergence for the estimator, and finds $p = 2$ consistently best empirically — but the parameter's optimal value is not connected to any property of the environment.
+[[dam2024Power]] (power-mean MCTS) proves $\mathcal{O}(n^{-1/2})$ convergence for the estimator, and finds $p = 2$ consistently best empirically — but the parameter's optimal value is not connected to any property of the environment.
 
-[[Kostrikov2022Offline]] (upper expectiles, IQL) gives only the asymptotic limit: $\tau \to 1$ recovers the support-constrained optimum. Nothing is proved at the $\tau \in \{0.7, 0.9\}$ actually used, which is the weakest of the three positions and also the most consequential, since IQL is the most used of the three methods.
+[[kostrikov2021Offline]] (upper expectiles, IQL) gives only the asymptotic limit: $\tau \to 1$ recovers the support-constrained optimum. Nothing is proved at the $\tau \in \{0.7, 0.9\}$ actually used, which is the weakest of the three positions and also the most consequential, since IQL is the most used of the three methods.
 
 ### Why it is the same pattern and not a coincidence
 
@@ -67,7 +67,7 @@ A pattern with three independent confirmations and no theory of its own. The ope
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[Dam2024Power]], [[Song2019Revisiting]] and [[Kostrikov2022Offline]] comes from their paper pages, written against the PDFs at ingest, including the limits in the table and each paper's guarantee.
+*Sourced.* Everything attributed to [[dam2024Power]], [[song2019Revisiting]] and [[kostrikov2021Offline]] comes from their paper pages, written against the PDFs at ingest, including the limits in the table and each paper's guarantee.
 
 *This page's judgment, not a citation.* That these three are instances of one pattern — no paper says so — the argument in "Why it is the same pattern", and the claim that a unifying analysis looks tractable.
 

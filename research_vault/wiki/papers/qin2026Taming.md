@@ -1,5 +1,6 @@
 ---
 title: "Taming the Monster Every Context: Complexity Measure and Unified Framework for Offline-Oracle Efficient Contextual Bandits"
+aliases: [Qin2026Taming]
 authors: [Hao Qin, Chicheng Zhang]
 year: 2026
 venue: arXiv
@@ -86,7 +87,7 @@ Regret of OE2D (finite $\mathcal{F}$, ERM oracle):
 - [[epsilon-sec]] — bounds DOEC from above (Theorem 3)
 - Chicheng Zhang — second author (advisor)
 - Hao Qin — first author
-- **Generalizes:** [[SimchiLevi2022Bypassing]] (FALCON), Linear FALCON (Xu & Zeevi 2020)
+- **Generalizes:** [[simchi-levi2022Bypassing]] (FALCON), Linear FALCON (Xu & Zeevi 2020)
 - **Offline-oracle counterpart of:** E2D (Foster et al. 2021a)
 
 ## Open Questions

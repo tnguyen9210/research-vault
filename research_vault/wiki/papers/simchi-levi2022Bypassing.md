@@ -1,5 +1,6 @@
 ---
 title: "Bypassing the Monster: A Faster and Simpler Optimal Algorithm for Contextual Bandits under Realizability"
+aliases: [SimchiLevi2022Bypassing]
 authors: [David Simchi-Levi, Yunzong Xu]
 year: 2022
 venue: Mathematics of Operations Research
@@ -58,7 +59,7 @@ $$
 
 **Strengths:** First paper to resolve the open problem of optimal + offline-oracle-efficient contextual bandits. Algorithm is simple. Analysis via dual policy distribution is novel and elegant.
 
-**Limitations:** Requires [[realizability]] ($f^* \in \mathcal{F}$) — no misspecification tolerance. Restricted to discrete (finite) action spaces. [[Qin2026Taming]] later removes both restrictions via DOEC and exploitative F-design.
+**Limitations:** Requires [[realizability]] ($f^* \in \mathcal{F}$) — no misspecification tolerance. Restricted to discrete (finite) action spaces. [[qin2026Taming]] later removes both restrictions via DOEC and exploitative F-design.
 
 ## Connections
 
@@ -69,10 +70,10 @@ $$
 - [[oracle-efficiency]] — this paper's central place in that research line
 - David Simchi-Levi — first author
 - Yunzong Xu — second author
-- **Generalized by:** [[Qin2026Taming]] — extends to general action spaces and drops realizability via DOEC
+- **Generalized by:** [[qin2026Taming]] — extends to general action spaces and drops realizability via DOEC
 
 ## Open Questions (as of this paper)
 
-- Can FALCON extend beyond discrete action spaces? *(resolved by [[Qin2026Taming]])*
-- Can realizability be relaxed to misspecification tolerance? *(partially addressed in [[Qin2026Taming]] appendix)*
+- Can FALCON extend beyond discrete action spaces? *(resolved by [[qin2026Taming]])*
+- Can realizability be relaxed to misspecification tolerance? *(partially addressed in [[qin2026Taming]] appendix)*
 - First-order algorithms (sub-$\sqrt{T}$ regret under favorable gap conditions)?

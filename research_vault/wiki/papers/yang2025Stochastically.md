@@ -1,5 +1,6 @@
 ---
 title: "Stochastically Constrained Best Arm Identification with Thompson Sampling"
+aliases: [Yang2025Stochastically]
 authors: [Le Yang, Siyang Gao, Cheng Li, Yi Wang]
 year: 2025
 venue: arXiv
@@ -76,7 +77,7 @@ PFS on log scale shows linear decay for BFAI-TS — confirming the exponential c
 
 ## Connections
 
-- [[bai-constrained]] — complementary regime: this paper is **fixed-budget** (fixed $n$, minimize PFS); [[Lardy2025Constrained]] is **fixed-confidence** (minimize $\mathbb{E}[\tau_\delta]$). Same problem structure, different theoretical frameworks.
+- [[bai-constrained]] — complementary regime: this paper is **fixed-budget** (fixed $n$, minimize PFS); [[lardy2025Constrained]] is **fixed-confidence** (minimize $\mathbb{E}[\tau_\delta]$). Same problem structure, different theoretical frameworks.
 - [[bai]] — BFAI extends fixed-budget BAI to $m$ stochastic constraints
 - [[bai-cost-aware]] — distinct: CABAI minimizes cumulative testing cost; BFAI minimizes false selection probability within a fixed budget
 - Le Yang — first author

@@ -1,7 +1,7 @@
 ---
 title: "Deep Q-Network (DQN)"
 tags: [deep-reinforcement-learning, q-learning, bellman-operator, deep-q-network]
-introduced_by: [[Song2019Revisiting]]
+introduced_by: [[song2019Revisiting]]
 ---
 
 # Deep Q-Network (DQN)
@@ -24,13 +24,13 @@ optimized by RMSProp with minibatches from a replay buffer. $\theta^-$ is update
 
 **Double DQN (DDQN)** (van Hasselt et al. 2016a): replaces the target with $R(s,a) + \gamma Q_{\theta^-}(s', \arg\max_{a'} Q_\theta(s',a'))$, decoupling action selection from evaluation to reduce [[overestimation-bias]].
 
-**S-DQN / S-DDQN** ([[Song2019Revisiting]]): replace $\max_{a'}$ in the target with the [[softmax-bellman-operator]] at inverse temperature $\tau$. Exploration ($\varepsilon$-greedy) is unchanged.
+**S-DQN / S-DDQN** ([[song2019Revisiting]]): replace $\max_{a'}$ in the target with the [[softmax-bellman-operator]] at inverse temperature $\tau$. Exploration ($\varepsilon$-greedy) is unchanged.
 
 ## Key Papers
 
 - Mnih et al. (2015) — original DQN; human-level Atari performance
 - van Hasselt et al. (2016a) — DDQN; addresses overestimation
-- [[Song2019Revisiting]] — S-DQN/S-DDQN; softmax target reduces overestimation and gradient noise, outperforms DDQN on Atari
+- [[song2019Revisiting]] — S-DQN/S-DDQN; softmax target reduces overestimation and gradient noise, outperforms DDQN on Atari
 
 ## Variants
 

@@ -2,7 +2,7 @@
 title: "Monte-Carlo Tree Search (MCTS)"
 aliases: [MCTS, monte-carlo-tree-search]
 tags: [planning, reinforcement-learning, tree-search, bandits]
-introduced_by: [[Dam2024Power]]
+introduced_by: [[dam2024Power]]
 ---
 
 # Monte-Carlo Tree Search (MCTS)
@@ -29,8 +29,8 @@ Quality measured by convergence rate $r(t)$: $|\mathbb{E}[\hat{V}_n(s_0)] - V^*(
 - **Playout policy** $\pi_0$: random rollout or learned value network
 
 ## Key Papers
-- [[Dam2024Power]] — introduces Stochastic-Power-UCT: power mean backup + polynomial bonus; $\mathcal{O}(n^{-1/2})$ convergence in stochastic MDPs
-- [[Foster2025Foundation]] — MTSS: token-level DP backward induction for autoregressive LM alignment; exponentially better runtime by replacing sequence-level $C_\text{cov}$ with token-level $C_\text{cond}$
+- [[dam2024Power]] — introduces Stochastic-Power-UCT: power mean backup + polynomial bonus; $\mathcal{O}(n^{-1/2})$ convergence in stochastic MDPs
+- [[foster2025Good]] — MTSS: token-level DP backward induction for autoregressive LM alignment; exponentially better runtime by replacing sequence-level $C_\text{cov}$ with token-level $C_\text{cond}$
 
 ## Variants
 
@@ -44,4 +44,4 @@ Quality measured by convergence rate $r(t)$: $|\mathbb{E}[\hat{V}_n(s_0)] - V^*(
 - [[smooth-aggregators]] — the power-mean backup is one of three vault instances of smoothing the max
 
 ## Current State and Open Problems
-UCT remains dominant in practice (AlphaGo, AlphaZero) although its logarithmic bonus assumes exponential concentration of regret where actual concentration is polynomial — the theory for stochastic environments is incomplete, with [[Dam2024Power]] the current progress ($p=2$ consistently best empirically). [[Foster2025Foundation]] connects the framework to LM alignment via MTSS. Per-paper open questions (minimax rate, optimal $p$, adversarial extension, deep value networks) live on the paper pages.
+UCT remains dominant in practice (AlphaGo, AlphaZero) although its logarithmic bonus assumes exponential concentration of regret where actual concentration is polynomial — the theory for stochastic environments is incomplete, with [[dam2024Power]] the current progress ($p=2$ consistently best empirically). [[foster2025Good]] connects the framework to LM alignment via MTSS. Per-paper open questions (minimax rate, optimal $p$, adversarial extension, deep value networks) live on the paper pages.

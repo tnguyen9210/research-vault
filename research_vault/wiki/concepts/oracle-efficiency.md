@@ -36,8 +36,8 @@ The progression is legible as a table, which is why it is given as one:
 | UCCB (Xu & Zeevi 2020) | Offline | $T$ | General |
 | E2D.Off (Foster et al. 2024) | Offline | $T$ | General |
 | Linear FALCON (Xu & Zeevi 2020, §4) | Offline | $\log T$ | Per-context linear |
-| FALCON ([[SimchiLevi2022Bypassing]]) | Offline | $\log T$ | Discrete actions |
-| **OE2D** ([[Qin2026Taming]]) | Offline | $\log T$ | **General** |
+| FALCON ([[simchi-levi2022Bypassing]]) | Offline | $\log T$ | Discrete actions |
+| **OE2D** ([[qin2026Taming]]) | Offline | $\log T$ | **General** |
 
 UCCB was first to handle general classes with an offline oracle, but at $O(T)$ calls it matches the online oracle in count, which undermines the practical motivation for assuming the weaker oracle at all. FALCON achieved $O(\log T)$ for discrete actions under realizability, and was the first to reach optimal regret with an offline oracle. OE2D is the first row that is offline, general and $O(\log T)$ at once — and it drops realizability as well.
 
@@ -45,7 +45,7 @@ UCCB was first to handle general classes with an offline oracle, but at $O(T)$ c
 
 Each of these algorithms has to achieve two things simultaneously: **Low Regret** — take near-optimal actions under the current reward estimate — and **Good Coverage** — collect data that covers all benchmark distributions $\Lambda$. The two pull against each other, since covering the benchmark means acting where the current estimate says not to.
 
-FALCON and Linear FALCON handle them as separate conditions, which is what confines each to its special case. [[Qin2026Taming]] unifies them in a single minimax optimization, [[exploitative-f-design]], and that unification is what generalizes the result to arbitrary function classes. This is the direction's transferable idea: the special cases were not a limitation of the analyses but of treating the two requirements separately.
+FALCON and Linear FALCON handle them as separate conditions, which is what confines each to its special case. [[qin2026Taming]] unifies them in a single minimax optimization, [[exploitative-f-design]], and that unification is what generalizes the result to arbitrary function classes. This is the direction's transferable idea: the special cases were not a limitation of the analyses but of treating the two requirements separately.
 
 ### What governs the offline route
 
@@ -53,7 +53,7 @@ FALCON and Linear FALCON handle them as separate conditions, which is what confi
 
 ### Adjacent: offline policy optimization
 
-Distinct from everything above, and worth separating because the names invite conflation. Given a fixed log $D_n$ from a behavior policy $\pi_{\mathrm{ref}}$, find the best policy without further interaction — no oracle calls, no online rounds, and variance control rather than exploration as the central difficulty. [[Ryu2025Improved]] (COLT 2025) gives PUB, a parameter-free variance-adaptive off-policy selection method built on a betting-based LCB, which does not require realizability or an online loop; freezing the score function improves learning in small-data regimes. The full setting is [[contextual-bandits-offline]]. The distinction to hold: oracle-efficient bandits minimize regret over $T$ *online* rounds while using offline oracle calls; offline policy optimization has no online rounds at all.
+Distinct from everything above, and worth separating because the names invite conflation. Given a fixed log $D_n$ from a behavior policy $\pi_{\mathrm{ref}}$, find the best policy without further interaction — no oracle calls, no online rounds, and variance control rather than exploration as the central difficulty. [[ryu2025Improved]] (COLT 2025) gives PUB, a parameter-free variance-adaptive off-policy selection method built on a betting-based LCB, which does not require realizability or an online loop; freezing the score function improves learning in small-data regimes. The full setting is [[contextual-bandits-offline]]. The distinction to hold: oracle-efficient bandits minimize regret over $T$ *online* rounds while using offline oracle calls; offline policy optimization has no online rounds at all.
 
 ## Variants
 
@@ -71,9 +71,9 @@ Distinct from everything above, and worth separating because the names invite co
 
 ## Current State and Open Problems
 
-Active, and the offline-oracle route has won on practicality. The call-count table reads as a gap that closed in 2026: [[Qin2026Taming]] is offline, general and $O(\log T)$ at once. What remains is not the algorithm but the complexity measure it is stated in.
+Active, and the offline-oracle route has won on practicality. The call-count table reads as a gap that closed in 2026: [[qin2026Taming]] is offline, general and $O(\log T)$ at once. What remains is not the algorithm but the complexity measure it is stated in.
 
-- **Bounding DOEC for concrete classes.** Whether $\varepsilon$-SEC or eluder dimension is the right route is unsettled, and Proposition 3 of [[Qin2026Taming]] constructs an exponential gap for the first.
+- **Bounding DOEC for concrete classes.** Whether $\varepsilon$-SEC or eluder dimension is the right route is unsettled, and Proposition 3 of [[qin2026Taming]] constructs an exponential gap for the first.
 - **Lower bounds on DOEC.** When is offline-oracle-efficient learning information-theoretically hard? The measure has no matching hardness result.
 - **First-order algorithms.** Sub-$\sqrt{T}$ regret under favourable conditions, and an online-to-offline reduction for them (cf. Foster & Krishnamurthy 2021).
 - **Beyond iid contexts.** Partial monitoring, RLHF and non-iid context distributions are all named as frontiers with no result behind them here.
@@ -81,9 +81,9 @@ Active, and the offline-oracle route has won on practicality. The call-count tab
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[SimchiLevi2022Bypassing]], [[Qin2026Taming]] and [[Ryu2025Improved]] comes from their paper pages, written against the PDFs at ingest.
+*Sourced.* Everything attributed to [[simchi-levi2022Bypassing]], [[qin2026Taming]] and [[ryu2025Improved]] comes from their paper pages, written against the PDFs at ingest.
 
-*Cited author–year, no paper page.* UCCB and Linear FALCON (Xu & Zeevi 2020), E2D (Foster et al. 2021a), E2D.Off (Foster et al. 2024), and Foster & Krishnamurthy (2021). The call-count table's rows for these are taken from how [[Qin2026Taming]] and [[SimchiLevi2022Bypassing]] position themselves, not from the papers directly — they have not been checked at source.
+*Cited author–year, no paper page.* UCCB and Linear FALCON (Xu & Zeevi 2020), E2D (Foster et al. 2021a), E2D.Off (Foster et al. 2024), and Foster & Krishnamurthy (2021). The call-count table's rows for these are taken from how [[qin2026Taming]] and [[simchi-levi2022Bypassing]] position themselves, not from the papers directly — they have not been checked at source.
 
 *This page's judgment, not a citation.* The reading of FALCON's restriction to special cases as a consequence of treating Low Regret and Good Coverage separately, and the framing of the whole line around a single closing gap.
 

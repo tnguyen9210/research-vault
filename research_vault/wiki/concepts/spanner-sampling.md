@@ -1,7 +1,7 @@
 ---
 title: "SpannerSampling"
 tags: [rlhf, active-exploration, language-model-alignment, algorithms]
-introduced_by: [[Foster2025Foundation]]
+introduced_by: [[foster2025Good]]
 ---
 
 # SpannerSampling
@@ -10,7 +10,7 @@ introduced_by: [[Foster2025Foundation]]
 
 ## Intuition
 
-The key idea is *improper exploration*: SpannerSampling never queries the reward oracle with samples from a linear softmax policy $\pi_\theta \in \Pi$. Instead it uses $\pi_\text{ref}$ to build a small *spanner* — a compact set of response pairs that covers the feature space in directions relevant to $\pi^*_\beta$ — then explores in directions *not* already covered. This breaks the proper-exploration barrier (Thm 4.1 in [[Foster2025Foundation]]).
+The key idea is *improper exploration*: SpannerSampling never queries the reward oracle with samples from a linear softmax policy $\pi_\theta \in \Pi$. Instead it uses $\pi_\text{ref}$ to build a small *spanner* — a compact set of response pairs that covers the feature space in directions relevant to $\pi^*_\beta$ — then explores in directions *not* already covered. This breaks the proper-exploration barrier (Thm 4.1 in [[foster2025Good]]).
 
 The truncation in the exploration phase is the critical mechanism: it restricts exploration to directions outside the spanner's coverage, ensuring that only $\tilde{O}(C_\text{cov}(\pi^*_\beta))$ oracle calls suffice per round via rejection sampling from $\pi_\text{ref}$.
 
@@ -30,13 +30,13 @@ $$T_\text{data}(\varepsilon,\delta) = \tilde{O}\!\left(\frac{R_\text{max}^2}{\be
 
 ## Key Papers
 
-- [[Foster2025Foundation]] — introduces SpannerSampling; proves Thm 3.1 (upper bound) and Thm 2.1 (matching $C_\text{cov}$ lower bound); also introduces MTSS (multi-turn extension)
+- [[foster2025Good]] — introduces SpannerSampling; proves Thm 3.1 (upper bound) and Thm 2.1 (matching $C_\text{cov}$ lower bound); also introduces MTSS (multi-turn extension)
 
 ## Related Concepts
 
 - [[coverage-coefficient]] — governs $T_\text{comp}$; SpannerSampling achieves the lower bound in $C_\text{cov}$
 - [[linear-softmax-policy]] — the policy class for which SpannerSampling is designed
-- [[mcts]] — MTSS (MultiTurnSpannerSampling) is the token-level DP extension; structurally analogous to backward induction in MDPs; [[Dam2024Power]] studies MCTS convergence in stochastic environments
+- [[mcts]] — MTSS (MultiTurnSpannerSampling) is the token-level DP extension; structurally analogous to backward induction in MDPs; [[dam2024Power]] studies MCTS convergence in stochastic environments
 - [[test-time-scaling]] — SpannerSampling is a formal instance of inference-time exploration beating training-time-only methods
 
 ## Current State and Open Problems

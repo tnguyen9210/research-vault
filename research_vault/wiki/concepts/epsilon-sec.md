@@ -2,12 +2,12 @@
 title: "$\\varepsilon$-Sequential Extrapolation Coefficient ($\\varepsilon$-SEC)"
 aliases: [epsilon-SEC]
 tags: [contextual-bandits, complexity-measure, oracle-efficiency, coverage]
-introduced_by: [[Qin2026Taming]]
+introduced_by: [[qin2026Taming]]
 ---
 
 # $\varepsilon$-Sequential Extrapolation Coefficient ($\varepsilon$-SEC)
 
-**Definition:** A passive measure of exploration difficulty: the worst-case accumulated coverage of each benchmark distribution $\lambda_i$ by the mixture of distributions chosen up to and including step $i$. Introduced in [[Qin2026Taming]] as a modification of Xie et al. (2022)'s SEC, and used there to upper bound [[decision-offline-estimation-coefficient]].
+**Definition:** A passive measure of exploration difficulty: the worst-case accumulated coverage of each benchmark distribution $\lambda_i$ by the mixture of distributions chosen up to and including step $i$. Introduced in [[qin2026Taming]] as a modification of Xie et al. (2022)'s SEC, and used there to upper bound [[decision-offline-estimation-coefficient]].
 
 ## Intuition
 
@@ -25,13 +25,13 @@ $$
 
 Smaller means samples from $p$ are more informative for evaluating $q$.
 
-**Definition 3 of [[Qin2026Taming]].** With $\lambda_{1:i} := \sum_{j=1}^i \lambda_j$,
+**Definition 3 of [[qin2026Taming]].** With $\lambda_{1:i} := \sum_{j=1}^i \lambda_j$,
 
 $$
 \text{SEC}_\varepsilon(\mathcal{G},\Lambda) = \sup_{N\in\mathbb{N}}\ \sup_{\lambda_1,\dots,\lambda_N\in\Lambda}\ \sum_{i=1}^N \text{Coverage}_{N\varepsilon}(\lambda_{1:i},\lambda_i;\mathcal{G}).
 $$
 
-Two deliberate differences from the original SEC (Xie et al. 2022): the regularization parameter is $N\varepsilon$, scaling with the number of terms rather than fixed at 1; and coverage is measured of $\lambda_{1:i}$ on $\lambda_i$ rather than $\lambda_{1:i-1}$ on $\lambda_i$. [[Qin2026Taming]] reports that this off-by-one adjustment is what makes the quantity usable for constructing an exploration distribution certifying low DOEC, and lets it give guarantees where optimism-based approaches do not suffice.
+Two deliberate differences from the original SEC (Xie et al. 2022): the regularization parameter is $N\varepsilon$, scaling with the number of terms rather than fixed at 1; and coverage is measured of $\lambda_{1:i}$ on $\lambda_i$ rather than $\lambda_{1:i-1}$ on $\lambda_i$. [[qin2026Taming]] reports that this off-by-one adjustment is what makes the quantity usable for constructing an exploration distribution certifying low DOEC, and lets it give guarantees where optimism-based approaches do not suffice.
 
 **Theorem 3.** $\text{doec}_{\gamma,\varepsilon}(\mathcal{G},\Lambda) \le \frac{10}{\gamma}\,\text{SEC}_{\gamma\varepsilon}(\mathcal{G},\Lambda)$.
 
@@ -42,7 +42,7 @@ Two deliberate differences from the original SEC (Xie et al. 2022): the regulari
 ## Key Papers
 
 - Xie et al. (2022) — the original SEC, used to unify optimism-based RL analyses under low coverability and small Bellman Eluder dimension
-- [[Qin2026Taming]] — introduces $\varepsilon$-SEC; Theorem 3 (upper bounds [[decision-offline-estimation-coefficient]]), Proposition 1 (Eluder grounding), Proposition 3 (exponential looseness)
+- [[qin2026Taming]] — introduces $\varepsilon$-SEC; Theorem 3 (upper bounds [[decision-offline-estimation-coefficient]]), Proposition 1 (Eluder grounding), Proposition 3 (exponential looseness)
 - Agarwal et al. (2024) — nonlinear $F$-design; the $\gamma\to0$ pure-exploration specialization generalizes their Theorem 4.2
 
 ## Related Concepts
@@ -55,4 +55,4 @@ Two deliberate differences from the original SEC (Xie et al. 2022): the regulari
 
 ## Current State and Open Problems
 
-Useful but known to be lossy. It is the main structural tool for certifying bounded [[decision-offline-estimation-coefficient]] and connects the DOEC framework to the established Eluder-dimension literature, but [[Qin2026Taming]] itself demonstrates the exponential gap and lists "tighter structural characterizations of DOEC beyond $\varepsilon$-SEC" as an open problem. The gap is not a technical artifact — it reflects a genuine distinction between passive coverage and active experimental design.
+Useful but known to be lossy. It is the main structural tool for certifying bounded [[decision-offline-estimation-coefficient]] and connects the DOEC framework to the established Eluder-dimension literature, but [[qin2026Taming]] itself demonstrates the exponential gap and lists "tighter structural characterizations of DOEC beyond $\varepsilon$-SEC" as an open problem. The gap is not a technical artifact — it reflects a genuine distinction between passive coverage and active experimental design.

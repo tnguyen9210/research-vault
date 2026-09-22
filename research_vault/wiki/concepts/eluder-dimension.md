@@ -1,7 +1,7 @@
 ---
 title: "Eluder Dimension"
 tags: [function-approximation, complexity-measure, bandits, learning-theory]
-introduced_by: [[Qin2026Taming]]
+introduced_by: [[qin2026Taming]]
 ---
 
 # Eluder Dimension
@@ -16,9 +16,9 @@ The name is literal — it counts how long a point can "elude" being determined 
 
 ## Formal Description
 
-Informally, $\text{Edim}(\mathcal{G},\varepsilon)$ is the length of the longest sequence $a_1,\dots,a_n$ such that each $a_i$ is $\varepsilon$-independent of $\{a_1,\dots,a_{i-1}\}$: there exist $g,g'\in\mathcal{G}$ with $\sqrt{\sum_{j<i}(g(a_j)-g'(a_j))^2}\le\varepsilon$ yet $|g(a_i)-g'(a_i)|>\varepsilon$. (Formal statement: Russo & Van Roy 2013; Definition 6, Appendix C.3.1 of [[Qin2026Taming]].)
+Informally, $\text{Edim}(\mathcal{G},\varepsilon)$ is the length of the longest sequence $a_1,\dots,a_n$ such that each $a_i$ is $\varepsilon$-independent of $\{a_1,\dots,a_{i-1}\}$: there exist $g,g'\in\mathcal{G}$ with $\sqrt{\sum_{j<i}(g(a_j)-g'(a_j))^2}\le\varepsilon$ yet $|g(a_i)-g'(a_i)|>\varepsilon$. (Formal statement: Russo & Van Roy 2013; Definition 6, Appendix C.3.1 of [[qin2026Taming]].)
 
-**Role in this vault.** Eluder dimension enters as a *sufficient condition* for the sharper measures actually being studied. Proposition 1 of [[Qin2026Taming]]: for $\Lambda = \{\delta_a : a\in\mathcal{A}\}$,
+**Role in this vault.** Eluder dimension enters as a *sufficient condition* for the sharper measures actually being studied. Proposition 1 of [[qin2026Taming]]: for $\Lambda = \{\delta_a : a\in\mathcal{A}\}$,
 
 $$
 \text{SEC}_\varepsilon(\mathcal{G},\Lambda) \lesssim \text{Edim}(\mathcal{G},\sqrt{\varepsilon})\log^2(1/\varepsilon),
@@ -32,8 +32,8 @@ So small Eluder dimension bounds [[epsilon-sec]], which bounds [[decision-offlin
 
 - Russo & Van Roy (2013) — introduces Eluder dimension for optimistic algorithms in bandits and RL
 - Jin et al. (2021a) — Bellman Eluder dimension; the RL extension
-- [[Qin2026Taming]] — uses it to certify small [[epsilon-sec]] and hence small [[decision-offline-estimation-coefficient]] (Proposition 1)
-- [[Yin2023Offline]] — argues the tractable instances of Eluder dimension are still essentially linear-in-features, motivating [[differentiable-function-approximation]] as an alternative structural handle
+- [[qin2026Taming]] — uses it to certify small [[epsilon-sec]] and hence small [[decision-offline-estimation-coefficient]] (Proposition 1)
+- [[yin2023Offline]] — argues the tractable instances of Eluder dimension are still essentially linear-in-features, motivating [[differentiable-function-approximation]] as an alternative structural handle
 
 ## Variants
 
@@ -48,4 +48,4 @@ So small Eluder dimension bounds [[epsilon-sec]], which bounds [[decision-offlin
 
 ## Current State and Open Problems
 
-A standard tool for proving sequential learnability beyond linear models, but with a known limitation the vault records twice: its concrete tractable instances remain close to linear-in-features (a point made in Wen & Van Roy 2013 §4.1 and cited by [[Yin2023Offline]]), and it is a *sufficient* rather than necessary condition — [[Qin2026Taming]] shows [[epsilon-sec]] can be exponentially loose relative to [[decision-offline-estimation-coefficient]], so the chain from Eluder dimension down to the true complexity can be doubly loose.
+A standard tool for proving sequential learnability beyond linear models, but with a known limitation the vault records twice: its concrete tractable instances remain close to linear-in-features (a point made in Wen & Van Roy 2013 §4.1 and cited by [[yin2023Offline]]), and it is a *sufficient* rather than necessary condition — [[qin2026Taming]] shows [[epsilon-sec]] can be exponentially loose relative to [[decision-offline-estimation-coefficient]], so the chain from Eluder dimension down to the true complexity can be doubly loose.

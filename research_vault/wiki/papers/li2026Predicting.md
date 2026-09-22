@@ -1,5 +1,6 @@
 ---
 title: "Predicting and improving test-time scaling laws via reward tail-guided search"
+aliases: [Li2026Predicting]
 authors: [Muheng Li, Jian Qian, Wenlong Mou]
 year: 2026
 venue: arXiv
@@ -86,7 +87,7 @@ Evaluated on AMC23, AIME24, AIME25 with Llama-3.2-1B-Instruct and Qwen2.5-7B-Ins
 - Jian Qian — second author
 - Wenlong Mou — third/senior author
 - **Related (structural):** [[bai]] — SLG's state selection phase is structurally a fixed-budget BAI problem; concentrate on the best "arm" (intermediate state) after a pilot round
-- **Related (structural):** [[Kanarios2024Cost]] — CABAI's cost-aware allocation parallels SLG's budget-aware state selection
+- **Related (structural):** [[kanarios2024Cost]] — CABAI's cost-aware allocation parallels SLG's budget-aware state selection
 
 ## Open Questions
 

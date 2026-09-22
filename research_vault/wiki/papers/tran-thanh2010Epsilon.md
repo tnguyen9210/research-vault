@@ -1,5 +1,6 @@
 ---
 title: "Epsilon-First Policies for Budget-Limited Multi-Armed Bandits"
+aliases: [TranThanh2010Epsilon]
 authors: [Long Tran-Thanh, Archie Chapman, Enrique Munoz de Cote, Alex Rogers, Nicholas R. Jennings]
 year: 2010
 venue: AAAI
@@ -60,7 +61,7 @@ $$
 L(A_{\varepsilon\text{-first}}) \le 2\varepsilon B\, D_{\max} + 2B\sqrt{\frac{(-\ln\delta)\sum_{j=1}^k c_j}{\varepsilon B}} .
 $$
 
-**On the $O(B^{2/3})$ figure.** This paper never states it. Balancing the two terms of Corollary 2 gives $\varepsilon^* \propto B^{-1/3}$ and hence loss $O(B^{2/3})$, but that optimization — and the claim that $\varepsilon$-first is *provably stuck* at that rate — comes from [[TranThanh2012Knapsack]] in retrospect. What is here is the bound above, parameterized by $\varepsilon$ and $\delta$.
+**On the $O(B^{2/3})$ figure.** This paper never states it. Balancing the two terms of Corollary 2 gives $\varepsilon^* \propto B^{-1/3}$ and hence loss $O(B^{2/3})$, but that optimization — and the claim that $\varepsilon$-first is *provably stuck* at that rate — comes from [[tran-thanh2012Knapsack]] in retrospect. What is here is the bound above, parameterized by $\varepsilon$ and $\delta$.
 
 **Experiments.** Six-armed machines, Gaussian rewards (variance 0.1, support $[0,20]$), budgets 400–4000, three regimes: homogeneous costs, moderately diverse, extremely diverse. Compared against a cost-modified $\varepsilon_n$-greedy (pull the highest reward-cost-ratio arm w.p. $1-\varepsilon_n$).
 
@@ -84,7 +85,7 @@ The tie in the homogeneous case is expected and honestly explained: when costs a
 
 - [[budget-limited-mab]] — **introduced here**, along with the unbounded-knapsack characterization of its optimum and the reward-density $\mu_i/c_i$ statistic
 - [[budget-limited-mab-epsilon-first]] — the policy family this paper proposes and bounds
-- **Superseded by:** [[TranThanh2012Knapsack]] — same problem, same group; [[budget-limited-mab-kube]] interleaves exploration and exploitation through a UCB-augmented knapsack and reaches the optimal $O(\ln B)$ with a matching lower bound
+- **Superseded by:** [[tran-thanh2012Knapsack]] — same problem, same group; [[budget-limited-mab-kube]] interleaves exploration and exploitation through a UCB-augmented knapsack and reaches the optimal $O(\ln B)$ with a matching lower bound
 - [[upper-confidence-bound]] — used here only as an *exploration* baseline inside the $\varepsilon$-first shell, and shown not to help; the 2012 paper instead puts UCB inside the knapsack objective itself, which does help
 - [[budget-limited-mab-kube]] — the successor algorithm
 - Long Tran-Thanh, Archie Chapman, Enrique Munoz de Cote, Alex Rogers, Nicholas R. Jennings — authors

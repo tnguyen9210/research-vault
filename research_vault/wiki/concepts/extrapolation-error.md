@@ -1,7 +1,7 @@
 ---
 title: "Extrapolation Error (Offline RL)"
 tags: [offline-reinforcement-learning, distributional-shift, function-approximation, coverage, bellman-operator]
-introduced_by: [[Kostrikov2022Offline]]
+introduced_by: [[kostrikov2021Offline]]
 ---
 
 # Extrapolation Error (Offline RL)
@@ -138,14 +138,14 @@ Replace the point estimate with a lower confidence bound $Q_\text{LCB}(s,a) = \w
 
 Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pessimistic FQI takes $\max\{9,5,-2\} = 9$ and picks $A$. The penalty does not make the estimate of $B$ more accurate — it makes the algorithm decline to act on an estimate it has no evidence for. See [[fqi-pessimistic]] for the version where $b$ is the gradient-geometry width $\beta\|\nabla_\theta f\|_{\Sigma_h^{-1}}$.
 
-**Where the penalty is applied matters as much as its size.** Subtracting $b$ only at policy extraction gives a cautious final policy computed from values that were *already* contaminated during the backups. To actually stop the propagation, the penalized $\hat Q$ must be what feeds the next Bellman target — so this table has to be evaluated at every stage, not once at the end. [[fqi-pessimistic]] walks through Algorithm 1 of [[Yin2023Offline]] line by line on exactly this point.
+**Where the penalty is applied matters as much as its size.** Subtracting $b$ only at policy extraction gives a cautious final policy computed from values that were *already* contaminated during the backups. To actually stop the propagation, the penalized $\hat Q$ must be what feeds the next Bellman target — so this table has to be evaluated at every stage, not once at the end. [[fqi-pessimistic]] walks through Algorithm 1 of [[yin2023Offline]] line by line on exactly this point.
 
 ## Key Papers
 
 - Fujimoto, Meger & Precup (2019) — BCQ; names extrapolation error and isolates it as the central obstacle in batch RL
 - Levine et al. (2020) — the offline RL survey that made distributional shift the organizing frame
-- [[Kostrikov2022Offline]] — the in-sample answer: never evaluate an out-of-sample action, so extrapolation error cannot enter the target at all
-- [[Yin2023Offline]] — the pessimism answer with an instance-dependent guarantee; the penalty is an effective-sample-size width along $\nabla_\theta f$
+- [[kostrikov2021Offline]] — the in-sample answer: never evaluate an out-of-sample action, so extrapolation error cannot enter the target at all
+- [[yin2023Offline]] — the pessimism answer with an instance-dependent guarantee; the penalty is an effective-sample-size width along $\nabla_\theta f$
 - Kumar et al. (2020) — CQL; pushes down $Q$ on out-of-distribution actions rather than penalizing at selection time
 - Chen & Jiang (2019) — concentrability and completeness; where coverage conditions enter batch RL analysis formally
 
@@ -161,4 +161,4 @@ Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pes
 
 ## Current State and Open Problems
 
-The consensus diagnosis for why naive batch RL fails, and the organizing problem of the field. Two families of answer are established — penalize the uncertainty (pessimism, conservatism) or refuse the query (in-sample learning) — and the vault holds a strong representative of each. What remains unsettled is quantitative rather than conceptual: how to measure the degree of extrapolation a given dataset forces without an all-policy coverage assumption, and how to state a bound in terms of *density* near the actions that matter rather than a binary support indicator. That gap is exactly what separates [[Yin2023Offline]]'s uniform coverage and [[Kostrikov2022Offline]]'s support condition from the density-aware [[coverage-coefficient]].
+The consensus diagnosis for why naive batch RL fails, and the organizing problem of the field. Two families of answer are established — penalize the uncertainty (pessimism, conservatism) or refuse the query (in-sample learning) — and the vault holds a strong representative of each. What remains unsettled is quantitative rather than conceptual: how to measure the degree of extrapolation a given dataset forces without an all-policy coverage assumption, and how to state a bound in terms of *density* near the actions that matter rather than a binary support indicator. That gap is exactly what separates [[yin2023Offline]]'s uniform coverage and [[kostrikov2021Offline]]'s support condition from the density-aware [[coverage-coefficient]].

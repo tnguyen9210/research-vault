@@ -2,7 +2,7 @@
 title: "Pessimistic Fitted Q-Learning (PFQL)"
 aliases: [PFQL, VAFQL, pessimistic-fitted-q-learning, pfql-algorithm-1, fitted-q-iteration-pessimistic]
 tags: [offline-reinforcement-learning, pessimism, fitted-q-iteration, differentiable-function-approximation, variance-awareness, algorithm-walkthrough]
-introduced_by: [[Yin2023Offline]]
+introduced_by: [[yin2023Offline]]
 ---
 
 # Pessimistic Fitted Q-Learning (PFQL)
@@ -10,7 +10,7 @@ introduced_by: [[Yin2023Offline]]
 **Definition:** Backward fitted Q-iteration over a [[differentiable-function-approximation]] class in which each Q-estimate is penalized by a data-driven uncertainty bonus $\Gamma_h(s,a) = \beta\sqrt{\nabla_\theta f(\hat\theta_h,\phi)^\top\Sigma_h^{-1}\nabla_\theta f(\hat\theta_h,\phi)}$, where $\Sigma_h$ is the Gram matrix of parameter gradients on the offline data.
 
 > **Scope.** The concept and the line-by-line reading of Algorithm 1
-> of [[Yin2023Offline]], on one page. **Assumed, not restated here:**
+> of [[yin2023Offline]], on one page. **Assumed, not restated here:**
 > the FQI template and its notation, on [[fqi]]; the
 > model class, on [[differentiable-function-approximation]].
 > **Left to other pages:** the failure pessimism corrects,
@@ -100,7 +100,7 @@ Z_h(\theta) := \sum_k\big[f(\theta,\phi_{h,k}) - r_{h,k} - \hat V_{h+1}(s^k_{h+1
 \qquad Z_h(\hat\theta_h) = 0 .
 $$
 
-Expanding $Z_h$ around $\hat\theta_h$ produces a curvature term $\Delta\Sigma_h^s = \sum_k[\text{residual}_k]\nabla^2_{\theta\theta}f$ that destroys positive definiteness — under linearity $\nabla^2_{\theta\theta}f\equiv 0$ and it vanishes. Working around it is the technical content of [[Yin2023Offline]].
+Expanding $Z_h$ around $\hat\theta_h$ produces a curvature term $\Delta\Sigma_h^s = \sum_k[\text{residual}_k]\nabla^2_{\theta\theta}f$ that destroys positive definiteness — under linearity $\nabla^2_{\theta\theta}f\equiv 0$ and it vanishes. Working around it is the technical content of [[yin2023Offline]].
 
 Practically, the square loss is the *reason* FQI was chosen here: SGD applies directly, unlike the maxmin objectives that general-function-approximation theory produces.
 
@@ -210,7 +210,7 @@ Two consequences worth extracting.
 
 **What pessimism actually costs you.** The penalty evaluated *along the comparator policy's trajectory* — not the model's uncertainty in general. What matters is how uncertain the model is exactly where $\pi^*$ would go, which is why the bound is instance-dependent (see [[instance-dependent-bounds]]) and why coverage of $\pi^*$ specifically is the operative condition rather than coverage everywhere.
 
-**Where the nonlinearity bites.** The whole guarantee rests on that validity condition, and there is a circularity in establishing it: $\Gamma_h$ is computed from $\hat\theta_h$, so the penalty meant to protect against a bad fit is itself built from the fit. Plug in an arbitrary $\theta$ and $\Gamma_h$ is meaningless, possibly harmful. In a linear MDP no such issue arises — $\phi^\top(\Sigma_h^\text{linear})^{-1}\phi$ has no parameter dependence. [[Yin2023Offline]] breaks the circle with a non-asymptotic $\|\theta_{\mathcal{T}\hat V_{h+1}} - \hat\theta_h\|_2 = \tilde{O}(\sqrt{dH}/(\kappa\sqrt{K}))$, obtained by reducing to Chen & Jiang's GFA analysis plus covering — the OPE predecessor (Zhang et al. 2022a) had only an asymptotic $B(\delta)/\sqrt{K}$, which could hide an $e^H$ and destroy sample efficiency.
+**Where the nonlinearity bites.** The whole guarantee rests on that validity condition, and there is a circularity in establishing it: $\Gamma_h$ is computed from $\hat\theta_h$, so the penalty meant to protect against a bad fit is itself built from the fit. Plug in an arbitrary $\theta$ and $\Gamma_h$ is meaningless, possibly harmful. In a linear MDP no such issue arises — $\phi^\top(\Sigma_h^\text{linear})^{-1}\phi$ has no parameter dependence. [[yin2023Offline]] breaks the circle with a non-asymptotic $\|\theta_{\mathcal{T}\hat V_{h+1}} - \hat\theta_h\|_2 = \tilde{O}(\sqrt{dH}/(\kappa\sqrt{K}))$, obtained by reducing to Chen & Jiang's GFA analysis plus covering — the OPE predecessor (Zhang et al. 2022a) had only an asymptotic $B(\delta)/\sqrt{K}$, which could hide an $e^H$ and destroy sample efficiency.
 
 ## 9. VAFQL — the variance-aware variant
 
@@ -234,7 +234,7 @@ Theorem 4.1 is the resulting guarantee, with $\Sigma^\star_h$ replaced by $\Lamb
 ## 11. Provenance
 
 *Source.* Everything in §2–§10 follows Algorithm 1 of
-[[Yin2023Offline]] (Yin, Duan, Wang & Wang, *Offline RL with
+[[yin2023Offline]] (Yin, Duan, Wang & Wang, *Offline RL with
 Differentiable Function Approximation is Provably Efficient*, ICLR
 2023), read against the paper on 2026-08-19. The line numbering is
 theirs; the section titles, the line-by-line commentary and the
@@ -265,7 +265,7 @@ algorithm, the bonus reading and VAFQL.
 
 ## Key Papers
 
-- [[Yin2023Offline]] — introduces PFQL and VAFQL; first instance-dependent offline RL guarantee under nonlinear function approximation
+- [[yin2023Offline]] — introduces PFQL and VAFQL; first instance-dependent offline RL guarantee under nonlinear function approximation
 - Jin et al. (2021b) — PEVI, the linear-MDP special case PFQL strictly generalizes
 - Yin & Wang (2021) — VPVI, the tabular predecessor
 - Yin et al. (2022) — variance-aware linear offline RL, recovered by VAFQL up to $\sqrt{d}$
@@ -287,7 +287,7 @@ algorithm, the bonus reading and VAFQL.
 - [[extrapolation-error]] — the offline-specific failure the penalty is aimed at, and what the ordering of lines 6–9 is designed to stop
 - [[overestimation-bias]] — the failure mode pessimism corrects
 - [[implicit-q-learning]] — the opposing design in offline RL: rather than penalize uncertainty at out-of-sample actions, never evaluate them. Empirically strong, theoretically much weaker
-- [[importance-weighting]] / [[Ryu2025Improved]] — pessimism via betting-based LCBs, applied to offline policy *selection* rather than learning
+- [[importance-weighting]] / [[ryu2025Improved]] — pessimism via betting-based LCBs, applied to offline policy *selection* rather than learning
 - [[2026-08-19-offline-fqi-walkthrough]] — the saved query that arrives here from the FQI template
 - **Model-based/model-free bridge:** FQI is a batch Q-learning update but also an instantiation of approximate value iteration, so PFQL unifies the value-iteration (PEVI, VPVI) and fitted-Q lineages
 

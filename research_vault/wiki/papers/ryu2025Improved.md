@@ -1,5 +1,6 @@
 ---
 title: "Improved Offline Contextual Bandits with Second-Order Bounds: Betting and Freezing"
+aliases: [Ryu2025Improved]
 authors: [J. Jon Ryu, Jeongyeol Kwon, Benjamin Koppe, Kwang-Sung Jun]
 year: 2025
 venue: COLT
@@ -70,8 +71,8 @@ where $F_\beta(\phi) \geq 0$ is the *negative influence* of $\phi$. The bound re
 - [[importance-weighting]] — IW estimator $\tilde{r}_t^\pi = w_t^\pi r_t$ is the central primitive
 - [[contextual-bandits-online]] — offline variant: policy class fixed, no further environment interaction
 - [[oracle-efficiency]] — adjacent line: those results minimize online regret via offline oracle calls; this paper optimizes from a fixed log
-- [[SimchiLevi2022Bypassing]] — FALCON also uses offline data but addresses regret in an online setting under realizability; this paper requires neither realizability nor online interaction
-- **Shares the pessimism principle:** [[Yin2023Offline]] — PFQL applies a lower-confidence penalty to offline *policy learning* in sequential MDPs, with the uncertainty measured by gradient geometry rather than betting-based IW concentration; both deliver [[instance-dependent-bounds]] adapted to the data at hand
+- [[simchi-levi2022Bypassing]] — FALCON also uses offline data but addresses regret in an online setting under realizability; this paper requires neither realizability nor online interaction
+- **Shares the pessimism principle:** [[yin2023Offline]] — PFQL applies a lower-confidence penalty to offline *policy learning* in sequential MDPs, with the uncertainty measured by gradient geometry rather than betting-based IW concentration; both deliver [[instance-dependent-bounds]] adapted to the data at hand
 - [[instance-dependent-bounds]] — PUB's variance adaptivity is the bandit-side instance of this guarantee type
 - J. Jon Ryu, Kwang-Sung Jun — authors
 

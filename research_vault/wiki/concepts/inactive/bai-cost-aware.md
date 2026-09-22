@@ -2,7 +2,7 @@
 title: "Cost-Aware Best Arm Identification"
 aliases: [CABAI, cost-aware BAI, cabai, best-arm-identification-cost-aware, cost-aware-bai]
 tags: [bandits, pure-exploration, cost-aware, cabai]
-introduced_by: [[Kanarios2024Cost]]
+introduced_by: [[kanarios2024Cost]]
 ---
 
 # Cost-Aware Best Arm Identification
@@ -19,7 +19,7 @@ Models the testing/deployment split in product development: during testing each 
 
 Instance $(\mu, c)$: $\mu = (\mu_1, \ldots, \mu_K)$ reward means, $c = (c_1, \ldots, c_K)$ cost means. Arms from a natural exponential family (Assumption 1); costs bounded positive (Assumption 2). At round $t$, observe $(R_t, C_t) \sim \nu_{\mu_{A_t}} \times \nu_{c_{A_t}}$.
 
-**Lower bound (Theorem 1 of [[Kanarios2024Cost]]):**
+**Lower bound (Theorem 1 of [[kanarios2024Cost]]):**
 
 $$
 \mathbb{E}[J(\tau_\delta)] \geq T^*(\mu)\log\frac{1}{\delta}, \qquad
@@ -38,15 +38,15 @@ The vault's most developed pure-exploration thread. What organizes it is not the
 
 ### Cost as the objective
 
-The allocation is chosen to minimize what identification *costs*. [[Kanarios2024Cost]] introduces CABAI and proves the $T^*(\mu)$ lower bound above, whose solution gives the $\sqrt{c_a}$ proportions. Two algorithms realize it: **CTAS** (Algorithm 1) tracks $w^*(\hat\mu)$ by largest-deficit sampling with forced exploration and a Chernoff stopping rule, and is asymptotically optimal (Theorem 2); **CO** (Algorithm 2) drops the plug-in optimization for the model-free rule $\arg\min_a \sqrt{c_a}\,N_a(t)$ with elimination-based stopping, is optimal for the 2-arm Gaussian case (Theorem 3), and runs roughly 20–50$\times$ faster. That a rule this simple is near-optimal empirically is the paper's practical claim; that it is *provably* optimal only for $K=2$ is its main gap.
+The allocation is chosen to minimize what identification *costs*. [[kanarios2024Cost]] introduces CABAI and proves the $T^*(\mu)$ lower bound above, whose solution gives the $\sqrt{c_a}$ proportions. Two algorithms realize it: **CTAS** (Algorithm 1) tracks $w^*(\hat\mu)$ by largest-deficit sampling with forced exploration and a Chernoff stopping rule, and is asymptotically optimal (Theorem 2); **CO** (Algorithm 2) drops the plug-in optimization for the model-free rule $\arg\min_a \sqrt{c_a}\,N_a(t)$ with elimination-based stopping, is optimal for the 2-arm Gaussian case (Theorem 3), and runs roughly 20–50$\times$ faster. That a rule this simple is near-optimal empirically is the paper's practical claim; that it is *provably* optimal only for $K=2$ is its main gap.
 
 ### Cost as a feasibility constraint
 
-Here cost does not price the search — it restricts which arm counts as the answer. [[Lardy2025Constrained]] introduces CBAI in the fixed-confidence regime: each arm has a joint (reward, cost) distribution, and the target is the best-reward arm whose *mean cost* satisfies $\mathbb{E}[C_k] \le \gamma$. Reward and cost may be dependent, which CABAI assumes away. The characteristic time $T^*$ comes from a transportation-cost interface, and asymptotically optimal Track-and-Stop variants are given for Gaussian arms (fixed and unknown covariance) and for non-parametric arms on $[0,1]^2$. The answer set gains an element — all arms may be infeasible — which has no counterpart in CABAI.
+Here cost does not price the search — it restricts which arm counts as the answer. [[lardy2025Constrained]] introduces CBAI in the fixed-confidence regime: each arm has a joint (reward, cost) distribution, and the target is the best-reward arm whose *mean cost* satisfies $\mathbb{E}[C_k] \le \gamma$. Reward and cost may be dependent, which CABAI assumes away. The characteristic time $T^*$ comes from a transportation-cost interface, and asymptotically optimal Track-and-Stop variants are given for Gaussian arms (fixed and unknown covariance) and for non-parametric arms on $[0,1]^2$. The answer set gains an element — all arms may be infeasible — which has no counterpart in CABAI.
 
 The two are worth holding side by side, since both are described as "cost-aware BAI" and they are not the same problem:
 
-| | CABAI ([[Kanarios2024Cost]]) | CBAI ([[Lardy2025Constrained]]) |
+| | CABAI ([[kanarios2024Cost]]) | CBAI ([[lardy2025Constrained]]) |
 |---|---|---|
 | **Cost role** | Optimization metric: minimize $\sum_t C_t$ | Constraint: find an arm with $\mathbb{E}[C_k] \leq \gamma$ |
 | **Optimal allocation** | $w^*_a \propto \sqrt{c_a}$ (square-root rule) | Via the $c_1$/$c_2$ transportation interface |
@@ -55,7 +55,7 @@ The two are worth holding side by side, since both are described as "cost-aware 
 
 ### Cost under a fixed budget, with several constraints
 
-The third role fixes the spend in advance and asks for the best answer within it, which turns the problem from a stopping-time question into an allocation question. [[Yang2025Stochastically]] studies fixed-budget BAI with $K$ arms and $m$ *stochastic* constraints, and gives BFAI-TS: Thompson sampling inside a top-two framework parameterized by $\beta$, with an asymptotically optimal exponential convergence rate $\Gamma_{\beta^*}$ for the probability of false selection. This is the only one of the three where the horizon is known and the confidence is the output rather than the input.
+The third role fixes the spend in advance and asks for the best answer within it, which turns the problem from a stopping-time question into an allocation question. [[yang2025Stochastically]] studies fixed-budget BAI with $K$ arms and $m$ *stochastic* constraints, and gives BFAI-TS: Thompson sampling inside a top-two framework parameterized by $\beta$, with an asymptotically optimal exponential convergence rate $\Gamma_{\beta^*}$ for the probability of false selection. This is the only one of the three where the horizon is known and the confidence is the output rather than the input.
 
 ### What the three share, and where it stops
 
@@ -65,7 +65,7 @@ All three reuse the cost-free paradigm's machinery — a transportation-cost low
 
 - [[bai]] — the cost-free paradigm; CABAI reduces to it when all $c_a$ are equal
 - [[bai-constrained]] — cost as a feasibility constraint rather than the objective; see the table above
-- **Fixed-budget cost-aware BAI** — [[Yang2025Stochastically]]'s regime, where the spend is fixed and the error probability is what is optimized
+- **Fixed-budget cost-aware BAI** — [[yang2025Stochastically]]'s regime, where the spend is fixed and the error probability is what is optimized
 - **BAI with safety constraints** — the constraint restricts which arms may be *pulled* rather than which may be returned, so exploration itself is limited
 
 ## Related Concepts
@@ -85,7 +85,7 @@ The three cost roles are each resolved asymptotically, and the $\sqrt{c_a}$ rule
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[Kanarios2024Cost]], [[Lardy2025Constrained]] and [[Yang2025Stochastically]] comes from their paper pages, written against the PDFs at ingest.
+*Sourced.* Everything attributed to [[kanarios2024Cost]], [[lardy2025Constrained]] and [[yang2025Stochastically]] comes from their paper pages, written against the PDFs at ingest.
 
 *This page's judgment, not a citation.* The organization of the survey by cost's *role* rather than by chronology or algorithm, the claim that the three formulations are not special cases of one another, and the observation that the missing non-asymptotic theory is common to all three.
 

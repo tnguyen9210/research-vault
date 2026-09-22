@@ -1,7 +1,7 @@
 ---
 title: "Softmax Bellman Operator"
 tags: [deep-reinforcement-learning, bellman-operator, q-learning, overestimation-bias]
-introduced_by: [[Song2019Revisiting]]
+introduced_by: [[song2019Revisiting]]
 ---
 
 # Softmax Bellman Operator
@@ -20,14 +20,14 @@ $$
 
 where $\text{sm}_\tau(\mathbf{x})_i = \frac{\exp(\tau x_i)}{\sum_j \exp(\tau x_j)}$ is the softmax at inverse temperature $\tau$. Equivalently, the backup is the softmax-weighted average $g_\mathbf{x}(\tau) = f_\tau(\mathbf{x})^T \mathbf{x}$.
 
-**Key properties (from [[Song2019Revisiting]]):**
+**Key properties (from [[song2019Revisiting]]):**
 - $\mathcal{T}_\text{soft}$ is generally *not* a contraction (Littman 1996 counterexample), so fixed-point iteration may not converge to $Q^*$.
 - Despite non-contraction, Q-values under $\mathcal{T}_\text{soft}$ remain bounded: $\limsup_k \mathcal{T}_\text{soft}^k Q_0 \le Q^*$ and $\liminf_k \mathcal{T}_\text{soft}^k Q_0 \ge Q^* - \frac{\gamma(m-1)}{1-\gamma}\max\!\left\{\frac{1}{\tau+2},\frac{2Q_{\max}}{1+\exp(\tau)}\right\}$, with the deviation decaying **exponentially in $\tau$**.
 - Overestimation errors from $\mathcal{T}_\text{soft}$ are $\le$ those from $\mathcal{T}$ for all $\tau\ge 0$, with reduction monotonically decreasing in $\tau$.
 
 ## Key Papers
 
-- [[Song2019Revisiting]] — revisits theoretical properties; proves exponential convergence rate in $\tau$, overestimation bounds, gradient noise reduction; S-DQN/S-DDQN outperform DQN/DDQN on Atari
+- [[song2019Revisiting]] — revisits theoretical properties; proves exponential convergence rate in $\tau$, overestimation bounds, gradient noise reduction; S-DQN/S-DDQN outperform DQN/DDQN on Atari
 
 ## Variants
 
@@ -38,8 +38,8 @@ where $\text{sm}_\tau(\mathbf{x})_i = \frac{\exp(\tau x_i)}{\sum_j \exp(\tau x_j
 
 - [[overestimation-bias]] — the key failure mode $\mathcal{T}_\text{soft}$ corrects
 - [[deep-q-network]] — the algorithm family where softmax backup is applied in practice
-- [[mcts-power-mean]] / [[Dam2024Power]] — analogous idea in tree search: replacing max backup with a power-mean backup improves convergence; both papers argue greedy aggregation is suboptimal under estimation noise
-- [[expectile-regression]] / [[Kostrikov2022Offline]] — a third smooth surrogate for the max, in offline RL. Note the inverted purpose: $\mathcal{T}_\text{soft}$ softens a max the algorithm *could* compute, to reduce bias; the expectile approximates a max the algorithm is *forbidden* from computing, since out-of-sample actions cannot be queried. Softmax has the finite-$\tau$ gap bound (Thm 3 here) that the expectile treatment lacks
+- [[mcts-power-mean]] / [[dam2024Power]] — analogous idea in tree search: replacing max backup with a power-mean backup improves convergence; both papers argue greedy aggregation is suboptimal under estimation noise
+- [[expectile-regression]] / [[kostrikov2021Offline]] — a third smooth surrogate for the max, in offline RL. Note the inverted purpose: $\mathcal{T}_\text{soft}$ softens a max the algorithm *could* compute, to reduce bias; the expectile approximates a max the algorithm is *forbidden* from computing, since out-of-sample actions cannot be queried. Softmax has the finite-$\tau$ gap bound (Thm 3 here) that the expectile treatment lacks
 
 ## Current State and Open Problems
 

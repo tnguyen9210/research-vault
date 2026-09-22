@@ -48,7 +48,7 @@ An optimistic algorithm is one whose estimate satisfies $\hat V^t_1 \ge V^*_1$ w
 
 - [[cassel2026Quantile]] (2026) — VIBE: value iteration with each Q-value replaced by the quantile of an ensemble trained on disjoint batches. The summed variance-dependent rate with **no bonuses, no counts, no posterior and no distributional assumption**, and the first provably efficient ensemble exploration in MDPs. The estimator adapts to bounded, sub-Gaussian or heavy-tailed rewards with no change to the algorithm — only to the analysis.
 - [[zanette2019Tighter]] (ICML 2019) — EULER: the count-based counterpart, and the result the above is measured against. Optimistic value iteration with an empirical-Bernstein variance bonus plus a value-uncertainty correction, achieving the max-form variance-dependent rate **without being told** $\mathcal Q^*$ or the max return $G$ — the advance over REGAL, which takes the value range as an input. Also answers Jiang & Agarwal's (2018) open problem: with $\sum_h r_h \in [0,1]$ a.s., regret is $\tilde O(\sqrt{SKT})$ with no $H$ in the dominant term.
-- [[Song2019Revisiting]] — the online deep-RL end: softmax in place of max in the DQN target, with a finite-temperature bound on the gap. What the vault holds on how the value update itself behaves online, as opposed to how exploration is driven.
+- [[song2019Revisiting]] — the online deep-RL end: softmax in place of max in the DQN target, with a finite-temperature bound on the gap. What the vault holds on how the value update itself behaves online, as opposed to how exploration is driven.
 - [[deep-q-network]] — the algorithm family the practical side of this page lives in, and the one for which ensemble exploration was a heuristic without a guarantee until the first paper above.
 
 ## Variants
@@ -79,7 +79,7 @@ The tabular theory is complete: minimax and variance-dependent rates are matched
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[cassel2026Quantile]] and [[zanette2019Tighter]] comes from their paper pages, both written against the PDFs on 2026-09-22. That includes both $\mathcal Q^*$ definitions, both rate forms, the optimism decomposition, the QoM mechanism and the Feige first-moment fact, EULER's bonus structure, and the horizon-free bound. The stationary-versus-time-inhomogeneous distinction was checked in each paper's own setting section rather than taken from either's framing of the other. [[Song2019Revisiting]] and [[deep-q-network]] from their vault pages.
+*Sourced.* Everything attributed to [[cassel2026Quantile]] and [[zanette2019Tighter]] comes from their paper pages, both written against the PDFs on 2026-09-22. That includes both $\mathcal Q^*$ definitions, both rate forms, the optimism decomposition, the QoM mechanism and the Feige first-moment fact, EULER's bonus structure, and the horizon-free bound. The stationary-versus-time-inhomogeneous distinction was checked in each paper's own setting section rather than taken from either's framing of the other. [[song2019Revisiting]] and [[deep-q-network]] from their vault pages.
 
 *Cited through a source, not checked directly.* Azar et al. (2017), Jaksch et al. (2010), Osband & Van Roy (2016) and Domingues et al. (2021) for the minimax upper and lower bounds; Zhou et al. (2023) for the summed variance-dependent lower bound; Maillard et al. (2014) for the environmental norm; Jiang & Agarwal (2018) for the open problem; Bootstrapped DQN, UCB Q-ensembles and SUNRISE as the practical ensemble methods. Taken from how the two ingested papers position themselves.
 

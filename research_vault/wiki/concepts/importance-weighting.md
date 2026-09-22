@@ -1,7 +1,7 @@
 ---
 title: "Importance Weighting"
 tags: [contextual-bandits, offline-learning, statistics]
-introduced_by: [[Ryu2025Improved]]
+introduced_by: [[ryu2025Improved]]
 ---
 
 # Importance Weighting
@@ -26,7 +26,7 @@ This estimator is unbiased: $\mathbb{E}[\hat{\mu}_n^\text{IW}(\pi)] = \mu(\pi)$.
 
 ## Key Papers
 
-- [[Ryu2025Improved]] — applies betting-based LCB to $\tilde{r}_t^\pi$; proves first finite-sample guarantee for unbounded IW rewards; introduces freezing to control variance via score-function pessimism
+- [[ryu2025Improved]] — applies betting-based LCB to $\tilde{r}_t^\pi$; proves first finite-sample guarantee for unbounded IW rewards; introduces freezing to control variance via score-function pessimism
 
 ## Variants
 
@@ -43,4 +43,4 @@ This estimator is unbiased: $\mathbb{E}[\hat{\mu}_n^\text{IW}(\pi)] = \mu(\pi)$.
 
 ## Current State and Open Problems
 
-Active research area. Key open problems: achieving doubly-robust guarantees with variance adaptation; removing bounded-probability-ratio assumptions; matching selection and learning bounds in the same framework. [[Ryu2025Improved]] represents the current state of the art for unbounded IW rewards.
+Active research area. Key open problems: achieving doubly-robust guarantees with variance adaptation; removing bounded-probability-ratio assumptions; matching selection and learning bounds in the same framework. [[ryu2025Improved]] represents the current state of the art for unbounded IW rewards.

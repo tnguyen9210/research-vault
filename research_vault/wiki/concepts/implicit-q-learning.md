@@ -2,7 +2,7 @@
 title: "Implicit Q-Learning (IQL)"
 aliases: [IQL]
 tags: [offline-reinforcement-learning, expectile-regression, deep-reinforcement-learning, bellman-operator, value-estimation]
-introduced_by: [[Kostrikov2022Offline]]
+introduced_by: [[kostrikov2021Offline]]
 ---
 
 # Implicit Q-Learning (IQL)
@@ -33,7 +33,7 @@ $$
 
 **Why $V$ and $Q$ are separate.** The expectile is taken over the *action* distribution only; the backup over dynamics uses plain MSE. Taking an upper expectile of the full TD target would also be optimistic about stochastic transitions, so a high value could reflect a lucky $s'$ rather than a good $a$. This split is the load-bearing design choice, not an implementation detail.
 
-**Guarantee (Theorem 3 of [[Kostrikov2022Offline]]).** With $V_\tau, Q_\tau$ the exact fixed points of the two losses,
+**Guarantee (Theorem 3 of [[kostrikov2021Offline]]).** With $V_\tau, Q_\tau$ the exact fixed points of the two losses,
 
 $$
 \lim_{\tau\to 1} V_\tau(s) = \max_{\substack{a\in\mathcal{A}\\ \text{s.t. } \mu(a|s)>0}} Q^*(s,a),
@@ -47,7 +47,7 @@ the optimal value *constrained to the behavior policy's support*. Proof: Lemma 2
 
 ## Key Papers
 
-- [[Kostrikov2022Offline]] — introduces IQL; state of the art on D4RL antmaze (378.0 vs. 303.6 for CQL) at roughly $4\times$ lower compute than CQL
+- [[kostrikov2021Offline]] — introduces IQL; state of the art on D4RL antmaze (378.0 vs. 303.6 for CQL) at roughly $4\times$ lower compute than CQL
 - Peters & Schaal (2007), Peng et al. (2019), Nair et al. (2020) — advantage-weighted regression, the policy-extraction step IQL inherits
 - Brandfonbrener et al. (2021) — Onestep RL, the single-step baseline IQL is designed to beat on stitching tasks
 - Kumar et al. (2020) — CQL, the strongest value-regularization comparison
@@ -57,8 +57,8 @@ the optimal value *constrained to the behavior policy's support*. Proof: Lemma 2
 - [[fqi]] — the base template; IQL is FQI with the target's $\max_{a'}$ replaced by an in-sample upper expectile, so no out-of-sample action is ever queried
 - [[extrapolation-error]] — the failure IQL removes by construction rather than by penalty: vanilla FQI maximizes over all of $\mathcal{A}$, IQL over the data support, and these are genuinely different algorithms
 - [[expectile-regression]] — the estimation primitive
-- [[softmax-bellman-operator]] — the same "replace max with a smooth aggregator" move applied to online deep Q-learning ([[Song2019Revisiting]]); has the finite-temperature bound IQL lacks
-- [[mcts-power-mean]] — the same move in tree search ([[Dam2024Power]])
+- [[softmax-bellman-operator]] — the same "replace max with a smooth aggregator" move applied to online deep Q-learning ([[song2019Revisiting]]); has the finite-temperature bound IQL lacks
+- [[mcts-power-mean]] — the same move in tree search ([[dam2024Power]])
 - [[overestimation-bias]] — avoided at the source rather than corrected
 - [[coverage-coefficient]] — the density-aware notion of what a reference distribution makes learnable; IQL's binary support condition $\mu(a|s)>0$ is its crude analogue
 

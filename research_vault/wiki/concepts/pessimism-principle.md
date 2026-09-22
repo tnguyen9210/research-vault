@@ -1,7 +1,7 @@
 ---
 title: "Pessimism Principle"
 tags: [offline-reinforcement-learning, off-policy-learning, uncertainty-quantification, confidence-bounds]
-introduced_by: [[Ryu2025Improved]]
+introduced_by: [[ryu2025Improved]]
 ---
 
 # Pessimism Principle
@@ -31,15 +31,15 @@ where $\hat v$ is an empirical value estimate and $\Gamma$ is a high-probability
 | Tabular | visitation counts, $\Gamma \propto \sqrt{1/n(s,a)}$ |
 | Linear MDPs | elliptical bonus $\beta\sqrt{\phi^\top\Sigma_h^{-1}\phi}$ (PEVI) |
 | [[differentiable-function-approximation]] | gradient geometry $\beta\sqrt{\nabla_\theta f^\top\Sigma_h^{-1}\nabla_\theta f}$ ([[fqi-pessimistic]]) |
-| Off-policy selection | concentration on [[importance-weighting]] estimates; betting-based LCBs ([[Ryu2025Improved]]) |
+| Off-policy selection | concentration on [[importance-weighting]] estimates; betting-based LCBs ([[ryu2025Improved]]) |
 | Value regularization | penalize $Q$ on out-of-distribution actions (CQL) |
 
 In every case $\Gamma$ is large where the data is thin along the direction that matters, and the resulting suboptimality bound is $\approx 2\sum_h\mathbb{E}_{\pi^*}[\Gamma_h]$ — evaluated at the *comparator* policy, which is why the bound degrades with poor coverage of $\pi^*$ specifically rather than of the whole space.
 
 ## Key Papers
 
-- [[Ryu2025Improved]] — PUB: parameter-free, variance-adaptive LCBs for unbounded importance-weighted rewards via betting; pessimism applied to offline policy *selection*
-- [[Yin2023Offline]] — PFQL/VAFQL: pessimism applied to offline policy *learning* over a nonlinear class, with the penalty read as an effective sample size along $\nabla_\theta f$; yields [[instance-dependent-bounds]]
+- [[ryu2025Improved]] — PUB: parameter-free, variance-adaptive LCBs for unbounded importance-weighted rewards via betting; pessimism applied to offline policy *selection*
+- [[yin2023Offline]] — PFQL/VAFQL: pessimism applied to offline policy *learning* over a nonlinear class, with the penalty read as an effective sample size along $\nabla_\theta f$; yields [[instance-dependent-bounds]]
 - Jin et al. (2021b) — PEVI, the linear-MDP reference point
 - Buckman et al. (2020) — argues pessimism is the right principle for fixed-dataset policy optimization
 - Kumar et al. (2020) — CQL, the value-regularization form used in practice

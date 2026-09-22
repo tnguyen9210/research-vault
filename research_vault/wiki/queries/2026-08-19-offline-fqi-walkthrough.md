@@ -61,7 +61,7 @@ This also explains why concentrability and [[coverage-coefficient]]-style condit
 
 Worth noting that vanilla FQI genuinely maximizes over all of $\mathcal{A}$, *not* over dataset-supported actions. Those are different algorithms — and the second one is essentially what IQL implements.
 
-## 6. Algorithm 1 of [[Yin2023Offline]] as the concrete case
+## 6. Algorithm 1 of [[yin2023Offline]] as the concrete case
 
 PFQL is the FQI template with pessimism inserted **inside the backup**. Lines 4 and 9 of Algorithm 1 alone are plain FQI; lines 5–8 are the entire modification: build the gradient Gram matrix $\Sigma_h$, form the width $\Gamma_h = \beta/\sqrt{m(s,a)}$ where $m(s,a)$ is the effective sample size along $\nabla_\theta f$, subtract it, clip.
 

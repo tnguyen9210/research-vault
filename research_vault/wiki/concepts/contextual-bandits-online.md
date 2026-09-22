@@ -44,17 +44,17 @@ The organizing question: contextual bandits are computationally hard in general 
 
 The split that matters is which oracle. An **online** regression oracle sees a stream and needs $O(T)$ calls — the route taken by SquareCB (Foster & Rakhlin 2020) and E2D (Foster et al. 2021a), with [[decision-estimation-coefficient]] as the governing complexity measure. An **offline** oracle takes a batch and is satisfied by ordinary ERM, so any supervised learner qualifies; this is [[offline-regression-oracle]], and it is the practically useful one.
 
-On the offline route the progression is legible: FALCON ([[SimchiLevi2022Bypassing]], 2022) achieved $O(\log T)$ calls for discrete actions under realizability, and OE2D ([[Qin2026Taming]], 2026) reached general action spaces at the same call count while dropping realizability. Its complexity measure is [[decision-offline-estimation-coefficient]], and its algorithmic primitive is [[exploitative-f-design]], whose minimax value DOEC turns out to be. How to bound DOEC in a given class is unsettled: the [[epsilon-sec]] route is simplest but admits an exponential gap, and the [[eluder-dimension]] route covers only discrete benchmarks.
+On the offline route the progression is legible: FALCON ([[simchi-levi2022Bypassing]], 2022) achieved $O(\log T)$ calls for discrete actions under realizability, and OE2D ([[qin2026Taming]], 2026) reached general action spaces at the same call count while dropping realizability. Its complexity measure is [[decision-offline-estimation-coefficient]], and its algorithmic primitive is [[exploitative-f-design]], whose minimax value DOEC turns out to be. How to bound DOEC in a given class is unsettled: the [[epsilon-sec]] route is simplest but admits an exponential gap, and the [[eluder-dimension]] route covers only discrete benchmarks.
 
 ### What governs the achievable regret
 
-A parallel line asks not how to compute the policy but what quantity decides how well any algorithm can do. [[decision-estimation-coefficient]] (Foster et al. 2021a) is the answer for the online oracle: it measures the cost of exploration as a minimax game between choosing an action distribution and an adversary picking the reward function, and it upper-bounds the regret of E2D. Its structural limitation is that the exploration cost references the unknown $g^* = q^*(x,\cdot)$, the true reward restricted to the current context, which is what blocks a reduction to batch regression — [[decision-offline-estimation-coefficient]] removes that dependence, and Theorem 5 of [[Qin2026Taming]] relates the two for the first time.
+A parallel line asks not how to compute the policy but what quantity decides how well any algorithm can do. [[decision-estimation-coefficient]] (Foster et al. 2021a) is the answer for the online oracle: it measures the cost of exploration as a minimax game between choosing an action distribution and an adversary picking the reward function, and it upper-bounds the regret of E2D. Its structural limitation is that the exploration cost references the unknown $g^* = q^*(x,\cdot)$, the true reward restricted to the current context, which is what blocks a reduction to batch regression — [[decision-offline-estimation-coefficient]] removes that dependence, and Theorem 5 of [[qin2026Taming]] relates the two for the first time.
 
 Bounding either measure for a concrete class is the open part. [[epsilon-sec]] is a passive coverage measure that upper-bounds DOEC but can be exponentially loose, which is the formal statement that *active* experimental design beats passive coverage. [[eluder-dimension]] gives the other route and applies when the benchmark is discrete.
 
 ### Alignment and language-model applications
 
-Contextual-bandit machinery transfers to language-model alignment, with coverage again in the role exploration plays online. [[Foster2025Foundation]] argues coverage is necessary and sufficient for computationally efficient alignment, and that [[spanner-sampling]] matches the [[coverage-coefficient]] lower bound while training-time interventions are ETH-hard; [[linear-softmax-policy]] is the policy class in that line. One paper and three concepts — thin, and the weakest-supported direction here.
+Contextual-bandit machinery transfers to language-model alignment, with coverage again in the role exploration plays online. [[foster2025Good]] argues coverage is necessary and sufficient for computationally efficient alignment, and that [[spanner-sampling]] matches the [[coverage-coefficient]] lower bound while training-time interventions are ETH-hard; [[linear-softmax-policy]] is the policy class in that line. One paper and three concepts — thin, and the weakest-supported direction here.
 
 ## Variants
 
@@ -74,17 +74,17 @@ Contextual-bandit machinery transfers to language-model alignment, with coverage
 
 ## Current State and Open Problems
 
-Mature for the simple settings — linear rewards, discrete actions — where the algorithms and their rates are settled. The live frontier in this vault is general function approximation with few oracle calls, which [[Qin2026Taming]] largely closes for the offline oracle.
+Mature for the simple settings — linear rewards, discrete actions — where the algorithms and their rates are settled. The live frontier in this vault is general function approximation with few oracle calls, which [[qin2026Taming]] largely closes for the offline oracle.
 
 What is open, in the vault's own terms:
 
-- **Bounding DOEC.** Whether $\varepsilon$-SEC or Eluder dimension is the right route for a given class; Proposition 3 of [[Qin2026Taming]] constructs an exponential gap for the first.
+- **Bounding DOEC.** Whether $\varepsilon$-SEC or Eluder dimension is the right route for a given class; Proposition 3 of [[qin2026Taming]] constructs an exponential gap for the first.
 - **Empirical behaviour.** Every oracle-efficiency result here is theoretical; the vault has no source on how these algorithms actually perform.
 - **Non-iid contexts and partial monitoring.** Named as frontiers but with no page and no paper behind them.
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[Qin2026Taming]], [[SimchiLevi2022Bypassing]] and [[Foster2025Foundation]] comes from their paper pages, written against the PDFs at ingest.
+*Sourced.* Everything attributed to [[qin2026Taming]], [[simchi-levi2022Bypassing]] and [[foster2025Good]] comes from their paper pages, written against the PDFs at ingest.
 
 *Cited author–year, no paper page.* SquareCB (Foster & Rakhlin 2020) and E2D (Foster et al. 2021a), including the attribution of DEC to the latter. [[decision-estimation-coefficient]] records the same gap; neither has been checked directly.
 

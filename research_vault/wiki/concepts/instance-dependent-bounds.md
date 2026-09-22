@@ -1,7 +1,7 @@
 ---
 title: "Instance-Dependent Bounds"
 tags: [sample-complexity, learning-theory, bandits, reinforcement-learning, minimax]
-introduced_by: [[Yin2023Offline]]
+introduced_by: [[yin2023Offline]]
 ---
 
 # Instance-Dependent Bounds
@@ -49,25 +49,25 @@ with $g = \phi$ in linear MDPs and $g = \nabla_\theta f$ under [[differentiable-
 
 Instance-dependent results in this vault, by setting:
 
-- [[Yin2023Offline]] — offline RL under nonlinear function approximation; Fisher-information-style gradient geometry; the reason this page exists. Includes a lower bound matching to $\sqrt{d}$
-- [[Ryu2025Improved]] — PUB: parameter-free *variance-adaptive* off-policy selection via betting-based LCBs; adapts to the instance without knowing its variance
-- [[Kanarios2024Cost]] — CABAI: optimal sampling proportions scale as $\sqrt{c_a}$, a property of the instance's cost profile
-- [[Lardy2025Constrained]] — CBAI: asymptotically optimal track-and-stop for three model families
-- [[Yang2025Stochastically]] — BFAI-TS: instance-dependent exponential decay rate $\Gamma_{\beta^*}$ in the fixed-budget regime
-- [[TranThanh2012Knapsack]] — $O(\ln B)$ budget-limited regret with a *matching* lower bound
-- [[Dam2024Power]] — $\mathcal{O}(n^{-1/2})$ convergence for stochastic MCTS
-- [[Foster2025Foundation]] — $C_\text{cov}$ as necessary *and* sufficient: an instance functional that is tight in both directions
+- [[yin2023Offline]] — offline RL under nonlinear function approximation; Fisher-information-style gradient geometry; the reason this page exists. Includes a lower bound matching to $\sqrt{d}$
+- [[ryu2025Improved]] — PUB: parameter-free *variance-adaptive* off-policy selection via betting-based LCBs; adapts to the instance without knowing its variance
+- [[kanarios2024Cost]] — CABAI: optimal sampling proportions scale as $\sqrt{c_a}$, a property of the instance's cost profile
+- [[lardy2025Constrained]] — CBAI: asymptotically optimal track-and-stop for three model families
+- [[yang2025Stochastically]] — BFAI-TS: instance-dependent exponential decay rate $\Gamma_{\beta^*}$ in the fixed-budget regime
+- [[tran-thanh2012Knapsack]] — $O(\ln B)$ budget-limited regret with a *matching* lower bound
+- [[dam2024Power]] — $\mathcal{O}(n^{-1/2})$ convergence for stochastic MCTS
+- [[foster2025Good]] — $C_\text{cov}$ as necessary *and* sufficient: an instance functional that is tight in both directions
 - [[zanette2019Tighter]] — EULER: online-RL regret scaling with the *environmental norm* $\max_{s,a,h}[\mathrm{Var}\,r + \mathrm{Var}\,V^*]$ rather than the horizon, and — the point — attained without the algorithm being told that quantity
 - [[cassel2026Quantile]] — the same guarantee type from an ensemble quantile rather than a bonus, with the summed variance $\sum_h\max_{s,a}\mathrm{Var}_{s,a,h}(\cdot)$; a second, incompatible instance functional for the same setting
 
 Papers whose central open problem is the *absence* of such a bound:
 
-- [[Kostrikov2022Offline]] — IQL's Theorem 3 is asymptotic in $\tau$ with a binary support condition; no bound at the $\tau$ actually used, and no instance functional to explain why $\tau=0.9$ is needed on antmaze but not locomotion
-- [[Song2019Revisiting]] — has a finite-$\tau$ gap bound, but under stylized assumptions (all-equal $Q^*$, i.i.d. noise) rather than instance quantities
+- [[kostrikov2021Offline]] — IQL's Theorem 3 is asymptotic in $\tau$ with a binary support condition; no bound at the $\tau$ actually used, and no instance functional to explain why $\tau=0.9$ is needed on antmaze but not locomotion
+- [[song2019Revisiting]] — has a finite-$\tau$ gap bound, but under stylized assumptions (all-equal $Q^*$, i.i.d. noise) rather than instance quantities
 
 ## Variants
 
-- **Instance-optimality** — the strong form: a matching per-instance lower bound. Achieved asymptotically in BAI, and up to $\sqrt{d}$ in [[Yin2023Offline]]
+- **Instance-optimality** — the strong form: a matching per-instance lower bound. Achieved asymptotically in BAI, and up to $\sqrt{d}$ in [[yin2023Offline]]
 
 ## Related Concepts
 
@@ -78,7 +78,7 @@ Papers whose central open problem is the *absence* of such a bound:
 
 ## Current State and Open Problems
 
-The dominant standard in bandit theory, where instance-optimality is routinely achieved and expected. Considerably less settled in RL with function approximation: linear models have had instance-dependent treatments for several years, [[Yin2023Offline]] extends this to a nonlinear class, and general function approximation remains worst-case only. Two live frontiers:
+The dominant standard in bandit theory, where instance-optimality is routinely achieved and expected. Considerably less settled in RL with function approximation: linear models have had instance-dependent treatments for several years, [[yin2023Offline]] extends this to a nonlinear class, and general function approximation remains worst-case only. Two live frontiers:
 
 1. **Empirical validation.** These functionals are proved to separate instances, but almost never *measured*. Whether $\sum_h\mathbb{E}_{\pi^*}[\|\nabla_\theta f\|_{\Sigma_h^{\star-1}}]$ predicts observed difficulty on a real benchmark is untested and cheap to test.
 2. **Reaching the empirically successful algorithms.** The methods with instance-dependent guarantees (PFQL, PEVI) are not the methods people run (IQL, CQL, TD3+BC). Producing an instance-dependent bound for an algorithm someone actually uses would be worth more than tightening one for an algorithm nobody does.

@@ -2,7 +2,7 @@
 title: "Epsilon-First Policies"
 tags: [multi-armed-bandits, exploration, budget-limited-mab, explore-then-commit]
 aliases: [epsilon-first]
-introduced_by: [[TranThanh2010Epsilon]]
+introduced_by: [[tran-thanh2010Epsilon]]
 ---
 
 # Epsilon-First Policies
@@ -11,7 +11,7 @@ introduced_by: [[TranThanh2010Epsilon]]
 
 ## Intuition
 
-The appeal is analytic tractability. Because the two phases are disjoint, estimate quality at the end of exploration is a clean function of $\varepsilon$ alone, and the exploitation step can be analyzed as a fixed optimization on those estimates. That decomposition is what makes a loss bound provable when interleaved schemes are still hard to analyze — it is why [[TranThanh2010Epsilon]] could give the first guarantee for the [[budget-limited-mab]].
+The appeal is analytic tractability. Because the two phases are disjoint, estimate quality at the end of exploration is a clean function of $\varepsilon$ alone, and the exploitation step can be analyzed as a fixed optimization on those estimates. That decomposition is what makes a loss bound provable when interleaved schemes are still hard to analyze — it is why [[tran-thanh2010Epsilon]] could give the first guarantee for the [[budget-limited-mab]].
 
 The weakness is structural, not incidental. Splitting the budget means:
 
@@ -23,7 +23,7 @@ These are exactly the losses that [[budget-limited-mab-kube]] recovers by foldin
 
 ## Formal Description
 
-In the [[budget-limited-mab]] instantiation of [[TranThanh2010Epsilon]]: split budget $B$ into $\varepsilon B$ and $(1-\varepsilon)B$.
+In the [[budget-limited-mab]] instantiation of [[tran-thanh2010Epsilon]]: split budget $B$ into $\varepsilon B$ and $(1-\varepsilon)B$.
 
 **Explore.** Pull arms uniformly in sequence until $\varepsilon B$ is exhausted, giving $n_i \ge \big\lfloor \varepsilon B/\sum_{j=1}^k c_j\big\rfloor$ pulls of every arm. Uniform sampling is chosen because equal $n_i$ makes the accuracy analysis uniform across arms.
 
@@ -35,14 +35,14 @@ $$
 L(A_{\varepsilon\text{-first}}) \le \underbrace{2\varepsilon B\, D_{\max}}_{\text{cost of exploring}} + \underbrace{2B\sqrt{\frac{(-\ln\delta)\sum_j c_j}{\varepsilon B}}}_{\text{cost of imprecision}} .
 $$
 
-The two terms move in opposite directions in $\varepsilon$, which is the whole design tension made explicit. Balancing them gives $\varepsilon^* \propto B^{-1/3}$ and a loss of order $B^{2/3}$ — an optimization performed by [[TranThanh2012Knapsack]] rather than in the original paper.
+The two terms move in opposite directions in $\varepsilon$, which is the whole design tension made explicit. Balancing them gives $\varepsilon^* \propto B^{-1/3}$ and a loss of order $B^{2/3}$ — an optimization performed by [[tran-thanh2012Knapsack]] rather than in the original paper.
 
-**The $B^{2/3}$ barrier.** The $\varepsilon B$ term is linear in the exploration budget and the estimation term falls only as $\varepsilon^{-1/2}$, so no choice of $\varepsilon$ does better than $B^{2/3}$. The ceiling is a property of the phase split, not of the sampling rule inside it — which is why swapping uniform exploration for UCB exploration does not help, as [[TranThanh2010Epsilon]] found empirically.
+**The $B^{2/3}$ barrier.** The $\varepsilon B$ term is linear in the exploration budget and the estimation term falls only as $\varepsilon^{-1/2}$, so no choice of $\varepsilon$ does better than $B^{2/3}$. The ceiling is a property of the phase split, not of the sampling rule inside it — which is why swapping uniform exploration for UCB exploration does not help, as [[tran-thanh2010Epsilon]] found empirically.
 
 ## Key Papers
 
-- [[TranThanh2010Epsilon]] — introduces the budgeted $\varepsilon$-first policy; Theorem 1 (any exploration policy) and Corollary 2 (uniform pull)
-- [[TranThanh2012Knapsack]] — shows the family is stuck at $O(B^{2/3})$ and replaces it with interleaved [[budget-limited-mab-kube]] at $O(\ln B)$, with a matching lower bound
+- [[tran-thanh2010Epsilon]] — introduces the budgeted $\varepsilon$-first policy; Theorem 1 (any exploration policy) and Corollary 2 (uniform pull)
+- [[tran-thanh2012Knapsack]] — shows the family is stuck at $O(B^{2/3})$ and replaces it with interleaved [[budget-limited-mab-kube]] at $O(\ln B)$, with a matching lower bound
 - Auer, Cesa-Bianchi & Fischer (2002) — $\varepsilon_n$-greedy, the decaying-$\varepsilon$ relative that keeps exploring forever; the baseline $\varepsilon$-first is compared against
 
 ## Variants

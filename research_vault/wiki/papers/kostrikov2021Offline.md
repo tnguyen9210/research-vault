@@ -1,5 +1,6 @@
 ---
 title: "Offline Reinforcement Learning with Implicit Q-Learning"
+aliases: [Kostrikov2022Offline]
 authors: [Ilya Kostrikov, Ashvin Nair, Sergey Levine]
 year: 2021
 venue: arXiv
@@ -129,7 +130,7 @@ $$
 
 Three assumptions separate this from what is run:
 
-1. **Asymptotic in $\tau$.** Theorem 3 is a statement about $\tau \to 1$. Experiments use $\tau \in \{0.7, 0.9\}$. At finite $\tau$ there is **no quantitative bound** on $\max_{\text{supp}} Q^* - V_\tau$ — only the qualitative monotonicity of Lemma 2. Contrast [[Song2019Revisiting]], which does supply an explicit exponential-in-$\tau$ gap bound for the analogous softmax operator.
+1. **Asymptotic in $\tau$.** Theorem 3 is a statement about $\tau \to 1$. Experiments use $\tau \in \{0.7, 0.9\}$. At finite $\tau$ there is **no quantitative bound** on $\max_{\text{supp}} Q^* - V_\tau$ — only the qualitative monotonicity of Lemma 2. Contrast [[song2019Revisiting]], which does supply an explicit exponential-in-$\tau$ gap bound for the analogous softmax operator.
 2. **Exact solutions.** $V_\tau, Q_\tau$ are defined as exact optima of (5)–(6). No function approximation, no finite samples, no propagation of expectile-regression error through the backup.
 3. **Support, not density.** "Constrained to $\pi_\beta(a|s) > 0$" ignores *how much* mass $\pi_\beta$ places near the maximizing action. An action with $\pi_\beta = 10^{-8}$ counts as fully supported in the theorem but is invisible to finite-sample expectile regression.
 
@@ -147,16 +148,16 @@ Point 3 is the substantive one and connects directly to [[coverage-coefficient]]
 - [[expectile-regression]] — the estimation primitive that makes in-sample maximization possible
 - [[overestimation-bias]] — the failure mode being avoided; IQL removes it at the source by never applying max to an extrapolated value
 - [[deep-q-network]] — IQL is a modification of the standard TD/actor-critic backup used in the DQN family
-- **Thematic parallel:** [[Song2019Revisiting]] — softmax in place of max in the Bellman target. Same move as IQL's expectile, different smoothing family, and Song supplies the finite-$\tau$ bound IQL lacks. Note the *opposite* directions: Song softens the max downward to fight overestimation with full action access; IQL softens it to approximate a max it is forbidden from computing.
-- **Thematic parallel:** [[Dam2024Power]] — power mean in place of max in MCTS backups. Third instance of the same design pattern.
-- **Related:** [[coverage-coefficient]] — [[Foster2025Foundation]] formalizes coverage as the quantity governing what is learnable from a reference distribution; IQL's support constraint $\pi_\beta(a|s) > 0$ is the crude, binary version of the same idea
-- **Theory counterpart:** [[Yin2023Offline]] — PFQL delivers exactly the [[instance-dependent-bounds]] this page lists as its headline open question, in the *pessimism* family rather than the in-sample family. It penalizes uncertainty at out-of-sample actions instead of refusing to evaluate them, pays for it with a strong uniform-coverage assumption, and is not run empirically. The two papers are the theory and practice poles of [[offline-reinforcement-learning]]
+- **Thematic parallel:** [[song2019Revisiting]] — softmax in place of max in the Bellman target. Same move as IQL's expectile, different smoothing family, and Song supplies the finite-$\tau$ bound IQL lacks. Note the *opposite* directions: Song softens the max downward to fight overestimation with full action access; IQL softens it to approximate a max it is forbidden from computing.
+- **Thematic parallel:** [[dam2024Power]] — power mean in place of max in MCTS backups. Third instance of the same design pattern.
+- **Related:** [[coverage-coefficient]] — [[foster2025Good]] formalizes coverage as the quantity governing what is learnable from a reference distribution; IQL's support constraint $\pi_\beta(a|s) > 0$ is the crude, binary version of the same idea
+- **Theory counterpart:** [[yin2023Offline]] — PFQL delivers exactly the [[instance-dependent-bounds]] this page lists as its headline open question, in the *pessimism* family rather than the in-sample family. It penalizes uncertainty at out-of-sample actions instead of refusing to evaluate them, pays for it with a strong uniform-coverage assumption, and is not run empirically. The two papers are the theory and practice poles of [[offline-reinforcement-learning]]
 - Ilya Kostrikov, Ashvin Nair, Sergey Levine — authors
 
 ## Open Questions
 
 - **The main one: a finite-$\tau$ bound.** Can one bound $\max_{a:\pi_\beta(a|s)>0} Q^*(s,a) - V_\tau(s)$ for $\tau < 1$, as a function of the behavior-policy density near the maximizing action? A natural conjecture: the gap scales with an instance-dependent quantity resembling $C_\text{cov}$ (see [[coverage-coefficient]]) rather than with a support indicator, which would explain why $\tau = 0.9$ suffices on locomotion but not on antmaze.
 - **Sample complexity.** What is the finite-sample error of expectile regression at $\tau \to 1$, and how does it propagate through the Bellman backup? Upper expectiles are estimated from progressively fewer effective samples, so there should be a bias-variance optimum in $\tau$ — the paper treats $\tau$ purely as a bias knob.
-- **Expectile vs. quantile vs. softmax.** Is there a principled reason to prefer expectiles here beyond MSE convenience? A unified analysis of smooth in-support maximization operators across [[Song2019Revisiting]], [[Dam2024Power]], and IQL seems within reach.
+- **Expectile vs. quantile vs. softmax.** Is there a principled reason to prefer expectiles here beyond MSE convenience? A unified analysis of smooth in-support maximization operators across [[song2019Revisiting]], [[dam2024Power]], and IQL seems within reach.
 - **$\tau$ scheduling.** Would annealing $\tau \to 1$ during training dominate a fixed $\tau$? (Song found annealing did not help for softmax — does that transfer?)
 - Does the $V$/$Q$ split remain necessary under low transition stochasticity, or can it be dropped in near-deterministic environments?

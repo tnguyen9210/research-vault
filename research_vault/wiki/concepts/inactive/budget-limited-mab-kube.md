@@ -2,7 +2,7 @@
 title: "KUBE (Knapsack-based Upper Confidence Bound Exploration)"
 aliases: [KUBE, fractional KUBE, kube]
 tags: [budget-limited-mab, ucb, knapsack, regret, kube, bandits]
-introduced_by: [[TranThanh2012Knapsack]]
+introduced_by: [[tran-thanh2012Knapsack]]
 ---
 
 # KUBE (Knapsack-based Upper Confidence Bound Exploration)
@@ -50,11 +50,11 @@ Each step both build the UCB density $\rho_i = \frac{\hat\mu_i + \sqrt{2\ln t/n_
 
 **Why fractional KUBE is just UCB.** The fractional unbounded knapsack puts the entire budget on the single highest-density item, so "sample proportional to the solution" degenerates to "pull that one arm w.p. 1" — i.e. $\arg\max_i \rho_i$, which is exactly UCB with each term divided by cost. No mixing, no randomization.
 
-**The inversion (bound vs. practice).** Fractional KUBE has the *tighter* regret bound (it drops the $(c_{\max}/c_{\min})^2$ factor KUBE carries) and is *cheaper*, yet **KUBE wins empirically** — up to 40% lower regret under moderately diverse costs, ~30% under extremely diverse costs. Reason: density-ordered greedy is a *better approximation* of the true integer knapsack, so KUBE converges to the optimal set faster; the fractional relaxation discards the mixing structure the real optimum needs when costs differ. When costs are **homogeneous** the two coincide (greedy stops after ≈ one item ≈ fractional) and performance matches. So the bounds order them one way and practice the opposite — a textbook bound-looseness symptom the authors concede; do not read the cleaner bound as the better algorithm. See [[TranThanh2012Knapsack]].
+**The inversion (bound vs. practice).** Fractional KUBE has the *tighter* regret bound (it drops the $(c_{\max}/c_{\min})^2$ factor KUBE carries) and is *cheaper*, yet **KUBE wins empirically** — up to 40% lower regret under moderately diverse costs, ~30% under extremely diverse costs. Reason: density-ordered greedy is a *better approximation* of the true integer knapsack, so KUBE converges to the optimal set faster; the fractional relaxation discards the mixing structure the real optimum needs when costs differ. When costs are **homogeneous** the two coincide (greedy stops after ≈ one item ≈ fractional) and performance matches. So the bounds order them one way and practice the opposite — a textbook bound-looseness symptom the authors concede; do not read the cleaner bound as the better algorithm. See [[tran-thanh2012Knapsack]].
 
 ## Key Papers
 
-- [[TranThanh2012Knapsack]] — introduces KUBE and fractional KUBE; proves $O(\ln B)$ regret for both and a matching $\Omega(\ln B)$ lower bound
+- [[tran-thanh2012Knapsack]] — introduces KUBE and fractional KUBE; proves $O(\ln B)$ regret for both and a matching $\Omega(\ln B)$ lower bound
 
 ## Variants
 
@@ -64,7 +64,7 @@ Each step both build the UCB density $\rho_i = \frac{\hat\mu_i + \sqrt{2\ln t/n_
 
 - [[upper-confidence-bound]] — fractional KUBE reduces to UCB when costs are equal; KUBE generalizes UCB to the knapsack setting
 - [[budget-limited-mab]] — the problem KUBE solves
-- [[budget-limited-mab-epsilon-first]] ([[TranThanh2010Epsilon]]) — the baseline KUBE beats. The 2010 paper states a bound parameterized by $\varepsilon$ and $\delta$; optimizing it gives $O(B^{2/3})$, and [[TranThanh2012Knapsack]] shows the family cannot do better. KUBE reaches $O(\ln B)$ by interleaving exploration into the knapsack objective rather than giving it its own phase
+- [[budget-limited-mab-epsilon-first]] ([[tran-thanh2010Epsilon]]) — the baseline KUBE beats. The 2010 paper states a bound parameterized by $\varepsilon$ and $\delta$; optimizing it gives $O(B^{2/3})$, and [[tran-thanh2012Knapsack]] shows the family cannot do better. KUBE reaches $O(\ln B)$ by interleaving exploration into the knapsack objective rather than giving it its own phase
 
 ## Current State and Open Problems
 

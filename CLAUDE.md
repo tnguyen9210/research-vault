@@ -68,7 +68,9 @@ Use lowercase slugs, hyphens not underscores, no spaces in filenames.
 
 **Basenames are unique vault-wide.** `[[slug]]` resolves by basename regardless of directory, and macOS filesystems are case-insensitive, so a name taken in `papers/` or `queries/` is taken everywhere. Check every page directory before naming a page.
 
-**Legacy paper pages.** Pages created before the Zotero wiring use `<LastnameYearTitleFirstWord>` (e.g. `Vaswani2017Attention`). Keep their names — renaming breaks links, and macOS filesystems are case-insensitive, so a citekey twin (`vaswani2017Attention.md`) must NEVER be created alongside one. One page per paper: if a legacy page exists, keep using it and add `citekey:` to its frontmatter when you next touch it.
+**Paper page filenames are citekeys, exactly.** `wiki/papers/<citekey>.md`, matching Better BibTeX character for character — `simchi-levi2022Bypassing`, not `SimchiLevi2022Bypassing`. The pre-Zotero `<LastnameYearTitleFirstWord>` convention was retired on 2026-09-22 and all 14 legacy pages renamed, so the page name, the link target, the `citekey:` field and the mirrored `<citekey>.pdf` are now one string. Each retired name is kept in that page's `aliases:`, which is what keeps the append-only `log.md` resolving.
+
+Two cautions this carries. A **twin must never exist**: `Vaswani2017Attention.md` and `vaswani2017Attention.md` differ only in case, macOS filesystems are case-insensitive, and having both would be a silent data loss there — so rename, never copy, and never create the second spelling. And because a citekey is *derived from metadata the user edits*, it changes when a year or title is corrected upstream; pin the key in Zotero's Extra field before writing a page against it, and re-resolve against the live API rather than a stale `library.json` export.
 
 **Concept families.** A family is never expressed by a subfolder. It is expressed three ways at once: the shared name prefix of rule 2, a **hub page** that lists its members ([[fqi]]), and a link back from each member to the hub.
 

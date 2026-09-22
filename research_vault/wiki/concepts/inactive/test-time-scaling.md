@@ -1,7 +1,7 @@
 ---
 title: "Test-Time Scaling"
 tags: [llm, inference, scaling-laws, best-of-n]
-introduced_by: [[Li2026Predicting]]
+introduced_by: [[li2026Predicting]]
 ---
 
 # Test-Time Scaling
@@ -21,8 +21,8 @@ $$V_N(s) = \mathbb{E}\!\left[\max_{1 \leq i \leq N} R_s^{(i)}\right], \quad R_s^
 **Scaling law:** empirically $V_N(\mathcal{A}_\text{BoN}) \approx C(\log N)^\gamma$ for $\gamma \in (0,1)$, meaning gains diminish logarithmically with budget.
 
 ## Key Papers
-- [[Li2026Predicting]] — tail extrapolation predicts $V_N(s)$ from $m \ll N$ samples; SLG Search achieves polynomial compute amplification over BoN
-- [[Foster2025Foundation]] — the theoretical case for inference-time compute: SpannerSampling meets the [[coverage-coefficient]] lower bound with only a sampling oracle, while training-time interventions (DPO/XPO) cannot be simultaneously data- and compute-efficient under ETH
+- [[li2026Predicting]] — tail extrapolation predicts $V_N(s)$ from $m \ll N$ samples; SLG Search achieves polynomial compute amplification over BoN
+- [[foster2025Good]] — the theoretical case for inference-time compute: SpannerSampling meets the [[coverage-coefficient]] lower bound with only a sampling oracle, while training-time interventions (DPO/XPO) cannot be simultaneously data- and compute-efficient under ETH
 
 ## Variants
 
@@ -35,4 +35,4 @@ $$V_N(s) = \mathbb{E}\!\left[\max_{1 \leq i \leq N} R_s^{(i)}\right], \quad R_s^
 - [[coverage-coefficient]] — the quantity governing when inference-time exploration is computationally feasible
 
 ## Current State and Open Problems
-Active research area (2024–2026). BoN is the dominant practical approach; adaptive multi-stage methods (SLG) are emerging with theoretical backing, and [[Foster2025Foundation]] supplies the computational-theory grounding for why inference-time compute beats training-time-only exploration. Structural connection: state selection in SLG is a fixed-budget [[bai]] problem. Per-paper open questions (deeper trees, PRM integration, tail assumptions, estimating $C_\text{cond}$) live on the paper pages.
+Active research area (2024–2026). BoN is the dominant practical approach; adaptive multi-stage methods (SLG) are emerging with theoretical backing, and [[foster2025Good]] supplies the computational-theory grounding for why inference-time compute beats training-time-only exploration. Structural connection: state selection in SLG is a fixed-budget [[bai]] problem. Per-paper open questions (deeper trees, PRM integration, tail assumptions, estimating $C_\text{cond}$) live on the paper pages.

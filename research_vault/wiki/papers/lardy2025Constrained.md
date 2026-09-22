@@ -1,5 +1,6 @@
 ---
 title: "Constrained Best Arm Identification"
+aliases: [Lardy2025Constrained]
 authors: [Tyron Lardy, Christina Katsimerou, Wouter M. Koolen]
 year: 2025
 venue: NeurIPS
@@ -14,7 +15,7 @@ citekey: lardy2025Constrained
 
 ## Problem
 
-Standard BAI ignores cost. [[Kanarios2024Cost]] (CABAI) minimizes *cumulative testing cost* to find the best arm. This paper poses a different question: among arms whose *mean cost* is below a threshold $\gamma$, which has the highest expected reward?
+Standard BAI ignores cost. [[kanarios2024Cost]] (CABAI) minimizes *cumulative testing cost* to find the best arm. This paper poses a different question: among arms whose *mean cost* is below a threshold $\gamma$, which has the highest expected reward?
 
 Formally: $K$-armed bandit $\boldsymbol{\nu} \in \mathcal{M}^K$ where each $\nu_k$ is a **bivariate** distribution on $(\text{reward}, \text{cost})$ with mean $\boldsymbol{m}(\nu_k) = (m_{k,1}, m_{k,2})$. The answer is:
 $$i^*(\boldsymbol{\nu}) = \arg\max_{\{i:\, m_{i,2} \leq \gamma\}} m_{i,1}, \quad \text{or } \texttt{None} \text{ if all arms infeasible}$$
@@ -75,7 +76,7 @@ TaS-1d (unconstrained BAI) is catastrophically bad on the None-feasible instance
 ## Connections
 
 - [[bai-constrained]] — the novel problem formulation introduced here
-- [[Kanarios2024Cost]] — complementary: CABAI minimizes cumulative cost; CBAI constrains mean arm cost. Both use GLR stopping; different lower bounds and optimal proportions.
+- [[kanarios2024Cost]] — complementary: CABAI minimizes cumulative cost; CBAI constrains mean arm cost. Both use GLR stopping; different lower bounds and optimal proportions.
 - [[bai]] — CBAI extends fixed-confidence BAI to cost-constrained bivariate arms
 - [[bai-cost-aware]] — contrast: cost-minimization vs. cost-threshold objective
 - Tyron Lardy — first author

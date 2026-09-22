@@ -2,7 +2,7 @@
 title: "Best Arm Identification"
 aliases: [BAI, best-arm-identification]
 tags: [bandits, pure-exploration, fixed-confidence]
-introduced_by: [[Kanarios2024Cost]]
+introduced_by: [[kanarios2024Cost]]
 ---
 
 # Best Arm Identification
@@ -31,8 +31,8 @@ $$Z_{a,b}(t) = N_a(t)\,d(\hat{\mu}_a,\, \hat{\mu}_{a,b}) + N_b(t)\,d(\hat{\mu}_b
 where $\hat{\mu}_{a,b}$ is the pull-weighted mixture mean.
 
 ## Key Papers
-- [[Kanarios2024Cost]] — extends BAI with per-arm costs (CABAI); optimal proportions shift from $w_a \propto 1/\Delta_a^2$ to $w_a \propto \sqrt{c_a}/\Delta_a^2$
-- [[Lardy2025Constrained]] — CBAI: each arm has joint (reward, cost) distribution; goal is best-reward arm with mean cost $\leq \gamma$; handles dependent distributions; asymptotically optimal TaS
+- [[kanarios2024Cost]] — extends BAI with per-arm costs (CABAI); optimal proportions shift from $w_a \propto 1/\Delta_a^2$ to $w_a \propto \sqrt{c_a}/\Delta_a^2$
+- [[lardy2025Constrained]] — CBAI: each arm has joint (reward, cost) distribution; goal is best-reward arm with mean cost $\leq \gamma$; handles dependent distributions; asymptotically optimal TaS
 
 ## Variants
 

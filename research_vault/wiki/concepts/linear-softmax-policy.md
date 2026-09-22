@@ -1,7 +1,7 @@
 ---
 title: "Linear Softmax Policy"
 tags: [rlhf, language-model-alignment, policy-parameterization]
-introduced_by: [[Foster2025Foundation]]
+introduced_by: [[foster2025Good]]
 ---
 
 # Linear Softmax Policy
@@ -28,7 +28,7 @@ Under this parameterization, the KL-regularized Q-function $Q^*_{h,\beta}(x, a_{
 
 ## Key Papers
 
-- [[Foster2025Foundation]] — primary source; establishes computational-statistical tradeoffs for this class; SpannerSampling and MTSS are specialized to it
+- [[foster2025Good]] — primary source; establishes computational-statistical tradeoffs for this class; SpannerSampling and MTSS are specialized to it
 
 ## Related Concepts
 
@@ -38,4 +38,4 @@ Under this parameterization, the KL-regularized Q-function $Q^*_{h,\beta}(x, a_{
 
 ## Current State and Open Problems
 
-Studied as the simplest nontrivial policy class for alignment theory. [[Foster2025Foundation]] gives sharp computational-statistical tradeoffs for this class. Extension to nonlinear/transformer policy classes is a primary open problem.
+Studied as the simplest nontrivial policy class for alignment theory. [[foster2025Good]] gives sharp computational-statistical tradeoffs for this class. Extension to nonlinear/transformer policy classes is a primary open problem.

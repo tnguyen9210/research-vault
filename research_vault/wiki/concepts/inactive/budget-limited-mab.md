@@ -2,7 +2,7 @@
 title: "Budget-Limited Multi-Armed Bandit"
 aliases: [budget-limited-bandits]
 tags: [multi-armed-bandits, regret, budget-limited-mab, bandits]
-introduced_by: [[TranThanh2010Epsilon]]
+introduced_by: [[tran-thanh2010Epsilon]]
 ---
 
 # Budget-Limited Multi-Armed Bandit
@@ -33,15 +33,15 @@ A short thread: two papers, two years apart, that between them pose the problem 
 
 ### Posing the model, and the cost of phasing exploration
 
-[[TranThanh2010Epsilon]] introduces the model, the unbounded-knapsack characterization of its optimum, and the reward-density statistic. Its policy, [[budget-limited-mab-epsilon-first]], spends $\varepsilon B$ on uniform exploration and then runs density-ordered greedy on the remainder. Optimizing the resulting loss bound over $\varepsilon$ gives $O(B^{2/3})$ — and that exponent is not an artifact of the analysis but of the *phase split*: a budget fraction committed to uniform exploration is spent whether or not the estimates needed it.
+[[tran-thanh2010Epsilon]] introduces the model, the unbounded-knapsack characterization of its optimum, and the reward-density statistic. Its policy, [[budget-limited-mab-epsilon-first]], spends $\varepsilon B$ on uniform exploration and then runs density-ordered greedy on the remainder. Optimizing the resulting loss bound over $\varepsilon$ gives $O(B^{2/3})$ — and that exponent is not an artifact of the analysis but of the *phase split*: a budget fraction committed to uniform exploration is spent whether or not the estimates needed it.
 
 ### Interleaving exploration into the objective
 
-[[TranThanh2012Knapsack]] gives the first $O(\ln B)$ algorithms, [[budget-limited-mab-kube]] and fractional KUBE, with a matching lower bound. The mechanism is the one worth carrying elsewhere: rather than giving exploration its own phase, put the confidence bound *inside* the knapsack objective, so that uncertainty is priced alongside value and exploration happens only where it changes the knapsack solution. The same paper supplies the $O(B^{2/3})$ characterization of $\varepsilon$-first, which is how the two results are known to be separated rather than merely unequal.
+[[tran-thanh2012Knapsack]] gives the first $O(\ln B)$ algorithms, [[budget-limited-mab-kube]] and fractional KUBE, with a matching lower bound. The mechanism is the one worth carrying elsewhere: rather than giving exploration its own phase, put the confidence bound *inside* the knapsack objective, so that uncertainty is priced alongside value and exploration happens only where it changes the knapsack solution. The same paper supplies the $O(B^{2/3})$ characterization of $\varepsilon$-first, which is how the two results are known to be separated rather than merely unequal.
 
 ### The neighbouring objectives
 
-Pricing arm pulls admits several non-equivalent problem statements, and the vault holds two of them. Here, one shared budget caps exploration and exploitation together and the objective is cumulative reward, which makes reward density $\mu_i/c_i$ the governing statistic and gives a $\Theta(\ln B)$ rate. In [[bai-cost-aware]], the problem is a stopping time: identify the best arm at confidence $1-\delta$ while minimizing cost, and the governing statistic becomes $\sqrt{c_a}$ sampling proportions ([[Kanarios2024Cost]]). These are genuinely different problems and the transfer between them is weak — which is worth stating, because "cost-aware bandits" in the literature names both.
+Pricing arm pulls admits several non-equivalent problem statements, and the vault holds two of them. Here, one shared budget caps exploration and exploitation together and the objective is cumulative reward, which makes reward density $\mu_i/c_i$ the governing statistic and gives a $\Theta(\ln B)$ rate. In [[bai-cost-aware]], the problem is a stopping time: identify the best arm at confidence $1-\delta$ while minimizing cost, and the governing statistic becomes $\sqrt{c_a}$ sampling proportions ([[kanarios2024Cost]]). These are genuinely different problems and the transfer between them is weak — which is worth stating, because "cost-aware bandits" in the literature names both.
 
 Bandits-with-knapsacks, which generalizes the single scalar budget to several simultaneous resource caps, is the natural next generalization and has no page here.
 
@@ -70,7 +70,7 @@ The seminal framing for cost-constrained cumulative-reward bandits, and the $O(\
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[TranThanh2010Epsilon]] and [[TranThanh2012Knapsack]] comes from their paper pages, written against the PDFs at ingest. The [[Kanarios2024Cost]] contrast in the third direction comes from [[bai-cost-aware]].
+*Sourced.* Everything attributed to [[tran-thanh2010Epsilon]] and [[tran-thanh2012Knapsack]] comes from their paper pages, written against the PDFs at ingest. The [[kanarios2024Cost]] contrast in the third direction comes from [[bai-cost-aware]].
 
 *This page's judgment, not a citation.* The reading of $O(B^{2/3})$ as a consequence of the phase split rather than of the analysis, the claim that transfer between the shared-budget and fixed-confidence objectives is weak, and the observation that the loose constants are what stops the theory predicting empirical orderings.
 

@@ -34,7 +34,7 @@ Key values: $\mathrm{dec}(F_x, \Lambda) \lesssim |\mathcal{A}|$, $d/h$, $1/h$ fo
 
 DEC's exploration cost $\mathbb{E}_{a \sim p}[(\hat{g}(a) - g^*(a))^2]$ references the **ground-truth $g^*$** — this prevents reduction to offline regression (you can't minimize this without knowing $g^*$). [[decision-offline-estimation-coefficient]] replaces this with $\mathrm{Coverage}_\varepsilon$, removing the dependence on $g^*$ and enabling offline oracle reduction.
 
-## DOEC-DEC Bridge ([[Qin2026Taming]], Theorem 5)
+## DOEC-DEC Bridge ([[qin2026Taming]], Theorem 5)
 
 Any distribution $p$ certifying $\mathrm{doec}_{\gamma,\varepsilon}(G,\Lambda) \leq V$ also certifies $\mathrm{dec}_\gamma(G,\Lambda) \leq V + 1/\gamma + \gamma\varepsilon$.
 
@@ -46,7 +46,7 @@ This bridges the design principles of offline- and online-oracle efficient algor
 
 ## Key Papers
 
-- [[Qin2026Taming]] — establishes $\mathrm{dec} \leq \mathrm{doec}$ + lower-order terms
+- [[qin2026Taming]] — establishes $\mathrm{dec} \leq \mathrm{doec}$ + lower-order terms
 
 ## Variants
 
@@ -59,4 +59,4 @@ This bridges the design principles of offline- and online-oracle efficient algor
 
 ## Current State and Open Problems
 
-Still the canonical complexity measure for interactive decision making with an **online** regression oracle, and not superseded: [[Qin2026Taming]] adds an offline analogue rather than replacing it. Its one structural limitation — the exploration cost references the unknown $g^*$ — is exactly what [[decision-offline-estimation-coefficient]] removes, and Theorem 5 relates the two for the first time. Active area. Note that the vault's only source here is Qin & Zhang; Foster et al. (2021a), who introduced DEC, is cited author–year and has no paper page yet.
+Still the canonical complexity measure for interactive decision making with an **online** regression oracle, and not superseded: [[qin2026Taming]] adds an offline analogue rather than replacing it. Its one structural limitation — the exploration cost references the unknown $g^*$ — is exactly what [[decision-offline-estimation-coefficient]] removes, and Theorem 5 relates the two for the first time. Active area. Note that the vault's only source here is Qin & Zhang; Foster et al. (2021a), who introduced DEC, is cited author–year and has no paper page yet.

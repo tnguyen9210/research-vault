@@ -410,7 +410,7 @@ $$
 $$
 *Proof.* Theorem 4.1 with Proposition 2.11. $\square$
 
-The reward *variance* at $\pi^*$'s actions replaces the worst-case $1/4$; the unknown $\sigma^2$ is replaced by the sample variance through the empirical Bernstein inequality (Maurer & Pontil 2009) with the same form, and Yin & Wang (2021) give the rigorous tabular statement. This is the value-side counterpart of replacing second moments of importance weights by variances on the policy side (betting or freezing; [[Ryu2025Improved]]).
+The reward *variance* at $\pi^*$'s actions replaces the worst-case $1/4$; the unknown $\sigma^2$ is replaced by the sample variance through the empirical Bernstein inequality (Maurer & Pontil 2009) with the same form, and Yin & Wang (2021) give the rigorous tabular statement. This is the value-side counterpart of replacing second moments of importance weights by variances on the policy side (betting or freezing; [[ryu2025Improved]]).
 
 ### 7.2 Gap and margin conditions
 
@@ -447,7 +447,7 @@ Theorem 7.2 is the hard-gap remark after Theorem 2.1 of Qian & Murphy (2011), $V
 8. **`nguyen-tang2022Offline`** (ICLR 2022) — neural instantiation.
 9. **Yin & Wang (NeurIPS 2021)**, **Hu, Kallus, Uehara (COLT 2021)** — §8.
 10. Athey & Wager (Econometrica 2021), Zhou, Athey & Wager (Oper. Res. 2023) — class-restricted policy learning with DR scores (§6.2).
-11. Policy-side context: `swaminathan2015Batch` (clipped IPW with an empirical-Bernstein penalty), `gabbianelli2023ImportanceWeighted` (IX), Sakhi et al. (NeurIPS 2024, LS), [[Ryu2025Improved]] (betting/freezing). Foster, Krishnamurthy, Simchi-Levi & Xu (COLT 2022) explain why the bandit case is clean and reinforcement learning is not.
+11. Policy-side context: `swaminathan2015Batch` (clipped IPW with an empirical-Bernstein penalty), `gabbianelli2023ImportanceWeighted` (IX), Sakhi et al. (NeurIPS 2024, LS), [[ryu2025Improved]] (betting/freezing). Foster, Krishnamurthy, Simchi-Levi & Xu (COLT 2022) explain why the bandit case is clean and reinforcement learning is not.
 
 ### 8.3 Verify-before-citing flags
 
@@ -476,7 +476,7 @@ Resolved 2026-09-19: Rashidinejad's penalty constant is verified — $\Gamma=\sq
 - [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis; Theorem 2.6 is its "part C", Lemma 2.13 its "part A" without error propagation
 - [[instance-dependent-bounds]] — §7
 - [[importance-weighting]] — the other route's estimator
-- [[Ryu2025Improved]] — the policy-side second-order bound that §7.1 mirrors
+- [[ryu2025Improved]] — the policy-side second-order bound that §7.1 mirrors
 
 ## Current State and Open Problems
 

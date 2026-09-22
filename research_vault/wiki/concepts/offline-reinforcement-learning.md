@@ -50,19 +50,19 @@ The theory side adds a fourth answer that the empirical literature largely does 
 
 *Single-step* methods (Onestep RL, Decision Transformer) fit $Q^{\mu}$ or clone behavior directly. *Multi-step* methods iterate the Bellman backup. The difference is **stitching** — composing segments of distinct sub-optimal trajectories into a trajectory better than any in the data — which single-step methods structurally cannot do.
 
-[[Kostrikov2022Offline]] makes this the sharpest empirical distinction in the area: on D4RL antmaze-medium and antmaze-large, every single-step method scores $\approx 0$ while multi-step methods score 40–70. On locomotion tasks the gap nearly vanishes. That the gap is enormous on one benchmark family and negligible on another is the most useful unexplained fact here, and it is what makes "which regime am I in?" a live question for a practitioner rather than a taxonomy detail.
+[[kostrikov2021Offline]] makes this the sharpest empirical distinction in the area: on D4RL antmaze-medium and antmaze-large, every single-step method scores $\approx 0$ while multi-step methods score 40–70. On locomotion tasks the gap nearly vanishes. That the gap is enormous on one benchmark family and negligible on another is the most useful unexplained fact here, and it is what makes "which regime am I in?" a live question for a practitioner rather than a taxonomy detail.
 
 ### What is actually provable, and for which algorithms
 
 Practice and theory in offline RL have largely diverged, and the divergence is clean enough to state as a pair. The methods people run — IQL, CQL, TD3+BC — carry no instance-dependent guarantees. The methods with sharp guarantees — PEVI, PFQL — are not run.
 
-[[Yin2023Offline]] represents the strongest current theory: [[instance-dependent-bounds]] under a nonlinear ([[differentiable-function-approximation]]) class via pessimism, governed by the Fisher-information-style quantity $\sum_h\mathbb{E}_{\pi^*}\big[\sqrt{\nabla_\theta f^\top\Sigma_h^{\star-1}\nabla_\theta f}\big]$, with a variance-aware variant (VAFQL) that saves a factor $H$ and is minimax-optimal up to $\sqrt{d}$. [[Kostrikov2022Offline]] represents the strongest current practice, with only an asymptotic guarantee: $\tau \to 1$ recovers the support-constrained optimum, and nothing is proved at the $\tau \in \{0.7, 0.9\}$ actually used.
+[[yin2023Offline]] represents the strongest current theory: [[instance-dependent-bounds]] under a nonlinear ([[differentiable-function-approximation]]) class via pessimism, governed by the Fisher-information-style quantity $\sum_h\mathbb{E}_{\pi^*}\big[\sqrt{\nabla_\theta f^\top\Sigma_h^{\star-1}\nabla_\theta f}\big]$, with a variance-aware variant (VAFQL) that saves a factor $H$ and is minimax-optimal up to $\sqrt{d}$. [[kostrikov2021Offline]] represents the strongest current practice, with only an asymptotic guarantee: $\tau \to 1$ recovers the support-constrained optimum, and nothing is proved at the $\tau \in \{0.7, 0.9\}$ actually used.
 
 The two make a useful pair precisely because they answer the same question with opposite strategies — penalize-the-uncertainty versus never-query-it — and neither has what the other has.
 
 ### The bandit and planning specializations
 
-The $H = 1$ case, [[contextual-bandits-offline]], removes bootstrapping and error propagation, so the coverage story appears in isolation and the two algorithm families separate cleanly into value-based and policy-based. It is the right place to understand what coverage *is* before meeting it inside a backup. On the planning side, [[mcts]] faces the same max-under-uncertainty problem at a different point in the pipeline, and [[Dam2024Power]] applies a smooth backup for the same reason IQL applies an expectile — the pattern is collected on [[smooth-aggregators]].
+The $H = 1$ case, [[contextual-bandits-offline]], removes bootstrapping and error propagation, so the coverage story appears in isolation and the two algorithm families separate cleanly into value-based and policy-based. It is the right place to understand what coverage *is* before meeting it inside a backup. On the planning side, [[mcts]] faces the same max-under-uncertainty problem at a different point in the pipeline, and [[dam2024Power]] applies a smooth backup for the same reason IQL applies an expectile — the pattern is collected on [[smooth-aggregators]].
 
 ## Variants
 
@@ -79,19 +79,19 @@ The $H = 1$ case, [[contextual-bandits-offline]], removes bootstrapping and erro
 - [[extrapolation-error]] / [[overestimation-bias]] — the failure mode, and why the $\max$ compounds it
 - [[pessimism-principle]] — the mechanism behind the provable branch
 - [[coverage-coefficient]] — what makes $\Delta(\hat\pi)$ controllable at all
-- [[instance-dependent-bounds]] — the guarantee type separating [[Yin2023Offline]] from worst-case work
+- [[instance-dependent-bounds]] — the guarantee type separating [[yin2023Offline]] from worst-case work
 - [[smooth-aggregators]] — the cross-cutting pattern IQL's expectile instantiates
-- [[deep-q-network]] / [[Song2019Revisiting]] — the deep-RL machinery these methods build on
+- [[deep-q-network]] / [[song2019Revisiting]] — the deep-RL machinery these methods build on
 - [[test-time-scaling]] — inference-time compute as an alternative to a better trained policy
 
 ## Current State and Open Problems
 
 The area has a working empirical playbook and a sharp theory, with very little overlap between them. The open problems below are mostly restatements of that gap from different directions; the two marked as cheap are the ones a reader could actually run.
 
-- **Finite-$\tau$, finite-sample guarantees for in-sample methods.** IQL's Theorem 3 is asymptotic in $\tau$ and assumes exact solutions. No bound exists on $\max_{a:\mu(a|s)>0} Q^*(s,a) - V_\tau(s)$ at the $\tau$ values used in practice. [[Yin2023Offline]] shows what such a bound looks like for the pessimism family; transporting it is the obvious target.
+- **Finite-$\tau$, finite-sample guarantees for in-sample methods.** IQL's Theorem 3 is asymptotic in $\tau$ and assumes exact solutions. No bound exists on $\max_{a:\mu(a|s)>0} Q^*(s,a) - V_\tau(s)$ at the $\tau$ values used in practice. [[yin2023Offline]] shows what such a bound looks like for the pessimism family; transporting it is the obvious target.
 - **Theory for the algorithms people run.** PFQL has the guarantee, IQL has the benchmark numbers, neither has both. Closing this from either side — an instance-dependent bound for an in-sample method, or a competitive empirical evaluation of PFQL/VAFQL — would be the single most valuable contribution here.
 - **Coverage conditions that survive overparameterization.** Uniform coverage requires parameter identifiability, which neural networks violate structurally through permutation and scaling symmetries. A quotient formulation — coverage on function space, or on parameter equivalence classes — is missing and looks tractable.
-- **Is $d$ or $\sqrt{d}$ right for nonlinear classes?** [[Yin2023Offline]]'s Theorem 4.2 leaves a $\sqrt{d}$ gap; whether the covering argument is loose or nonlinearity genuinely costs $\sqrt{d}$ is open.
+- **Is $d$ or $\sqrt{d}$ right for nonlinear classes?** [[yin2023Offline]]'s Theorem 4.2 leaves a $\sqrt{d}$ gap; whether the covering argument is loose or nonlinearity genuinely costs $\sqrt{d}$ is open.
 - **Does the instance measure predict empirical difficulty?** *(cheap)* Nobody has checked whether $\sum_h\mathbb{E}_{\pi^*}[\|\nabla_\theta f\|_{\Sigma_h^{\star-1}}]$ tracks observed hardness on D4RL. It would directly link the two papers on this page.
 - **When is stitching actually needed?** *(cheap)* The single-step/multi-step gap is enormous on antmaze and negligible on locomotion. A dataset statistic predicting which regime you are in would be more useful than either method.
 - **Instance-dependent dataset quality.** Support ($\mu(a|s) > 0$) is binary and ignores how much mass sits near the maximizing action. A [[coverage-coefficient]]-style density-weighted quantity should govern both the achievable value and the required $\tau$, and would explain why $\tau = 0.9$ is necessary on antmaze but not on locomotion.
@@ -100,9 +100,9 @@ The area has a working empirical playbook and a sharp theory, with very little o
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[Kostrikov2022Offline]], [[Yin2023Offline]], [[Song2019Revisiting]] and [[Foster2025Foundation]] comes from their paper pages, written against the PDFs at ingest — including the D4RL numbers and theorem references.
+*Sourced.* Everything attributed to [[kostrikov2021Offline]], [[yin2023Offline]], [[song2019Revisiting]] and [[foster2025Good]] comes from their paper pages, written against the PDFs at ingest — including the D4RL numbers and theorem references.
 
-*Cited by name, no paper page.* BCQ, BEAR, AWAC, TD3+BC, CQL, Fisher-BRC, Onestep RL, Decision Transformer and PEVI. These are named to place the families and are taken from how [[Kostrikov2022Offline]] positions itself; none has been checked at source, and no claim here rests on one individually.
+*Cited by name, no paper page.* BCQ, BEAR, AWAC, TD3+BC, CQL, Fisher-BRC, Onestep RL, Decision Transformer and PEVI. These are named to place the families and are taken from how [[kostrikov2021Offline]] positions itself; none has been checked at source, and no claim here rests on one individually.
 
 *This page's judgment, not a citation.* The reading of the whole area as "FQI with one step modified", the grouping into four directions, the claim that the first two axes are close to orthogonal, and the two problems marked cheap.
 
