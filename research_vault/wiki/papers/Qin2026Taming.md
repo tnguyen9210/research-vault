@@ -5,7 +5,7 @@ year: 2026
 venue: arXiv
 arxiv: "2602.09456"
 tags: [contextual-bandits, oracle-efficiency, offline-regression, regret-bounds, exploration-exploitation, doec]
-source: raw/papers/Qin2026Taming.pdf
+citekey: qin2026Taming
 ---
 
 # Taming the Monster Every Context

@@ -5,7 +5,7 @@ year: 2025
 venue: arXiv
 arxiv: "2503.07453"
 tags: [rlhf, active-exploration, computational-complexity, linear-softmax, language-model-alignment]
-source: raw/papers/Foster2025Foundation.pdf
+citekey: foster2025Good
 ---
 
 # Is a Good Foundation Necessary for Efficient Reinforcement Learning?

@@ -4,7 +4,7 @@ authors: [Long Tran-Thanh, Archie Chapman, Enrique Munoz de Cote, Alex Rogers, N
 year: 2010
 venue: AAAI
 tags: [budget-limited-mab, multi-armed-bandits, epsilon-first, knapsack, regret, bandits]
-source: raw/papers/TranThanh2010Epsilon.pdf
+# not in Zotero as of 2026-09-22 — no citekey, so no PDF resolves
 ---
 
 # Epsilon-First Policies for Budget-Limited Multi-Armed Bandits

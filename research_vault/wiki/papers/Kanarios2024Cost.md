@@ -5,7 +5,7 @@ year: 2024
 venue: arXiv
 arxiv: "2402.16710"
 tags: [best-arm-identification, cabai, pure-exploration, bandits, cost-aware]
-source: raw/papers/Kanarios2024Cost.pdf
+citekey: kanarios2024Cost
 ---
 
 # Cost Aware Best Arm Identification

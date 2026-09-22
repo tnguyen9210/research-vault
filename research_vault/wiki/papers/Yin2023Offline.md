@@ -5,7 +5,7 @@ year: 2023
 venue: ICLR
 arxiv: "2210.00750"
 tags: [offline-reinforcement-learning, differentiable-function-approximation, instance-dependent-bounds, pessimism, function-approximation, sample-complexity, realizability]
-source: raw/papers/Yin2023Offline.pdf
+citekey: yin2022Offline
 ---
 
 # Offline Reinforcement Learning with Differentiable Function Approximation is Provably Efficient

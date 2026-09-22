@@ -5,7 +5,7 @@ year: 2022
 venue: ICLR
 arxiv: "2110.06169"
 tags: [offline-reinforcement-learning, expectile-regression, implicit-q-learning, deep-reinforcement-learning, bellman-operator, overestimation-bias, distributional-shift]
-source: raw/papers/Kostrikov2022Offline.pdf
+citekey: kostrikov2021Offline
 ---
 
 # Offline Reinforcement Learning with Implicit Q-Learning

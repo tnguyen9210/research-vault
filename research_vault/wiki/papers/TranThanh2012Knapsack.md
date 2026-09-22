@@ -5,7 +5,7 @@ year: 2012
 venue: AAAI
 arxiv: "1204.1909"
 tags: [budget-limited-mab, multi-armed-bandits, regret, ucb, knapsack, kube, bandits]
-source: raw/papers/TranThanh2012Knapsack.pdf
+citekey: tran-thanh2012Knapsack
 ---
 
 # Knapsack-based Optimal Policies for Budget-Limited Multi-Armed Bandits

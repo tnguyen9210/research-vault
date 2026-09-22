@@ -5,7 +5,7 @@ year: 2024
 venue: arXiv
 arxiv: "2406.02235"
 tags: [mcts, planning, power-mean, reinforcement-learning, convergence]
-source: raw/papers/Dam2024Power.pdf
+citekey: dam2024Power
 ---
 
 # Power Mean Estimation in Stochastic Monte-Carlo Tree Search
