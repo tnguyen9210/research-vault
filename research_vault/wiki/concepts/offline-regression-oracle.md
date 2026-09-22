@@ -11,7 +11,7 @@ tags: [oracle-efficiency, regression, contextual-bandits]
 
 With probability at least $1 - \delta$:
 
-$$\mathbb{E}_{\mathcal{D}}\!\left[(\hat{f}(x,a) - f^*(x,a))^2\right] \lesssim \mathrm{Reg}_\mathrm{off}(\mathcal{F}, T, \delta)$$
+$$\mathbb{E}_{\mathcal{D}}\!\left[(\hat q(x,a) - q^*(x,a))^2\right] \lesssim \mathrm{Reg}_\mathrm{off}(\mathcal{F}, T, \delta)$$
 
 Key properties:
 - $\mathrm{Reg}_\mathrm{off}$ is monotonically decreasing in $T$ (more data → better)

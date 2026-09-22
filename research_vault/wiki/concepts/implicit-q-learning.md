@@ -36,12 +36,12 @@ $$
 **Guarantee (Theorem 3 of [[Kostrikov2022Offline]]).** With $V_\tau, Q_\tau$ the exact fixed points of the two losses,
 
 $$
-\lim_{\tau\to 1} V_\tau(s) = \max_{\substack{a\in\mathcal{A}\\ \text{s.t. } \pi_\beta(a|s)>0}} Q^*(s,a),
+\lim_{\tau\to 1} V_\tau(s) = \max_{\substack{a\in\mathcal{A}\\ \text{s.t. } \mu(a|s)>0}} Q^*(s,a),
 $$
 
 the optimal value *constrained to the behavior policy's support*. Proof: Lemma 2 gives monotonicity in $\tau$, Corollary 2.1 gives the upper bound, Lemma 1 identifies the limit.
 
-**The $\tau$ spectrum.** $\tau = 0.5$ makes $L_V$ ordinary MSE, so the algorithm is SARSA-style policy evaluation of $\pi_\beta$; $\tau \to 1$ approaches Q-learning restricted to the support. IQL therefore parameterizes the entire continuum between single-step evaluation and full dynamic programming with one scalar.
+**The $\tau$ spectrum.** $\tau = 0.5$ makes $L_V$ ordinary MSE, so the algorithm is SARSA-style policy evaluation of $\mu$; $\tau \to 1$ approaches Q-learning restricted to the support. IQL therefore parameterizes the entire continuum between single-step evaluation and full dynamic programming with one scalar.
 
 **Practical details:** clipped double Q-learning (min of two critics) for the $V$ and policy updates; Polyak-averaged target network; value learning and policy extraction are decoupled, so extraction may run concurrently — which is what makes online finetuning natural.
 
@@ -60,7 +60,7 @@ the optimal value *constrained to the behavior policy's support*. Proof: Lemma 2
 - [[softmax-bellman-operator]] — the same "replace max with a smooth aggregator" move applied to online deep Q-learning ([[Song2019Revisiting]]); has the finite-temperature bound IQL lacks
 - [[mcts-power-mean]] — the same move in tree search ([[Dam2024Power]])
 - [[overestimation-bias]] — avoided at the source rather than corrected
-- [[coverage-coefficient]] — the density-aware notion of what a reference distribution makes learnable; IQL's binary support condition $\pi_\beta(a|s)>0$ is its crude analogue
+- [[coverage-coefficient]] — the density-aware notion of what a reference distribution makes learnable; IQL's binary support condition $\mu(a|s)>0$ is its crude analogue
 
 ## Current State and Open Problems
 

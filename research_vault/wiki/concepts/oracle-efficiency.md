@@ -59,7 +59,7 @@ Distinct from everything above, and worth separating because the names invite co
 
 - [[offline-regression-oracle]] — the oracle model the practical branch assumes
 - **Online-oracle-efficient bandits** — SquareCB and E2D; the $O(T)$-call route, governed by [[decision-estimation-coefficient]] and not separately paged here
-- **Realizability-free variants** — OE2D's setting, where $f^* \in \mathcal{F}$ is not assumed; contrast [[realizability]]
+- **Realizability-free variants** — OE2D's setting, where $q^* \in \mathcal{F}$ is not assumed; contrast [[realizability]]
 
 ## Related Concepts
 

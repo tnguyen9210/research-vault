@@ -45,6 +45,7 @@ with $\bar\mu_{i,t-1}$ the empirical mean and $n_{i,t-1}$ the pull count. This a
 ## Related Concepts
 
 - [[pessimism-principle]] — the offline mirror image: same confidence widths, subtracted rather than added
+- [[online-reinforcement-learning]] — optimism carried into MDPs: the bonus becomes $1/\sqrt{N_h(s,a)}$ and stops being computable beyond the tabular case, which is what the ensemble alternative there is for
 - [[bai]] — pure exploration uses confidence bounds toward a different objective (identify the best arm) with a different optimality notion (sample complexity, not regret)
 - **Thompson sampling** — the Bayesian alternative; comparable regret, often better empirically (see [[Yang2025Stochastically]])
 - [[instance-dependent-bounds]] — UCB's gap-dependent regret is the canonical example

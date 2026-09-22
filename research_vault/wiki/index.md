@@ -45,6 +45,7 @@ Format: `- [[slug]] — one-line description`
 - [[linear-softmax-policy]] — $\pi_\theta(y|x) \propto \pi_\text{ref}(y|x)\exp(\beta^{-1}\langle\theta,\phi(x,y)\rangle)$; natural RLHF parameterization studied in [[Foster2025Foundation]]
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
 - [[offline-reinforcement-learning]] — policy learning from a fixed dataset, no interaction; distributional shift is the binding constraint; four algorithm families
+- [[online-reinforcement-learning]] — interaction with an unknown MDP, judged by cumulative regret $\mathrm{Reg}(T)=\sum_t\Delta(\pi_t)$; optimism by bonus or by ensemble quantile; the mirror of the offline page
 - [[oracle-efficiency]] — reducing bandit learning to few regression-oracle calls; the $O(\log T)$ call-count line from FALCON to OE2D, online vs. offline oracle
 - [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]
 - [[pessimism-principle]] — act on a lower confidence bound offline; same confidence machinery as UCB with the opposite sign, because offline errors are not self-correcting

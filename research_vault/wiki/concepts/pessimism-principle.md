@@ -46,7 +46,7 @@ In every case $\Gamma$ is large where the data is thin along the direction that 
 
 ## Variants
 
-- **Optimism (UCB)** — the online counterpart; see [[upper-confidence-bound]]. Same confidence machinery, opposite sign, because online mistakes are self-correcting and offline ones are not
+- **Optimism (UCB)** — the online counterpart; see [[upper-confidence-bound]]. Same confidence machinery, opposite sign, because online mistakes are self-correcting and offline ones are not In MDPs this is [[online-reinforcement-learning]], whose optimism decomposition is the exact mirror of the pessimism lemma.
 
 ## Related Concepts
 

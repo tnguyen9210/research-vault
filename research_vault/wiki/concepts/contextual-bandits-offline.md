@@ -28,7 +28,21 @@ Online, an algorithm that is unsure about an action can play it. Offline it cann
 
 ## 2. Formal Description
 
-Notation follows the Overleaf research log (`02_offline_contextual_bandits.tex`, §1) and is shared with [[contextual-bandits-offline-value-based]].
+Notation follows the Overleaf research log (`02_offline_contextual_bandits.tex`, §1) and is shared with [[contextual-bandits-offline-value-based]]. **This section is also the notation anchor for [[contextual-bandits-online]], [[offline-reinforcement-learning]] and [[online-reinforcement-learning]]**, each of which states only what its setting adds. The correspondence, so that a symbol means one thing across all four:
+
+| role | here ($H = 1$, batch) | online CB | offline / online RL |
+|---|---|---|---|
+| where decisions are made | context $x \in \mathcal X$ | same | state $s \in \mathcal S$; $\mathcal S = \mathcal X$ at $H=1$ |
+| distribution over them | $\nu$ | same | $\nu$ is the initial-state law; $d^\pi_h$ per step |
+| mean reward | $q^*(x,a)$, kernel $\rho$ | same | $r_h(s,a)$, kernel $\rho_h$; $r_1 = q^*$ at $H=1$ |
+| optimal action-value | $q^*$ itself | same | $Q^*_h$; $Q^*_1 = q^*$ at $H=1$ |
+| the policy that generated the data | behavior policy $\mu$ | — (none) | $\mu$ (the deep-RL literature's $\pi_\beta$) |
+| logged pairs | $d^\mu(x,a) = \nu(x)\mu(a\mid x)$ | — | $d^\mu_h$ |
+| what the learner sees | $\mathcal D$, $T$ triples | its own $T$ rounds of play | $\mathcal D$, $T$ trajectories / $T$ episodes |
+| objective | $\Delta(\hat\pi) = J(\pi^*) - J(\hat\pi)$ | $\mathrm{Reg}(T)$, a sum over rounds | $\Delta(\hat\pi)$ offline; $\mathrm{Reg}(T)$ online |
+| function class | $\mathcal F \ni q^*$ | same | $\mathcal F \ni Q^*_h$, plus Bellman completeness |
+
+Two symbols are used with different meanings on different pages and are left that way because each is its field's own: $\Lambda$ (benchmark class online, regularized Gram matrix here) and $K$ (which is $|\mathcal A|$ throughout this vault, whereas the RL literature writes $K$ for the number of episodes — those pages write $T$ episodes and say so). The alignment pages' $\pi_{\mathrm{ref}}$ is *not* renamed to $\mu$: a KL-regularized reference policy is both the sampling distribution and the regularization target, which is a different role from a behavior policy.
 
 ### 2.1 Offline data
 
