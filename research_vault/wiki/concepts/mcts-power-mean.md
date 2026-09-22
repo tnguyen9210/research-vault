@@ -32,12 +32,16 @@ Special cases: $p = 1$ recovers Fixed-Depth-MCTS (average mean); $p \to \infty$ 
 ## Key Papers
 - [[Dam2024Power]] — introduces Stochastic-Power-UCT with complete convergence proof for stochastic MDPs
 
-## Variants & Related Concepts
-- [[mcts]] — the broader framework
+## Variants
+
 - **Fixed-Depth-MCTS** (Shah et al. 2022) — special case $p = 1$; deterministic environments only
 - **Power-UCT** (Dam et al. 2019) — predecessor without stochastic convergence guarantee
+
+## Related Concepts
+
+- [[mcts]] — the broader framework
 - [[softmax-bellman-operator]] — the same smooth-aggregator-in-place-of-max idea in deep Q-learning ([[Song2019Revisiting]])
 - [[expectile-regression]] — and again in offline RL ([[Kostrikov2022Offline]]), where the smoothing is what makes in-sample maximization possible
 
-## Current State
+## Current State and Open Problems
 Optimal $p$ selection remains open; $p = 2$ is a robust empirical default. Extension to adversarial MDPs and deep learning integration are open problems.

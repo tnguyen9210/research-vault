@@ -44,7 +44,11 @@ In every case $\Gamma$ is large where the data is thin along the direction that 
 - Buckman et al. (2020) — argues pessimism is the right principle for fixed-dataset policy optimization
 - Kumar et al. (2020) — CQL, the value-regularization form used in practice
 
-## Variants & Related Concepts
+## Variants
+
+- **Optimism (UCB)** — the online counterpart; see [[upper-confidence-bound]]. Same confidence machinery, opposite sign, because online mistakes are self-correcting and offline ones are not
+
+## Related Concepts
 
 - [[contextual-bandits-offline-value-based]] — the principle at horizon one, where the pessimism lemma is two lines and converts uniform coverage into single-policy coverage
 - [[fqi]] — the template pessimism is most often applied to; the $\max_{a'}$ in its target is precisely what makes offline extrapolation dangerous
@@ -53,8 +57,7 @@ In every case $\Gamma$ is large where the data is thin along the direction that 
 - [[importance-weighting]] — the estimator pessimism is applied to in the off-policy-selection line
 - [[implicit-q-learning]] — the main *alternative* strategy: rather than estimate and penalize uncertainty at out-of-sample actions, never evaluate them at all. Empirically stronger; theoretically much weaker
 - [[coverage-coefficient]] — quantifies what pessimism cannot recover; every pessimistic bound is stated against a coverage condition
-- **Optimism (UCB)** — the online counterpart; see [[upper-confidence-bound]]. Same confidence machinery, opposite sign, because online mistakes are self-correcting and offline ones are not
 
-## Current State
+## Current State and Open Problems
 
 The consensus organizing principle for offline decision-making, and the setting where theory is furthest along — pessimistic algorithms carry the sharpest known guarantees in tabular, linear, and now differentiable function classes. Two persistent gaps. First, the tightest theory is for algorithms that are not run in practice, while the algorithms that are run (IQL, CQL, TD3+BC) either avoid explicit uncertainty estimation or use heuristic penalties. Second, constructing a valid $\Gamma$ requires either a tractable confidence set or a coverage assumption strong enough to make one; weakening that to single-policy conditions without losing computational tractability is open.

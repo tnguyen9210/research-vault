@@ -149,7 +149,7 @@ Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pes
 - Kumar et al. (2020) — CQL; pushes down $Q$ on out-of-distribution actions rather than penalizing at selection time
 - Chen & Jiang (2019) — concentrability and completeness; where coverage conditions enter batch RL analysis formally
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[fqi]] — the template in which the train/query mismatch arises
 - [[overestimation-bias]] — the noise-driven cousin; see the comparison table above
@@ -159,6 +159,6 @@ Vanilla FQI takes $\max\{10,20,8\} = 20$ and commits to the unsupported $B$. Pes
 - [[coverage-coefficient]] — the quantity that measures how much extrapolation a dataset forces
 - [[offline-reinforcement-learning]] — the setting
 
-## Current State
+## Current State and Open Problems
 
 The consensus diagnosis for why naive batch RL fails, and the organizing problem of the field. Two families of answer are established — penalize the uncertainty (pessimism, conservatism) or refuse the query (in-sample learning) — and the vault holds a strong representative of each. What remains unsettled is quantitative rather than conceptual: how to measure the degree of extrapolation a given dataset forces without an all-policy coverage assumption, and how to state a bound in terms of *density* near the actions that matter rather than a binary support indicator. That gap is exactly what separates [[Yin2023Offline]]'s uniform coverage and [[Kostrikov2022Offline]]'s support condition from the density-aware [[coverage-coefficient]].

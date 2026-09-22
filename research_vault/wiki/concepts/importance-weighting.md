@@ -28,16 +28,19 @@ This estimator is unbiased: $\mathbb{E}[\hat{\mu}_n^\text{IW}(\pi)] = \mu(\pi)$.
 
 - [[Ryu2025Improved]] — applies betting-based LCB to $\tilde{r}_t^\pi$; proves first finite-sample guarantee for unbounded IW rewards; introduces freezing to control variance via score-function pessimism
 
-## Variants & Related Concepts
+## Variants
 
 - **Doubly Robust (DR) estimator** — augments IW with a reward model to reduce variance; unbiased if either the model or the weights are correct
 - **Clipped IW** — truncates $w_t^\pi$ at a threshold; biased but variance-controlled
 - **Logarithmic smoothing** (Sakhi et al. 2024) — uses $\phi^\text{LS}(x) = \ln(1+x)$ as the score function in the pessimistic objective
 - **Freezing** — $\phi^\text{freeze}(x) = \ln(1 + x \cdot \mathbf{1}\{x \leq 1\})$; zeros out large IW samples; reduces variance at cost of bias, preferred in small-data regimes
+
+## Related Concepts
+
 - [[contextual-bandits-online]] — offline policy optimization is the primary application of IW in this vault
 - [[pessimism-principle]] — applying pessimism (select policy with highest LCB on $\mu(\pi)$) to IW estimates yields variance-adaptive guarantees
 - [[fqi-pessimistic]] — the sequential-RL counterpart: the same pessimism principle, but the uncertainty is an elliptical/gradient-geometry penalty on the fitted Q-function rather than a concentration bound on IW estimates
 
-## Current State
+## Current State and Open Problems
 
 Active research area. Key open problems: achieving doubly-robust guarantees with variance adaptation; removing bounded-probability-ratio assumptions; matching selection and learning bounds in the same framework. [[Ryu2025Improved]] represents the current state of the art for unbounded IW rewards.

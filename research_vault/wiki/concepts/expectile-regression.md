@@ -47,7 +47,7 @@ A subtlety that is easy to miss. Applying expectile regression to a full TD targ
 - [[Kostrikov2022Offline]] — uses upper expectiles of $Q(s,\cdot)$ to perform in-sample maximization in offline RL; Theorem 3 shows $\tau \to 1$ recovers the support-constrained optimal value
 - Dabney et al. (2018a,b) — QR-DQN / IQN use *quantile* regression in RL, but over the return distribution induced by stochastic transitions, a different statistic with a different purpose
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[implicit-q-learning]] — the algorithm built on this primitive
 - [[fqi]] — the template IQL modifies; the expectile replaces the $\max_{a'}$ in its Bellman target
@@ -55,6 +55,6 @@ A subtlety that is easy to miss. Applying expectile regression to a full TD targ
 - [[mcts-power-mean]] — a third smooth-aggregator-in-place-of-max instance, in tree search ([[Dam2024Power]])
 - [[overestimation-bias]] — the reason smooth surrogates are attractive in the first place
 
-## Current State
+## Current State and Open Problems
 
 Standard and widely adopted in offline RL after IQL — the expectile-$V$ / MSE-$Q$ pattern now appears across offline and offline-to-online algorithms, and IQL is a routine baseline. Theoretical understanding lags practice: the finite-$\tau$ approximation error, the finite-sample cost of estimating high expectiles (upper expectiles are effectively supported by fewer samples), and the expectile-vs.-quantile choice are all open. There is no instance-dependent characterization of how large $\tau$ must be for a given behavior-policy density — arguably the central missing result.

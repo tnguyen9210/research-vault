@@ -29,7 +29,7 @@ where $\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|$ is the max Q-gap an
 - [[Song2019Revisiting]] — proves the [[softmax-bellman-operator]] reduces overestimation with quantified bounds, independent of exploration
 - [[Kostrikov2022Offline]] — removes the bias at its source in the offline setting: the max is never applied to an extrapolated value, because $Q$ is evaluated only at dataset actions
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[deep-q-network]] — the algorithm family most affected; DDQN is the standard mitigation
 - [[softmax-bellman-operator]] — provably reduces overestimation for all $\tau \ge 0$
@@ -39,6 +39,6 @@ where $\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|$ is the max Q-gap an
 - [[fqi]] — where the bias compounds offline: each sweep feeds an inflated $\max_{a'}$ back into the next regression target
 - [[extrapolation-error]] — the offline cousin, and a genuinely different failure. Overestimation is a *statistical* bias present even when every action is observed and estimates are merely noisy; extrapolation error is a *coverage* failure at actions with no supporting data, which no amount of data on the wrong distribution repairs
 
-## Current State
+## Current State and Open Problems
 
 Overestimation remains a core challenge in value-based deep RL. DDQN is the standard baseline fix; distributional methods (C51, QR-DQN, IQN) and pessimistic methods (TD3, CQL) dominate modern practice. The softmax operator offers a lightweight alternative but has not displaced these approaches. Active research in offline RL focuses on *underestimation* / pessimism as the desired correction.

@@ -33,12 +33,12 @@ An online regression oracle $\mathcal{O}_\mathrm{on}(\mathcal{F})$ receives tupl
 
 - [[Qin2026Taming]] — uses offline oracle with $O(\log T)$ calls for general function classes; shows $\mathrm{Reg}_\mathrm{off}$ governs regret alongside [[decision-offline-estimation-coefficient]]
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[oracle-efficiency]]
 - [[decision-offline-estimation-coefficient]] — the complexity measure that governs regret when using offline oracles
 - [[contextual-bandits-online]]
 
-## Current State
+## Current State and Open Problems
 
 Standard and uncontested as a primitive — that any ERM-style supervised learner qualifies is the whole point of the abstraction. The live question has moved off the oracle and onto what governs the reduction: $\mathrm{Reg}_\mathrm{off}$ supplies the statistical error, [[decision-offline-estimation-coefficient]] the decision-theoretic cost, and it is the second that is under active study.

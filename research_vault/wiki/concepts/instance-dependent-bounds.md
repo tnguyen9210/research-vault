@@ -63,15 +63,18 @@ Papers whose central open problem is the *absence* of such a bound:
 - [[Kostrikov2022Offline]] — IQL's Theorem 3 is asymptotic in $\tau$ with a binary support condition; no bound at the $\tau$ actually used, and no instance functional to explain why $\tau=0.9$ is needed on antmaze but not locomotion
 - [[Song2019Revisiting]] — has a finite-$\tau$ gap bound, but under stylized assumptions (all-equal $Q^*$, i.i.d. noise) rather than instance quantities
 
-## Variants & Related Concepts
+## Variants
+
+- **Instance-optimality** — the strong form: a matching per-instance lower bound. Achieved asymptotically in BAI, and up to $\sqrt{d}$ in [[Yin2023Offline]]
+
+## Related Concepts
 
 - **Minimax / worst-case bounds** — the complement; the right tool for establishing lower bounds and for comparing algorithm classes, and what instance-dependent results are measured against
-- **Instance-optimality** — the strong form: a matching per-instance lower bound. Achieved asymptotically in BAI, and up to $\sqrt{d}$ in [[Yin2023Offline]]
 - **Complexity measures** — [[decision-estimation-coefficient]], [[decision-offline-estimation-coefficient]], Eluder dimension: instance functionals for whole problem classes rather than single instances
 - [[differentiable-function-approximation]] — chosen precisely because its structure supports an instance functional
 - [[coverage-coefficient]] — the coverage-flavored member of this family
 
-## Current State
+## Current State and Open Problems
 
 The dominant standard in bandit theory, where instance-optimality is routinely achieved and expected. Considerably less settled in RL with function approximation: linear models have had instance-dependent treatments for several years, [[Yin2023Offline]] extends this to a nonlinear class, and general function approximation remains worst-case only. Two live frontiers:
 

@@ -37,11 +37,14 @@ Instance-dependent lower bound: $\mathbb{E}[\tau_\delta] \geq T^*(\boldsymbol{\n
 | **Algorithm** | TaS (frequentist GLR) | BFAI-TS (Bayesian Thompson sampling) |
 | **Dependence** | Full joint distributions | Independent objective + constraints |
 
-## Variants & Related Concepts
+## Variants
 
 - [[bai-cost-aware]] — **cost minimization** formulation: minimize $\sum_t C_t$ (cumulative testing cost) to find the best arm ([[Kanarios2024Cost]]). Key distinction: CABAI's cost is the *optimization metric*; CBAI/BFAI's cost is a *feasibility constraint on arm means*.
+
+## Related Concepts
+
 - [[bai]] — unconstrained BAI; constrained BAI adds per-arm feasibility constraints
 
-## Current State
+## Current State and Open Problems
 
 Two complementary regimes now solved (2025): fixed-confidence ([[Lardy2025Constrained]]) and fixed-budget ([[Yang2025Stochastically]]). Open: multiple cost constraints (CBAI), non-Gaussian distributions (BFAI), non-asymptotic bounds for both.

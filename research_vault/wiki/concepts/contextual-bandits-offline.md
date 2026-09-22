@@ -8,7 +8,7 @@ aliases: [offline CB, batch contextual bandits, offline bandit policy learning, 
 
 **Definition:** Learning a decision rule $\mathcal X\to\mathcal A$ from a fixed dataset of context–action–reward triples logged by a behavior policy $\mu$, with no further interaction, so that the learner can never sample the actions it wishes it had seen.
 
-> **Terminology guard.** "Offline" here means *learning from a fixed logged dataset*. The vault's [[offline-oracle-efficient-bandits]] topic is a different use of the word — *online* algorithms that call an *offline regression oracle*. Do not conflate. The pessimism literature writes $\mathrm{SubOpt}(\hat\pi)$, and the policy-learning literature $\mathrm{Regret}$, for what this page calls $\Delta(\hat\pi)$.
+> **Terminology guard.** "Offline" here means *learning from a fixed logged dataset*. The vault's [[oracle-efficiency]] topic is a different use of the word — *online* algorithms that call an *offline regression oracle*. Do not conflate. The pessimism literature writes $\mathrm{SubOpt}(\hat\pi)$, and the policy-learning literature $\mathrm{Regret}$, for what this page calls $\Delta(\hat\pi)$.
 
 > **Scope.** This page is the setting and the taxonomy: what the
 > problem is, the notation the family pages share, the coverage
@@ -231,7 +231,7 @@ With the Hoeffding width the two bounds coincide because the width is policy-ind
 - [[importance-weighting]] — the policy route's estimator
 - [[extrapolation-error]] — the greedy rule's failure mode, in RL language
 - [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis this specializes
-- [[offline-oracle-efficient-bandits]] — a different sense of "offline"; see the terminology guard
+- [[oracle-efficiency]] — a different sense of "offline"; see the terminology guard
 
 ## Current State and Open Problems
 

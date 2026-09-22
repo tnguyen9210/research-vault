@@ -161,7 +161,7 @@ So the offline-specific machinery — [[pessimism-principle]], conservatism, sup
 - [[Yin2023Offline]] — [[fqi-pessimistic]]: FQI plus a gradient-geometry penalty over [[differentiable-function-approximation]], yielding the first [[instance-dependent-bounds]] for offline RL under a nonlinear class
 - Fan et al. (2020) — theoretical analysis of deep Q-learning, treating DQN as neural FQI
 
-## Variants & Related Concepts
+## Variants
 
 FQI is a template; most offline RL algorithms are FQI with **one of its three steps modified**. That is the most useful way to read the literature:
 
@@ -176,13 +176,16 @@ FQI is a template; most offline RL algorithms are FQI with **one of its three st
 
 - **Tabular Q-learning** — the incremental limit. Q-learning updates one transition at a time, $Q(s,a) \leftarrow Q(s,a) + \alpha[r + \gamma\max_{a'}Q(s',a') - Q(s,a)]$, whereas FQI forms targets for the whole batch and refits. The mental picture: **FQI = Q-learning-style Bellman targets + batch supervised regression**
 - [[deep-q-network]] — DQN is an incremental, stochastic FQI: the target network $Q_{\theta^-}$ plays the role of the previous iterate $Q_k$, and SGD steps replace the full refit. Replay buffers and target networks are the practical machinery that makes the approximation work
+
+## Related Concepts
+
 - [[2026-08-19-offline-fqi-walkthrough]] — saved query: a reading path through this page, [[extrapolation-error]] and [[fqi-pessimistic]], in the order the questions arise
 - [[offline-reinforcement-learning]] — the data setting, not the algorithm. Keeping these separate matters: **FQI is the template, offline RL is the regime.** Offline FQI is plain FQI on fixed data; most of modern offline RL is offline FQI plus some mechanism preventing unsupported actions from looking artificially good. Developed in the *Offline vs. online FQI* section above
 - [[fqi-finite-sample-analysis]] — line-by-line walkthrough of Jiang's (2020) finite-sample guarantee for this template: the A/B/C error chain, the coverage step, and the Bernstein fast rate
 - [[realizability]] — necessary but not sufficient here; Bellman completeness is the operative assumption
 - [[differentiable-function-approximation]] — the class over which FQI's fitted step becomes analyzable with gradient geometry
 
-## Current State
+## Current State and Open Problems
 
 The dominant algorithmic skeleton for value-based offline RL, and the one nearly every theoretical guarantee in the area is stated for. Its appeal over information-theoretic alternatives (the maxmin objectives that general-function-approximation analyses produce) is that the inner step is an ordinary least-squares fit, so it is actually runnable.
 

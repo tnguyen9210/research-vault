@@ -33,10 +33,11 @@ $$V_N(\mathcal{A}_\text{SLG}) \geq V_{N^{1+\gamma}}(\mathcal{A}_\text{BoN}), \qu
 ## Key Papers
 - [[Li2026Predicting]] — introduces SLG Search with full theoretical analysis
 
-## Variants & Related Concepts
+## Related Concepts
+
 - [[test-time-scaling]] — the broader context
 - [[bai]] — SLG's state selection phase is structurally a fixed-budget BAI problem: pilot $K$ arms, then exploit the best
 - [[mcts]] — deeper tree-structured alternative; SLG uses only 2 stages
 
-## Current State
+## Current State and Open Problems
 SLG is a new algorithm (Feb 2026). Open: deeper multi-stage extensions, PRM integration, non-Gaussian tail distributions.

@@ -38,14 +38,17 @@ with $\bar\mu_{i,t-1}$ the empirical mean and $n_{i,t-1}$ the pull count. This a
 - [[TranThanh2012Knapsack]] — fractional [[budget-limited-mab-kube]] as the budget-limited analogue of UCB; [[budget-limited-mab-kube]] itself solves a UCB-augmented knapsack each step
 - Abbasi-Yadkori et al. (2011) — self-normalized confidence sets for linear bandits; the source of the elliptical-bonus form reused throughout
 
-## Variants & Related Concepts
+## Variants
 
 - [[budget-limited-mab-kube]] / [[budget-limited-mab]] — UCB adapted to reward densities under a shared budget
+
+## Related Concepts
+
 - [[pessimism-principle]] — the offline mirror image: same confidence widths, subtracted rather than added
 - [[bai]] — pure exploration uses confidence bounds toward a different objective (identify the best arm) with a different optimality notion (sample complexity, not regret)
 - **Thompson sampling** — the Bayesian alternative; comparable regret, often better empirically (see [[Yang2025Stochastically]])
 - [[instance-dependent-bounds]] — UCB's gap-dependent regret is the canonical example
 
-## Current State
+## Current State and Open Problems
 
 Foundational and settled for the basic stochastic bandit. The active work is in generalizing the confidence width — to structured function classes, to heavy-tailed or unbounded rewards (betting-based bounds, see [[Ryu2025Improved]]), to cost- and budget-constrained settings ([[TranThanh2012Knapsack]], [[Kanarios2024Cost]]), and to sequential settings where the same machinery becomes an exploration bonus in RL.

@@ -26,7 +26,7 @@ Format: `- [[slug]] — one-line description`
 
 - [[bai]] — fixed-confidence pure exploration; identify best arm with prob $\geq 1-\delta$ at minimum sample cost
 - [[bai-constrained]] — CBAI: BAI with cost-threshold constraint $\mathbb{E}[C_k] \leq \gamma$; handles dependent reward-cost; introduced in [[Lardy2025Constrained]]
-- [[bai-cost-aware]] — Cost Aware BAI; minimize cumulative testing cost; optimal arm proportions $\propto \sqrt{c_a}$; introduced in [[Kanarios2024Cost]]
+- [[bai-cost-aware]] — cost-aware pure exploration; cost as objective (CABAI, proportions $\propto \sqrt{c_a}$), as constraint (CBAI), or under a fixed budget
 - [[budget-limited-mab]] — bandit with per-arm cost $c_i$ and a single shared budget $B$; full-info optimum is an unbounded knapsack on densities $\mu_i/c_i$; introduced in [[TranThanh2010Epsilon]]
 - [[budget-limited-mab-epsilon-first]] — split the budget into $\varepsilon$ explore / $1-\varepsilon$ commit; the phase split alone caps performance at $O(B^{2/3})$
 - [[budget-limited-mab-kube]] — Knapsack-based UCB Exploration; solves a UCB-augmented knapsack each step and samples by multiplicity; fractional variant = budget-limited UCB; introduced in [[TranThanh2012Knapsack]]
@@ -53,23 +53,18 @@ Format: `- [[slug]] — one-line description`
 - [[mcts]] — online planning via bandit-guided tree simulation; UCT and successors
 - [[mcts-power-mean]] — power mean backup operator for MCTS; $p=2$ optimal; $\mathcal{O}(n^{-1/2})$ convergence; introduced in [[Dam2024Power]]
 - [[offline-regression-oracle]] — batch supervised learner used as oracle; standard ERM qualifies; reduces bandit learning to few oracle calls, enabling practical implementation
-- [[oracle-efficiency]] — reducing bandit learning to a few calls to a regression oracle; contrasts the online and [[offline-regression-oracle]] variants
+- [[offline-reinforcement-learning]] — policy learning from a fixed dataset, no interaction; distributional shift is the binding constraint; four algorithm families
+- [[oracle-efficiency]] — reducing bandit learning to few regression-oracle calls; the $O(\log T)$ call-count line from FALCON to OE2D, online vs. offline oracle
 - [[overestimation-bias]] — systematic upward bias in Q-learning from the max operator; mitigated by DDQN, distributional RL, and the [[softmax-bellman-operator]]
 - [[pessimism-principle]] — act on a lower confidence bound offline; same confidence machinery as UCB with the opposite sign, because offline errors are not self-correcting
 - [[realizability]] — assumption f* ∈ F enabling FALCON's optimal offline-oracle-efficient guarantees; introduced in [[SimchiLevi2022Bypassing]]
+- [[smooth-aggregators]] — power-mean MCTS, softmax DQN and expectile IQL as one parameterized average$\to$max family; no unified analysis exists
 - [[softmax-bellman-operator]] — replaces max in Bellman backup with softmax-weighted average at inverse temperature $\tau$; reduces overestimation; exponential convergence to $\mathcal{T}$; introduced in [[Song2019Revisiting]]
 - [[spanner-sampling]] — two-phase improper exploration algorithm achieving optimal $T_\text{comp} = \tilde{O}(C_\text{cov})$; introduced in [[Foster2025Foundation]]
 - [[test-time-scaling]] — LLM inference-time compute scaling; Best-of-$N$ and adaptive alternatives
 - [[test-time-scaling-slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[Li2026Predicting]]
 - [[upper-confidence-bound]] — optimism in the face of uncertainty; gap-dependent $O(\sum_i \log T/\Delta_i)$ regret; the online mirror of [[pessimism-principle]]
 
-## Topics
-
-- [[budget-limited-bandits]] — synthesis of budget/cost-constrained bandits; cumulative-reward (KUBE) vs. cost-aware BAI
-- [[cost-aware-bai]] — the cost-aware BAI literature: cost as objective (CABAI), constraint (CBAI), fixed budget (BFAI); CABAI/CBAI positioning table
-- [[offline-oracle-efficient-bandits]] — synthesis of the research line on offline-oracle contextual bandits; FALCON → OE2D
-- [[offline-reinforcement-learning]] — synthesis of offline RL; in-sample vs. constrained vs. regularized, single-step vs. multi-step stitching
-- [[smooth-aggregators]] — cross-cutting pattern: power-mean MCTS, softmax DQN, expectile IQL as one parameterized avg→max family; unified analysis open
 
 ## Queries
 

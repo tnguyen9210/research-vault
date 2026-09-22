@@ -466,7 +466,7 @@ Resolved 2026-09-19: Rashidinejad's penalty constant is verified — $\Gamma=\sq
 - Beygelzimer & Langford (KDD 2009), Murphy (JMLR 2005), Qian & Murphy (2011) — the pre-pessimism origins of the greedy bounds
 - Dudík, Langford & Li (2011) — the direct method (§5)
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[contextual-bandits-offline]] — the setting, the notation, and the comparison with the policy route
 - [[pessimism-principle]] — the mechanism of §4, in one page
@@ -478,6 +478,6 @@ Resolved 2026-09-19: Rashidinejad's penalty constant is verified — $\Gamma=\sq
 - [[importance-weighting]] — the other route's estimator
 - [[Ryu2025Improved]] — the policy-side second-order bound that §7.1 mirrors
 
-## Current State
+## Current State and Open Problems
 
 The tabular case is closed up to constants. The linear case is closed for policy-level rules. What is open sits in three places: pointwise uncertainty quantifiers for general function classes, where least squares delivers only an $L_2$ guarantee and pessimism has to fall back on the version space (§4.5); whether pessimism applied at the level of policies rather than contexts buys anything beyond what Li–Ma–Srebro already establish; and instance-dependent rates not driven by a worst-case coverage constant (§7).

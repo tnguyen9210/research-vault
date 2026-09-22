@@ -29,15 +29,18 @@ where $\text{sm}_\tau(\mathbf{x})_i = \frac{\exp(\tau x_i)}{\sum_j \exp(\tau x_j
 
 - [[Song2019Revisiting]] — revisits theoretical properties; proves exponential convergence rate in $\tau$, overestimation bounds, gradient noise reduction; S-DQN/S-DDQN outperform DQN/DDQN on Atari
 
-## Variants & Related Concepts
+## Variants
 
 - **Mellowmax** (Asadi & Littman 2017) — uses log-sum-exp instead of softmax; is a contraction but cannot directly represent a policy (requires numerical methods), blocking compatibility with double Q-learning
 - **Standard Bellman operator** $\mathcal{T}$ — the $\tau\to\infty$ limit of $\mathcal{T}_\text{soft}$
+
+## Related Concepts
+
 - [[overestimation-bias]] — the key failure mode $\mathcal{T}_\text{soft}$ corrects
 - [[deep-q-network]] — the algorithm family where softmax backup is applied in practice
 - [[mcts-power-mean]] / [[Dam2024Power]] — analogous idea in tree search: replacing max backup with a power-mean backup improves convergence; both papers argue greedy aggregation is suboptimal under estimation noise
 - [[expectile-regression]] / [[Kostrikov2022Offline]] — a third smooth surrogate for the max, in offline RL. Note the inverted purpose: $\mathcal{T}_\text{soft}$ softens a max the algorithm *could* compute, to reduce bias; the expectile approximates a max the algorithm is *forbidden* from computing, since out-of-sample actions cannot be queried. Softmax has the finite-$\tau$ gap bound (Thm 3 here) that the expectile treatment lacks
 
-## Current State
+## Current State and Open Problems
 
 Practically: drop-in replacement for max in DQN-family target networks with one extra hyperparameter $\tau$. Has not been widely adopted in post-2019 algorithms (Rainbow, SAC, PPO) — likely because those address overestimation through other means (distributional RL, entropy regularization). Theoretically: the connection to entropy-regularized RL (where softmax policies appear as optima) is noted but not fully formalized.

@@ -30,12 +30,12 @@ Under this parameterization, the KL-regularized Q-function $Q^*_{h,\beta}(x, a_{
 
 - [[Foster2025Foundation]] — primary source; establishes computational-statistical tradeoffs for this class; SpannerSampling and MTSS are specialized to it
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[coverage-coefficient]] — $C_\text{cov}(\pi^*_\beta)$ measures how much $\pi^*_\beta$ deviates from $\pi_\text{ref}$; central computational complexity measure for this class
 - [[realizability]] — Assumption 1.1: $\pi^*_\beta \in \Pi$; enables statistical efficiency
 - [[contextual-bandits-online]] — alignment with linear softmax policies is a KL-regularized contextual bandit with a structured policy class
 
-## Current State
+## Current State and Open Problems
 
 Studied as the simplest nontrivial policy class for alignment theory. [[Foster2025Foundation]] gives sharp computational-statistical tradeoffs for this class. Extension to nonlinear/transformer policy classes is a primary open problem.

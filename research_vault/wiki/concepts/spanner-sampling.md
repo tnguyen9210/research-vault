@@ -32,13 +32,13 @@ $$T_\text{data}(\varepsilon,\delta) = \tilde{O}\!\left(\frac{R_\text{max}^2}{\be
 
 - [[Foster2025Foundation]] — introduces SpannerSampling; proves Thm 3.1 (upper bound) and Thm 2.1 (matching $C_\text{cov}$ lower bound); also introduces MTSS (multi-turn extension)
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[coverage-coefficient]] — governs $T_\text{comp}$; SpannerSampling achieves the lower bound in $C_\text{cov}$
 - [[linear-softmax-policy]] — the policy class for which SpannerSampling is designed
 - [[mcts]] — MTSS (MultiTurnSpannerSampling) is the token-level DP extension; structurally analogous to backward induction in MDPs; [[Dam2024Power]] studies MCTS convergence in stochastic environments
 - [[test-time-scaling]] — SpannerSampling is a formal instance of inference-time exploration beating training-time-only methods
 
-## Current State
+## Current State and Open Problems
 
 SpannerSampling is the first algorithm matching the $C_\text{cov}$ computational lower bound. Its polynomial dependence on $C_\text{cov}$ in $T_\text{comp}$ may not be tight. Extension to nonlinear policies is the primary open question.

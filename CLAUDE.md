@@ -17,7 +17,6 @@ research_vault/
     ├── log.md         ← append-only operation log (you maintain this)
     ├── papers/        ← one wiki page per ingested paper
     ├── concepts/      ← method/concept pages (pessimism-principle, fqi, bai, ...) — flat
-    ├── topics/        ← broad topic synthesis pages (e.g., "PEFT Methods")
     └── queries/       ← saved analysis and query answers
 ```
 
@@ -48,7 +47,6 @@ The canonical ID for every paper is its **Better BibTeX citekey** (format `auth.
 |----------|---------|---------|
 | Paper wiki page | `wiki/papers/<citekey>.md` | `wiki/papers/munos2008FiniteTime.md` |
 | Concept page | `wiki/concepts/<slug>.md` | `wiki/concepts/pessimism-principle.md` |
-| Topic page | `wiki/topics/<slug>.md` | `wiki/topics/smooth-aggregators.md` |
 | Query page | `wiki/queries/<YYYY-MM-DD-slug>.md` | `wiki/queries/2026-05-27-scaling-laws-comparison.md` |
 
 Use lowercase slugs, hyphens not underscores, no spaces in filenames.
@@ -69,7 +67,7 @@ Use lowercase slugs, hyphens not underscores, no spaces in filenames.
 
 **A filename is also its link text.** Obsidian renders a bare `[[slug]]` as the slug, so names are read in running prose, not just in the file list. That is the reason to stop at `bai`/`fqi`/`mcts` — where the acronym reads naturally in a sentence — and not to generalize.
 
-**Page type is encoded by the directory, not by the name.** Concepts and topics are both kebab-case scope names and are not distinguishable by shape: topic `budget-limited-bandits` sits beside concept `budget-limited-mab`, and topic `cost-aware-bai` is a near-anagram of concept `bai-cost-aware`. Basenames must stay unique vault-wide — `[[slug]]` resolves by basename, and macOS is case-insensitive — so check every page directory before naming a page.
+**Basenames are unique vault-wide.** `[[slug]]` resolves by basename regardless of directory, and macOS filesystems are case-insensitive, so a name taken in `papers/` or `queries/` is taken everywhere. Check every page directory before naming a page.
 
 **Legacy paper pages.** Pages created before the Zotero wiring use `<LastnameYearTitleFirstWord>` (e.g. `Vaswani2017Attention`). Keep their names — renaming breaks links, and macOS filesystems are case-insensitive, so a citekey twin (`vaswani2017Attention.md`) must NEVER be created alongside one. One page per paper: if a legacy page exists, keep using it and add `citekey:` to its frontmatter when you next touch it.
 
@@ -79,17 +77,18 @@ Use lowercase slugs, hyphens not underscores, no spaces in filenames.
 
 ## Page-Type Boundary Rules
 
-**A concept defines an object; a topic surveys a literature.** A concept answers "what *is* X, precisely?" (Definition, Intuition, Formal Description — mostly timeless). A topic answers "where does the field stand on X?" (Overview synthesis, chronological Key Papers, Open Problems — changes with every ingest). One concept appears in many topics; one topic weaves many concepts.
+**One page type for knowledge: the concept.** A concept page both defines an object and surveys the literature around it — "what *is* X, precisely?" and "where does the field stand on X?" on the same page. The vault used to split these into concepts and topics; that split was retired on 2026-09-21 because it forced an arbitrary filing decision on every ingest, produced near-duplicate names (topic `cost-aware-bai` beside concept `bai-cost-aware`), and split one subject's material across two places a reader had to find separately.
 
 Practical rules:
 
-1. **Default to concept.** Anything statable as a one-sentence definition with a formal description is a concept — including problem settings (BAI, budget-limited MAB), which are formal objects first. While an area is small, the concept's "Current State" section carries the mini-synthesis.
-2. **Topic-when-earned.** Create a topic page only when the area's narrative outgrows that section: ≈4–5+ papers *and* a real story (chronology, contested claims, a positioning table). Structure after content proves it.
-3. **Hygiene once both exist.** The topic never re-defines — it links the concept. The concept keeps no chronology or open-problems lists — it links the topic. A topic must NOT share the concept's filename: basenames are unique vault-wide (macOS is case-insensitive), so give the topic its own name (e.g. concept `best-arm-identification` / topic `cost-aware-bai`).
+1. **Everything definable is a concept.** Problem settings (BAI, budget-limited MAB), mechanisms (pessimism), assumptions (realizability), complexity measures, algorithms and cross-cutting patterns all get one concept page each.
+2. **The survey grows with the vault, the definition does not.** A new page opens with `## Key Papers` and earns `## Literature Survey` when there is enough material to organize by research direction. Do not invent directions to fill the section — see the fabrication rule below.
+3. **Never write a survey the vault cannot source.** A `## Literature Survey` is written from paper pages, ingested notes and query pages — things that were read. Papers named from background knowledge are allowed only to *place* a family, must be cited author–year, and must be listed in `## Provenance` as unchecked. The vault has far more concepts than papers; a page with two paper pages does not have a literature survey in it, and writing one anyway is how fabricated citations enter.
+
 4. **Zotero collections are not pages.** Category views come from `library.json` on demand (saved under `wiki/queries/` when worth keeping) — never as folders or member-list "topics".
 5. **No author pages.** Zotero + `library.json` already answer "what do I have by X"; an author profile is generated on demand from the library plus paper pages, not maintained. In paper Connections, name authors as plain text.
 
-The wiki is **flat**: links resolve by basename, so folders add filing decisions without adding navigation; grouping is expressed by hub pages, links, `index.md`, and generated views.
+The wiki is **flat**: links resolve by basename, so folders add filing decisions without adding navigation; grouping is expressed by name prefixes, hub pages, links, `index.md`, and generated views.
 
 ---
 
@@ -151,7 +150,7 @@ Questions the paper leaves unanswered, plus follow-ups worth pursuing — especi
 ---
 title: "<Concept Name>"
 tags: [area1, area2]
-aliases: [ACRONYM]              # short forms, if any (searchable in Obsidian)
+aliases: [ACRONYM, old-slug]    # short forms and every retired name
 introduced_by: [[PaperSlug]]    # earliest key reference in this vault
 ---
 
@@ -159,68 +158,64 @@ introduced_by: [[PaperSlug]]    # earliest key reference in this vault
 
 **Definition:** One crisp sentence.
 
+> **Scope.** What this page covers. **Left to other pages:** what it does
+> not, each named with its link.
+
 ## Intuition
 Plain-language explanation.
 
 ## Formal Description
 Math or pseudocode if relevant.
 
-## Key Papers
-- [[paper]] — how it uses/introduces this concept
+## Literature Survey
+Organized by research direction, not chronology — one `###` per
+direction, each naming its key papers, algorithms and results, and
+saying what the direction is *for*. Omit this section until the vault
+can source it; keep `## Key Papers` until then.
 
-## Variants & Related Concepts
+## Variants
+- [[specialization]] — how it differs from the general case
+
+## Related Concepts
 - [[related-concept]] — contrast or relationship
 
-## Current State
-Is this still dominant? Superseded? Active research area?
+## Current State and Open Problems
+Foundations or frontier? Then the open problems, each one a sentence on
+what is missing and why it matters.
+
+## Provenance
+*Sourced.* What was read, and where it came from.
+*Cited author–year, no paper page.* What was not checked at source.
+*This page's judgment, not a citation.* The claims that are the page's
+own reading rather than anyone's result.
 ```
 
 **Two shapes, one ending.** Most concept pages are **definitional**: they
-define an object and fit the template above in roughly 35–200 lines with
-five or six `##` sections. A few are **technical accounts** — they work
-through one body of mathematics (a proof, an algorithm line by line, a
-family of guarantees) and are organised by that argument rather than by
-the template. A technical account replaces the single `## Formal
-Description` with numbered sections (`## 1.`, `### 1.1`), opens with a
-scope note saying what it assumes and what it leaves to other pages, and
-records per-result provenance — what was verified against which source,
-and what was not. [[value-based-offline-bandits]] is the reference
-instance.
+define an object and fit the template above in roughly 35–200 lines. A few
+are **technical accounts** — they work through one body of mathematics (a
+proof, an algorithm line by line, a family of guarantees) and are organised
+by that argument rather than by the template. A technical account replaces
+the single `## Formal Description` with numbered sections (`## 1.`,
+`### 1.1`) and records per-result provenance — what was verified against
+which source, and what was not.
+[[contextual-bandits-offline-value-based]] is the reference instance.
 
-Both shapes still **end with the same three sections**: `## Key Papers`,
-`## Variants & Related Concepts`, `## Current State`. Do not substitute
-`## Connections` (that is the paper-page section) or `## Related
-Concepts`, and do not drop `## Current State` because a page is long —
-a long page is the one where a reader most needs to be told whether it
-is foundations or the frontier.
+Both shapes **end the same way**: `## Variants` (omitted when the concept
+has none — do not pad it), then `## Related Concepts`,
+`## Current State and Open Problems` and `## Provenance`, which are
+required. A variant is a version of *this* concept — a specialization, a
+limiting case, a differently-parameterized sibling. A neighbouring idea,
+a component, an assumption or a contrast is a related concept. Do not
+substitute `## Connections` (that is the paper-page section), and do not
+drop `## Current State and Open Problems` because a page is long — a long page
+is the one where a reader most needs to be told whether it is foundations
+or the frontier.
 
-Default to definitional. Earn the technical account the way a topic is
-earned: when the material genuinely will not fit the template without
-being damaged, not merely because it is long. Only one `#` heading per
-page — the title; numbered sections are `##`.
+Default to definitional. Earn the technical account when the material
+genuinely will not fit the template without being damaged, not merely
+because it is long. Only one `#` heading per page — the title; numbered
+sections are `##`.
 
-### Topic Page (`wiki/topics/`)
-
-```markdown
----
-title: "<Topic Name>"
-tags: [area]
----
-
-# <Topic Name>
-
-## Overview
-Synthesis of the state of this topic across all ingested sources.
-
-## Key Papers
-Chronological summary of the main contributions.
-
-## Open Problems
-What's unsolved or actively contested?
-
-## Related Topics
-- [[other-topic]]
-```
 
 ### Query Page (`wiki/queries/`)
 
@@ -248,7 +243,7 @@ question: "<the question asked>"
 
 ## Formatting Rules
 
-- **Math:** Always write mathematical expressions in LaTeX syntax — inline with `$...$`, display equations with `$$...$$`. Never use plain-text math notation (e.g., write `$\sqrt{c_a}$` not `√c_a`, `$\delta$-PAC` not `δ-PAC`, `$O(\log T)$` not `O(log T)`). This applies to all wiki pages: papers, concepts, topics.
+- **Math:** Always write mathematical expressions in LaTeX syntax — inline with `$...$`, display equations with `$$...$$`. Never use plain-text math notation (e.g., write `$\sqrt{c_a}$` not `√c_a`, `$\delta$-PAC` not `δ-PAC`, `$O(\log T)$` not `O(log T)`). This applies to all wiki pages: papers, concepts, queries.
 
 ---
 
@@ -263,7 +258,7 @@ When the user says **"ingest <citekey>"** or **"summarize <citekey>"** (or names
 
 For a **non-Zotero source** (a file dropped into `raw/papers/`): read it, rename it to `raw/papers/<LastnameYearTitleFirstWord>.<ext>` (the only permitted raw/ operation), and use that slug for the wiki page; then continue from step 3.
 5. **Update or create** concept pages for the most important new concepts introduced by the paper — limit to **3 new concept pages per ingest**. Prioritize concepts that are genuinely novel contributions of the paper (not background concepts). Update the "Key Papers" section of existing concept pages.
-6. **Update** any relevant topic pages — revise the synthesis, add the paper to "Key Papers", update "Open Problems" if applicable.
+6. **Update** the concept pages this paper belongs to — add it under "Key Papers", fold it into "Literature Survey" if the page has one, and revise "Current State and Open Problems" if it changes them.
 7. **Update** `wiki/index.md`: add an entry for every new page created.
 8. **Append** to `wiki/log.md`: `## [YYYY-MM-DD] ingest | <Title> (<Venue Year>)`
 
@@ -299,7 +294,7 @@ When the user says **"lint"** (or `/rv-lint`):
 
 ## Index Conventions (`wiki/index.md`)
 
-- Organized by category (Papers, Concepts, Topics, Queries).
+- Organized by category (Papers, Concepts, Queries).
 - Each entry: `- [[slug]] — one-line description`. Budget the **description** at ~25 words — count words, not characters, so that LaTeX and long slugs are not penalised (`$\mathcal{F}=\{f(\theta,\phi(\cdot,\cdot))\}$` is 40 characters of source for one symbol). A good entry names the object, its one distinguishing property, and the paper that introduced it.
 - Keep entries sorted alphabetically within each category.
 - Update immediately after every ingest or query-save operation.
@@ -319,7 +314,7 @@ When the user says **"lint"** (or `/rv-lint`):
 ## Cross-referencing Rules
 
 - When you mention a concept that has a wiki page, always link it: `[[pessimism-principle]]`.
-- When you create a new paper page, search for existing concept/topic pages that should link back to it and update them.
+- When you create a new paper page, search for existing concept pages that should link back to it and update them.
 - Never leave a page as a complete island — every page must link to at least one other page, and be linked from at least one other page.
 - Prefer depth over breadth: a few meaningful cross-references are better than a dozen superficial ones.
 

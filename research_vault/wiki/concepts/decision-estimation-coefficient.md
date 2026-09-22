@@ -48,12 +48,15 @@ This bridges the design principles of offline- and online-oracle efficient algor
 
 - [[Qin2026Taming]] — establishes $\mathrm{dec} \leq \mathrm{doec}$ + lower-order terms
 
-## Variants & Related Concepts
+## Variants
 
 - [[decision-offline-estimation-coefficient]] — offline-oracle analogue; upper bounds DEC
+
+## Related Concepts
+
 - [[contextual-bandits-online]]
 - [[oracle-efficiency]]
 
-## Current State
+## Current State and Open Problems
 
 Still the canonical complexity measure for interactive decision making with an **online** regression oracle, and not superseded: [[Qin2026Taming]] adds an offline analogue rather than replacing it. Its one structural limitation — the exploration cost references the unknown $g^*$ — is exactly what [[decision-offline-estimation-coefficient]] removes, and Theorem 5 relates the two for the first time. Active area. Note that the vault's only source here is Qin & Zhang; Foster et al. (2021a), who introduced DEC, is cited author–year and has no paper page yet.

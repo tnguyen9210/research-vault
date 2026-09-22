@@ -45,14 +45,17 @@ The two terms move in opposite directions in $\varepsilon$, which is the whole d
 - [[TranThanh2012Knapsack]] — shows the family is stuck at $O(B^{2/3})$ and replaces it with interleaved [[budget-limited-mab-kube]] at $O(\ln B)$, with a matching lower bound
 - Auer, Cesa-Bianchi & Fischer (2002) — $\varepsilon_n$-greedy, the decaying-$\varepsilon$ relative that keeps exploring forever; the baseline $\varepsilon$-first is compared against
 
-## Variants & Related Concepts
+## Variants
 
 - **$\varepsilon_n$-greedy / $\varepsilon$-greedy** — exploration probability decays over time rather than being confined to a prefix; keeps learning throughout, but in a budget-limited setting can lock onto a wrong arm and lack the budget to recover
 - **Explore-then-commit (ETC)** — the same idea in standard bandits, where the phase length is chosen in rounds rather than as a budget fraction; known to be suboptimal against UCB for the same structural reason
+
+## Related Concepts
+
 - [[budget-limited-mab-kube]] — the interleaved successor; exploration bonus enters the knapsack objective instead of occupying its own phase
 - [[upper-confidence-bound]] — can be dropped into the exploration phase, but does not lift the $B^{2/3}$ ceiling
 - [[budget-limited-mab]] — the setting this family was designed for
 
-## Current State
+## Current State and Open Problems
 
 Superseded as an algorithm, retained as a baseline and a teaching case. The reason it stays interesting is the clean separation it exposes: the $B^{2/3}$ ceiling is caused by the *phase split*, independent of how well either phase is executed. That makes it the standard illustration of why exploration and exploitation should be interleaved rather than scheduled, in budgeted settings and beyond. It remains attractive when a guarantee is needed and the interleaved analysis is intractable, since the two-phase decomposition is far easier to bound.

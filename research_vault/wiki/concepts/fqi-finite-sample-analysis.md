@@ -2548,7 +2548,7 @@ been consulted directly.
 - Jiang 2020, *Notes on Fitted Q-iteration* (UIUC CS598, note 5, 30 Aug 2020) — the source this page works through line by line; no paper page yet, read online at <https://nanjiang.cs.illinois.edu/files/cs598/note5.pdf>
 - Munos & Szepesvári 2008 (`munos2008FiniteTime`) — the Approximate Value Iteration analysis the note scrutinizes; no paper page yet
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[fqi]] — the family hub; this page is its finite-sample guarantee, worked line by line
 - [[extrapolation-error]] — what the coverage assumption $C$ rules out
@@ -2556,6 +2556,6 @@ been consulted directly.
 - [[smooth-aggregators]] — §34's closing question: which parts of this proof survive a soft/log-avg-exp backup
 - Munos & Szepesvári 2008 (`munos2008FiniteTime`) — the Approximate Value Iteration literature this note scrutinizes
 
-## Current State
+## Current State and Open Problems
 
 The slow-rate ($n^{-1/4}$) and fast-rate (Bernstein) arguments worked through here are the standard finite-sample account of FQI under Bellman completeness and uniform concentrability, and they remain the baseline later refinements are stated against. What has moved on is the coverage assumption: uniform $C$ has largely given way to single-policy concentrability, and the pessimistic descendant [[fqi-pessimistic]] carries instance-dependent bounds this analysis cannot express. Read as foundations, not as the frontier.

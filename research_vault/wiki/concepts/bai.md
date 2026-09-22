@@ -34,13 +34,16 @@ where $\hat{\mu}_{a,b}$ is the pull-weighted mixture mean.
 - [[Kanarios2024Cost]] — extends BAI with per-arm costs (CABAI); optimal proportions shift from $w_a \propto 1/\Delta_a^2$ to $w_a \propto \sqrt{c_a}/\Delta_a^2$
 - [[Lardy2025Constrained]] — CBAI: each arm has joint (reward, cost) distribution; goal is best-reward arm with mean cost $\leq \gamma$; handles dependent distributions; asymptotically optimal TaS
 
-## Variants & Related Concepts
+## Variants
 
-- [[instance-dependent-bounds]] — BAI is the setting where instance-optimality is most fully realized; the characteristic time $T^*(\mu)$ is the canonical instance functional
 - [[bai-cost-aware]] — cost-aware BAI; minimize cumulative cost not rounds; $w^*_a \propto \sqrt{c_a}$
 - [[bai-constrained]] — cost-threshold BAI; find best arm with mean cost $\leq \gamma$; handles dependent reward-cost
 - **BAI with safety constraints** (Wang et al. 2022) — agent constrained; distinct from CABAI/CBAI where any arm can be pulled
 - **Multi-fidelity BAI** — costs are known a priori and controllable; differs from CABAI's random unknown costs
 
-## Current State
-Theoretical foundation is mature: matching lower/upper bounds via TAS. Active extensions: cost-awareness ([[bai-cost-aware]], [[bai-constrained]] — surveyed in [[cost-aware-bai]]), safety constraints, multi-fidelity, and dependent arm distributions. Regret-minimization and BAI are studied as largely separate paradigms.
+## Related Concepts
+
+- [[instance-dependent-bounds]] — BAI is the setting where instance-optimality is most fully realized; the characteristic time $T^*(\mu)$ is the canonical instance functional
+
+## Current State and Open Problems
+Theoretical foundation is mature: matching lower/upper bounds via TAS. Active extensions: cost-awareness ([[bai-cost-aware]], [[bai-constrained]] — surveyed in [[bai-cost-aware]]), safety constraints, multi-fidelity, and dependent arm distributions. Regret-minimization and BAI are studied as largely separate paradigms.

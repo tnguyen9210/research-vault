@@ -72,7 +72,7 @@ CTAS optimal proportions $w^*=(0.23, 0.72, 0.05)$ vs. TAS $(0.46, 0.46, 0.08)$: 
 - Lei Ying — third/senior author
 - **Generalizes:** TAS (Garivier & Kaufmann 2016) — standard BAI baseline, sub-optimal here
 - **Related:** BAI with safety constraints (Wang et al. 2022) — agent is free here; constraint is cost not safety
-- **Contrast:** [[budget-limited-mab]] / [[TranThanh2012Knapsack]] — also cost-per-arm, but cumulative-reward/regret under a *shared* budget rather than fixed-confidence cost minimization; see [[budget-limited-bandits]]
+- **Contrast:** [[budget-limited-mab]] / [[TranThanh2012Knapsack]] — also cost-per-arm, but cumulative-reward/regret under a *shared* budget rather than fixed-confidence cost minimization; see [[budget-limited-mab]]
 
 ## Open Questions
 

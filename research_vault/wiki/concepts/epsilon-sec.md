@@ -45,7 +45,7 @@ Two deliberate differences from the original SEC (Xie et al. 2022): the regulari
 - [[Qin2026Taming]] — introduces $\varepsilon$-SEC; Theorem 3 (upper bounds [[decision-offline-estimation-coefficient]]), Proposition 1 (Eluder grounding), Proposition 3 (exponential looseness)
 - Agarwal et al. (2024) — nonlinear $F$-design; the $\gamma\to0$ pure-exploration specialization generalizes their Theorem 4.2
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[decision-offline-estimation-coefficient]] — the quantity $\varepsilon$-SEC bounds; strictly sharper, because it allows active design
 - [[eluder-dimension]] — bounds $\varepsilon$-SEC (Proposition 1)
@@ -53,6 +53,6 @@ Two deliberate differences from the original SEC (Xie et al. 2022): the regulari
 - [[exploitative-f-design]] — the per-context optimization OE2D actually solves, which is where active design enters
 - [[coverage-coefficient]] — same underlying question (how well does one distribution cover another?) in the LM alignment setting
 
-## Current State
+## Current State and Open Problems
 
 Useful but known to be lossy. It is the main structural tool for certifying bounded [[decision-offline-estimation-coefficient]] and connects the DOEC framework to the established Eluder-dimension literature, but [[Qin2026Taming]] itself demonstrates the exponential gap and lists "tighter structural characterizations of DOEC beyond $\varepsilon$-SEC" as an open problem. The gap is not a technical artifact — it reflects a genuine distinction between passive coverage and active experimental design.

@@ -62,13 +62,16 @@ $$\mathrm{Reg} \lesssim \tilde{O}\!\left(\sqrt{T \cdot \max_x\,\mathbb{E}[\mathr
 
 - [[Qin2026Taming]] — introduced DOEC
 
-## Variants & Related Concepts
+## Variants
 
 - [[decision-estimation-coefficient]] — online-oracle analogue; DOEC $\geq$ DEC (up to lower-order terms)
+
+## Related Concepts
+
 - [[epsilon-sec]] — upper bounds DOEC; may be exponentially loose
 - [[exploitative-f-design]] — DOEC is the minimax value of this problem
 - [[eluder-dimension]] — bounds $\varepsilon$-SEC, which bounds DOEC (for discrete $\Lambda$)
 
-## Current State
+## Current State and Open Problems
 
 Introduced in 2026 and the newest of the three measures on these pages; [[Qin2026Taming]] is the vault's only source. What is not settled is how to bound it for a given class: the [[epsilon-sec]] route is the simplest but Proposition 3 constructs an exponential gap, and the [[eluder-dimension]] route covers only discrete $\Lambda$. Active.

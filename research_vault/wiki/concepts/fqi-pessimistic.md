@@ -272,7 +272,12 @@ algorithm, the bonus reading and VAFQL.
 - Ernst et al. (2005), Riedmiller (2005) — fitted Q-iteration and neural FQI, the practical lineage
 - Xie et al. (2021a) — PSPI: weaker (single-policy) coverage but a slower $O(n^{-1/3})$ rate and a maxmin objective
 
-## Variants & Related Concepts
+## Variants
+
+- **VAFQL** — the variance-aware variant of §9. Changes only line 4, reweighting each squared residual by an estimated conditional variance; saves a factor $H$ and is minimax-optimal up to $\sqrt{d}$
+- **PEVI / linear-MDP pessimism** — the specializations of §7, recovered by taking $f$ linear
+
+## Related Concepts
 
 - [[fqi]] — the base template; PFQL is FQI with an uncertainty penalty subtracted before the greedy step, and lines 4 and 9 are its two steps
 - [[fqi-finite-sample-analysis]] — the finite-sample analysis of unpenalized FQI that this line descends from
@@ -286,6 +291,6 @@ algorithm, the bonus reading and VAFQL.
 - [[2026-08-19-offline-fqi-walkthrough]] — the saved query that arrives here from the FQI template
 - **Model-based/model-free bridge:** FQI is a batch Q-learning update but also an instantiation of approximate value iteration, so PFQL unifies the value-iteration (PEVI, VPVI) and fitted-Q lineages
 
-## Current State
+## Current State and Open Problems
 
 The reference theoretical algorithm for offline RL beyond linear models. Its guarantee is the sharpest available in that setting and comes with a near-matching lower bound. What it does not offer: any computational claim (the fitted-Q step is a nonconvex argmin, analyzed as exactly solved), tolerance of overparameterized classes (uniform coverage fails under non-identifiability), or a $\sqrt{d}$ rate. Empirically PFQL is not run — the practical offline RL field uses [[implicit-q-learning]], CQL, and TD3+BC, none of which carry instance-dependent guarantees. Closing that theory/practice gap is the standing challenge in this line.

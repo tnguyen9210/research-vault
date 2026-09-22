@@ -52,7 +52,7 @@ the optimal value *constrained to the behavior policy's support*. Proof: Lemma 2
 - Brandfonbrener et al. (2021) — Onestep RL, the single-step baseline IQL is designed to beat on stitching tasks
 - Kumar et al. (2020) — CQL, the strongest value-regularization comparison
 
-## Variants & Related Concepts
+## Related Concepts
 
 - [[fqi]] — the base template; IQL is FQI with the target's $\max_{a'}$ replaced by an in-sample upper expectile, so no out-of-sample action is ever queried
 - [[extrapolation-error]] — the failure IQL removes by construction rather than by penalty: vanilla FQI maximizes over all of $\mathcal{A}$, IQL over the data support, and these are genuinely different algorithms
@@ -62,6 +62,6 @@ the optimal value *constrained to the behavior policy's support*. Proof: Lemma 2
 - [[overestimation-bias]] — avoided at the source rather than corrected
 - [[coverage-coefficient]] — the density-aware notion of what a reference distribution makes learnable; IQL's binary support condition $\pi_\beta(a|s)>0$ is its crude analogue
 
-## Current State
+## Current State and Open Problems
 
 The default strong baseline for offline RL and offline-to-online finetuning, largely because it is simple, cheap, and hard to destabilize. Its known weak points are practical and theoretical in the same place: the guarantee holds only as $\tau \to 1$ with exact solutions, while performance in practice depends sharply on a $\tau$ that must be tuned per domain ($\tau = 0.9$ is needed on antmaze, less on locomotion) with no selection rule. A finite-$\tau$, instance-dependent bound on the gap to the support-constrained optimum remains open, and is the natural theoretical question this algorithm raises.

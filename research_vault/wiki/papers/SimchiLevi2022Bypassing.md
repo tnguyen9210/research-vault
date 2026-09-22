@@ -66,7 +66,7 @@ $$
 - [[oracle-efficiency]] — FALCON is the milestone offline-oracle result for discrete actions
 - [[offline-regression-oracle]] — the oracle type; standard ERM qualifies
 - [[contextual-bandits-online]] — the problem setting
-- [[offline-oracle-efficient-bandits]] — this paper's central place in that research line
+- [[oracle-efficiency]] — this paper's central place in that research line
 - David Simchi-Levi — first author
 - Yunzong Xu — second author
 - **Generalized by:** [[Qin2026Taming]] — extends to general action spaces and drops realizability via DOEC

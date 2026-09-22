@@ -32,15 +32,18 @@ optimized by RMSProp with minibatches from a replay buffer. $\theta^-$ is update
 - van Hasselt et al. (2016a) — DDQN; addresses overestimation
 - [[Song2019Revisiting]] — S-DQN/S-DDQN; softmax target reduces overestimation and gradient noise, outperforms DDQN on Atari
 
-## Variants & Related Concepts
+## Variants
 
-- [[fqi]] — DQN is an incremental, stochastic FQI: the target network plays the role of the previous iterate $Q_k$, and SGD steps replace the full refit
-- [[overestimation-bias]] — core failure mode of the max operator in DQN targets
 - [[softmax-bellman-operator]] — drop-in replacement for max in the DQN target network
 - Distributional DQN (C51, QR-DQN) — models full return distribution; addresses overestimation differently
 - Rainbow (Hessel et al. 2018) — combines 6 DQN improvements; current strong baseline
+
+## Related Concepts
+
+- [[fqi]] — DQN is an incremental, stochastic FQI: the target network plays the role of the previous iterate $Q_k$, and SGD steps replace the full refit
+- [[overestimation-bias]] — core failure mode of the max operator in DQN targets
 - [[implicit-q-learning]] — the offline counterpart: same TD machinery, but the target's max is replaced by an in-sample [[expectile-regression]] estimate so no unseen action is ever evaluated
 
-## Current State
+## Current State and Open Problems
 
 DQN and DDQN are the foundational baselines for value-based deep RL. Modern practice uses Rainbow or distributional variants. The [[softmax-bellman-operator]] offers a simple single-hyperparameter improvement over vanilla DQN/DDQN targets, though it has not been widely adopted in post-2019 architectures.
