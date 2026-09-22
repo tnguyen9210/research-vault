@@ -5,7 +5,7 @@ year: 2025
 venue: NeurIPS
 arxiv: "2412.08031"
 tags: [best-arm-identification, constrained-bai, pure-exploration, bandits, cost-constraint]
-citekey: lardy2026Constrained
+citekey: lardy2025Constrained
 ---
 
 # Constrained Best Arm Identification

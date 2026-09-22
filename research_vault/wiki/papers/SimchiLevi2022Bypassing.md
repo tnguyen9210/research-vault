@@ -5,7 +5,7 @@ year: 2022
 venue: Mathematics of Operations Research
 arxiv: "2003.12699"
 tags: [contextual-bandits, oracle-efficiency, offline-regression-oracle, realizability, falcon]
-citekey: simchi-levi2021Bypassing
+citekey: simchi-levi2022Bypassing
 ---
 
 # Bypassing the Monster

@@ -1,8 +1,8 @@
 ---
 title: "Offline Reinforcement Learning with Implicit Q-Learning"
 authors: [Ilya Kostrikov, Ashvin Nair, Sergey Levine]
-year: 2022
-venue: ICLR
+year: 2021
+venue: arXiv
 arxiv: "2110.06169"
 tags: [offline-reinforcement-learning, expectile-regression, implicit-q-learning, deep-reinforcement-learning, bellman-operator, overestimation-bias, distributional-shift]
 citekey: kostrikov2021Offline
