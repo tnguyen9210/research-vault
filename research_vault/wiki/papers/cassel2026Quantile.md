@@ -48,6 +48,7 @@ Three features of this loop carry the whole difficulty. The policy is **committe
 ### Learning objective
 
 For a policy $\pi$, $V^\pi_h(s)$ is the expected **loss-to-go** from $s$ at step $h$; the optimal policy and value minimize it, $\pi^* \in \arg\min_{\pi \in \Pi_M} V^\pi_1(s_1)$ and $V^* = V^{\pi^*}_1(s_1)$, with deterministic Markov policies known to be optimal among all history-dependent ones. The objective is cumulative regret over $K$ episodes,
+
 $$
 \mathrm{Reg}(T) \;=\; \sum_{t \in [T]} \Big( V^{\pi_t}_1(s_1) - V^*_1(s_1) \Big).
 $$
@@ -78,6 +79,7 @@ Strikingly few, and the paper's third contribution is essentially the list of as
 ### The estimator
 
 Given iid non-negative $X_1,\dots,X_n$ with mean $\mu$, partition into $B$ fixed disjoint batches $D_1,\dots,D_B$ and take the $\alpha$-quantile of the batch means:
+
 $$
 \hat\mu_\alpha \;=\; q_\alpha\!\Big( \tfrac{1}{|D_b|+1}\textstyle\sum_{X \in D_b} X,\ b \in [B] \Big),
 \qquad q_\alpha(\hat\mu_b, b\in[B]) := \hat\mu_{(\lceil \alpha B\rceil)},
@@ -125,6 +127,7 @@ The $+1$ in both denominators is load-bearing rather than a regularizer: it is e
 **Lemma 5 (good event for optimism).** With $\alpha = 1/65$ and $B \ge 26\log(5SHT\delta^{-1})$, w.p. $\ge 1 - \delta/5$, simultaneously for all $h, s, k$: $q_\alpha\big([\hat\ell^{t,b}_h + \hat P^{t,b}_h V^*_{h+1}](s,\pi^*_h(s)), b\in[B]\big) \le [\ell_h + P_h V^*_{h+1}](s, \pi^*_h(s))$. Note $V^*$, not $\hat V$ — this substitution is what keeps $B$ logarithmic rather than linear in $S$.
 
 **Theorem 4 (main result).** With $\alpha = 1/65$, $B = 26\log(5SKHT\delta^{-1})$ and $\kappa = \log(20HS^2KT\delta^{-1})$, w.p. $\ge 1-\delta$,
+
 $$
 \mathrm{Reg}(T) \;\le\; 22\sqrt{\min\{\mathcal Q^*,\, HV^*\}\,HSKT\,\kappa^2} \;+\; 1924\,H^3S^2K\kappa^3,
 $$

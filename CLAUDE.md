@@ -285,6 +285,9 @@ question: "<the question asked>"
 ## Formatting Rules
 
 - **Math:** Always write mathematical expressions in LaTeX syntax — inline with `$...$`, display equations with `$$...$$`. Never use plain-text math notation (e.g., write `$\sqrt{c_a}$` not `√c_a`, `$\delta$-PAC` not `δ-PAC`, `$O(\log T)$` not `O(log T)`). This applies to all wiki pages: papers, concepts, queries.
+- **A display block needs a blank line before its opening `$$`.** GitHub parses `$$...$$` as display math only when the opener begins its own block. An opener glued to the end of the preceding paragraph is left as literal text — **and it takes every later display block in the same file down with it.** Measured 2026-09-22 against GitHub's renderer: `fqi.md` (8 separated openers) rendered 8/8; `contextual-bandits-offline.md` (15 glued) rendered 0/15; in `cassel2026Quantile.md` the protocol block rendered but Algorithm 1 — itself correctly separated, merely sitting after a glued opener — did not. A lead-in sentence ending in a colon or comma still takes a blank line after it. Audit a file with:
+  `awk '/^[$][$]$/{if(o==0){if(p=="")s++;else g++;o=1}else o=0}{p=$0}END{print FILENAME,"sep="s,"glue="g}' FILE`
+- **Do not switch to fenced `math` code blocks** (three backticks + `math`) to dodge the rule. They are immune on GitHub, but this is also an Obsidian vault (`research_vault/.obsidian`, no math plugin) and Obsidian renders them as raw code. `$$...$$` preceded by a blank line is the only form that renders in both.
 
 ---
 
@@ -329,7 +332,8 @@ When the user says **"lint"** (or `/rv-lint`):
 3. Look for pages with no inbound links (orphans).
 4. Identify claims that newer papers contradict — flag for review.
 5. Suggest 3–5 new questions worth investigating or sources worth finding.
-6. Append a lint entry to `log.md`: `## [YYYY-MM-DD] lint | <summary of findings>`
+6. Audit display math: every `$$` opener must be preceded by a blank line (see **Formatting Rules**). One glued opener silently kills every later block in that file on GitHub, so this is worth a sweep rather than a spot check.
+7. Append a lint entry to `log.md`: `## [YYYY-MM-DD] lint | <summary of findings>`
 
 ---
 

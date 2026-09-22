@@ -47,6 +47,7 @@ Two symbols are used with different meanings on different pages and are left tha
 ### 2.1 Offline data
 
 Let $\mathcal X$ be a context space and $\mathcal A$ a finite action set of size $K:=|\mathcal A|$. A **policy** is a map $\pi:\mathcal X\to\Delta(\mathcal A)$ taking a context to a distribution over the actions. In an offline setting the policy that collects the data has to be fixed in advance, and such a policy is called a **behavior policy**. A problem instance is specified by a context distribution $\nu\in\Delta(\mathcal X)$, a reward kernel $\rho$ mapping a context–action pair to a distribution supported on $[0,1]$, and a behavior policy $\mu$. The learner observes only a fixed dataset
+
 $$
 \mathcal D:=\{(x_t,a_t,r_t)\}_{t=1}^{T},
 $$
@@ -57,10 +58,12 @@ Whether $\mu$ itself is available to the learner is a modelling choice, and it i
 ### 2.2 Mean reward, value, and optimal policy
 
 Define the conditional mean reward, its variance, and the optimal value
+
 $$
 q^*(x,a):=\mathbb E[r\mid x,a],\qquad \sigma^2(x,a):=\mathrm{Var}(r\mid x,a)\le\tfrac14,\qquad V^*(x):=\max_{a\in\mathcal A}q^*(x,a).
 $$
 For any $f:\mathcal X\times\mathcal A\to\mathbb R$ and any policy $\pi$ write $f(x,\pi):=\sum_a\pi(a\mid x)f(x,a)$, which is $f(x,\pi(x))$ for deterministic $\pi$. The **value** of a policy is
+
 $$
 J(\pi):=\mathbb E_{x\sim\nu,\ a\sim\pi(\cdot\mid x)}\big[q^*(x,a)\big]=\mathbb E_{x\sim\nu}\big[q^*(x,\pi)\big],
 $$
@@ -69,6 +72,7 @@ and $\pi^*$ is greedy with respect to $q^*$, $\ \pi^*(x)\in\arg\max_aq^*(x,a)$. 
 ### 2.3 Learning objective
 
 A learning rule maps the dataset to a policy, $\mathcal D\mapsto\hat\pi$, and is measured by its simple regret, also called the **suboptimality gap**,
+
 $$
 \Delta(\hat\pi):=J(\pi^*)-J(\hat\pi).
 $$
@@ -77,14 +81,17 @@ Since $\hat\pi$ depends on $\mathcal D$, $\Delta(\hat\pi)$ is a random variable.
 ### 2.4 Function approximation and realizability
 
 Let $\mathcal F\subseteq\{f:\mathcal X\times\mathcal A\to[0,1]\}$ be a function class used to model the mean reward, and assume **realizability**, $q^*\in\mathcal F$. The learner fits the class by least squares,
+
 $$
 \hat q:=\arg\min_{f\in\mathcal F}\ \frac1T\sum_{t=1}^{T}\big(f(x_t,a_t)-r_t\big)^2. \tag{1}
 $$
 Write $\pi_f(x):=\arg\max_af(x,a)$ for the greedy policy of $f$ and $\Pi_{\mathcal F}:=\{\pi_f:f\in\mathcal F\}$ for the induced policy class. For the empirical and population squared losses and the norms under the data and target distributions write
+
 $$
 \mathcal L_{\mathcal D}(f):=\frac1{|\mathcal D|}\sum_{(x,a,r)\in\mathcal D}\big(f(x,a)-r\big)^2,\qquad
 \mathcal L(f):=\mathbb E_{d^\mu\times\rho}\big[(f(x,a)-r)^2\big],
 $$
+
 $$
 \|g\|^2_{\nu\times\pi}:=\mathbb E_{x\sim\nu,\ a\sim\pi(\cdot\mid x)}\big[g(x,a)^2\big],\qquad
 \|g\|_{L_1(\nu\times\pi)}:=\mathbb E_{(x,a)\sim d^\pi}\big|g(x,a)\big| ,
@@ -98,10 +105,12 @@ In the **linear model**, a known feature map $\phi:\mathcal X\times\mathcal A\to
 ### 2.5 Coverage
 
 For a policy $\pi$ let $d^\pi(x,a):=\nu(x)\pi(a\mid x)$ be the induced distribution over context–action pairs, so $d^\mu$ is the distribution of the logged pairs. Adopt the convention that a ratio with positive numerator and vanishing denominator is $+\infty$, and write $\mu_{\min}:=\inf_{x,a}\mu(a\mid x)$, which may be $0$. Two coefficients are central. The **single-policy concentrability** coefficient is
+
 $$
 C^*:=\max_{(x,a):\,d^{\pi^*}(x,a)>0}\frac{d^{\pi^*}(x,a)}{d^\mu(x,a)}=\max_{x:\,\nu(x)>0}\frac1{\mu(\pi^*(x)\mid x)},
 $$
 the second equality because $\pi^*$ is deterministic, and the **uniform** coefficient is
+
 $$
 C_{\mathrm{unif}}:=\max_\pi\max_{(x,a):\,d^\pi(x,a)>0}\frac{d^\pi(x,a)}{d^\mu(x,a)}=\max_{x:\,\nu(x)>0}\max_{a\in\mathcal A}\frac1{\mu(a\mid x)}=\frac1{\mu_{\min}} .
 $$
@@ -154,15 +163,18 @@ Two constructions sit on the boundary: both start from a fitted reward model and
 ### 5.1 The doubly robust estimator
 
 Given an estimate $\hat\mu$ of the behavior policy (exact when propensities were logged), the **doubly robust** estimator corrects (DM) by the importance-weighted residual:
+
 $$
 \widehat J^{\mathrm{DR}}(\pi):=\frac1m\sum_{(x,a,r)\in \mathcal D^{\mathrm{eval}}}\Big[\hat q(x,\pi)+\frac{\pi(a\mid x)}{\hat\mu(a\mid x)}\big(r-\hat q(x,a)\big)\Big]. \tag{DR}
 $$
 
 **Proposition 5.1 (Dudík, Langford & Li 2011, Theorems 1–2, bandit form).** Let $g:=\hat q-q^*$, $\delta_\mu:=1-\mu/\hat\mu$, $g(x,\pi):=\sum_a\pi(a\mid x)g(x,a)$. Conditional on $\hat q$ and $\hat\mu$,
+
 $$
 \mathbb E\big[\widehat J^{\mathrm{DR}}(\pi)\big]-J(\pi)=\mathbb E_{d^\pi}\big[g\,\delta_\mu\big],
 $$
 so the bias is the product of the two model errors and vanishes if either is zero; and when $\hat\mu=\mu$,
+
 $$
 m\,\mathrm{Var}\big(\widehat J^{\mathrm{DR}}(\pi)\big)=\mathrm{Var}_x\big(q^*(x,\pi)\big)+\mathbb E_x\sum_a\frac{\pi(a\mid x)^2}{\mu(a\mid x)}\Big(\sigma^2(x,a)+g(x,a)^2\Big)-\mathbb E_x\big[g(x,\pi)^2\big].
 $$
@@ -174,18 +186,21 @@ Setting $\hat q\equiv0$ recovers IPW with $(q^*)^2$ in place of $g^2$: DR keeps 
 ### 5.2 Class-restricted learning with imputed rewards
 
 When the deployed policy must lie in a given class $\Pi\subsetneq\mathcal A^{\mathcal X}$, the value-based learner becomes
+
 $$
 \hat\pi_\Pi:=\arg\max_{\pi\in\Pi}\widehat J^{\mathrm{DM}}(\pi)=\arg\max_{\pi\in\Pi}\frac1m\sum_{x\in \mathcal D^{\mathrm{eval}}}\hat q(x,\pi), \tag{DM-Π}
 $$
 a cost-sensitive classification problem with the imputed reward vector $\hat q(x,\cdot)$ at each context (Dudík, Langford & Li 2011, §5.1.3; Beygelzimer & Langford 2009). Its guarantee is a uniform-deviation bound.
 
 **the class-restricted bound below.** Let $\Pi$ be finite and $\hat q$ fitted on $\mathcal D^{\mathrm{reg}}$. With probability at least $1-\delta$ over $\mathcal D^{\mathrm{eval}}$,
+
 $$
 \Delta_\Pi(\hat\pi_\Pi)\ \le\ 2\max_{\pi\in\Pi}\big|\widehat J^{\mathrm{DM}}(\pi)-J(\pi)\big|\ \le\ 2\sqrt{C_\Pi}\;\|\hat q-q^*\|_{\nu\times\mu}+2\sqrt{\frac{\ln(2|\Pi|/\delta)}{2m}},\qquad C_\Pi:=\max_{\pi\in\Pi}\min\{C^\pi_2,C_{\mathcal F}(\pi)\}.
 $$
 *Proof.* $J(\pi^*_\Pi)-J(\hat\pi_\Pi)\le[J(\pi^*_\Pi)-\widehat J^{\mathrm{DM}}(\pi^*_\Pi)]+[\widehat J^{\mathrm{DM}}(\hat\pi_\Pi)-J(\hat\pi_\Pi)]$ since $\widehat J^{\mathrm{DM}}(\hat\pi_\Pi)\ge\widehat J^{\mathrm{DM}}(\pi^*_\Pi)$; bound both brackets by the uniform version of the direct-method bound in [[contextual-bandits-offline-value-based]]. $\square$
 
 The coverage is now that of the *whole class* — both $\pi^*_\Pi$ and the selected policy appear, exactly as in the $L_2$-form greedy bound in [[contextual-bandits-offline-value-based]] — so the class-restricted plug-in learner inherits the greedy rule's need for coverage of everything it might select. Pessimism restores single-policy coverage at the level of policies: the rule $\arg\max_{\pi\in\Pi}\min_{f\in\mathcal F_\varepsilon}\widehat J_f(\pi)$ satisfies, by the proof of the version-space theorem in [[contextual-bandits-offline-value-based]] with $\Pi$ in place of $\Pi_{\mathcal F}$,
+
 $$
 \Delta_\Pi\ \le\ \sqrt{\frac{20\,C_{\mathcal F}(\pi^*_\Pi)\ln(|\mathcal F|/\delta)}{T_{\mathrm{reg}}}}+2\sqrt{\frac{\ln(2N|\Pi|/\delta)}{2m}},
 $$

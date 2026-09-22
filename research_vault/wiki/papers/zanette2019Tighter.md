@@ -23,6 +23,7 @@ Notation follows [[contextual-bandits-offline]] §2 and the horizon-$H$ extensio
 **Setting.** Undiscounted finite-horizon episodic MDP $(\mathcal S, \mathcal A, P, r, H)$ with **stationary** transitions $P(s'\mid s,a)$ — no $h$-dependence, the one structural difference from [[cassel2026Quantile]] — and $r(s,a) \in [0,1]$. $T$ episodes of fixed length $H$, so $TH$ timesteps in all. Policies and value functions are time-indexed, $V^\pi_h$.
 
 **The two instance quantities.** The **maximum conditional value variance**
+
 $$
 \mathcal Q^*_{\mathrm{ZB}} \;:=\; \max_{s,a,h}\Big[ \mathrm{Var}\,r_h(s,a) \;+\; \mathrm{Var}_{s'\sim P(\cdot\mid s,a)} V^*_{h+1}(s') \Big]
 $$
@@ -33,6 +34,7 @@ $$
 ## Results
 
 **Theorem 1.** W.p. $\ge 1-\delta$, the regret $\mathrm{Reg}(T)$ of EULER is at most the **minimum** of
+
 $$
 \tilde O\Big(\sqrt{\mathcal Q^*_{\mathrm{ZB}}\, S K T H} + \sqrt S\,SKH^2(\sqrt S + \sqrt H)\Big)
 \quad\text{and}\quad
@@ -43,6 +45,7 @@ Both forms are kept because the second is tighter than substituting $\mathcal Q^
 **Corollary 1.1 (worst case).** Since $r \in [0,1]$ gives $G^2 \le H^2$: $\tilde O(\sqrt{H^2 S K T} + \sqrt S SKH^2(\sqrt S+\sqrt H))$, matching the $\Omega(\sqrt{H^2 S K T})$ lower bound (Jaksch et al. 2010; Osband & Van Roy 2016) and the minimax bound of Azar et al. (2017) in the dominant term.
 
 **Equation 13 — the horizon-free bound.** Jiang & Agarwal (2018) ask whether a horizon dependence is *necessary* in tabular episodic RL when rewards are positive with $\sum_{h} r_h \in [0,1]$ almost surely (the usual per-step-bounded setting is this one after dividing by $H$). That assumption forces $G \le 1$, and Theorem 1's second form gives
+
 $$
 \tilde O\Big(\sqrt{S K T} + \sqrt S\,SKH^2(\sqrt S + \sqrt H)\Big) ,
 $$

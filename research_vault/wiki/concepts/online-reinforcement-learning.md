@@ -23,6 +23,7 @@ Notation follows [[contextual-bandits-offline]] §2 and the horizon-$H$ extensio
 The same episodic MDP $(\mathcal S, \mathcal A, \rho, P, H)$, with $S := |\mathcal S|$, $K := |\mathcal A|$, mean rewards $r_h(s,a) \in [0,1]$, transitions $P_h$, initial state $s_1 \sim \nu$, values $Q^\pi_h, V^\pi_h$ and optimal $Q^*_h, V^*_h$, and $J(\pi) := \mathbb E_{s_1 \sim \nu}[V^\pi_1(s_1)]$ — but no behavior policy and no dataset. The learner chooses a policy $\pi_t$ for each episode $t = 1, \dots, T$ from everything observed so far, runs it, and observes the trajectory $(s^t_h, a^t_h, r^t_h)_{h \in [H]}$ it produces. Nothing about unplayed actions is revealed.
 
 **Regret.** The objective is cumulative,
+
 $$
 \mathrm{Reg}(T) := \sum_{t=1}^T \big( J(\pi^*) - J(\pi_t) \big) = \sum_{t=1}^T \Delta(\pi_t),
 $$
@@ -39,6 +40,7 @@ A max is fragile — one high-variance pair anywhere sets the whole bound — wh
 **The two ways to buy optimism.** Establishing $\hat V^t_1 \ge V^*_1$ is what the design turns on, and the vault holds one instance of each route. **By bonus**: estimate the mean, add a width built from visitation counts — an empirical-Bernstein estimate of the conditional variance plus a correction for value-function uncertainty in [[zanette2019Tighter]]. Tight, but the width needs counts, which do not exist beyond the tabular case. **By order statistic**: fit an ensemble of $B$ Q-estimates on disjoint round-robin batches and act on a fixed $\alpha$-quantile of it ([[cassel2026Quantile]]). No counts and no width; optimism instead follows from a first-moment fact — a batch mean with $+1$ in the denominator falls below the true mean with probability at least $1/13$ (Feige 2004), so with independent batches the count of optimistic ones is binomial and a Chernoff bound on its lower tail does the rest.
 
 **The optimism decomposition.** Write $\hat V^t_1$ for the value the learner's own estimate assigns to $\pi_t$ at the start of episode $t$. Then
+
 $$
 \mathrm{Reg}(T) = \underbrace{\sum_{t} \big( \hat V^t_1(s_1) - J(\pi_t) \big)}_{\text{bias}} \;+\; \underbrace{\sum_{t} \big( J(\pi^*) - \hat V^t_1(s_1) \big)}_{\text{optimism}}.
 $$

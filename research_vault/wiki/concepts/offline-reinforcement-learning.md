@@ -20,12 +20,14 @@ Nearly every algorithm here is a variant of one template, [[fqi]] — relabel th
 Notation follows [[contextual-bandits-offline]] §2 and extends it to horizon $H$; only the extension is stated here. The behavior policy is $\mu$ throughout, as in the bandit case — the deep-RL literature's $\mu$ is the same object.
 
 An episodic MDP $(\mathcal S, \mathcal A, \rho, P, H)$: a state space $\mathcal S$, with $S := |\mathcal S|$ in the tabular case; a finite action set $\mathcal A$ with $K := |\mathcal A|$; at each step $h \in [H]$ a reward kernel $\rho_h(\cdot \mid s,a)$ on $[0,1]$ with mean $r_h(s,a) := \mathbb E[r \mid s,a,h]$, and a transition kernel $P_h(\cdot \mid s,a)$. Episodes start from $s_1 \sim \nu$. A policy is $\pi = (\pi_h)_{h \in [H]}$ with $\pi_h : \mathcal S \to \Delta(\mathcal A)$. The learner sees only
+
 $$
 \mathcal D := \big\{(s^t_h, a^t_h, r^t_h, s^t_{h+1})\big\}_{t \in [T],\ h \in [H]},
 $$
 $T$ trajectories collected by $\mu$, and outputs $\hat\pi$ without further interaction. Write $d^\pi_h$ for the distribution of $(s_h, a_h)$ under $\pi$, so $d^\mu_h$ is the distribution of the logged pairs at step $h$ — the step-$h$ version of the bandit page's $d^\pi(x,a) = \nu(x)\,\pi(a \mid x)$.
 
 **Values.** $Q^\pi_h(s,a)$ and $V^\pi_h(s)$ are the expected reward-to-go from step $h$ under $\pi$; $Q^*_h$ and $V^*_h$ the optimal ones, with $V^*_h(s) = \max_a Q^*_h(s,a)$ and $\pi^*$ greedy in $Q^*$. The value of a policy is $J(\pi) := \mathbb E_{s_1 \sim \nu}[V^\pi_1(s_1)]$, and the objective is the same suboptimality as before,
+
 $$
 \Delta(\hat\pi) := J(\pi^*) - J(\hat\pi).
 $$

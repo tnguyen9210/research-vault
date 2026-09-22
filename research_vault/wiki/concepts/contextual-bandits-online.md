@@ -23,6 +23,7 @@ The instance is the offline one — context space $\mathcal X$, finite action se
 **Realizability.** As offline: a class $\mathcal F \subseteq \{f : \mathcal X \times \mathcal A \to [0,1]\}$ with $q^* \in \mathcal F$. See [[realizability]].
 
 **Regret.** The learner is judged cumulatively, against a benchmark class $\Lambda \subseteq \Delta(\mathcal A)$ of action distributions, using the offline page's shorthand $f(x,p) := \sum_a p(a) f(x,a)$:
+
 $$
 \mathrm{Reg}_\Lambda(T) := \sum_{t=1}^T \Big( \max_{\lambda \in \Lambda} q^*(x_t, \lambda) \;-\; q^*(x_t, p_t) \Big).
 $$
