@@ -5,7 +5,7 @@ year: 2026
 venue: arXiv
 arxiv: "2602.01485"
 tags: [test-time-scaling, llm, best-of-n, scaling-laws, search, reward-modeling]
-# not in Zotero as of 2026-09-22 — no citekey, so no PDF resolves
+citekey: li2026Predicting
 ---
 
 # Predicting and Improving Test-Time Scaling Laws via Reward Tail-Guided Search

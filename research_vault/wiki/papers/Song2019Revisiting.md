@@ -5,7 +5,7 @@ year: 2019
 venue: ICML
 arxiv: "1812.00456"
 tags: [deep-reinforcement-learning, bellman-operator, softmax-bellman-operator, overestimation-bias, deep-q-network, q-learning]
-# not in Zotero as of 2026-09-22 — no citekey, so no PDF resolves
+citekey: song2019Revisiting
 ---
 
 # Revisiting the Softmax Bellman Operator: New Benefits and New Perspective

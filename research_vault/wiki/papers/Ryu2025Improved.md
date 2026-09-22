@@ -5,7 +5,7 @@ year: 2025
 venue: COLT
 arxiv: "2502.10826"
 tags: [contextual-bandits, offline-learning, importance-weighting, pessimism, confidence-bounds]
-# not in Zotero as of 2026-09-22 — no citekey, so no PDF resolves
+citekey: ryu2025Improved
 ---
 
 # Improved Offline Contextual Bandits with Second-Order Bounds: Betting and Freezing

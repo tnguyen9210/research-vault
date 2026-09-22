@@ -2,7 +2,7 @@
 title: "Cost Aware Best Arm Identification"
 authors: [Kellen Kanarios, Qining Zhang, Lei Ying]
 year: 2024
-venue: arXiv
+venue: RLJ
 arxiv: "2402.16710"
 tags: [best-arm-identification, cabai, pure-exploration, bandits, cost-aware]
 citekey: kanarios2024Cost

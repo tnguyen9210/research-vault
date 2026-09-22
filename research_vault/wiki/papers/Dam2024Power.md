@@ -2,7 +2,7 @@
 title: "Power Mean Estimation in Stochastic Monte-Carlo Tree Search"
 authors: [Tuan Dam, Odalric-Ambrym Maillard, Emilie Kaufmann]
 year: 2024
-venue: arXiv
+venue: UAI
 arxiv: "2406.02235"
 tags: [mcts, planning, power-mean, reinforcement-learning, convergence]
 citekey: dam2024Power

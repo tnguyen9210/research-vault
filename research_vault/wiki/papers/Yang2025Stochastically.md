@@ -5,7 +5,7 @@ year: 2025
 venue: arXiv
 arxiv: "2501.03877"
 tags: [best-arm-identification, constrained-bai, pure-exploration, thompson-sampling, fixed-budget]
-# not in Zotero as of 2026-09-22 — no citekey, so no PDF resolves
+citekey: yang2025Stochastically
 ---
 
 # Stochastically Constrained Best Arm Identification with Thompson Sampling
