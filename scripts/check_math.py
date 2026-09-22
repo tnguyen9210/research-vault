@@ -88,7 +88,7 @@ def source_spans(src):
     def blank(m):
         return re.sub(r"[^\n]", " ", m.group(0))
 
-    work = src
+    work = re.sub(r"<!--.*?-->", blank, src, flags=re.S)
     for m in re.finditer(r"^```math[ \t]*\n(.*?)^```", work,
                          re.S | re.M):
         spans.append((m.start(), "display", m.group(1)))
@@ -116,8 +116,14 @@ def likely_cause(kind, content, src, line):
         if before.strip() or after.strip():
             return "delimiter not on its own paragraph"
     body = content.replace("\\\\", "")
-    if re.search(re.escape(content) + r"`?\$[*_](?![*_])",
-                 lines[line - 1]):
+    here = lines[line - 1]
+    if kind == "inline" and re.search(
+            "[A-Za-z0-9‐-—-]\\$" + re.escape(content), here):
+        return "opening `$` glued to a letter, digit or dash"
+    if kind == "inline" and content.endswith(")") \
+            and content + "$)" in here:
+        return "span ending in `)` followed by `)`"
+    if re.search(re.escape(content) + r"`?\$[*_](?![*_])", here):
         return "closing `$` touches a closing `*`/`_`"
     if re.search(r"(?m)^\s*([=+\-*])\s*$|^\s*([-+*>#]|\d+\.)\s",
                  content) and kind == "display":

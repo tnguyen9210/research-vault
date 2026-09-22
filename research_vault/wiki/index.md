@@ -79,3 +79,4 @@ Format: `- [[slug]] — one-line description`
 - [[2026-08-19-offline-fqi-walkthrough]] — reading path from the FQI template through offline-vs-online, extrapolation error, and Algorithm 1 of [[yin2023Offline]]
 - [[2026-09-16-offline-cb-value-based]] — reading path for the value-based offline contextual bandit account; the answer now lives in [[contextual-bandits-offline]] and [[contextual-bandits-offline-value-based]]
 
+- [[2026-09-22-qom-value-based-pessimism]] — Quantile of Means as tabular value-based pessimism: Theorem 4.2-style variance-adaptive bound without a penalty, its constant price, lost $(C^{\ast}-1)$ adaptivity, and a [[cassel2026Quantile]] erratum
