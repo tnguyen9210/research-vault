@@ -24,7 +24,24 @@ What makes this work rather than merely sound plausible is a single fact about s
 
 ### Setting and learning protocol
 
-A finite-horizon MDP $M = (\mathcal S, \mathcal A, H, P, L)$ with $|\mathcal S| = S$, $|\mathcal A| = A$, horizon $H$, **time-inhomogeneous** transitions $P_h(\cdot \mid s,a)$ for $h \in [H]$, and a loss distribution $L_h(s,a)$ with mean $\ell_h(s,a)$. Each of $K$ episodes starts from a fixed $s_1$ (stated as WLOG, purely notational) and runs for $H$ steps: at step $h$ in state $s^k_h$ the agent picks $a^k_h$, transitions to $s^k_{h+1} \sim P_h(\cdot \mid s^k_h, a^k_h)$, and observes a loss $L^k_h \sim L_h(s^k_h, a^k_h)$. Only the visited pair's loss and successor are observed. The agent commits to a deterministic Markov policy $\pi^k = (\pi^k_h)_{h\in[H]}$ before each episode.
+A finite-horizon MDP $M = (\mathcal S, \mathcal A, H, P, L)$ with $|\mathcal S| = S$, $|\mathcal A| = A$, horizon $H$, **time-inhomogeneous** transitions $P_h(\cdot\mid s,a)$ for $h\in[H]$, and loss distributions $L_h(s,a)$ with means $\ell_h(s,a)$. Both $P$ and $L$ are unknown; $\mathcal S$, $\mathcal A$, $H$ and $K$ are known.
+
+$$
+\begin{aligned}
+&\textbf{Input: } \text{unknown MDP } M=(\mathcal S,\mathcal A,H,P,L),\ \text{episode budget } K \\
+&\textbf{for } k = 1,\dots,K: \\
+&\qquad \pi^k=(\pi^k_h)_{h\in[H]} \leftarrow \textsc{Alg}\big(\text{everything observed in episodes } 1,\dots,k-1\big) \\
+&\qquad s^k_1 \leftarrow s_1 \qquad\qquad\qquad\qquad\ \triangleright\ \text{fixed start state, WLOG} \\
+&\qquad \textbf{for } h = 1,\dots,H: \\
+&\qquad\qquad a^k_h \leftarrow \pi^k_h(s^k_h) \\
+&\qquad\qquad \textbf{observe } L^k_h \sim L_h(s^k_h,a^k_h) \qquad \triangleright\ \text{played pair only} \\
+&\qquad\qquad \textbf{observe } s^k_{h+1} \sim P_h(\cdot\mid s^k_h,a^k_h) \quad\ \triangleright\ \text{realized successor only} \\
+&\qquad \textbf{incur } V^{\pi^k}_1(s_1)-V^\star_1(s_1) \qquad\qquad \triangleright\ \text{added to regret} \\
+&\textbf{return } \text{nothing — the learner is judged on the whole trajectory of play}
+\end{aligned}
+$$
+
+Three features of this loop carry the whole difficulty. The policy is **committed before the episode**, so within an episode there is no adaptation. Feedback is **bandit, not full-information**: the losses of the $A-1$ actions not taken and the transitions to states not reached are never revealed, which is what makes deliberate exploration necessary. And every episode is **paid for as it is played** — there is no separate training phase whose cost is forgiven, which is the structural difference from the batch protocol of [[offline-reinforcement-learning]], where a fixed $\mathcal D$ is handed over and only the final $\hat\pi$ is scored.
 
 ### Learning objective
 
@@ -67,18 +84,26 @@ with $\hat\mu_{(1)} \le \dots \le \hat\mu_{(B)}$ the sorted batch means. **Quant
 
 ### Algorithm 1 — VIBE (Value Iteration with Bootstrap Ensemble)
 
-Maintain $B$ disjoint datasets $D^{k,b}_h(s,a)$ per state-action-step, filled by **strict round-robin**: each new transition goes to whichever batch currently has fewest samples, so batch sizes stay balanced and the ensemble's variance stays uniform across members. Each episode, run ordinary backward value iteration with **no bonus term**, but evaluate each $Q$-value as the QoM across batches:
 $$
-\hat P^{k,b}_h(s'\mid s,a) = \!\!\sum_{s^+ \in D^{k,b}_h(s,a)}\!\! \frac{\mathbb 1\{s^+ = s'\}}{|D^{k,b}_h(s,a)|+1},
-\qquad
-\hat\ell^{k,b}_h(s,a) = \!\!\sum_{L \in D^{k,b}_h(s,a)}\!\! \frac{L}{|D^{k,b}_h(s,a)|+1},
+\begin{aligned}
+&\textbf{Input: } \text{number of batches } B,\ \text{quantile level } \alpha \\
+&\textbf{initialize: } D^{1,b}_h(s,a)=\emptyset \quad \forall\, s\in\mathcal S,\ a\in\mathcal A,\ h\in[H],\ b\in[B] \\
+&\textbf{for } k = 1,2,\dots,K: \\
+&\qquad \hat V^k_{H+1}(s) \equiv 0 \\
+&\qquad \textbf{for } h = H,\dots,1: \\
+&\qquad\qquad \textbf{for } b \in [B]: \\
+&\qquad\qquad\qquad \hat P^{k,b}_h(s'\mid s,a) \leftarrow \sum_{s^+\in D^{k,b}_h(s,a)} \frac{\mathbb 1\{s^+=s'\}}{|D^{k,b}_h(s,a)|+1} \\
+&\qquad\qquad\qquad \hat\ell^{k,b}_h(s,a) \leftarrow \sum_{L\in D^{k,b}_h(s,a)} \frac{L}{|D^{k,b}_h(s,a)|+1} \\
+&\qquad\qquad\qquad \hat Q^{k,b}_h(s,a) \leftarrow \big[\hat\ell^{k,b}_h + \hat P^{k,b}_h \hat V^k_{h+1}\big](s,a) \\
+&\qquad\qquad \hat V^k_h(s) \leftarrow \min_{a\in\mathcal A}\, q_\alpha\big(\hat Q^{k,b}_h(s,a),\ b\in[B]\big) \qquad \triangleright\ \text{QoM} \\
+&\qquad \text{play } \pi^k_h(s) \in \arg\min_{a\in\mathcal A}\, q_\alpha\big(\hat Q^{k,b}_h(s,a),\ b\in[B]\big),\ \text{observe trajectory } \iota^k \\
+&\qquad \text{add each } (s^k_{h+1}, L^k_h) \text{ to the } D^{k+1,b}_h(s^k_h,a^k_h) \text{ with fewest samples} \quad \triangleright\ \text{round-robin}
+\end{aligned}
 $$
-$$
-\hat Q^{k,b}_h(s,a) = \big[\hat\ell^{k,b}_h + \hat P^{k,b}_h \hat V^k_{h+1}\big](s,a),
-\qquad
-\hat V^k_h(s) = \min_{a} \; q_\alpha\big(\hat Q^{k,b}_h(s,a),\ b\in[B]\big),
-$$
-and play greedily with respect to the same quantile. The $+1$ in both denominators is the mechanism, not a regularizer. Cost is $O(SAHB)$ per episode — value iteration run $B$ times — which is negligible overhead since $B$ is logarithmic.
+
+Read against the FQI template on [[fqi]], VIBE is the same backward sweep with two substitutions and one deletion. The **deletion** is the bonus: nothing is added to or subtracted from $\hat Q$ anywhere. The **substitutions** are that the single regression is replaced by $B$ independent ones on disjoint data, and the single $\hat Q$ entering the backup is replaced by $q_\alpha$ over the ensemble. Line 12 is the other half of the mechanism — the round-robin assignment keeps batch sizes within one of each other, so no member is systematically noisier than the rest, which is what Lemma 1's bias bound needs when it assumes $|D_b| \ge \lfloor n/B\rfloor$.
+
+The $+1$ in both denominators is load-bearing rather than a regularizer: it is exactly the $c \ge 1/12$ of Corollary 2 below, and without it the constant-probability undershoot that drives optimism does not hold. Cost is $O(SAHB)$ per episode — value iteration run $B$ times — negligible since $B$ is logarithmic.
 
 ### The contribution, in the order the paper claims it
 
