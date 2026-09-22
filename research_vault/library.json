@@ -6,7 +6,7 @@
       "ascii": "",
       "asciiBibLaTeX": false,
       "asciiBibTeX": true,
-      "autoExport": "immediate",
+      "autoExport": "idle",
       "autoExportDelay": 5,
       "autoExportIdleWait": 10,
       "autoExportPathReplaceDiacritics": false,
@@ -97,6 +97,7 @@
       "Items": true,
       "Normalize": false,
       "Preferences": true,
+      "YAML": false,
       "biblatexAPA": false,
       "biblatexChicago": false,
       "exportFileData": false,
@@ -109,7 +110,7 @@
   },
   "version": {
     "zotero": "10.0.SOURCE.22f08d1ce",
-    "bbt": "9.0.63"
+    "bbt": "9.0.64"
   },
   "collections": {
     "KV6UZ3U8": {
@@ -854,7 +855,6 @@
         788,
         792,
         804,
-        813,
         819,
         834,
         847,
@@ -1289,8 +1289,7 @@
         889,
         923,
         924,
-        925,
-        1085
+        925
       ]
     },
     "WRH6S2ZF": {
@@ -1387,8 +1386,7 @@
       "items": [
         156,
         775,
-        814,
-        844
+        814
       ]
     },
     "BL89XFY6": {
@@ -3206,7 +3204,14 @@
         172,
         177,
         183,
-        189
+        189,
+        3421,
+        3424,
+        3426,
+        3428,
+        3431,
+        204,
+        3434
       ]
     },
     "MYSG9BKC": {
@@ -3228,7 +3233,9 @@
         3395,
         3396,
         3397,
-        3405
+        3405,
+        3416,
+        3418
       ]
     },
     "344NGF2U": {
@@ -3258,8 +3265,19 @@
       "key": "DFFIFZD6",
       "parent": "344NGF2U",
       "name": "02_Courses",
-      "collections": [],
+      "collections": [
+        "P8BUISTK"
+      ],
       "items": []
+    },
+    "P8BUISTK": {
+      "key": "P8BUISTK",
+      "parent": "DFFIFZD6",
+      "name": "CSED703Q_MLTheory",
+      "collections": [],
+      "items": [
+        3437
+      ]
     },
     "USG46MRU": {
       "key": "USG46MRU",
@@ -3603,7 +3621,6 @@
         201,
         202,
         203,
-        204,
         216,
         221
       ]
@@ -4033,16 +4050,12 @@
       "name": "Misc",
       "collections": [],
       "items": [
-        104,
-        302,
         731,
         886,
         971,
         1117,
-        1124,
         1125,
-        1126,
-        1127
+        1126
       ]
     },
     "SF4WABZS": {
@@ -4064,7 +4077,6 @@
         876,
         882,
         888,
-        893,
         894,
         973,
         1021,
@@ -8028,40 +8040,6 @@
       "select": "zotero://select/library/items/J7N75TUH"
     },
     {
-      "key": "EK6JR6GA",
-      "version": 13667,
-      "itemType": "journalArticle",
-      "title": "MATLAB tensor toolbox version 2.5, available online, January 2012",
-      "date": "2012",
-      "citationKey": "bader2012MATLAB",
-      "libraryCatalog": "Google Scholar",
-      "publicationTitle": "URL: http://www. sandia. gov/ tgkolda/TensorToolbox",
-      "creators": [
-        {
-          "firstName": "B. W.",
-          "lastName": "Bader",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "T. G.",
-          "lastName": "Kolda",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2019-12-12T08:52:58Z",
-      "dateModified": "2019-12-12T08:53:06Z",
-      "uri": "http://zotero.org/users/5634105/items/EK6JR6GA",
-      "itemID": 1127,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "URL Httpwww Sandia Gov TgkoldaTensorToolbox",
-      "itemKey": "EK6JR6GA",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/EK6JR6GA"
-    },
-    {
       "key": "VTVJLHAC",
       "version": 13686,
       "itemType": "journalArticle",
@@ -9227,14 +9205,14 @@
       "attachments": [
         {
           "itemType": "attachment",
-          "title": "Bengio1994_Learning_Long-Term_Dependencies_with_Gradient_Descent_Is_Difficult.pdf",
+          "title": "PDF",
           "tags": [],
           "relations": {},
-          "dateAdded": "2019-10-17T03:29:56Z",
-          "dateModified": "2019-10-17T03:29:56Z",
-          "uri": "http://zotero.org/users/5634105/items/QLSKJ2UF",
-          "path": "/home/tnn/Zotero/storage/QLSKJ2UF/false",
-          "select": "zotero://select/library/items/QLSKJ2UF"
+          "dateAdded": "2026-08-30T03:53:25Z",
+          "dateModified": "2026-08-30T03:53:25Z",
+          "uri": "http://zotero.org/users/5634105/items/42FNZ5YH",
+          "path": "/home/tnn/Zotero/storage/42FNZ5YH/Bengio et al. - 1994 - Learning Long-Term Dependencies with Gradient Descent Is Difficult.pdf",
+          "select": "zotero://select/library/items/42FNZ5YH"
         }
       ],
       "notes": [],
@@ -11068,6 +11046,124 @@
       "select": "zotero://select/library/items/VVUZAYEA"
     },
     {
+      "key": "ZHP9JX7N",
+      "version": 14672,
+      "itemType": "conferencePaper",
+      "title": "Offline RL Without Off-Policy Evaluation",
+      "abstractNote": "Most prior approaches to offline reinforcement learning (RL) have taken an iterative actor-critic approach involving off-policy evaluation. In this paper we show that simply doing one step of constrained/regularized policy improvement using an on-policy Q estimate of the behavior policy performs surprisingly well. This one-step algorithm beats the previously reported results of iterative algorithms on a large portion of the D4RL benchmark. The one-step baseline achieves this strong performance while being notably simpler and more robust to hyperparameters than previously proposed iterative algorithms. We argue that the relatively poor performance of iterative approaches is a result of the high variance inherent in doing off-policy evaluation and magnified by the repeated optimization of policies against those estimates. In addition, we hypothesize that the strong performance of the one-step algorithm is due to a combination of favorable structure in the environment and behavior policy.",
+      "date": "2021-12-03",
+      "citationKey": "brandfonbrener2021Offline",
+      "url": "http://arxiv.org/abs/2106.08909",
+      "accessDate": "2026-09-20T01:16:32Z",
+      "proceedingsTitle": "Proceedings of NeurIPS",
+      "creators": [
+        {
+          "firstName": "David",
+          "lastName": "Brandfonbrener",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "William F.",
+          "lastName": "Whitney",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Rajesh",
+          "lastName": "Ranganath",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Joan",
+          "lastName": "Bruna",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-20T01:16:32Z",
+      "dateModified": "2026-09-20T01:17:33Z",
+      "uri": "http://zotero.org/users/5634105/items/ZHP9JX7N",
+      "itemID": 3428,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/2106.08909v3",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-20T01:16:39Z",
+          "dateModified": "2026-09-20T01:16:39Z",
+          "uri": "http://zotero.org/users/5634105/items/6ETDQ84U",
+          "path": "/home/tnn/Zotero/storage/6ETDQ84U/Brandfonbrener et al. - 2021 - Offline RL Without Off-Policy Evaluation.pdf",
+          "select": "zotero://select/library/items/6ETDQ84U"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Proc. NeurIPS",
+      "itemKey": "ZHP9JX7N",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/ZHP9JX7N"
+    },
+    {
+      "key": "9DY6QX62",
+      "version": 14705,
+      "itemType": "conferencePaper",
+      "title": "Offline Contextual Bandits with Overparameterized Models",
+      "abstractNote": "Recent results in supervised learning suggest that while overparameterized models have the capacity to overfit, they in fact generalize quite well. We ask whether the same phenomenon occurs for offline contextual bandits. Our results are mixed. Value-based algorithms benefit from the same generalization behavior as overparameterized supervised learning, but policy-based algorithms do not. We show that this discrepancy is due to the \\emph{action-stability} of their objectives. An objective is action-stable if there exists a prediction (action-value vector or action distribution) which is optimal no matter which action is observed. While value-based objectives are action-stable, policy-based objectives are unstable. We formally prove upper bounds on the regret of overparameterized value-based learning and lower bounds on the regret for policy-based algorithms. In our experiments with large neural networks, this gap between action-stable value-based objectives and unstable policy-based objectives leads to significant performance differences.",
+      "date": "2021-06-16",
+      "citationKey": "brandfonbrener2021OfflineCB",
+      "url": "http://arxiv.org/abs/2006.15368",
+      "accessDate": "2026-09-20T01:36:16Z",
+      "proceedingsTitle": "Proceedings of ICML",
+      "creators": [
+        {
+          "firstName": "David",
+          "lastName": "Brandfonbrener",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "William F.",
+          "lastName": "Whitney",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Rajesh",
+          "lastName": "Ranganath",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Joan",
+          "lastName": "Bruna",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-20T01:36:16Z",
+      "dateModified": "2026-09-20T01:39:56Z",
+      "uri": "http://zotero.org/users/5634105/items/9DY6QX62",
+      "itemID": 3434,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/2006.15368v4",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-20T01:36:17Z",
+          "dateModified": "2026-09-20T01:36:17Z",
+          "uri": "http://zotero.org/users/5634105/items/PMFRT5TX",
+          "path": "/home/tnn/Zotero/storage/PMFRT5TX/Brandfonbrener et al. - 2021 - Offline Contextual Bandits with Overparameterized Models.pdf",
+          "select": "zotero://select/library/items/PMFRT5TX"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Proc. ICML",
+      "itemKey": "9DY6QX62",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/9DY6QX62"
+    },
+    {
       "key": "E5824ZAS",
       "version": 14372,
       "itemType": "preprint",
@@ -12814,63 +12910,6 @@
       "select": "zotero://select/library/items/69F9LHEE"
     },
     {
-      "key": "7JCWN97E",
-      "version": 13442,
-      "itemType": "conferencePaper",
-      "title": "Toward an Architecture for Never-Ending Language Learning",
-      "abstractNote": "We consider here the problem of building a never-ending language learner; that is, an intelligent computer agent that runs forever and that each day must (1) extract, or read, information from the web to populate a growing structured knowledge base, and (2) learn to perform this task better than on the previous day. In particular, we propose an approach and a set of design principles for such an agent, describe a partial implementation of such a system that has already learned to extract a knowledge base containing over 242,000 beliefs with an estimated precision of 74% after running for 67 days, and discuss lessons learned from this preliminary attempt to build a never-ending learning agent.",
-      "date": "2010",
-      "citationKey": "carlson2010Architecture",
-      "url": "http://dl.acm.org/citation.cfm?id=2898607.2898816",
-      "accessDate": "2019-12-12T22:10:54Z",
-      "publisher": "AAAI Press",
-      "proceedingsTitle": "Proceedings of the AAAI",
-      "creators": [
-        {
-          "firstName": "Andrew",
-          "lastName": "Carlson",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Justin",
-          "lastName": "Betteridge",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Bryan",
-          "lastName": "Kisiel",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Burr",
-          "lastName": "Settles",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Estevam R., Jr.",
-          "lastName": "Hruschka",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Tom M.",
-          "lastName": "Mitchell",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2019-12-12T22:10:54Z",
-      "dateModified": "2025-02-01T19:02:43Z",
-      "uri": "http://zotero.org/users/5634105/items/7JCWN97E",
-      "itemID": 104,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "Proc. AAAI",
-      "itemKey": "7JCWN97E",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/7JCWN97E"
-    },
-    {
       "key": "FKMUJGKS",
       "version": 13809,
       "itemType": "conferencePaper",
@@ -13239,49 +13278,6 @@
       "itemKey": "WBB47ABG",
       "libraryID": 1,
       "select": "zotero://select/library/items/WBB47ABG"
-    },
-    {
-      "key": "ILXU53LQ",
-      "version": 14094,
-      "itemType": "journalArticle",
-      "title": "Analysis of Individual Differences in Multidimensional Scaling Via an N-Way Generalization of “Eckart-Young” Decomposition",
-      "abstractNote": "An individual differences model for multidimensional scaling is outlined in which individuals are assumed differentially to weight the several dimensions of a common “psychological space”. A corresponding method of analyzing similarities data is proposed, involving a generalization of “Eckart-Young analysis” to decomposition of three-way (or higher-way) tables. In the present case this decomposition is applied to a derived three-way table of scalar products between stimuli for individuals. This analysis yields a stimulus by dimensions coordinate matrix and a subjects by dimensions matrix of weights. This method is illustrated with data on auditory stimuli and on perception of nations.",
-      "date": "1970-09-01",
-      "DOI": "10.1007/BF02310791",
-      "citationKey": "carroll1970Analysis",
-      "url": "https://doi.org/10.1007/BF02310791",
-      "accessDate": "2019-12-12T22:11:29Z",
-      "libraryCatalog": "Springer Link",
-      "volume": "35",
-      "pages": "283-319",
-      "publicationTitle": "Psychometrika",
-      "ISSN": "1860-0980",
-      "issue": "3",
-      "journalAbbreviation": "Psychometrika",
-      "creators": [
-        {
-          "firstName": "J. Douglas",
-          "lastName": "Carroll",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Jih-Jie",
-          "lastName": "Chang",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2019-12-12T22:11:29Z",
-      "dateModified": "2023-02-24T18:52:10Z",
-      "uri": "http://zotero.org/users/5634105/items/ILXU53LQ",
-      "itemID": 302,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "",
-      "itemKey": "ILXU53LQ",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/ILXU53LQ"
     },
     {
       "key": "LS4P85SM",
@@ -13697,6 +13693,60 @@
       "itemKey": "7T8XMK49",
       "libraryID": 1,
       "select": "zotero://select/library/items/7T8XMK49"
+    },
+    {
+      "key": "M8XY5DSM",
+      "version": 14618,
+      "itemType": "preprint",
+      "title": "Quantile of Means: A Bonus-Free Ensemble Method for Minimax Optimal Reinforcement Learning",
+      "abstractNote": "Optimal Reinforcement Learning (RL) algorithms typically rely on carefully constructed count-based uncertainty estimates to drive exploration. Although theoretically sound, such estimates are hard to compute in practical settings and therefore offer limited insight for designing exploration heuristics. Meanwhile, ensembling has emerged as a practical approach, but remains without theoretical justification. Building on a recent ensemble-based method for Multi-Armed Bandits, we propose a quantile-based ensemble method for finite-horizon Markov Decision Processes (MDPs). Our simple count-free approach achieves optimal variance-dependent regret bounds, providing theoretical grounding for ensemble-based exploration in RL.",
+      "date": "2026-06-18",
+      "DOI": "10.48550/arXiv.2606.20107",
+      "citationKey": "cassel2026Quantile",
+      "url": "http://arxiv.org/abs/2606.20107",
+      "accessDate": "2026-09-01T20:38:46Z",
+      "shortTitle": "Quantile of Means",
+      "libraryCatalog": "arXiv.org",
+      "extra": "arXiv:2606.20107 [cs.LG]",
+      "repository": "arXiv",
+      "archiveID": "arXiv:2606.20107",
+      "creators": [
+        {
+          "firstName": "Asaf",
+          "lastName": "Cassel",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Aviv",
+          "lastName": "Rosenberg",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-01T20:38:46Z",
+      "dateModified": "2026-09-01T20:38:46Z",
+      "uri": "http://zotero.org/users/5634105/items/M8XY5DSM",
+      "itemID": 3416,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Full Text PDF",
+          "url": "https://arxiv.org/pdf/2606.20107",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-01T20:38:46Z",
+          "dateModified": "2026-09-01T20:38:46Z",
+          "uri": "http://zotero.org/users/5634105/items/6FBQYWDF",
+          "path": "/home/tnn/Zotero/storage/6FBQYWDF/Cassel and Rosenberg - 2026 - Quantile of Means A Bonus-Free Ensemble Method for Minimax Optimal Reinforcement Learning.pdf",
+          "select": "zotero://select/library/items/6FBQYWDF"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "",
+      "itemKey": "M8XY5DSM",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/M8XY5DSM"
     },
     {
       "key": "A39IRBVQ",
@@ -22434,37 +22484,6 @@
       "select": "zotero://select/library/items/T87MFVRE"
     },
     {
-      "key": "BDL7EUY7",
-      "version": 13933,
-      "itemType": "blogPost",
-      "title": "A review of Dropout as applied to RNNs",
-      "abstractNote": "In this post I will provide a background and overview of dropout and an analysis of dropout parameters as applied to language modelling…",
-      "date": "2018-06-22T13:33:51.920Z",
-      "citationKey": "g2018Review",
-      "url": "https://medium.com/@bingobee01/a-review-of-dropout-as-applied-to-rnns-72e79ecd5b7b",
-      "accessDate": "2019-04-03T12:03:58Z",
-      "blogTitle": "Adrian G",
-      "creators": [
-        {
-          "firstName": "Adrian",
-          "lastName": "G",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2019-04-03T12:03:58Z",
-      "dateModified": "2020-08-27T08:15:48Z",
-      "uri": "http://zotero.org/users/5634105/items/BDL7EUY7",
-      "itemID": 844,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "",
-      "itemKey": "BDL7EUY7",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/BDL7EUY7"
-    },
-    {
       "key": "CLQHGU94",
       "version": 14233,
       "itemType": "conferencePaper",
@@ -24886,9 +24905,9 @@
     },
     {
       "key": "MXVJ4GWD",
-      "version": 13657,
+      "version": 14601,
       "itemType": "conferencePaper",
-      "title": "PINTS: peer-to-peer infrastructure for tagging systems.",
+      "title": "PINTS: Peer-to-Peer Infrastructure for Tagging Systems.",
       "abstractNote": "Self-organizing structure and availability of almost unlimited resource capacities make the peer-to-peer architecture very attractive for large-scale sharing of annotated data in Web 2.0 scenarios. This paper addresses the problem of information aggregation and utilization in a decentralized tagging environment. We introduce the vector space model for characterization of users, resources, and tags. We analyze the problem of constructing a reliable approximation for feature vectors in a fully decentralized setting and introduce possible solutions. The results of large-scale systematic evaluation with realistic data sets witness the viability of our approach.",
       "date": "2008",
       "citationKey": "gorlitz2008PINTS",
@@ -24917,7 +24936,7 @@
       "tags": [],
       "relations": {},
       "dateAdded": "2019-12-12T23:04:34Z",
-      "dateModified": "2020-01-14T05:31:43Z",
+      "dateModified": "2026-08-30T03:46:54Z",
       "uri": "http://zotero.org/users/5634105/items/MXVJ4GWD",
       "itemID": 1117,
       "attachments": [
@@ -28176,48 +28195,6 @@
       "select": "zotero://select/library/items/6957N2IR"
     },
     {
-      "key": "JRN6FDRJ",
-      "version": 13687,
-      "itemType": "conferencePaper",
-      "title": "Accelerating Large Graph Algorithms on the GPU Using CUDA",
-      "abstractNote": "Large graphs involving millions of vertices are common in many practical applications and are challenging to process. Practical-time implementations using high-end computers are reported but are accessible only to a few. Graphics Processing Units (GPUs) of today have high computation power and low price. They have a restrictive programming model and are tricky to use. The G80 line of Nvidia GPUs can be treated as a SIMD processor array using the CUDA programming model. We present a few fundamental algorithms - including breadth first search, single source shortest path, and all-pairs shortest path - using CUDA on large graphs. We can compute the single source shortest path on a 10 million vertex graph in 1.5 seconds using the Nvidia 8800GTX GPU costing $600. In some cases optimal sequential algorithm is not the fastest on the GPU architecture. GPUs have great potential as high-performance co-processors.",
-      "date": "2007",
-      "citationKey": "harish2007Accelerating",
-      "url": "http://dl.acm.org/citation.cfm?id=1782174.1782200",
-      "accessDate": "2019-11-14T05:04:01Z",
-      "libraryCatalog": "ACM Digital Library",
-      "publisher": "Springer-Verlag",
-      "place": "Berlin, Heidelberg",
-      "ISBN": "978-3-540-77219-4",
-      "pages": "197–208",
-      "series": "HiPC'07",
-      "proceedingsTitle": "Proceedings of the HiPC 2007",
-      "creators": [
-        {
-          "firstName": "Pawan",
-          "lastName": "Harish",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "P. J.",
-          "lastName": "Narayanan",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2019-11-14T05:04:01Z",
-      "dateModified": "2020-08-27T07:51:41Z",
-      "uri": "http://zotero.org/users/5634105/items/JRN6FDRJ",
-      "itemID": 893,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "Proc. HiPC 2007",
-      "itemKey": "JRN6FDRJ",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/JRN6FDRJ"
-    },
-    {
       "key": "H3DQ9FPI",
       "version": 13924,
       "itemType": "bookSection",
@@ -28305,12 +28282,12 @@
     },
     {
       "key": "PTC82TLD",
-      "version": 13666,
+      "version": 14600,
       "itemType": "journalArticle",
-      "title": "Foundations of the PARAFAC procedure: Models and conditions for an\" explanatory\" multimodal factor analysis",
+      "title": "Foundations of the PARAFAC Procedure: Models and Conditions for an\" Explanatory\" Multimodal Factor Analysis",
       "date": "1970",
       "citationKey": "harshman1970Foundations",
-      "shortTitle": "Foundations of the PARAFAC procedure",
+      "shortTitle": "Foundations of the PARAFAC Procedure",
       "libraryCatalog": "Google Scholar",
       "creators": [
         {
@@ -28322,7 +28299,7 @@
       "tags": [],
       "relations": {},
       "dateAdded": "2019-12-12T22:12:58Z",
-      "dateModified": "2019-12-12T22:12:58Z",
+      "dateModified": "2026-08-30T03:46:33Z",
       "uri": "http://zotero.org/users/5634105/items/PTC82TLD",
       "itemID": 1126,
       "attachments": [
@@ -33093,13 +33070,12 @@
     },
     {
       "key": "H4H8DMT9",
-      "version": 14237,
+      "version": 14691,
       "itemType": "conferencePaper",
       "title": "Is Pessimism Provably Efficient for Offline RL?",
       "abstractNote": "We study offline reinforcement learning (RL), which aims to learn an optimal policy based on a dataset collected a priori. Due to the lack of further interactions with the environment, offline RL suffers from the insufficient coverage of the dataset, which eludes most existing theoretical analysis. In this paper, we propose a pessimistic variant of the value iteration algorithm (PEVI), which incorporates an uncertainty quantifier as the penalty function. Such a penalty function simply flips the sign of the bonus function for promoting exploration in online RL, which makes it easily implementable and compatible with general function approximators. Without assuming the sufficient coverage of the dataset, we establish a data-dependent upper bound on the suboptimality of PEVI for general Markov decision processes (MDPs). When specialized to linear MDPs, it matches the information-theoretic lower bound up to multiplicative factors of the dimension and horizon. In other words, pessimism is not only provably efficient but also minimax optimal. In particular, given the dataset, the learned policy serves as the \"best effort\" among all policies, as no other policies can do better. Our theoretical analysis identifies the critical role of pessimism in eliminating a notion of spurious correlation, which emerges from the \"irrelevant\" trajectories that are less covered by the dataset and not informative for the optimal policy.",
-      "date": "2022-05-04",
-      "DOI": "10.48550/arXiv.2012.15085",
-      "citationKey": "jin2022Pessimism",
+      "date": "2021",
+      "citationKey": "jin2021Pessimism",
       "url": "http://arxiv.org/abs/2012.15085",
       "accessDate": "2024-02-02T21:04:47Z",
       "proceedingsTitle": "Proceedings of the ICML",
@@ -33123,7 +33099,7 @@
       "tags": [],
       "relations": {},
       "dateAdded": "2024-02-02T21:04:47Z",
-      "dateModified": "2024-07-27T20:00:28Z",
+      "dateModified": "2026-09-20T01:22:33Z",
       "uri": "http://zotero.org/users/5634105/items/H4H8DMT9",
       "itemID": 204,
       "attachments": [
@@ -33943,6 +33919,46 @@
       "select": "zotero://select/library/items/97HH6ML8"
     },
     {
+      "key": "MM278CIM",
+      "version": 14728,
+      "itemType": "bookSection",
+      "title": "CS703Q10: Offline contextual bandits",
+      "date": "2026",
+      "citationKey": "jun2026CS703Q10",
+      "bookTitle": "ML Theory",
+      "creators": [
+        {
+          "firstName": "Kwang-Sung",
+          "lastName": "Jun",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-20T02:10:16Z",
+      "dateModified": "2026-09-20T02:13:24Z",
+      "uri": "http://zotero.org/users/5634105/items/MM278CIM",
+      "itemID": 3437,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "PDF",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-20T02:10:15Z",
+          "dateModified": "2026-09-20T02:10:57Z",
+          "uri": "http://zotero.org/users/5634105/items/Y6S9AATQ",
+          "path": "/home/tnn/Zotero/storage/Y6S9AATQ/Jun - 2026 - CS703Q10 Offline contextual bandits.pdf",
+          "select": "zotero://select/library/items/Y6S9AATQ"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "",
+      "itemKey": "MM278CIM",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/MM278CIM"
+    },
+    {
       "key": "GVGJSGH4",
       "version": 13438,
       "itemType": "journalArticle",
@@ -33980,14 +33996,14 @@
       "attachments": [
         {
           "itemType": "attachment",
-          "title": "Kaiser2017_Depthwise_Separable_Convolutions_for_Neural_Machine_Translation.pdf",
-          "path": "/data/tnn/ZoteroResearch/NLP/MachineTranslation/Kaiser2017_Depthwise_Separable_Convolutions_for_Neural_Machine_Translation.pdf",
+          "title": "PDF",
           "tags": [],
           "relations": {},
-          "dateAdded": "2019-08-14T11:38:41Z",
-          "dateModified": "2019-08-14T11:38:41Z",
-          "uri": "http://zotero.org/users/5634105/items/95ZKE5NZ",
-          "select": "zotero://select/library/items/95ZKE5NZ"
+          "dateAdded": "2026-08-30T03:40:05Z",
+          "dateModified": "2026-08-30T03:40:05Z",
+          "uri": "http://zotero.org/users/5634105/items/EVFD8QWM",
+          "path": "/home/tnn/Zotero/storage/EVFD8QWM/Kaiser et al. - 2017 - Depthwise Separable Convolutions for Neural Machine Translation.pdf",
+          "select": "zotero://select/library/items/EVFD8QWM"
         }
       ],
       "notes": [],
@@ -34049,14 +34065,14 @@
       "attachments": [
         {
           "itemType": "attachment",
-          "title": "Kalchbrenner2016_Neural_Machine_Translation_in_Linear_Time.pdf",
-          "path": "/data/tnn/ZoteroResearch/NLP/MachineTranslation/Kalchbrenner2016_Neural_Machine_Translation_in_Linear_Time.pdf",
+          "title": "PDF",
           "tags": [],
           "relations": {},
-          "dateAdded": "2019-08-14T11:35:08Z",
-          "dateModified": "2019-08-14T11:35:08Z",
-          "uri": "http://zotero.org/users/5634105/items/GFQI5CET",
-          "select": "zotero://select/library/items/GFQI5CET"
+          "dateAdded": "2026-08-30T03:41:10Z",
+          "dateModified": "2026-08-30T03:41:10Z",
+          "uri": "http://zotero.org/users/5634105/items/SRVW8G64",
+          "path": "/home/tnn/Zotero/storage/SRVW8G64/Kalchbrenner et al. - 2016 - Neural Machine Translation in Linear Time.pdf",
+          "select": "zotero://select/library/items/SRVW8G64"
         }
       ],
       "notes": [],
@@ -37979,12 +37995,12 @@
     },
     {
       "key": "67UKR6EW",
-      "version": 14454,
+      "version": 14738,
       "itemType": "conferencePaper",
       "title": "Constrained Best Arm Identification",
       "abstractNote": "In real-world decision-making problems, one needs to pick among multiple policies the one that performs best while respecting economic constraints. This motivates the problem of constrained best-arm identification for bandit problems where every arm is a joint distribution of reward and cost. We investigate the general case where reward and cost are dependent. The goal is to accurately identify the arm with the highest mean reward among all arms whose mean cost is below a given threshold. We prove information-theoretic lower bounds on the sample complexity for three models: Gaussian with fixed covariance, Gaussian with unknown covariance, and non-parametric distributions of rectangular support. We propose a combination of a sampling and a stopping rule that correctly identifies the constrained best arm and matches the optimal sample complexities for each of the three models. Simulations demonstrate the performance of our algorithms.",
-      "date": "2026",
-      "citationKey": "lardy2026Constrained",
+      "date": "2025",
+      "citationKey": "lardy2025Constrained",
       "proceedingsTitle": "Proceedings of NeurIPS",
       "creators": [
         {
@@ -38006,7 +38022,7 @@
       "tags": [],
       "relations": {},
       "dateAdded": "2026-05-28T19:48:16Z",
-      "dateModified": "2026-05-28T20:20:18Z",
+      "dateModified": "2026-09-22T16:33:24Z",
       "uri": "http://zotero.org/users/5634105/items/67UKR6EW",
       "itemID": 3390,
       "attachments": [
@@ -39261,58 +39277,6 @@
       "itemKey": "EPKULIG2",
       "libraryID": 1,
       "select": "zotero://select/library/items/EPKULIG2"
-    },
-    {
-      "key": "MDUGG3A6",
-      "version": 13901,
-      "itemType": "conferencePaper",
-      "title": "Biomedical event extraction via Long Short Term Memory networks along dynamic extended tree",
-      "abstractNote": "Extracting knowledge from unstructured text is one of the most important goals of Natural Language Processing, especially in biomedical event extraction domain. In this paper, we describe a system for extracting biomedical events among biotope and bacteria from biomedical literature, using the corpus from the BioNLP'16 Shared Task on Bacteria Biotope task. The current mainstream methods for event extraction are based on shallow machine learning methods. However, these methods mainly rely on domain experience and need enormous manual efforts to select features. Therefore, we propose a novel Long Short Term Memory (LSTM) Networks framework DETBLSTM for event extraction. In our framework, a dynamic extended tree is introduced as the input instead of the original sentences, which utilizes the syntactic information. Furthermore, the POS and distance embeddings are added to enrich input information and thus the complex feature extraction can be skipped. In final, we construct a bidirectional LSTM model to extract biomedical events and achieve 57.14% F-score in the test set. Our model obtains a better F-score than all official submissions to BioNLP-ST 2016, which is 1.34% higher than the best system.",
-      "date": "December 2016",
-      "DOI": "10.1109/BIBM.2016.7822612",
-      "citationKey": "li2016Biomedical",
-      "libraryCatalog": "IEEE Xplore",
-      "pages": "739-742",
-      "proceedingsTitle": "Proceedings of the IEEE BIBM 2016",
-      "creators": [
-        {
-          "firstName": "Lishuang",
-          "lastName": "Li",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Jieqiong",
-          "lastName": "Zheng",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Jia",
-          "lastName": "Wan",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Degen",
-          "lastName": "Huang",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Xiaohui",
-          "lastName": "Lin",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2019-04-21T05:13:32Z",
-      "dateModified": "2020-08-27T08:15:54Z",
-      "uri": "http://zotero.org/users/5634105/items/MDUGG3A6",
-      "itemID": 813,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "Proc. IEEE BIBM 2016",
-      "itemKey": "MDUGG3A6",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/MDUGG3A6"
     },
     {
       "key": "PMLB3CNX",
@@ -41189,15 +41153,14 @@
       "attachments": [
         {
           "itemType": "attachment",
-          "title": "Liu2018_Learning_How_to_Actively_Learn.pdf",
-          "url": "https://www.aclweb.org/anthology/P18-1174.pdf",
+          "title": "PDF",
           "tags": [],
           "relations": {},
-          "dateAdded": "2019-10-30T18:49:28Z",
-          "dateModified": "2019-10-30T18:49:29Z",
-          "uri": "http://zotero.org/users/5634105/items/SSMRBAUV",
-          "path": "/home/tnn/Zotero/storage/SSMRBAUV/Liu2018_Learning_How_to_Actively_Learn.pdf",
-          "select": "zotero://select/library/items/SSMRBAUV"
+          "dateAdded": "2026-08-30T03:54:07Z",
+          "dateModified": "2026-08-30T03:54:07Z",
+          "uri": "http://zotero.org/users/5634105/items/EWBMMWFV",
+          "path": "/home/tnn/Zotero/storage/EWBMMWFV/Liu et al. - 2018 - Learning How to Actively Learn A Deep Imitation Learning Approach.pdf",
+          "select": "zotero://select/library/items/EWBMMWFV"
         }
       ],
       "notes": [],
@@ -45597,57 +45560,6 @@
       "select": "zotero://select/library/items/944JG4V7"
     },
     {
-      "key": "CVL8SYK5",
-      "version": 13616,
-      "itemType": "conferencePaper",
-      "title": "Evaluation of Traffic Sign Recognition Methods Trained on Synthetically Generated Data",
-      "abstractNote": "Most of today's machine learning techniques requires large manually labeled data. This problem can be solved by using synthetic images. Our main contribution is to evaluate methods of traffic sign recognition trained on synthetically generated data and show that results are comparable with results of classifiers trained on real dataset. To get a representative synthetic dataset we model different sign image variations such as intra-class variability, imprecise localization, blur, lighting, and viewpoint changes. We also present a new method for traffic sign segmentation, based on a nearest neighbor search in the large set of synthetically generated samples, which improves current traffic sign recognition algorithms.",
-      "date": "October 28, 2013",
-      "citationKey": "moiseev2013Evaluation",
-      "accessDate": "2020-03-19",
-      "libraryCatalog": "ACM Digital Library",
-      "publisher": "Springer-Verlag",
-      "place": "Poznań, Poland",
-      "ISBN": "978-3-319-02894-1",
-      "pages": "576–583",
-      "series": "ACIVS 2013",
-      "proceedingsTitle": "15th International Conference on Advanced Concepts for Intelligent Vision Systems - Volume 8192",
-      "creators": [
-        {
-          "firstName": "Boris",
-          "lastName": "Moiseev",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Artem",
-          "lastName": "Konev",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Alexander",
-          "lastName": "Chigorin",
-          "creatorType": "author"
-        },
-        {
-          "firstName": "Anton",
-          "lastName": "Konushin",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2020-03-19T07:09:44Z",
-      "dateModified": "2020-03-19T07:09:44Z",
-      "uri": "http://zotero.org/users/5634105/items/CVL8SYK5",
-      "itemID": 1085,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "15th Int. Conf. Adv. Concepts Intell. Vis. Syst. - Vol. 8192",
-      "itemKey": "CVL8SYK5",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/CVL8SYK5"
-    },
-    {
       "key": "NW9EX4MT",
       "version": 13883,
       "itemType": "conferencePaper",
@@ -45837,34 +45749,6 @@
       "itemKey": "3WK7TCLV",
       "libraryID": 1,
       "select": "zotero://select/library/items/3WK7TCLV"
-    },
-    {
-      "key": "BAF7PEKU",
-      "version": 13664,
-      "itemType": "journalArticle",
-      "title": "A computer oriented geodetic data base and a new technique in file sequencing",
-      "date": "1966",
-      "citationKey": "morton1966Computer",
-      "libraryCatalog": "Google Scholar",
-      "creators": [
-        {
-          "firstName": "Guy M.",
-          "lastName": "Morton",
-          "creatorType": "author"
-        }
-      ],
-      "tags": [],
-      "relations": {},
-      "dateAdded": "2019-12-14T04:57:21Z",
-      "dateModified": "2019-12-14T04:57:21Z",
-      "uri": "http://zotero.org/users/5634105/items/BAF7PEKU",
-      "itemID": 1124,
-      "attachments": [],
-      "notes": [],
-      "autoJournalAbbreviation": "",
-      "itemKey": "BAF7PEKU",
-      "libraryID": 1,
-      "select": "zotero://select/library/items/BAF7PEKU"
     },
     {
       "key": "KAH5JKD7",
@@ -46432,6 +46316,48 @@
       "itemKey": "CLAQQETS",
       "libraryID": 1,
       "select": "zotero://select/library/items/CLAQQETS"
+    },
+    {
+      "key": "FG96CYNZ",
+      "version": 14644,
+      "itemType": "journalArticle",
+      "title": "A Generalization Error for Q-Learning",
+      "abstractNote": "Planning problems that involve learning a policy from a single training set of ﬁnite horizon trajectories arise in both social science and medical ﬁelds. We consider Q-learning with function approximation for this setting and derive an upper bound on the generalization error. This upper bound is in terms of quantities minimized by a Q-learning algorithm, the complexity of the approximation space and an approximation term due to the mismatch between Q-learning and the goal of learning a policy that maximizes the value function.",
+      "citationKey": "murphyGeneralization",
+      "language": "en",
+      "libraryCatalog": "Zotero",
+      "creators": [
+        {
+          "firstName": "Susan A",
+          "lastName": "Murphy",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-17T19:08:31Z",
+      "dateModified": "2026-09-17T19:08:31Z",
+      "uri": "http://zotero.org/users/5634105/items/FG96CYNZ",
+      "itemID": 3424,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "PDF",
+          "url": "https://www.jmlr.org/papers/volume6/murphy05a/murphy05a.pdf",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-17T19:08:30Z",
+          "dateModified": "2026-09-17T19:08:31Z",
+          "uri": "http://zotero.org/users/5634105/items/5M32KAFC",
+          "path": "/home/tnn/Zotero/storage/5M32KAFC/Murphy - A Generalization Error for Q-Learning.pdf",
+          "select": "zotero://select/library/items/5M32KAFC"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "",
+      "itemKey": "FG96CYNZ",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/FG96CYNZ"
     },
     {
       "key": "3889NLZ8",
@@ -47319,7 +47245,19 @@
       "dateModified": "2025-02-01T19:04:28Z",
       "uri": "http://zotero.org/users/5634105/items/37UAZHHI",
       "itemID": 103,
-      "attachments": [],
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "PDF",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-08-30T03:43:59Z",
+          "dateModified": "2026-08-30T03:43:59Z",
+          "uri": "http://zotero.org/users/5634105/items/NPP56R5J",
+          "path": "/home/tnn/Zotero/storage/NPP56R5J/Nguyen and Grishman - 2018 - Graph Convolutional Networks with Argument-Aware Pooling for Event Detection.pdf",
+          "select": "zotero://select/library/items/NPP56R5J"
+        }
+      ],
       "notes": [],
       "autoJournalAbbreviation": "Proc. AAAI",
       "itemKey": "37UAZHHI",
@@ -47381,20 +47319,7 @@
           "select": "zotero://select/library/items/3PUE3GC8"
         }
       ],
-      "notes": [
-        {
-          "key": "8T4B4FSX",
-          "version": 7876,
-          "itemType": "note",
-          "parentItem": "NZUZE77G",
-          "note": "Comment: Published at International Conference on Learning Representations (ICLR) 2018",
-          "tags": [],
-          "relations": {},
-          "dateAdded": "2022-10-08T21:51:24Z",
-          "dateModified": "2022-10-08T21:51:24Z",
-          "uri": "http://zotero.org/users/5634105/items/8T4B4FSX"
-        }
-      ],
+      "notes": [],
       "autoJournalAbbreviation": "Proc. ICLR",
       "itemKey": "NZUZE77G",
       "libraryID": 1,
@@ -47491,7 +47416,19 @@
       "dateModified": "2021-10-28T20:15:28Z",
       "uri": "http://zotero.org/users/5634105/items/LHURNP6A",
       "itemID": 583,
-      "attachments": [],
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "PDF",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-08-30T03:44:41Z",
+          "dateModified": "2026-08-30T03:44:41Z",
+          "uri": "http://zotero.org/users/5634105/items/8C8R2APD",
+          "path": "/home/tnn/Zotero/storage/8C8R2APD/Nguyen et al. - 2021 - Crosslingual Transfer Learning for Relation and Event Extraction via Word Category and Class Alignme.pdf",
+          "select": "zotero://select/library/items/8C8R2APD"
+        }
+      ],
       "notes": [],
       "autoJournalAbbreviation": "Proc. EMNLP 2021",
       "itemKey": "LHURNP6A",
@@ -51287,6 +51224,74 @@
       "select": "zotero://select/library/items/ADUI9JEM"
     },
     {
+      "key": "9WHZZQE9",
+      "version": 14643,
+      "itemType": "journalArticle",
+      "title": "Performance Guarantees for Individualized Treatment Rules",
+      "abstractNote": "Because many illnesses show heterogeneous response to treatment, there is increasing interest in individualizing treatment to patients []. An individualized treatment rule is a decision rule that recommends treatment according to patient characteristics. We consider the use of clinical trial data in the construction of an individualized treatment rule leading to highest mean response. This is a difficult computational problem because the objective function is the expectation of a weighted indicator function that is non-concave in the parameters. Furthermore there are frequently many pretreatment variables that may or may not be useful in constructing an optimal individualized treatment rule yet cost and interpretability considerations imply that only a few variables should be used by the individualized treatment rule. To address these challenges we consider estimation based on l1 penalized least squares. This approach is justified via a finite sample upper bound on the difference between the mean response due to the estimated individualized treatment rule and the mean response due to the optimal individualized treatment rule.",
+      "date": "2011-4-1",
+      "DOI": "10.1214/10-AOS864",
+      "citationKey": "qian2011Performance",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3110016/",
+      "accessDate": "2026-09-17T19:01:01Z",
+      "volume": "39",
+      "pages": "1180-1210",
+      "publicationTitle": "Annals of Statistics",
+      "ISSN": "0090-5364",
+      "issue": "2",
+      "journalAbbreviation": "Ann Stat",
+      "PMID": "21666835",
+      "PMCID": "PMC3110016",
+      "creators": [
+        {
+          "firstName": "Min",
+          "lastName": "Qian",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Susan A.",
+          "lastName": "Murphy",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-17T19:01:01Z",
+      "dateModified": "2026-09-17T19:01:55Z",
+      "uri": "http://zotero.org/users/5634105/items/9WHZZQE9",
+      "itemID": 3421,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Catalog Page",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3110016/",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-17T19:01:01Z",
+          "dateModified": "2026-09-17T19:01:01Z",
+          "uri": "http://zotero.org/users/5634105/items/LGHPBPKC",
+          "select": "zotero://select/library/items/LGHPBPKC"
+        },
+        {
+          "itemType": "attachment",
+          "title": "Full Text PDF",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3110016/pdf/nihms266525.pdf",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-17T19:01:08Z",
+          "dateModified": "2026-09-17T19:01:08Z",
+          "uri": "http://zotero.org/users/5634105/items/FDQAW9I6",
+          "path": "/home/tnn/Zotero/storage/FDQAW9I6/Qian and Murphy - 2011 - Performance Guarantees for Individualized Treatment Rules.pdf",
+          "select": "zotero://select/library/items/FDQAW9I6"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Ann. Stat.",
+      "itemKey": "9WHZZQE9",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/9WHZZQE9"
+    },
+    {
       "key": "TFBSA4EJ",
       "version": 14386,
       "itemType": "conferencePaper",
@@ -52582,6 +52587,71 @@
       "itemKey": "YMTSTR63",
       "libraryID": 1,
       "select": "zotero://select/library/items/YMTSTR63"
+    },
+    {
+      "key": "VJRFWJ3N",
+      "version": 14692,
+      "itemType": "conferencePaper",
+      "title": "Bridging Offline Reinforcement Learning and Imitation Learning: A Tale of Pessimism",
+      "abstractNote": "Offline (or batch) reinforcement learning (RL) algorithms seek to learn an optimal policy from a fixed dataset without active data collection. Based on the composition of the offline dataset, two main categories of methods are used: imitation learning which is suitable for expert datasets and vanilla offline RL which often requires uniform coverage datasets. From a practical standpoint, datasets often deviate from these two extremes and the exact data composition is usually unknown a priori. To bridge this gap, we present a new offline RL framework that smoothly interpolates between the two extremes of data composition, hence unifying imitation learning and vanilla offline RL. The new framework is centered around a weak version of the concentrability coefficient that measures the deviation from the behavior policy to the expert policy alone. Under this new framework, we further investigate the question on algorithm design: can one develop an algorithm that achieves a minimax optimal rate and also adapts to unknown data composition? To address this question, we consider a lower confidence bound (LCB) algorithm developed based on pessimism in the face of uncertainty in offline RL. We study finite-sample properties of LCB as well as information-theoretic limits in multi-armed bandits, contextual bandits, and Markov decision processes (MDPs). Our analysis reveals surprising facts about optimality rates. In particular, in all three settings, LCB achieves a faster rate of $1/N$ for nearly-expert datasets compared to the usual rate of $1/\\sqrt{N}$ in offline RL, where $N$ is the number of samples in the batch dataset. In the case of contextual bandits with at least two contexts, we prove that LCB is adaptively optimal for the entire data composition range, achieving a smooth transition from imitation learning to offline RL. We further show that LCB is almost adaptively optimal in MDPs.",
+      "date": "2021",
+      "citationKey": "rashidinejad2021Bridging",
+      "url": "http://arxiv.org/abs/2103.12021",
+      "accessDate": "2026-09-20T01:10:46Z",
+      "shortTitle": "Bridging Offline Reinforcement Learning and Imitation Learning",
+      "proceedingsTitle": "Proceedings of NeurIPS",
+      "creators": [
+        {
+          "firstName": "Paria",
+          "lastName": "Rashidinejad",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Banghua",
+          "lastName": "Zhu",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Cong",
+          "lastName": "Ma",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Jiantao",
+          "lastName": "Jiao",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Stuart",
+          "lastName": "Russell",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-20T01:10:46Z",
+      "dateModified": "2026-09-20T01:16:02Z",
+      "uri": "http://zotero.org/users/5634105/items/VJRFWJ3N",
+      "itemID": 3426,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/2103.12021v2",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-20T01:10:48Z",
+          "dateModified": "2026-09-20T01:10:48Z",
+          "uri": "http://zotero.org/users/5634105/items/Q6LWGCRI",
+          "path": "/home/tnn/Zotero/storage/Q6LWGCRI/Rashidinejad et al. - 2021 - Bridging Offline Reinforcement Learning and Imitation Learning A Tale of Pessimism.pdf",
+          "select": "zotero://select/library/items/Q6LWGCRI"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Proc. NeurIPS",
+      "itemKey": "VJRFWJ3N",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/VJRFWJ3N"
     },
     {
       "key": "RLRX4ZXU",
@@ -58257,13 +58327,13 @@
     },
     {
       "key": "D4DKBI39",
-      "version": 14375,
+      "version": 14739,
       "itemType": "journalArticle",
       "title": "Bypassing the Monster: A Faster and Simpler Optimal Algorithm for Contextual Bandits under Realizability",
       "abstractNote": "We consider the general (stochastic) contextual bandit problem under the realizability assumption, i.e., the expected reward, as a function of contexts and actions, belongs to a general function class $\\mathcal{F}$. We design a fast and simple algorithm that achieves the statistically optimal regret with only ${O}(\\log T)$ calls to an offline regression oracle across all $T$ rounds. The number of oracle calls can be further reduced to $O(\\log\\log T)$ if $T$ is known in advance. Our results provide the first universal and optimal reduction from contextual bandits to offline regression, solving an important open problem in the contextual bandit literature. A direct consequence of our results is that any advances in offline regression immediately translate to contextual bandits, statistically and computationally. This leads to faster algorithms and improved regret guarantees for broader classes of contextual bandit problems.",
-      "date": "2021-07-10",
+      "date": "2022",
       "DOI": "10.48550/arXiv.2003.12699",
-      "citationKey": "simchi-levi2021Bypassing",
+      "citationKey": "simchi-levi2022Bypassing",
       "url": "http://arxiv.org/abs/2003.12699",
       "accessDate": "2026-05-19T18:42:02Z",
       "shortTitle": "Bypassing the Monster",
@@ -58283,7 +58353,7 @@
       "tags": [],
       "relations": {},
       "dateAdded": "2026-05-19T18:42:02Z",
-      "dateModified": "2026-05-19T18:42:57Z",
+      "dateModified": "2026-09-22T16:33:02Z",
       "uri": "http://zotero.org/users/5634105/items/D4DKBI39",
       "itemID": 3362,
       "attachments": [
@@ -58296,7 +58366,7 @@
           "dateAdded": "2026-05-19T18:42:04Z",
           "dateModified": "2026-05-19T18:42:04Z",
           "uri": "http://zotero.org/users/5634105/items/YSMYVRT2",
-          "path": "/home/tnn/Zotero/storage/YSMYVRT2/Simchi-Levi and Xu - 2021 - Bypassing the Monster A Faster and Simpler Optimal Algorithm for Contextual Bandits under Realizabi.pdf",
+          "path": "/home/tnn/Zotero/storage/YSMYVRT2/Simchi-Levi and Xu - 2022 - Bypassing the Monster A Faster and Simpler Optimal Algorithm for Contextual Bandits under Realizabi.pdf",
           "select": "zotero://select/library/items/YSMYVRT2"
         }
       ],
@@ -58960,13 +59030,12 @@
     },
     {
       "key": "2UAUR6LA",
-      "version": 13665,
-      "itemType": "journalArticle",
-      "title": "FROSTT: The formidable repository of open sparse tensors and tools",
+      "version": 14603,
+      "itemType": "blogPost",
+      "title": "FROSTT: The Formidable Repository of Open Sparse Tensors and Tools",
       "date": "2017",
       "citationKey": "smith2017FROSTT",
       "shortTitle": "FROSTT",
-      "libraryCatalog": "Google Scholar",
       "creators": [
         {
           "firstName": "Shaden",
@@ -59007,7 +59076,7 @@
       "tags": [],
       "relations": {},
       "dateAdded": "2019-12-12T22:57:00Z",
-      "dateModified": "2019-12-12T22:57:29Z",
+      "dateModified": "2026-08-30T03:49:12Z",
       "uri": "http://zotero.org/users/5634105/items/2UAUR6LA",
       "itemID": 1125,
       "attachments": [],
@@ -68500,6 +68569,70 @@
       "select": "zotero://select/library/items/XZP8KMXZ"
     },
     {
+      "key": "CIX8JWHH",
+      "version": 14686,
+      "itemType": "conferencePaper",
+      "title": "Bellman-consistent Pessimism for Offline Reinforcement Learning",
+      "abstractNote": "The use of pessimism, when reasoning about datasets lacking exhaustive exploration has recently gained prominence in offline reinforcement learning. Despite the robustness it adds to the algorithm, overly pessimistic reasoning can be equally damaging in precluding the discovery of good policies, which is an issue for the popular bonus-based pessimism. In this paper, we introduce the notion of Bellman-consistent pessimism for general function approximation: instead of calculating a point-wise lower bound for the value function, we implement pessimism at the initial state over the set of functions consistent with the Bellman equations. Our theoretical guarantees only require Bellman closedness as standard in the exploratory setting, in which case bonus-based pessimism fails to provide guarantees. Even in the special case of linear function approximation where stronger expressivity assumptions hold, our result improves upon a recent bonus-based approach by $\\mathcal{O}(d)$ in its sample complexity when the action space is finite. Remarkably, our algorithms automatically adapt to the best bias-variance tradeoff in the hindsight, whereas most prior approaches require tuning extra hyperparameters a priori.",
+      "date": "2021",
+      "citationKey": "xie2021Bellmanconsistent",
+      "url": "http://arxiv.org/abs/2106.06926",
+      "accessDate": "2026-09-20T01:18:12Z",
+      "proceedingsTitle": "Proceedings of NeurIPS",
+      "creators": [
+        {
+          "firstName": "Tengyang",
+          "lastName": "Xie",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Ching-An",
+          "lastName": "Cheng",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Nan",
+          "lastName": "Jiang",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Paul",
+          "lastName": "Mineiro",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Alekh",
+          "lastName": "Agarwal",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-20T01:18:12Z",
+      "dateModified": "2026-09-20T01:19:58Z",
+      "uri": "http://zotero.org/users/5634105/items/CIX8JWHH",
+      "itemID": 3431,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/2106.06926v6",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-20T01:18:13Z",
+          "dateModified": "2026-09-20T01:18:13Z",
+          "uri": "http://zotero.org/users/5634105/items/ZWKUL5SN",
+          "path": "/home/tnn/Zotero/storage/ZWKUL5SN/Xie et al. - 2021 - Bellman-consistent Pessimism for Offline Reinforcement Learning.pdf",
+          "select": "zotero://select/library/items/ZWKUL5SN"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Proc. NeurIPS",
+      "itemKey": "CIX8JWHH",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/CIX8JWHH"
+    },
+    {
       "key": "2QNC8I2D",
       "version": 14263,
       "itemType": "preprint",
@@ -69985,19 +70118,16 @@
     },
     {
       "key": "EG96LPAB",
-      "version": 14534,
-      "itemType": "preprint",
+      "version": 14741,
+      "itemType": "conferencePaper",
       "title": "Offline Reinforcement Learning with Differentiable Function Approximation is Provably Efficient",
       "abstractNote": "Offline reinforcement learning, which aims at optimizing sequential decision-making strategies with historical data, has been extensively applied in real-life applications. State-Of-The-Art algorithms usually leverage powerful function approximators (e.g. neural networks) to alleviate the sample complexity hurdle for better empirical performances. Despite the successes, a more systematic understanding of the statistical complexity for function approximation remains lacking. Towards bridging the gap, we take a step by considering offline reinforcement learning with differentiable function class approximation (DFA). This function class naturally incorporates a wide range of models with nonlinear/nonconvex structures. Most importantly, we show offline RL with differentiable function approximation is provably efficient by analyzing the pessimistic fitted Q-learning (PFQL) algorithm, and our results provide the theoretical basis for understanding a variety of practical heuristics that rely on Fitted Q-Iteration style design. In addition, we further improve our guarantee with a tighter instance-dependent characterization. We hope our work could draw interest in studying reinforcement learning with differentiable function approximation beyond the scope of current research.",
-      "date": "2022-11-23",
+      "date": "2023",
       "DOI": "10.48550/arXiv.2210.00750",
-      "citationKey": "yin2022Offline",
+      "citationKey": "yin2023Offline",
       "url": "http://arxiv.org/abs/2210.00750",
       "accessDate": "2026-08-19T23:04:23Z",
-      "libraryCatalog": "arXiv.org",
-      "extra": "arXiv:2210.00750 [cs.LG]",
-      "repository": "arXiv",
-      "archiveID": "arXiv:2210.00750",
+      "proceedingsTitle": "Proceedings of ICLR",
       "creators": [
         {
           "firstName": "Ming",
@@ -70018,7 +70148,7 @@
       "tags": [],
       "relations": {},
       "dateAdded": "2026-08-19T23:04:23Z",
-      "dateModified": "2026-08-19T23:04:23Z",
+      "dateModified": "2026-09-22T16:47:17Z",
       "uri": "http://zotero.org/users/5634105/items/EG96LPAB",
       "itemID": 3395,
       "attachments": [
@@ -70031,12 +70161,12 @@
           "dateAdded": "2026-08-19T23:04:24Z",
           "dateModified": "2026-08-19T23:04:24Z",
           "uri": "http://zotero.org/users/5634105/items/2G7D6IZN",
-          "path": "/home/tnn/Zotero/storage/2G7D6IZN/Yin et al. - 2022 - Offline Reinforcement Learning with Differentiable Function Approximation is Provably Efficient.pdf",
+          "path": "/home/tnn/Zotero/storage/2G7D6IZN/Yin et al. - 2023 - Offline Reinforcement Learning with Differentiable Function Approximation is Provably Efficient.pdf",
           "select": "zotero://select/library/items/2G7D6IZN"
         }
       ],
       "notes": [],
-      "autoJournalAbbreviation": "",
+      "autoJournalAbbreviation": "Proc. ICLR",
       "itemKey": "EG96LPAB",
       "libraryID": 1,
       "select": "zotero://select/library/items/EG96LPAB"
@@ -70881,6 +71011,72 @@
       "itemKey": "MLGQHH8D",
       "libraryID": 1,
       "select": "zotero://select/library/items/MLGQHH8D"
+    },
+    {
+      "key": "FEAHWJZL",
+      "version": 14623,
+      "itemType": "preprint",
+      "title": "Tighter Problem-Dependent Regret Bounds in Reinforcement Learning without Domain Knowledge using Value Function Bounds",
+      "abstractNote": "Strong worst-case performance bounds for episodic reinforcement learning exist but fortunately in practice RL algorithms perform much better than such bounds would predict. Algorithms and theory that provide strong problem-dependent bounds could help illuminate the key features of what makes a RL problem hard and reduce the barrier to using RL algorithms in practice. As a step towards this we derive an algorithm for finite horizon discrete MDPs and associated analysis that both yields state-of-the art worst-case regret bounds in the dominant terms and yields substantially tighter bounds if the RL environment has small environmental norm, which is a function of the variance of the next-state value functions. An important benefit of our algorithmic is that it does not require apriori knowledge of a bound on the environmental norm. As a result of our analysis, we also help address an open learning theory question~\\cite{jiang2018open} about episodic MDPs with a constant upper-bound on the sum of rewards, providing a regret bound with no $H$-dependence in the leading term that scales a polynomial function of the number of episodes.",
+      "date": "2019-11-01",
+      "DOI": "10.48550/arXiv.1901.00210",
+      "citationKey": "zanette2019Tighter",
+      "url": "http://arxiv.org/abs/1901.00210",
+      "accessDate": "2026-09-08T21:05:14Z",
+      "libraryCatalog": "arXiv.org",
+      "extra": "arXiv:1901.00210 [cs.LG]",
+      "repository": "arXiv",
+      "archiveID": "arXiv:1901.00210",
+      "creators": [
+        {
+          "firstName": "Andrea",
+          "lastName": "Zanette",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Emma",
+          "lastName": "Brunskill",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-08T21:05:14Z",
+      "dateModified": "2026-09-08T21:05:14Z",
+      "uri": "http://zotero.org/users/5634105/items/FEAHWJZL",
+      "itemID": 3418,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/1901.00210v4",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-08T21:05:15Z",
+          "dateModified": "2026-09-08T21:05:15Z",
+          "uri": "http://zotero.org/users/5634105/items/NV4AHL87",
+          "path": "/home/tnn/Zotero/storage/NV4AHL87/Zanette and Brunskill - 2019 - Tighter Problem-Dependent Regret Bounds in Reinforcement Learning without Domain Knowledge using Val.pdf",
+          "select": "zotero://select/library/items/NV4AHL87"
+        }
+      ],
+      "notes": [
+        {
+          "key": "S9DUP2SI",
+          "version": 14625,
+          "itemType": "note",
+          "parentItem": "FEAHWJZL",
+          "note": "Comment: Bug fixes",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-08T21:05:14Z",
+          "dateModified": "2026-09-08T21:05:14Z",
+          "uri": "http://zotero.org/users/5634105/items/S9DUP2SI"
+        }
+      ],
+      "autoJournalAbbreviation": "",
+      "itemKey": "FEAHWJZL",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/FEAHWJZL"
     },
     {
       "key": "5DVKMC6F",
