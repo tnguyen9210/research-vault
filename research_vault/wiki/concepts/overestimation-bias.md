@@ -10,33 +10,33 @@ introduced_by: [[song2019Revisiting]]
 
 ## Intuition
 
-In Q-learning, the Bellman target uses $\max_{a'} Q(s', a')$. With function approximation, Q-values carry estimation noise $\epsilon_a$. Since $\mathbb{E}[\max_a (Q^*(s,a) + \epsilon_a)] \ge \max_a Q^*(s,a)$, the target is systematically inflated. This bias compounds over iterations and propagates through the network, causing gradient estimates to become large and unstable — destabilizing training.
+In Q-learning, the Bellman target uses $`\max_{a'} Q(s', a')`$. With function approximation, Q-values carry estimation noise $`\epsilon_a`$. Since $`\mathbb{E}[\max_a (Q^*(s,a) + \epsilon_a)] \ge \max_a Q^*(s,a)`$, the target is systematically inflated. This bias compounds over iterations and propagates through the network, causing gradient estimates to become large and unstable — destabilizing training.
 
 ## Formal Description
 
-Formalizing (van Hasselt et al. 2016a / [[song2019Revisiting]]): assume $Q_t(s,a) = V^*(s) + \epsilon_a$ where $\epsilon_a$ are i.i.d. zero-mean noise. The overestimation for the max operator is $\max_a Q_t(s,a) - Q^*(s,a) = \max_a \epsilon_a \ge 0$. For the [[softmax-bellman-operator]] at inverse temperature $\tau$, the overestimation errors are provably smaller, within the interval
+Formalizing (van Hasselt et al. 2016a / [[song2019Revisiting]]): assume $`Q_t(s,a) = V^*(s) + \epsilon_a`$ where $`\epsilon_a`$ are i.i.d. zero-mean noise. The overestimation for the max operator is $`\max_a Q_t(s,a) - Q^*(s,a) = \max_a \epsilon_a \ge 0`$. For the [[softmax-bellman-operator]] at inverse temperature $`\tau`$, the overestimation errors are provably smaller, within the interval
 
-$$
+```math
 \left[\frac{\hat\delta(s)}{m\exp(\tau\hat\delta(s))},\ (m-1)\max\!\left\{\tfrac{1}{\tau+2}, \tfrac{2Q_{\max}}{1+\exp(\tau)}\right\}\right],
-$$
+```
 
-where $\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|$ is the max Q-gap and $m = |\mathcal{A}|$.
+where $`\hat\delta(s) = \sup_Q \max_{i,j}|Q(s,a_i)-Q(s,a_j)|`$ is the max Q-gap and $`m = |\mathcal{A}|`$.
 
 ## Key Papers
 
 - Thrun & Schwartz (1994) — original identification of overestimation in Q-learning
 - van Hasselt et al. (2016a) — DDQN: mitigates overestimation by decoupling action selection (online net) from evaluation (target net)
 - [[song2019Revisiting]] — proves the [[softmax-bellman-operator]] reduces overestimation with quantified bounds, independent of exploration
-- [[kostrikov2021Offline]] — removes the bias at its source in the offline setting: the max is never applied to an extrapolated value, because $Q$ is evaluated only at dataset actions
+- [[kostrikov2021Offline]] — removes the bias at its source in the offline setting: the max is never applied to an extrapolated value, because $`Q`$ is evaluated only at dataset actions
 
 ## Related Concepts
 
 - [[deep-q-network]] — the algorithm family most affected; DDQN is the standard mitigation
-- [[softmax-bellman-operator]] — provably reduces overestimation for all $\tau \ge 0$
+- [[softmax-bellman-operator]] — provably reduces overestimation for all $`\tau \ge 0`$
 - Distributional RL (Dabney et al. 2018) — addresses the full return distribution rather than just the mean; also mitigates overestimation as a side effect
 - Ensemble / pessimistic Q-learning — uses multiple Q-networks and takes the minimum; common in offline RL
 - [[implicit-q-learning]] — avoidance rather than correction: an upper [[expectile-regression]] over dataset actions replaces the max, so no out-of-sample value is ever queried
-- [[fqi]] — where the bias compounds offline: each sweep feeds an inflated $\max_{a'}$ back into the next regression target
+- [[fqi]] — where the bias compounds offline: each sweep feeds an inflated $`\max_{a'}`$ back into the next regression target
 - [[extrapolation-error]] — the offline cousin, and a genuinely different failure. Overestimation is a *statistical* bias present even when every action is observed and estimates are merely noisy; extrapolation error is a *coverage* failure at actions with no supporting data, which no amount of data on the wrong distribution repairs
 
 ## Current State and Open Problems

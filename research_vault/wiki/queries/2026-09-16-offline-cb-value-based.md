@@ -17,9 +17,9 @@ The self-contained account this query produced has been split into two maintaine
 ## What the query settled
 
 1. The representative value-based formulation is regression-then-act, not estimate-then-select; the two coincide exactly when the policy class is unrestricted, and otherwise the second is cost-sensitive classification with imputed rewards.
-2. Two lemmas carry every bound. The plug-in decomposition charges the rule for the action *it* picks, so greedy needs uniform coverage; the pessimism lemma charges only $\pi^*$'s uncertainty, so pessimism needs single-policy coverage.
-3. In the tabular model the two families' bounds differ in exactly one symbol, $C_{\mathrm{unif}}$ against $C^*$ — in the rate and in the sample-size precondition alike.
-4. Value-based methods need realizability and never use the propensities; coverage enters only the analysis, and through $C_{\mathcal F}$ it can be finite where importance weights are unbounded.
+2. Two lemmas carry every bound. The plug-in decomposition charges the rule for the action *it* picks, so greedy needs uniform coverage; the pessimism lemma charges only $`\pi^*`$'s uncertainty, so pessimism needs single-policy coverage.
+3. In the tabular model the two families' bounds differ in exactly one symbol, $`C_{\mathrm{unif}}`$ against $`C^*`$ — in the rate and in the sample-size precondition alike.
+4. Value-based methods need realizability and never use the propensities; coverage enters only the analysis, and through $`C_{\mathcal F}`$ it can be finite where importance weights are unbounded.
 
 ## Reading order
 
@@ -35,11 +35,11 @@ Kept with the technical account, in [[contextual-bandits-offline-value-based]] �
   - All four were keyed to arXiv revision years until 2026-09-19; the keys above are the corrected ones. Confirm they are pinned before ingesting, since the citekey is the page filename, the link target and the mirror filename.
 - Write the policy-based page; move the route comparison to it, or keep it on the setting page as the cross-family home.
 - A topic page is still not earned: revisit once the four papers above have pages.
-- `jun2026CS703Q10` (K.-S. Jun, *CS703Q10: Offline contextual bandits*, CSED703Q, Spring 2026) is the reference point for the policy route. Read 2026-09-19 and mirrored; no paper page yet. What it settles: MaxIPW and PES are its Lemmas 1–2 (now credited in [[contextual-bandits-offline]] §7), IX is its Theorem 3 with bias exactly $\gamma C_\gamma(\pi)$ and weights bounded by $1/\gamma$, LS its Theorem 6 with $bD_b(\pi^*)$ and $D_b\le C_b$ but *unbounded* weights, and the hyperparameter-adaptation sketch is [[ryu2025Improved]]. Its own open ends are offpolicy learning and the loss-vs-reward asymmetry, both marked TODO in the note.
+- `jun2026CS703Q10` (K.-S. Jun, *CS703Q10: Offline contextual bandits*, CSED703Q, Spring 2026) is the reference point for the policy route. Read 2026-09-19 and mirrored; no paper page yet. What it settles: MaxIPW and PES are its Lemmas 1–2 (now credited in [[contextual-bandits-offline]] §7), IX is its Theorem 3 with bias exactly $`\gamma C_\gamma(\pi)`$ and weights bounded by $`1/\gamma`$, LS its Theorem 6 with $`bD_b(\pi^*)`$ and $`D_b\le C_b`$ but *unbounded* weights, and the hyperparameter-adaptation sketch is [[ryu2025Improved]]. Its own open ends are offpolicy learning and the loss-vs-reward asymmetry, both marked TODO in the note.
 
 ## Connections
 
 - [[contextual-bandits-offline]] / [[contextual-bandits-offline-value-based]] — the two pages this split into
 - [[pessimism-principle]] — the shared mechanism
-- [[fqi-finite-sample-analysis]] — the horizon-$H$ analysis the bandit case specializes
+- [[fqi-finite-sample-analysis]] — the horizon-$`H`$ analysis the bandit case specializes
 - [[contextual-bandits-online]] — the online problem this is the batch version of

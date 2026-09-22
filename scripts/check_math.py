@@ -5,17 +5,24 @@ Usage:
     check_math.py [FILE ...]        (default: every wiki page)
     check_math.py --summary [FILE ...]
 
-GitHub runs markdown over `$...$` and `$$...$$` math before
-MathJax sees it, so backslash escapes (`\\{ \\, \\; \\!`), emphasis
-pairs (`*`, some `_`), links (`[..](..)`) and block syntax (a
-line holding only `=` or `-`) silently change or break the
-math. This script renders each page through GitHub's own
-markdown API and compares every math span in the source with
-what GitHub hands to MathJax. A span is FAITHFUL when its
-content arrives unchanged (whitespace aside).
+The vault writes math GitHub's native way: $`...`$ inline and a
+fenced block with info string `math` for display (CLAUDE.md,
+Formatting Rules). GitHub hands both to MathJax untouched,
+except in a table row, where `\\|` loses its backslash and a
+bare `|` ends the cell, and where a closing `*` or `_` touches
+a span. Bare `$...$` and `$$...$$` fare far worse: markdown
+runs over them first, so backslash escapes (`\\{ \\, \\; \\!`),
+emphasis pairs, links (`[..](..)`) and block syntax silently
+change or break the math.
 
-Fenced ```math blocks and $`...`$ inline spans are understood
-too; GitHub passes both through untouched.
+This script renders each page through GitHub's own markdown
+API and compares every math span in the source with what
+GitHub hands to MathJax. A span is FAITHFUL when its content
+arrives unchanged (whitespace aside). A span written with bare
+`$` or `$$` is reported even when faithful, and so is any `$`
+that belongs to no span, so a page cannot drift back to the
+old syntax unnoticed. log.md is skipped: it is append-only and
+keeps its old entries as written.
 
 Requires an authenticated `gh` CLI (the markdown API allows
 60 unauthenticated calls an hour, fewer than one full run).
@@ -42,6 +49,7 @@ LOOKAHEAD = 40
 MATH_EL = re.compile(
     r'<math-renderer class="js-(inline|display)-math"[^>]*>'
     r'(.*?)</math-renderer>', re.S)
+CODE = re.compile(r"(?<!`)(`+)(?!`)(.+?)(?<!`)\1(?!`)")
 
 
 def render(text):
@@ -77,8 +85,13 @@ def squash(s):
     return re.sub(r"\s+", "", s)
 
 
-def source_spans(src):
-    """[(kind, content, line)] for every math span, in order."""
+def scan(src):
+    """Math spans and stray dollars of a page.
+
+    Returns ([(kind, content, line, old)], [line]): every math
+    span in document order, `old` marking the bare `$`/`$$`
+    syntax, and the line of each unescaped `$` left over.
+    """
     spans = []
 
     def line_of(pos):
@@ -91,19 +104,32 @@ def source_spans(src):
     work = re.sub(r"<!--.*?-->", blank, src, flags=re.S)
     for m in re.finditer(r"^```math[ \t]*\n(.*?)^```", work,
                          re.S | re.M):
-        spans.append((m.start(), "display", m.group(1)))
+        spans.append((m.start(), "display", m.group(1), False))
     work = re.sub(r"^```.*?^```", blank, work, flags=re.S | re.M)
-    for m in re.finditer(r"\$`([^`\n]+)`\$", work):
-        spans.append((m.start(), "inline", m.group(1)))
-    work = re.sub(r"\$`[^`\n]+`\$", blank, work)
-    work = re.sub(r"`[^`\n]*`", blank, work)
+    # Code spans, read left to right as GFM reads them. One set
+    # directly between two dollar signs is inline math; reading
+    # `$`..`$` pattern-first would pair the dollars of two
+    # neighbouring code spans instead.
+    cuts = []
+    for m in CODE.finditer(work):
+        a, b = m.span()
+        if len(m.group(1)) == 1 and work[a - 1:a] == "$" \
+                and work[b:b + 1] == "$":
+            spans.append((a - 1, "inline", m.group(2), False))
+            a, b = a - 1, b + 1
+        cuts.append((a, b))
+    for a, b in cuts:
+        work = work[:a] + " " * (b - a) + work[b:]
     for m in re.finditer(r"\$\$(.+?)\$\$", work, re.S):
-        spans.append((m.start(), "display", m.group(1)))
+        spans.append((m.start(), "display", m.group(1), True))
     work = re.sub(r"\$\$(.+?)\$\$", blank, work, flags=re.S)
     for m in re.finditer(r"(?<!\\)\$([^$\n]+?)\$", work):
-        spans.append((m.start(), "inline", m.group(1)))
-    return [(kind, content, line_of(pos))
-            for pos, kind, content in sorted(spans)]
+        spans.append((m.start(), "inline", m.group(1), True))
+    work = re.sub(r"(?<!\\)\$[^$\n]+?\$", blank, work)
+    strays = [line_of(m.start())
+              for m in re.finditer(r"(?<!\\)\$", work)]
+    return ([(kind, content, line_of(pos), old)
+             for pos, kind, content, old in sorted(spans)], strays)
 
 
 def likely_cause(kind, content, src, line):
@@ -117,6 +143,9 @@ def likely_cause(kind, content, src, line):
             return "delimiter not on its own paragraph"
     body = content.replace("\\\\", "")
     here = lines[line - 1]
+    if here.lstrip().startswith("|") and "|" in content:
+        return "`|` in a table row ends the cell or loses its " \
+               "backslash (write \\Vert, \\vert or \\mid)"
     if kind == "inline" and re.search(
             "[A-Za-z0-9‐-—-]\\$" + re.escape(content), here):
         return "opening `$` glued to a letter, digit or dash"
@@ -139,25 +168,30 @@ def likely_cause(kind, content, src, line):
 
 def check(path):
     src = open(path).read()
-    spans = source_spans(src)
+    spans, strays = scan(src)
+    wrong = [(line, "text", "stray `$`: unpaired, or old syntax "
+              "broken over a line", "$") for line in strays]
     if not spans:
-        return 0, []
+        return 0, wrong
     got = [squash(served(c)).strip("$`")
            for _, c in MATH_EL.findall(render(src))]
     # Match in document order, so a failure is blamed on the span
     # that actually failed rather than on a later lookalike.
-    wrong, j = [], 0
-    for kind, content, line in spans:
+    j = 0
+    for kind, content, line, old in spans:
         key = squash(content)
+        text = " ".join(content.split())[:70]
         hit = next((i for i in range(j, min(j + LOOKAHEAD, len(got)))
                     if got[i] == key), None)
-        if hit is not None:
-            j = hit + 1
-        else:
+        if hit is None:
             wrong.append((line, kind,
-                          likely_cause(kind, content, src, line),
-                          " ".join(content.split())[:70]))
-    return len(spans), wrong
+                          likely_cause(kind, content, src, line), text))
+            continue
+        j = hit + 1
+        if old:
+            wrong.append((line, kind, "old syntax: write $`..`$ or "
+                          "a ```math fence", text))
+    return len(spans), sorted(wrong)
 
 
 def main():

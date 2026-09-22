@@ -125,14 +125,15 @@ one makes instead.
 
 ### Setting and learning protocol
 The model class, and then the protocol **written out as a procedure**,
-in the `\begin{aligned}` pseudocode style used by [[fqi]] — input, the
-loop, what is observed at each step, what is returned. Prose hides what
-the learner sees and when; a procedure cannot. Follow it with the two or
-three features of the loop that carry the difficulty.
+in the `\begin{aligned}` pseudocode style used by [[fqi]], inside a
+`math` fence — input, the loop, what is observed at each step, what is
+returned. Prose hides what the learner sees and when; a procedure
+cannot. Follow it with the two or three features of the loop that carry
+the difficulty.
 
 ### Learning objective
 The quantity being minimized, in the vault's symbols, related to
-$\Delta(\hat\pi)$ or $\mathrm{Reg}(T)$ on the setting page.
+$`\Delta(\hat\pi)`$ or $`\mathrm{Reg}(T)`$ on the setting page.
 
 ### How this differs from the surrounding literature
 Not a related-work dump — the specific departures that the paper turns
@@ -168,14 +169,14 @@ ideas relevant to active projects.
 anchor in [[contextual-bandits-offline]] §2 and its extensions, and open
 the formal section by naming every symbol translated, so a reader can
 still check the page against the PDF. Translate what differs only in
-spelling ($A \to K$ for $|\mathcal A|$, an episode count $K \to T$,
-$\star \to *$ on optima). Do **not** translate a choice that is
+spelling ($`A \to K`$ for $`|\mathcal A|`$, an episode count $`K \to T`$,
+$`\star \to *`$ on optima). Do **not** translate a choice that is
 substantive: [[cassel2026Quantile]] minimizes loss, which is why its
 optimistic quantile is the low one, so rewriting it as reward
 maximization would break its own explanation. And where a symbol means
-different things — [[zanette2019Tighter]]'s $T$ is total timesteps where
+different things — [[zanette2019Tighter]]'s $`T`$ is total timesteps where
 the vault's is episodes — **restate the results, do not relabel them**,
-or the claims move by a factor of $\sqrt H$ in silence.
+or the claims move by a factor of $`\sqrt H`$ in silence.
 
 **Two sections the old template had, and where they went.** *Prior Work
 & Position* is now the third part of the formal definition, where it
@@ -284,10 +285,21 @@ question: "<the question asked>"
 
 ## Formatting Rules
 
-- **Math:** Always write mathematical expressions in LaTeX syntax — inline with `$...$`, display equations with `$$...$$`. Never use plain-text math notation (e.g., write `$\sqrt{c_a}$` not `√c_a`, `$\delta$-PAC` not `δ-PAC`, `$O(\log T)$` not `O(log T)`). This applies to all wiki pages: papers, concepts, queries.
-- **A display block needs a blank line before its opening `$$`.** GitHub parses `$$...$$` as display math only when the opener begins its own block. An opener glued to the end of the preceding paragraph is left as literal text — **and it takes every later display block in the same file down with it.** Measured 2026-09-22 against GitHub's renderer: `fqi.md` (8 separated openers) rendered 8/8; `contextual-bandits-offline.md` (15 glued) rendered 0/15; in `cassel2026Quantile.md` the protocol block rendered but Algorithm 1 — itself correctly separated, merely sitting after a glued opener — did not. A lead-in sentence ending in a colon or comma still takes a blank line after it. Audit a file with:
-  `awk '/^[$][$]$/{if(o==0){if(p=="")s++;else g++;o=1}else o=0}{p=$0}END{print FILENAME,"sep="s,"glue="g}' FILE`
-- **Do not switch to fenced `math` code blocks** (three backticks + `math`) to dodge the rule. They are immune on GitHub, but this is also an Obsidian vault (`research_vault/.obsidian`, no math plugin) and Obsidian renders them as raw code. `$$...$$` preceded by a blank line is the only form that renders in both.
+- **Math:** Always write mathematical expressions in LaTeX, in GitHub's native math syntax: inline as ``$`...`$`` (a dollar sign, a code span, a dollar sign), display as a fenced block with info string `math`, in a paragraph of its own:
+
+  ````markdown
+  ```math
+  \hat\pi(x) = \arg\max_a \hat q(x,a)
+  ```
+  ````
+
+  Never use plain-text math notation (e.g., write ``$`\sqrt{c_a}`$`` not `√c_a`, ``$`\delta`$-PAC`` not `δ-PAC`, ``$`O(\log T)`$`` not `O(log T)`). This applies to all wiki pages: papers, concepts, queries. Inside either form write ordinary TeX; GitHub hands it to MathJax untouched.
+- **Why not `$...$` and `$$...$$` (decided 2026-09-22).** GitHub runs markdown over bare-dollar math before MathJax sees it: backslash escapes lose their backslash (`\{ \} \, \; \! \|`), paired `*` become emphasis, `[..](..)` becomes a link, and a `$$` glued to an adjacent line is not recognized at all. Measured on the 61 pages then written that way: 234 of 405 display blocks and 736 of 3705 inline spans reached MathJax altered or not at all. After the switch, 0 of 4615. The price is Obsidian: with no math plugin (`research_vault/.obsidian`) it shows both native forms as code. `log.md` is append-only, so its older entries keep bare dollars.
+- **Three things still break native math:**
+  - **A `|` in a table row.** GFM splits a row into cells before it reads code spans, so a bare `|` ends the cell and `\|` loses its backslash. In table math write `\Vert` for a norm and `\vert` or `\mid` for a bar.
+  - **Emphasis closed against a span.** A closing `*` or `_` touching the span's closing `$` breaks it: write ``*at* $`s_3`$``, not ``*at $`s_3`$*``. MathJax ignores italics, so nothing is lost.
+  - **A backtick inside math**, which ends the code span. TeX rarely needs one.
+- **Check every page you write or edit that contains math:** `python3 scripts/check_math.py <page>` (needs an authenticated `gh`). It renders the page through GitHub's markdown API and reports each span that GitHub alters or drops, with a likely cause, each span still in bare-dollar syntax, and any stray `$`.
 
 ---
 
@@ -332,7 +344,7 @@ When the user says **"lint"** (or `/rv-lint`):
 3. Look for pages with no inbound links (orphans).
 4. Identify claims that newer papers contradict — flag for review.
 5. Suggest 3–5 new questions worth investigating or sources worth finding.
-6. Audit display math: every `$$` opener must be preceded by a blank line (see **Formatting Rules**). One glued opener silently kills every later block in that file on GitHub, so this is worth a sweep rather than a spot check.
+6. Check the math: `python3 scripts/check_math.py --summary` lists every page with a span GitHub renders wrong or a leftover bare `$`; rerun it without `--summary` on each listed page to see the spans and their likely causes (see **Formatting Rules**). Fix every report.
 7. Append a lint entry to `log.md`: `## [YYYY-MM-DD] lint | <summary of findings>`
 
 ---
@@ -340,7 +352,7 @@ When the user says **"lint"** (or `/rv-lint`):
 ## Index Conventions (`wiki/index.md`)
 
 - Organized by category (Papers, Concepts, Queries).
-- Each entry: `- [[slug]] — one-line description`. Budget the **description** at ~25 words — count words, not characters, so that LaTeX and long slugs are not penalised (`$\mathcal{F}=\{f(\theta,\phi(\cdot,\cdot))\}$` is 40 characters of source for one symbol). A good entry names the object, its one distinguishing property, and the paper that introduced it.
+- Each entry: `- [[slug]] — one-line description`. Budget the **description** at ~25 words — count words, not characters, so that LaTeX and long slugs are not penalised (``$`\mathcal{F}=\{f(\theta,\phi(\cdot,\cdot))\}`$`` is 47 characters of source for one symbol). A good entry names the object, its one distinguishing property, and the paper that introduced it.
 - Keep entries sorted alphabetically within each category.
 - Update immediately after every ingest or query-save operation.
 

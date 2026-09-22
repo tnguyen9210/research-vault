@@ -12,16 +12,18 @@ introduced_by: [[li2026Predicting]]
 Training-time scaling (larger models, more data) improves a model's base capabilities. Test-time scaling leverages the stochastic nature of generation: even a fixed model can produce better answers by sampling more and selecting the best. The key question is how to allocate a fixed inference budget most efficiently.
 
 ## Formal Description
-Given prompt $x$ and stochastic policy $\pi_\text{ref}$, the value function of a state $s$ under budget $N$ is:
+Given prompt $`x`$ and stochastic policy $`\pi_\text{ref}`$, the value function of a state $`s`$ under budget $`N`$ is:
 
-$$V_N(s) = \mathbb{E}\!\left[\max_{1 \leq i \leq N} R_s^{(i)}\right], \quad R_s^{(i)} \overset{\text{i.i.d.}}{\sim} F_s$$
+```math
+V_N(s) = \mathbb{E}\!\left[\max_{1 \leq i \leq N} R_s^{(i)}\right], \quad R_s^{(i)} \overset{\text{i.i.d.}}{\sim} F_s
+```
 
-**Best-of-$N$ (BoN):** generate $N$ responses from prompt $x$, return highest-reward one. Simple but wasteful — ignores intermediate state structure.
+**Best-of-$`N`$ (BoN):** generate $`N`$ responses from prompt $`x`$, return highest-reward one. Simple but wasteful — ignores intermediate state structure.
 
-**Scaling law:** empirically $V_N(\mathcal{A}_\text{BoN}) \approx C(\log N)^\gamma$ for $\gamma \in (0,1)$, meaning gains diminish logarithmically with budget.
+**Scaling law:** empirically $`V_N(\mathcal{A}_\text{BoN}) \approx C(\log N)^\gamma`$ for $`\gamma \in (0,1)`$, meaning gains diminish logarithmically with budget.
 
 ## Key Papers
-- [[li2026Predicting]] — tail extrapolation predicts $V_N(s)$ from $m \ll N$ samples; SLG Search achieves polynomial compute amplification over BoN
+- [[li2026Predicting]] — tail extrapolation predicts $`V_N(s)`$ from $`m \ll N`$ samples; SLG Search achieves polynomial compute amplification over BoN
 - [[foster2025Good]] — the theoretical case for inference-time compute: SpannerSampling meets the [[coverage-coefficient]] lower bound with only a sampling oracle, while training-time interventions (DPO/XPO) cannot be simultaneously data- and compute-efficient under ETH
 
 ## Variants
@@ -35,4 +37,4 @@ $$V_N(s) = \mathbb{E}\!\left[\max_{1 \leq i \leq N} R_s^{(i)}\right], \quad R_s^
 - [[coverage-coefficient]] — the quantity governing when inference-time exploration is computationally feasible
 
 ## Current State and Open Problems
-Active research area (2024–2026). BoN is the dominant practical approach; adaptive multi-stage methods (SLG) are emerging with theoretical backing, and [[foster2025Good]] supplies the computational-theory grounding for why inference-time compute beats training-time-only exploration. Structural connection: state selection in SLG is a fixed-budget [[bai]] problem. Per-paper open questions (deeper trees, PRM integration, tail assumptions, estimating $C_\text{cond}$) live on the paper pages.
+Active research area (2024–2026). BoN is the dominant practical approach; adaptive multi-stage methods (SLG) are emerging with theoretical backing, and [[foster2025Good]] supplies the computational-theory grounding for why inference-time compute beats training-time-only exploration. Structural connection: state selection in SLG is a fixed-budget [[bai]] problem. Per-paper open questions (deeper trees, PRM integration, tail assumptions, estimating $`C_\text{cond}`$) live on the paper pages.

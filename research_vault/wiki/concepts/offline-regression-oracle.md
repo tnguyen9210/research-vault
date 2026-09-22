@@ -5,18 +5,20 @@ tags: [oracle-efficiency, regression, contextual-bandits]
 
 # Offline Regression Oracle
 
-**Definition:** An algorithm $\mathcal{O}_\mathrm{off}(\mathcal{F})$ that takes a batch of $T$ iid (context, action, reward) tuples drawn from distribution $\mathcal{D}$ and outputs $\hat{f} \in \mathcal{F}$ minimizing out-of-sample squared prediction error, with error bound $\mathrm{Reg}_\mathrm{off}(\mathcal{F}, T, \delta)$.
+**Definition:** An algorithm $`\mathcal{O}_\mathrm{off}(\mathcal{F})`$ that takes a batch of $`T`$ iid (context, action, reward) tuples drawn from distribution $`\mathcal{D}`$ and outputs $`\hat{f} \in \mathcal{F}`$ minimizing out-of-sample squared prediction error, with error bound $`\mathrm{Reg}_\mathrm{off}(\mathcal{F}, T, \delta)`$.
 
 ## Formal Description
 
-With probability at least $1 - \delta$:
+With probability at least $`1 - \delta`$:
 
-$$\mathbb{E}_{\mathcal{D}}\!\left[(\hat q(x,a) - q^*(x,a))^2\right] \lesssim \mathrm{Reg}_\mathrm{off}(\mathcal{F}, T, \delta)$$
+```math
+\mathbb{E}_{\mathcal{D}}\!\left[(\hat q(x,a) - q^*(x,a))^2\right] \lesssim \mathrm{Reg}_\mathrm{off}(\mathcal{F}, T, \delta)
+```
 
 Key properties:
-- $\mathrm{Reg}_\mathrm{off}$ is monotonically decreasing in $T$ (more data → better)
-- $\mathrm{Reg}_\mathrm{off}$ is monotonically increasing in $\delta$ (looser confidence → worse)
-- For finite $\mathcal{F}$ with ERM: $\mathrm{Reg}_\mathrm{off} = \tilde{O}(\log|\mathcal{F}| / T)$
+- $`\mathrm{Reg}_\mathrm{off}`$ is monotonically decreasing in $`T`$ (more data → better)
+- $`\mathrm{Reg}_\mathrm{off}`$ is monotonically increasing in $`\delta`$ (looser confidence → worse)
+- For finite $`\mathcal{F}`$ with ERM: $`\mathrm{Reg}_\mathrm{off} = \tilde{O}(\log|\mathcal{F}| / T)`$
 
 ## Why It Matters
 
@@ -27,11 +29,11 @@ Offline oracles are strictly more practical than online regression oracles:
 
 ## Contrast with Online Oracle
 
-An online regression oracle $\mathcal{O}_\mathrm{on}(\mathcal{F})$ receives tuples in a streaming fashion and must predict before seeing labels. Online guarantees are harder to obtain and harder to implement. Offline oracles require only that data is iid from some fixed distribution — satisfied when using historical batches from prior epochs.
+An online regression oracle $`\mathcal{O}_\mathrm{on}(\mathcal{F})`$ receives tuples in a streaming fashion and must predict before seeing labels. Online guarantees are harder to obtain and harder to implement. Offline oracles require only that data is iid from some fixed distribution — satisfied when using historical batches from prior epochs.
 
 ## Key Papers
 
-- [[qin2026Taming]] — uses offline oracle with $O(\log T)$ calls for general function classes; shows $\mathrm{Reg}_\mathrm{off}$ governs regret alongside [[decision-offline-estimation-coefficient]]
+- [[qin2026Taming]] — uses offline oracle with $`O(\log T)`$ calls for general function classes; shows $`\mathrm{Reg}_\mathrm{off}`$ governs regret alongside [[decision-offline-estimation-coefficient]]
 
 ## Related Concepts
 
@@ -41,4 +43,4 @@ An online regression oracle $\mathcal{O}_\mathrm{on}(\mathcal{F})$ receives tupl
 
 ## Current State and Open Problems
 
-Standard and uncontested as a primitive — that any ERM-style supervised learner qualifies is the whole point of the abstraction. The live question has moved off the oracle and onto what governs the reduction: $\mathrm{Reg}_\mathrm{off}$ supplies the statistical error, [[decision-offline-estimation-coefficient]] the decision-theoretic cost, and it is the second that is under active study.
+Standard and uncontested as a primitive — that any ERM-style supervised learner qualifies is the whole point of the abstraction. The live question has moved off the oracle and onto what governs the reduction: $`\mathrm{Reg}_\mathrm{off}`$ supplies the statistical error, [[decision-offline-estimation-coefficient]] the decision-theoretic cost, and it is the second that is under active study.

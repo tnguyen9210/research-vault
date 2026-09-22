@@ -16,15 +16,15 @@ Direct contextual bandit algorithms are computationally hard in general — the 
 
 ## Formal Description
 
-**Online regression oracle** $\mathcal{O}_{\mathrm{on}}(\mathcal{F})$ receives a stream of (context, action, reward) tuples and outputs predictors with small cumulative squared loss. It needs $O(T)$ calls — one per round — and its complexity is governed by [[decision-estimation-coefficient]].
+**Online regression oracle** $`\mathcal{O}_{\mathrm{on}}(\mathcal{F})`$ receives a stream of (context, action, reward) tuples and outputs predictors with small cumulative squared loss. It needs $`O(T)`$ calls — one per round — and its complexity is governed by [[decision-estimation-coefficient]].
 
-**Offline regression oracle** $\mathcal{O}_{\mathrm{off}}(\mathcal{F})$ receives a batch of iid tuples and returns a predictor minimizing out-of-sample prediction error. Ordinary ERM satisfies it, so ridge regression, gradient boosting and neural networks all qualify, and its complexity is governed by [[decision-offline-estimation-coefficient]].
+**Offline regression oracle** $`\mathcal{O}_{\mathrm{off}}(\mathcal{F})`$ receives a batch of iid tuples and returns a predictor minimizing out-of-sample prediction error. Ordinary ERM satisfies it, so ridge regression, gradient boosting and neural networks all qualify, and its complexity is governed by [[decision-offline-estimation-coefficient]].
 
-The offline oracle is the practically useful one, for three reasons: it comes with richer statistical learning theory; any standard supervised learner implements it; and at $O(\log T)$ calls the overhead is compatible with periodic retraining rather than per-round updates.
+The offline oracle is the practically useful one, for three reasons: it comes with richer statistical learning theory; any standard supervised learner implements it; and at $`O(\log T)`$ calls the overhead is compatible with periodic retraining rather than per-round updates.
 
 ## Literature Survey
 
-One organizing question runs through the whole line: **can general reward function approximation be handled with only $O(\log T)$ offline oracle calls?** Until 2026 every result gave up one of the three — general function classes, few calls, or the offline oracle.
+One organizing question runs through the whole line: **can general reward function approximation be handled with only $`O(\log T)`$ offline oracle calls?** Until 2026 every result gave up one of the three — general function classes, few calls, or the offline oracle.
 
 ### Closing the call-count gap
 
@@ -32,18 +32,18 @@ The progression is legible as a table, which is why it is given as one:
 
 | Algorithm | Oracle | Calls | Setting |
 |-----------|--------|-------|---------|
-| E2D (Foster et al. 2021a) | Online | $T$ | General |
-| UCCB (Xu & Zeevi 2020) | Offline | $T$ | General |
-| E2D.Off (Foster et al. 2024) | Offline | $T$ | General |
-| Linear FALCON (Xu & Zeevi 2020, §4) | Offline | $\log T$ | Per-context linear |
-| FALCON ([[simchi-levi2022Bypassing]]) | Offline | $\log T$ | Discrete actions |
-| **OE2D** ([[qin2026Taming]]) | Offline | $\log T$ | **General** |
+| E2D (Foster et al. 2021a) | Online | $`T`$ | General |
+| UCCB (Xu & Zeevi 2020) | Offline | $`T`$ | General |
+| E2D.Off (Foster et al. 2024) | Offline | $`T`$ | General |
+| Linear FALCON (Xu & Zeevi 2020, §4) | Offline | $`\log T`$ | Per-context linear |
+| FALCON ([[simchi-levi2022Bypassing]]) | Offline | $`\log T`$ | Discrete actions |
+| **OE2D** ([[qin2026Taming]]) | Offline | $`\log T`$ | **General** |
 
-UCCB was first to handle general classes with an offline oracle, but at $O(T)$ calls it matches the online oracle in count, which undermines the practical motivation for assuming the weaker oracle at all. FALCON achieved $O(\log T)$ for discrete actions under realizability, and was the first to reach optimal regret with an offline oracle. OE2D is the first row that is offline, general and $O(\log T)$ at once — and it drops realizability as well.
+UCCB was first to handle general classes with an offline oracle, but at $`O(T)`$ calls it matches the online oracle in count, which undermines the practical motivation for assuming the weaker oracle at all. FALCON achieved $`O(\log T)`$ for discrete actions under realizability, and was the first to reach optimal regret with an offline oracle. OE2D is the first row that is offline, general and $`O(\log T)`$ at once — and it drops realizability as well.
 
 ### The tension every algorithm here must resolve
 
-Each of these algorithms has to achieve two things simultaneously: **Low Regret** — take near-optimal actions under the current reward estimate — and **Good Coverage** — collect data that covers all benchmark distributions $\Lambda$. The two pull against each other, since covering the benchmark means acting where the current estimate says not to.
+Each of these algorithms has to achieve two things simultaneously: **Low Regret** — take near-optimal actions under the current reward estimate — and **Good Coverage** — collect data that covers all benchmark distributions $`\Lambda`$. The two pull against each other, since covering the benchmark means acting where the current estimate says not to.
 
 FALCON and Linear FALCON handle them as separate conditions, which is what confines each to its special case. [[qin2026Taming]] unifies them in a single minimax optimization, [[exploitative-f-design]], and that unification is what generalizes the result to arbitrary function classes. This is the direction's transferable idea: the special cases were not a limitation of the analyses but of treating the two requirements separately.
 
@@ -53,13 +53,13 @@ FALCON and Linear FALCON handle them as separate conditions, which is what confi
 
 ### Adjacent: offline policy optimization
 
-Distinct from everything above, and worth separating because the names invite conflation. Given a fixed log $D_n$ from a behavior policy $\pi_{\mathrm{ref}}$, find the best policy without further interaction — no oracle calls, no online rounds, and variance control rather than exploration as the central difficulty. [[ryu2025Improved]] (COLT 2025) gives PUB, a parameter-free variance-adaptive off-policy selection method built on a betting-based LCB, which does not require realizability or an online loop; freezing the score function improves learning in small-data regimes. The full setting is [[contextual-bandits-offline]]. The distinction to hold: oracle-efficient bandits minimize regret over $T$ *online* rounds while using offline oracle calls; offline policy optimization has no online rounds at all.
+Distinct from everything above, and worth separating because the names invite conflation. Given a fixed log $`D_n`$ from a behavior policy $`\pi_{\mathrm{ref}}`$, find the best policy without further interaction — no oracle calls, no online rounds, and variance control rather than exploration as the central difficulty. [[ryu2025Improved]] (COLT 2025) gives PUB, a parameter-free variance-adaptive off-policy selection method built on a betting-based LCB, which does not require realizability or an online loop; freezing the score function improves learning in small-data regimes. The full setting is [[contextual-bandits-offline]]. The distinction to hold: oracle-efficient bandits minimize regret over $`T`$ *online* rounds while using offline oracle calls; offline policy optimization has no online rounds at all.
 
 ## Variants
 
 - [[offline-regression-oracle]] — the oracle model the practical branch assumes
-- **Online-oracle-efficient bandits** — SquareCB and E2D; the $O(T)$-call route, governed by [[decision-estimation-coefficient]] and not separately paged here
-- **Realizability-free variants** — OE2D's setting, where $q^* \in \mathcal{F}$ is not assumed; contrast [[realizability]]
+- **Online-oracle-efficient bandits** — SquareCB and E2D; the $`O(T)`$-call route, governed by [[decision-estimation-coefficient]] and not separately paged here
+- **Realizability-free variants** — OE2D's setting, where $`q^* \in \mathcal{F}`$ is not assumed; contrast [[realizability]]
 
 ## Related Concepts
 
@@ -71,11 +71,11 @@ Distinct from everything above, and worth separating because the names invite co
 
 ## Current State and Open Problems
 
-Active, and the offline-oracle route has won on practicality. The call-count table reads as a gap that closed in 2026: [[qin2026Taming]] is offline, general and $O(\log T)$ at once. What remains is not the algorithm but the complexity measure it is stated in.
+Active, and the offline-oracle route has won on practicality. The call-count table reads as a gap that closed in 2026: [[qin2026Taming]] is offline, general and $`O(\log T)`$ at once. What remains is not the algorithm but the complexity measure it is stated in.
 
-- **Bounding DOEC for concrete classes.** Whether $\varepsilon$-SEC or eluder dimension is the right route is unsettled, and Proposition 3 of [[qin2026Taming]] constructs an exponential gap for the first.
+- **Bounding DOEC for concrete classes.** Whether $`\varepsilon`$-SEC or eluder dimension is the right route is unsettled, and Proposition 3 of [[qin2026Taming]] constructs an exponential gap for the first.
 - **Lower bounds on DOEC.** When is offline-oracle-efficient learning information-theoretically hard? The measure has no matching hardness result.
-- **First-order algorithms.** Sub-$\sqrt{T}$ regret under favourable conditions, and an online-to-offline reduction for them (cf. Foster & Krishnamurthy 2021).
+- **First-order algorithms.** Sub-$`\sqrt{T}`$ regret under favourable conditions, and an online-to-offline reduction for them (cf. Foster & Krishnamurthy 2021).
 - **Beyond iid contexts.** Partial monitoring, RLHF and non-iid context distributions are all named as frontiers with no result behind them here.
 - **Empirical behaviour.** Every result on this page is theoretical; the vault has no source on how any of these algorithms actually performs.
 

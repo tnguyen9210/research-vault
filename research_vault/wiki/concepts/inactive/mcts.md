@@ -13,24 +13,28 @@ introduced_by: [[dam2024Power]]
 MCTS treats each internal tree node as a multi-armed bandit problem: which action (child) is worth exploring next? By running many simulated trajectories and updating value estimates along the path, the tree progressively focuses computation on the most promising regions of the state space. At the end, the action with the best estimated value at the root is returned.
 
 ## Formal Description
-MDP $\mathcal{M} = \langle \mathcal{S}, \mathcal{A}, \mathcal{R}, \mathcal{P}, \gamma \rangle$. Starting from root $s_0$, each trajectory of length $\leq H$ is collected by a generic UCT-like algorithm that selects actions via:
+MDP $`\mathcal{M} = \langle \mathcal{S}, \mathcal{A}, \mathcal{R}, \mathcal{P}, \gamma \rangle`$. Starting from root $`s_0`$, each trajectory of length $`\leq H`$ is collected by a generic UCT-like algorithm that selects actions via:
 
-$$a_h = \arg\max_{a \in \mathcal{A}_{s_h}} \left\{ \hat{Q}_{T_{s_h,a}(t)}(s_h, a) + B(t, s_h, a) \right\}$$
+```math
+a_h = \arg\max_{a \in \mathcal{A}_{s_h}} \left\{ \hat{Q}_{T_{s_h,a}(t)}(s_h, a) + B(t, s_h, a) \right\}
+```
 
-After $n$ trajectories, the guess for best action is:
+After $`n`$ trajectories, the guess for best action is:
 
-$$\hat{a}_n = \arg\max_{a \in \mathcal{A}_{s_0}} \hat{Q}_{T_{s_0,a}(n)}(s_0, a)$$
+```math
+\hat{a}_n = \arg\max_{a \in \mathcal{A}_{s_0}} \hat{Q}_{T_{s_0,a}(n)}(s_0, a)
+```
 
-Quality measured by convergence rate $r(t)$: $|\mathbb{E}[\hat{V}_n(s_0)] - V^*(s_0)| \leq r(n)$.
+Quality measured by convergence rate $`r(t)`$: $`|\mathbb{E}[\hat{V}_n(s_0)] - V^*(s_0)| \leq r(n)`$.
 
 **Key algorithmic choices:**
-- **Bonus function** $B(t, s, a)$: logarithmic (UCT), polynomial (Fixed-Depth-MCTS, Stochastic-Power-UCT)
-- **Value backup operator**: average mean, max, or power mean $p \in [1, \infty)$
-- **Playout policy** $\pi_0$: random rollout or learned value network
+- **Bonus function** $`B(t, s, a)`$: logarithmic (UCT), polynomial (Fixed-Depth-MCTS, Stochastic-Power-UCT)
+- **Value backup operator**: average mean, max, or power mean $`p \in [1, \infty)`$
+- **Playout policy** $`\pi_0`$: random rollout or learned value network
 
 ## Key Papers
-- [[dam2024Power]] — introduces Stochastic-Power-UCT: power mean backup + polynomial bonus; $\mathcal{O}(n^{-1/2})$ convergence in stochastic MDPs
-- [[foster2025Good]] — MTSS: token-level DP backward induction for autoregressive LM alignment; exponentially better runtime by replacing sequence-level $C_\text{cov}$ with token-level $C_\text{cond}$
+- [[dam2024Power]] — introduces Stochastic-Power-UCT: power mean backup + polynomial bonus; $`\mathcal{O}(n^{-1/2})`$ convergence in stochastic MDPs
+- [[foster2025Good]] — MTSS: token-level DP backward induction for autoregressive LM alignment; exponentially better runtime by replacing sequence-level $`C_\text{cov}`$ with token-level $`C_\text{cond}`$
 
 ## Variants
 
@@ -44,4 +48,4 @@ Quality measured by convergence rate $r(t)$: $|\mathbb{E}[\hat{V}_n(s_0)] - V^*(
 - [[smooth-aggregators]] — the power-mean backup is one of three vault instances of smoothing the max
 
 ## Current State and Open Problems
-UCT remains dominant in practice (AlphaGo, AlphaZero) although its logarithmic bonus assumes exponential concentration of regret where actual concentration is polynomial — the theory for stochastic environments is incomplete, with [[dam2024Power]] the current progress ($p=2$ consistently best empirically). [[foster2025Good]] connects the framework to LM alignment via MTSS. Per-paper open questions (minimax rate, optimal $p$, adversarial extension, deep value networks) live on the paper pages.
+UCT remains dominant in practice (AlphaGo, AlphaZero) although its logarithmic bonus assumes exponential concentration of regret where actual concentration is polynomial — the theory for stochastic environments is incomplete, with [[dam2024Power]] the current progress ($`p=2`$ consistently best empirically). [[foster2025Good]] connects the framework to LM alignment via MTSS. Per-paper open questions (minimax rate, optimal $`p`$, adversarial extension, deep value networks) live on the paper pages.
