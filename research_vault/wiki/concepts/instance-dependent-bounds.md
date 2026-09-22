@@ -57,6 +57,8 @@ Instance-dependent results in this vault, by setting:
 - [[TranThanh2012Knapsack]] — $O(\ln B)$ budget-limited regret with a *matching* lower bound
 - [[Dam2024Power]] — $\mathcal{O}(n^{-1/2})$ convergence for stochastic MCTS
 - [[Foster2025Foundation]] — $C_\text{cov}$ as necessary *and* sufficient: an instance functional that is tight in both directions
+- [[zanette2019Tighter]] — EULER: online-RL regret scaling with the *environmental norm* $\max_{s,a,h}[\mathrm{Var}\,r + \mathrm{Var}\,V^*]$ rather than the horizon, and — the point — attained without the algorithm being told that quantity
+- [[cassel2026Quantile]] — the same guarantee type from an ensemble quantile rather than a bonus, with the summed variance $\sum_h\max_{s,a}\mathrm{Var}_{s,a,h}(\cdot)$; a second, incompatible instance functional for the same setting
 
 Papers whose central open problem is the *absence* of such a bound:
 

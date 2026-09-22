@@ -7,6 +7,7 @@ Format: `- [[slug]] — one-line description`
 
 ## Papers
 
+- [[cassel2026Quantile]] — VIBE: optimism from a quantile of an ensemble on disjoint batches, no bonuses or counts; variance-dependent minimax regret in tabular MDPs
 - [[Dam2024Power]] — Stochastic-Power-UCT: power mean MCTS with $\mathcal{O}(n^{-1/2})$ convergence in stochastic MDPs; fixes UCT's flawed logarithmic bonus
 - [[Foster2025Foundation]] — coverage is necessary and sufficient for computationally efficient LM alignment; SpannerSampling matches $C_\text{cov}$ lower bound; ETH-hardness of training-time interventions
 - [[Kanarios2024Cost]] — CABAI: cost-aware BAI with heterogeneous arm costs; optimal proportions scale $\sqrt{c_a}$; CTAS (optimal) and CO (fast)
@@ -21,6 +22,7 @@ Format: `- [[slug]] — one-line description`
 - [[TranThanh2012Knapsack]] — KUBE / fractional KUBE: first $O(\ln B)$ algorithms for the budget-limited MAB; full-info optimum = unbounded knapsack; matching lower bound (AAAI 2012)
 - [[Yang2025Stochastically]] — BFAI-TS: fixed-budget constrained BAI with $m$ constraints via Thompson sampling; asymptotically optimal exponential PFS decay (arXiv 2025)
 - [[Yin2023Offline]] — PFQL/VAFQL: first instance-dependent offline RL bound under nonlinear (differentiable) function approximation; minimax-optimal up to $\sqrt{d}$ (ICLR 2023)
+- [[zanette2019Tighter]] — EULER: problem-dependent regret scaling with the environmental norm, with no domain knowledge; answers the Jiang–Agarwal horizon question
 
 ## Concepts
 - [[contextual-bandits-offline]] — the batch contextual bandit: fixed logged data, no interaction; setup, coverage coefficients, and the value-based / policy-based taxonomy

@@ -37,6 +37,8 @@ with $\bar\mu_{i,t-1}$ the empirical mean and $n_{i,t-1}$ the pull count. This a
 - [[TranThanh2010Epsilon]] — uses UCB purely as an *exploration* subroutine inside an [[budget-limited-mab-epsilon-first]] shell, and finds it performs no better than uniform sampling: the $B^{2/3}$ ceiling comes from the phase split, not the sampling rule
 - [[TranThanh2012Knapsack]] — fractional [[budget-limited-mab-kube]] as the budget-limited analogue of UCB; [[budget-limited-mab-kube]] itself solves a UCB-augmented knapsack each step
 - Abbasi-Yadkori et al. (2011) — self-normalized confidence sets for linear bandits; the source of the elliptical-bonus form reused throughout
+- [[zanette2019Tighter]] — the bonus carried into MDPs and sharpened: empirical Bernstein on the conditional value variance plus a correction for value-function uncertainty, which is what makes the resulting regret problem-dependent rather than worst-case
+- [[cassel2026Quantile]] — the counter-case: optimism with **no** confidence width at all, from an ensemble order statistic, matching the same rates. Evidence that the bonus is one implementation of optimism rather than its definition
 
 ## Variants
 
