@@ -379,19 +379,59 @@ The Berry–Esseen remark of §2 is used for nothing; its constant is not quoted
 - **Where QoM-LCB is worth it.** Symmetric noise of unknown, cell-dependent scale, the Gaussian bandit with heteroscedastic unknown variances being the model case: the LCB needs $`\sigma`$ or a bound on it, the sample standard deviation is not a valid substitute without a range or a distributional assumption, and QoM-LCB needs nothing and adapts to the actual spread. For bounded rewards with a known range, the value-based page's rules are better on constants; for skewed unbounded noise, neither this page nor the general page applies.
 - **Scaling.** The gap is proxy-scaled rather than count-scaled, as on the general page: the source of Corollary 2 and of Proposition 4.
 
-## 10. Open problems, in priority order
+## 10. The linear case
+
+Written into the Overleaf note as §2.6 on 2026-09-22. The tabular algorithm splits each cell's rewards, which makes a cell a repeated experiment and is tabular by construction. The linear version splits the **rounds** instead, fits one least-squares estimate per batch, and takes the order statistic of the $`B`$ predictions at the pair in question, so one split serves every pair and the features share information across contexts.
+
+**Algorithm.** With $`q^{\ast}(x,a)=\phi(x,a)^{\top}\theta^{\ast}`$, $`\lVert\phi\rVert_2\le1`$, and $`\phi_t:=\phi(x_t,a_t)`$: partition the rounds into $`B`$ balanced batches $`\mathcal B^{1},\dots,\mathcal B^{B}`$; set $`\Lambda^{b}:=\sum_{t\in\mathcal B^{b}}\phi_t\phi_t^{\top}`$ and $`\hat\theta^{b}:=(\Lambda^{b})^{-1}\sum_{t\in\mathcal B^{b}}\phi_tr_t`$, the **ordinary** least-squares fit; put $`\hat q^{b}(x,a):=\phi(x,a)^{\top}\hat\theta^{b}`$; let $`\underline q(x,a)`$ be the $`k`$-th smallest of these; act greedily on $`\underline q`$.
+
+**Why it transfers, and this is the point.** Writing $`\phi:=\phi(x,a)`$,
+
+```math
+\hat q^{b}(x,a)-q^{\ast}(x,a)=\phi^{\top}\big(\hat\theta^{b}-\theta^{\ast}\big)=\sum_{t\in\mathcal B^{b}}c_t\eta_t,\qquad c_t:=\phi^{\top}(\Lambda^{b})^{-1}\phi_t,
+```
+
+a noise average with **signed** weights, the $`c_t`$ being fixed once the design and the split are fixed. This is exactly where the general page's route dies: an order statistic of batch *means* has non-negative weights, so undershoot follows from non-negative rewards through Feige's theorem, whereas a least-squares prediction has no such structure and no assumption on the sign of the rewards controls it. Symmetry does, and without reference to the weights at all — each $`c_t\eta_t`$ is symmetric, a sum of independent symmetric variables is symmetric, so $`\Pr[\hat q^{b}(x,a)\le q^{\ast}(x,a)]\ge1/2`$ and Lemma 3 goes through unchanged. **This supplies the "new undershoot lemma" that the general page's open problem 4 asks for.**
+
+**Width.** The same sum is sub-Gaussian with proxy $`\sigma^2\sum_tc_t^2`$, and the cross terms telescope against $`\Lambda^{b}`$:
+
+```math
+\sum_{t\in\mathcal B^{b}}c_t^2=\phi^{\top}(\Lambda^{b})^{-1}\Big(\sum_{t\in\mathcal B^{b}}\phi_t\phi_t^{\top}\Big)(\Lambda^{b})^{-1}\phi=\phi^{\top}(\Lambda^{b})^{-1}\phi=\lVert\phi\rVert^2_{(\Lambda^{b})^{-1}},
+```
+
+so each batch falls $`4\sigma\sqrt{\ln2}\,\lVert\phi\rVert_{(\Lambda^{b})^{-1}}`$ below the mean with probability at most $`1/256`$, the same constant as Lemma 4.
+
+**Theorem (finite context set).** With $`\alpha=1/8`$, $`B\ge3.2\ln(2SK/\delta)`$ and $`\Lambda^{b}\succ0`$ for every $`b`$, conditional on the design and the split, with probability at least $`1-\delta`$, simultaneously for every deterministic $`\pi`$,
+
+```math
+J(\pi)-J(\hat\pi)\ \le\ 4\sigma\sqrt{\ln2}\ \mathbb E_{x\sim\nu}\Big[\max_{b\le B}\lVert\phi(x,\pi(x))\rVert_{(\Lambda^{b})^{-1}}\Big].
+```
+
+Steps 2 and 3 of Theorem 1 carry over word for word: they use only the two events and the maximization defining $`\hat\pi`$, never the tabular structure.
+
+**Tabular recovery.** At $`\phi=e_{(x,a)}`$, $`\Lambda^{b}`$ is diagonal with entry $`\lvert\mathcal B^{b}(x,a)\rvert`$, so $`\max_b\lVert\phi\rVert_{(\Lambda^{b})^{-1}}=(\min_b\lvert\mathcal B^{b}(x,a)\rvert)^{-1/2}=\lfloor N(x,a)/B\rfloor^{-1/2}`$ and the bound is Theorem 1's exactly. The condition $`\Lambda^{b}\succ0`$ becomes $`N(x,a)>B`$.
+
+**Two limitations, both real.**
+
+- **Ordinary least squares, not ridge.** Ridge shrinks toward the origin, and that shrinkage is a deterministic bias sitting inside the order statistic, which breaks the symmetry the undershoot rests on. What replaces the regularizer is $`\Lambda^{b}\succ0`$, each batch spanning $`\mathbb R^{d}`$ on its own — the analogue of $`N(x,a)>B`$.
+- **Infinite context sets are not covered.** The union bound runs over the $`SK`$ pairs, and that is the only place finiteness enters; both lemmas hold at a fixed pair whatever $`\mathcal X`$ is. For a continuum, validity is a statement about infinitely many linear functionals. A covering argument is the natural route: on an $`\varepsilon`$-net of the feature set there are at most $`(3/\varepsilon)^{d}`$ pairs, and between net points $`\underline q`$ moves by at most $`\varepsilon\max_b\lVert\hat\theta^{b}\rVert_2`$, an order statistic of linear functions being Lipschitz in $`\phi`$ with that constant. Validity then holds up to an additive $`\varepsilon(\max_b\lVert\hat\theta^{b}\rVert_2+\lVert\theta^{\ast}\rVert_2)`$, negligible at $`\varepsilon`$ polynomially small in $`T`$, at the cost of $`B\gtrsim d\ln T`$. Not carried out, and the $`B\gtrsim d`$ it forces has no counterpart in the linear LCB, whose quantifier is already uniform.
+
+**Verification.** The two load-bearing identities were checked numerically on random designs before the section was written: $`\sum_tc_t^2=\lVert\phi\rVert^2_{(\Lambda^{b})^{-1}}`$ to machine precision, the deviation identity, the tabular collapse, and that $`t=4\sigma\sqrt{\ln2}\lVert\phi\rVert`$ gives exactly $`2^{-8}`$.
+
+## 11. Open problems, in priority order
 
 1. **Novelty.** As on the general page, not yet checked, and it gates the rest.
 2. **Characterize (U) inside the sub-Gaussian class.** Symmetry is sufficient; Proposition 3 shows something is needed. Which skewed laws satisfy $`\Pr[\bar X\le q]\ge p_0`$ at every batch size, and is there a shrinkage device for signed rewards, in the way $`\sum X_i/(m+1)`$ serves non-negative ones, that restores (U) from (SG) alone?
 3. **Constants.** Lemma 4 with the exact Gaussian tail reaches the floor; whether a sub-Gaussian-only proof can close the remaining $`26`$ percent, and the level $`\alpha\approx1/6`$.
 4. **Optimism online.** Under symmetric noise the high quantile is a valid optimistic index (§2). Its regret analysis for the $`K`$-armed bandit would be the online counterpart of Theorem 1, with no confidence width to compute.
-5. **Function approximation and an empirical check**, as on the general page.
+5. **Function approximation beyond the linear, finite-context case.** §10 settles linear classes with finitely many contexts and supplies the undershoot lemma for signed weights that the general page's open problem 4 asks for. What remains: the covering argument for a continuum of contexts, and whether $`B\gtrsim d`$ is really necessary or an artifact of the net; and whether ridge can be used after all, by carrying its bias through the order statistic rather than assuming it away.
+6. **An empirical check**, as on the general page.
 
-## 11. Next steps
+## 12. Next steps
 
 1. Novelty search, shared with the general page.
 2. Decide which assumption the paper leads with: (SG) with symmetric noise, this page, with the non-negative case of the general page as the extension; or the reverse. This page has the cleaner statements and constants, the general page the weaker assumption.
-3. Write Theorems 1–3, Lemmas 1–6 and Proposition 3 into `02_offline_contextual_bandits.tex` on Overleaf.
+3. ~~Write Theorems 1–2 and the core lemmas into `02_offline_contextual_bandits.tex`~~ — done 2026-09-22 as Overleaf §2.5, with the linear case of §10 as §2.6. Still unwritten there: Theorem 3, Propositions 2–4, and §7.1 on what the count condition costs.
 
 ## Sources
 
