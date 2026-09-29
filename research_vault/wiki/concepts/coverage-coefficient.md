@@ -44,6 +44,7 @@ This satisfies $`C_\text{cond}(\pi^*_\beta) \leq 2`$ while $`C_\text{cov}(\pi^*_
 
 - **Concentrability** $`C_\text{eff} := \sup_\pi\sup_h\|d^\pi_h/d^\mu_h\|^2_{2,d^\mu_h}`$ — offline RL's classical all-policy coverage condition ([[yin2023Offline]], Assumption 2.2); *single-policy* concentrability (Xie et al. 2021a) is the weaker, more modern form
 - **Uniform coverage** ([[yin2023Offline]], Assumption 2.3) — unlike concentrability, depends jointly on the MDP *and* the function class, requiring both a curvature condition and parameter identifiability. Strictly stronger, and the price paid for [[instance-dependent-bounds]] under [[differentiable-function-approximation]]
+- **Whitened-feature coverage** $`\mathfrak C_q:=\|\Sigma_D^{-1/2}\mathbb E_{x\sim\nu}\phi(x,\pi^*(x))\|_q`$ ([[li2022Pessimism]]) — single-policy and linear: the optimal policy's mean feature, measured in the data's whitened geometry, averaged over contexts *before* the norm is taken. For $`M`$ above a threshold, minimax rates over $`\{\mathfrak C_q\le M\}`$ are $`\tilde\Theta(d^{1-1/q}M/\sqrt T)`$. In the tabular case, the class of bounded $`C^*`$ lies inside $`\{\mathfrak C_1\le\sqrt{SC^*}\}`$. $`\mathfrak C_1`$ can be far smaller than that bound, but it misses the faster rates available at $`C^*<2`$
 
 ## Related Concepts
 

@@ -143,7 +143,7 @@ The field splits into two families by *what is estimated*. **Value-based** algor
 Fit a reward model $`\hat q`$ by least-squares regression on the logged triples and act greedily on it, $`\hat\pi(x)\in\arg\max_a\hat q(x,a)`$; in the modern form, subtract a computable uncertainty penalty first, $`\hat\pi(x)\in\arg\max_a\hat q(x,a)-\Gamma(x,a)`$. The propensities are never used, the behavior policy may be deterministic, and no policy class is specified, so the comparator is the global optimum $`\pi^*`$. Coverage enters only through the analysis. Full treatment: [[contextual-bandits-offline-value-based]].
 
 
-*The direction's literature.* Its origins are pre-pessimism: the plug-in individualized-treatment rule of Murphy (JMLR 2005), restated as (3.1) in Qian & Murphy (Ann. Statist. 2011), and "the regression approach" of Beygelzimer & Langford (KDD 2009, §6.1), whose Theorem 6.1 bounds $`\mathrm{reg}(\pi_f)\le2\sqrt{K\,\mathrm{reg}_r(f)}`$ and shows it tight. Brandfonbrener et al. (ICML 2021) named the value-based/policy-based split itself and showed value-based objectives are action-stable where policy-based ones are not. The modern form subtracts a penalty before the $`\arg\max`$: Rashidinejad et al. (NeurIPS 2021) for tabular LCB under single-policy concentrability with a matching lower bound; Jin, Yang & Wang (ICML 2021) for the uncertainty-quantifier framework the analysis is written in; Xie et al. (NeurIPS 2021) for pessimism over a version space; Li, Ma & Srebro (NeurIPS 2022) for the $`\ell_p`$ family, pessimism-validity and adaptive minimax optimality; Nguyen-Tang et al. (ICLR 2022) for the neural case.
+*The direction's literature.* Its origins are pre-pessimism: the plug-in individualized-treatment rule of Murphy (JMLR 2005), restated as (3.1) in Qian & Murphy (Ann. Statist. 2011), and "the regression approach" of Beygelzimer & Langford (KDD 2009, §6.1), whose Theorem 6.1 bounds $`\mathrm{reg}(\pi_f)\le2\sqrt{K\,\mathrm{reg}_r(f)}`$ and shows it tight. Brandfonbrener et al. (ICML 2021) named the value-based/policy-based split itself and showed value-based objectives are action-stable where policy-based ones are not. The modern form subtracts a penalty before the $`\arg\max`$: Rashidinejad et al. (NeurIPS 2021) for tabular LCB under single-policy concentrability with a matching lower bound; Jin, Yang & Wang (ICML 2021) for the uncertainty-quantifier framework the analysis is written in; Xie et al. (NeurIPS 2021) for pessimism over a version space; Li, Ma & Srebro (NeurIPS 2022; [[li2022Pessimism]]) for the $`\ell_p`$ family, pessimism-validity and adaptive minimax optimality; Nguyen-Tang et al. (ICLR 2022) for the neural case.
 
 ### 4.2 Policy-based: importance weighting and pessimistic selection
 
@@ -257,6 +257,7 @@ With the Hoeffding width the two bounds coincide because the width is policy-ind
 - Brandfonbrener, Whitney, Ranganath & Bruna (ICML 2021) — the value-based / policy-based distinction itself, and action-stability
 - Dudík, Langford & Li (2011) — the direct method, IPS and doubly robust estimators, and the taxonomy the field still uses
 - Xiao, Wu, Lattimore et al. (ICML 2021) — what pessimism does and does not buy in the batch setting
+- [[li2022Pessimism]] — $`\ell_p`$ confidence sets in the linear case; the $`\ell_\infty`$ rule is adaptively minimax optimal, and the $`\ell_2`$ rule (BCP) is not
 - [[ryu2025Improved]] — the policy-side second-order route
 
 ## Variants
@@ -277,12 +278,12 @@ With the Hoeffding width the two bounds coincide because the width is policy-ind
 
 ## Current State and Open Problems
 
-Active. The tabular case is settled up to constants — matching upper and lower bounds in $`S`$, $`C^*`$ and $`T`$ — and the linear case is settled for the policy-level rules, where the $`\ell_\infty`$ confidence set is adaptively minimax optimal. What is open is mostly on the value-based side and is recorded there: pointwise quantifiers for general classes, whether pessimism at the level of policies rather than contexts buys anything, and instance-dependent rates that are not driven by a worst-case coverage constant.
+Active. The tabular case is settled up to constants — matching upper and lower bounds in $`S`$, $`C^*`$ and $`T`$ — and the linear case is settled for the policy-level rules in the worst case: the $`\ell_\infty`$ confidence set is adaptively minimax optimal over the $`\ell_q`$-constrained classes, up to $`\log d`$ ([[li2022Pessimism]]). What is open is mostly on the value-based side and is recorded there: pointwise quantifiers for general classes, whether pessimism at the level of policies rather than contexts buys anything, and instance-dependent rates that are not driven by a worst-case coverage constant.
 
 What is open, in the vault's own terms:
 
 - **Pointwise quantifiers for general classes.** The tabular and linear quantifiers are explicit; nothing comparable exists for a general $`\mathcal F`$ without going through a version space.
-- **Whether policy-level pessimism buys anything** over per-context pessimism when $`\Pi=\mathcal A^{\mathcal X}`$, where Proposition 6.1 of [[contextual-bandits-offline-value-based]] shows they coincide.
+- **Whether policy-level pessimism buys anything** over per-context pessimism when $`\Pi=\mathcal A^{\mathcal X}`$. Proposition 6.1 of [[contextual-bandits-offline-value-based]] shows the two coincide for additive per-pair widths. The widths of [[li2022Pessimism]] are not additive: each is a norm of the policy's mean feature. There, the gain over PEVI is an upper-bound comparison, a Jensen gap paid for by a rule that must know $`\nu`$, and no separation is proved.
 - **Instance-dependent rates not driven by a worst-case coverage constant** — blocked by Xiao et al.'s negative result (§4.5), so the question is what weaker notion of instance-optimality survives.
 - **Making the widths data-driven.** The hyperparameter-adaptation problem of `jun2026CS703Q10`, partially answered by [[ryu2025Improved]].
 - **Four uningested papers.** Rashidinejad et al., Jin–Yang–Wang, Xie et al. and Brandfonbrener et al. are cited author–year throughout this page and its value-based sibling with no paper pages behind them.

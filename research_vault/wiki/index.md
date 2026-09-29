@@ -13,6 +13,7 @@ Format: `- [[slug]] — one-line description`
 - [[kanarios2024Cost]] — CABAI: cost-aware BAI with heterogeneous arm costs; optimal proportions scale $`\sqrt{c_a}`$; CTAS (optimal) and CO (fast)
 - [[kostrikov2021Offline]] — IQL: offline RL with strictly in-sample value evaluation via upper-expectile regression; $`\tau\to1`$ recovers the support-constrained optimum; SOTA on D4RL antmaze (ICLR 2022)
 - [[lardy2025Constrained]] — CBAI: BAI with cost-threshold constraint on bivariate arms; handles dependent reward-cost; asymptotically optimal TaS (NeurIPS 2025)
+- [[li2022Pessimism]] — $`\ell_p`$ confidence sets for offline linear bandits: $`\ell_2`$ is BCP; $`\ell_\infty`$ (PUNC) generalizes tabular LCB and is minimax over every $`\ell_q`$ class at once (NeurIPS 2022)
 - [[li2026Predicting]] — SLG Search: tail-guided BoN scaling law prediction + adaptive two-stage compute allocation; polynomial amplification over BoN
 - [[qin2026Taming]] — OE2D: first offline-oracle-efficient contextual bandit algorithm for general function classes with O(log T) calls; introduces DOEC
 - [[ryu2025Improved]] — PUB: parameter-free variance-adaptive off-policy selection via betting-based LCB; freezing score function wins in small-data regimes (COLT 2025)

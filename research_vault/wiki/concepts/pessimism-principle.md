@@ -30,6 +30,7 @@ where $`\hat v`$ is an empirical value estimate and $`\Gamma`$ is a high-probabi
 |---|---|
 | Tabular | visitation counts, $`\Gamma \propto \sqrt{1/n(s,a)}`$ |
 | Linear MDPs | elliptical bonus $`\beta\sqrt{\phi^\top\Sigma_h^{-1}\phi}`$ (PEVI) |
+| Linear bandits, per policy | $`\ell_p`$ confidence set around least squares; the width $`\tfrac\beta2\Vert\Sigma_D^{-1/2}\mathbb E_{x\sim\nu}\phi(x,\pi(x))\Vert_q`$ is a norm of the policy's mean feature ([[li2022Pessimism]]) |
 | [[differentiable-function-approximation]] | gradient geometry $`\beta\sqrt{\nabla_\theta f^\top\Sigma_h^{-1}\nabla_\theta f}`$ ([[fqi-pessimistic]]) |
 | Off-policy selection | concentration on [[importance-weighting]] estimates; betting-based LCBs ([[ryu2025Improved]]) |
 | Value regularization | penalize $`Q`$ on out-of-distribution actions (CQL) |
@@ -40,6 +41,7 @@ In every case $`\Gamma`$ is large where the data is thin along the direction tha
 
 - [[ryu2025Improved]] — PUB: parameter-free, variance-adaptive LCBs for unbounded importance-weighted rewards via betting; pessimism applied to offline policy *selection*
 - [[yin2023Offline]] — PFQL/VAFQL: pessimism applied to offline policy *learning* over a nonlinear class, with the penalty read as an effective sample size along $`\nabla_\theta f`$; yields [[instance-dependent-bounds]]
+- [[li2022Pessimism]] — pessimism as the worst case over a confidence set for $`\theta^*`$: the $`\ell_p`$ family for linear offline bandits, where the $`\ell_\infty`$ rule (PUNC) is adaptively minimax optimal and the $`\ell_2`$ rule (BCP) is not
 - Jin et al. (2021b) — PEVI, the linear-MDP reference point
 - Buckman et al. (2020) — argues pessimism is the right principle for fixed-dataset policy optimization
 - Kumar et al. (2020) — CQL, the value-regularization form used in practice
