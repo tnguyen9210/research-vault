@@ -86,7 +86,7 @@ This can be exponentially smaller: $`C_\text{cond}(\pi^*_\beta) \leq 2`$ while $
 - **Extends:** XPO (Xie et al. 2024) — proves XPO cannot be computationally efficient (Thm 4.1)
 - **Extends:** OnlineDPO (Guo et al. 2024) — shows it is data-inefficient due to passive exploration
 - Dylan J. Foster, Zakaria Mhammedi, Dhruv Rohatgi — authors
-- [[2026-06-16-foster2025-sections-1-4]] — saved query: section-by-section walkthrough of Sections 1–4
+- [[foster2025-sections-1-4]] — saved query: section-by-section walkthrough of Sections 1–4
 
 ## Open Questions
 

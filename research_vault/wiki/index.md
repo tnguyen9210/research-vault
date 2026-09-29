@@ -73,12 +73,12 @@ Format: `- [[slug]] — one-line description`
 - [[mcts-power-mean]] — power mean backup operator for MCTS; $`p=2`$ optimal; $`\mathcal{O}(n^{-1/2})`$ convergence; introduced in [[dam2024Power]]
 - [[test-time-scaling]] — LLM inference-time compute scaling; Best-of-$`N`$ and adaptive alternatives
 - [[test-time-scaling-slg-search]] — Scaling-Law Guided Search; two-stage adaptive test-time compute; polynomial amplification over BoN; introduced in [[li2026Predicting]]
+
 ## Queries
 
-- [[2026-06-16-foster2025-sections-1-4]] — section-by-section summary of Foster2025Foundation Sections 1–4: setup, coverage lower bound, SpannerSampling, hardness of proper exploration
-- [[2026-08-19-offline-fqi-walkthrough]] — reading path from the FQI template through offline-vs-online, extrapolation error, and Algorithm 1 of [[yin2023Offline]]
-- [[2026-09-16-offline-cb-value-based]] — reading path for the value-based offline contextual bandit account; the answer now lives in [[contextual-bandits-offline]] and [[contextual-bandits-offline-value-based]]
-
-- [[2026-09-22-cassel-qom-lemma1-erratum]] — checking [[cassel2026Quantile]] §2: Corollary 2 and the optimism half hold, but the bias bound is false, a $`\sqrt{\log(1/\delta)}`$ dropped from under a radical
-- [[2026-09-22-qom-value-based-pessimism]] — Quantile of Means as tabular value-based pessimism: Theorem 4.2-style variance-adaptive bound without a penalty, its constant price, lost $`(C^{\ast}-1)`$ adaptivity, and a [[cassel2026Quantile]] erratum
-- [[2026-09-22-qom-value-based-pessimism-subgaussian]] — QoM-LCB for $`\sigma^2`$-sub-Gaussian rewards: Theorem 4.2-style bound, $`B=3.2\ln(2SK/\delta)`$ under symmetric noise; sub-Gaussianity alone is not enough; extends to linear classes via signed-weight symmetry
+- [[cassel-qom-lemma1-erratum]] — checking [[cassel2026Quantile]] §2: Corollary 2 and the optimism half hold, but the bias bound is false, a $`\sqrt{\log(1/\delta)}`$ dropped from under a radical
+- [[foster2025-sections-1-4]] — section-by-section summary of Foster2025Foundation Sections 1–4: setup, coverage lower bound, SpannerSampling, hardness of proper exploration
+- [[offline-cb-value-based]] — reading path for the value-based offline contextual bandit account; the answer now lives in [[contextual-bandits-offline]] and [[contextual-bandits-offline-value-based]]
+- [[offline-fqi-walkthrough]] — reading path from the FQI template through offline-vs-online, extrapolation error, and Algorithm 1 of [[yin2023Offline]]
+- [[qom-value-based-pessimism]] — Quantile of Means as tabular value-based pessimism: Theorem 4.2-style variance-adaptive bound without a penalty, its constant price, lost $`(C^{\ast}-1)`$ adaptivity, and a [[cassel2026Quantile]] erratum
+- [[qom-value-based-pessimism-subgaussian]] — QoM-LCB for $`\sigma^2`$-sub-Gaussian rewards: Theorem 4.2-style bound, $`B=3.2\ln(2SK/\delta)`$ under symmetric noise; sub-Gaussianity alone is not enough; extends to linear classes via signed-weight symmetry

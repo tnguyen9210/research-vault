@@ -3,6 +3,7 @@ date: 2026-09-19
 question: "Should concept pages be renamed broadest-to-narrowest, and which ones have a clear enough parent to justify it?"
 tags: [vault-maintenance, naming]
 status: temporary
+aliases: [2026-09-19-concept-renaming-proposal]
 ---
 
 # Concept renaming proposal — broader-to-narrower names

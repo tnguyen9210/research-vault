@@ -46,9 +46,11 @@ The canonical ID for every paper is its **Better BibTeX citekey** (format `auth.
 |----------|---------|---------|
 | Paper wiki page | `wiki/papers/<citekey>.md` | `wiki/papers/munos2008FiniteTime.md` |
 | Concept page | `wiki/concepts/<slug>.md` | `wiki/concepts/pessimism-principle.md` |
-| Query page | `wiki/queries/<YYYY-MM-DD-slug>.md` | `wiki/queries/2026-05-27-scaling-laws-comparison.md` |
+| Query page | `wiki/queries/<slug>.md` | `wiki/queries/scaling-laws-comparison.md` |
 
 Use lowercase slugs, hyphens not underscores, no spaces in filenames.
+
+**Query filenames carry no date** (since 2026-09-29). The date lives in the frontmatter `date:` field only. The seven dated query pages were renamed that day, each keeping its dated name in `aliases:`, which keeps the append-only `log.md` resolving.
 
 **Concept naming rules:**
 
@@ -329,7 +331,7 @@ When the user asks a question:
 1. Read `wiki/index.md` to identify relevant pages.
 2. Read those pages.
 3. Synthesize an answer with `[[wiki-page]]` citations.
-4. **Ask** the user: "Should I save this as a query page?" If yes, write to `wiki/queries/YYYY-MM-DD-slug.md`, update `index.md`, append to `log.md`.
+4. **Ask** the user: "Should I save this as a query page?" If yes, write to `wiki/queries/<slug>.md` with today's date in its `date:` field, update `index.md`, append to `log.md`.
 
 ---
 

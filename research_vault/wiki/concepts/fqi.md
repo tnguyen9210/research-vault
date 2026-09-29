@@ -179,7 +179,7 @@ FQI is a template; most offline RL algorithms are FQI with **one of its three st
 
 ## Related Concepts
 
-- [[2026-08-19-offline-fqi-walkthrough]] — saved query: a reading path through this page, [[extrapolation-error]] and [[fqi-pessimistic]], in the order the questions arise
+- [[offline-fqi-walkthrough]] — saved query: a reading path through this page, [[extrapolation-error]] and [[fqi-pessimistic]], in the order the questions arise
 - [[offline-reinforcement-learning]] — the data setting, not the algorithm. Keeping these separate matters: **FQI is the template, offline RL is the regime.** Offline FQI is plain FQI on fixed data; most of modern offline RL is offline FQI plus some mechanism preventing unsupported actions from looking artificially good. Developed in the *Offline vs. online FQI* section above
 - [[fqi-finite-sample-analysis]] — line-by-line walkthrough of Jiang's (2020) finite-sample guarantee for this template: the A/B/C error chain, the coverage step, and the Bernstein fast rate
 - [[realizability]] — necessary but not sufficient here; Bellman completeness is the operative assumption

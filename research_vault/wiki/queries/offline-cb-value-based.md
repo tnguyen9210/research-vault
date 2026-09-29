@@ -2,6 +2,7 @@
 date: 2026-09-16
 question: "Offline contextual bandits via the value-based (regression) approach — what is the standard formulation, what is known, and how does it compare to the policy-based (IPW / IX / LS) route?"
 tags: [contextual-bandits, offline-contextual-bandits, pessimism, learning-theory]
+aliases: [2026-09-16-offline-cb-value-based]
 ---
 
 # Value-Based Offline Contextual Bandits — reading path

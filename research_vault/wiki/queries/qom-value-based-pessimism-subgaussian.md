@@ -1,11 +1,12 @@
 ---
 date: 2026-09-22
 question: "Can the Quantile of Means pessimism analysis be simplified by assuming sigma^2-sub-Gaussian rewards, the standard bandit setting? Propose the algorithm and write a Theorem 4.2-style analysis step by step, verifying every step."
+aliases: [2026-09-22-qom-value-based-pessimism-subgaussian]
 ---
 
 # Quantile of Means as Value-Based Pessimism: the Sub-Gaussian Case
 
-**Scope.** The simplified case of [[2026-09-22-qom-value-based-pessimism]] (below, *the general page*): the same tabular value-based route of [[contextual-bandits-offline-value-based]] §4 and the same estimator, with the reward noise assumed $`\sigma^2`$-sub-Gaussian with one common $`\sigma`$, as in the standard stochastic bandit of Lattimore & Szepesvári (2020, §5.3). Rewards may be signed and unbounded, and $`S=1`$ is the $`K`$-armed bandit. Throughout, every pair is assumed logged at least $`B`$ times, assumption (C) of §1; it removes the empty-batch convention and the gap terms from the statements, and §7 records what it costs. The page reads on its own; where a step is identical to the general page it says so instead of repeating the proof. Every black box is cited and its hypotheses checked at the point of use (§8); nothing rests on simulation.
+**Scope.** The simplified case of [[qom-value-based-pessimism]] (below, *the general page*): the same tabular value-based route of [[contextual-bandits-offline-value-based]] §4 and the same estimator, with the reward noise assumed $`\sigma^2`$-sub-Gaussian with one common $`\sigma`$, as in the standard stochastic bandit of Lattimore & Szepesvári (2020, §5.3). Rewards may be signed and unbounded, and $`S=1`$ is the $`K`$-armed bandit. Throughout, every pair is assumed logged at least $`B`$ times, assumption (C) of §1; it removes the empty-batch convention and the gap terms from the statements, and §7 records what it costs. The page reads on its own; where a step is identical to the general page it says so instead of repeating the proof. Every black box is cited and its hypotheses checked at the point of use (§8); nothing rests on simulation.
 
 ## Short answer
 
@@ -358,7 +359,7 @@ So (C) is an exposition device, (C\*) is the assumption, and a write-up should s
 | multiplicative Chernoff $`\Pr[X\le\mu/2]\le e^{-\mu/8}`$; $`e^{-u}\le1/(eu)`$ | standard; the latter is Lattimore & Szepesvári, p. 77 | Theorem 2 Step 1, Lemma 6, Corollaries 2, 3 | binomial counts; $`B\ge2`$ |
 | Markov's inequality | standard | Proposition 3 | non-negative count |
 | Gaussian batch means are Gaussian; the binomial lower bound $`\binom Bk\ge e^{B\cdot h(k/B)}/(B+1)`$ | standard; as on the general page | Proposition 2 | Gaussian noise; $`0 < k < B`$ |
-| Fact 0, the one-sided reduction and the Proposition 3 construction of the general page | [[2026-09-22-qom-value-based-pessimism]] | Theorem 1 Step 2, Proposition 4 | the instance is symmetric and $`1/2`$-sub-Gaussian |
+| Fact 0, the one-sided reduction and the Proposition 3 construction of the general page | [[qom-value-based-pessimism]] | Theorem 1 Step 2, Proposition 4 | the instance is symmetric and $`1/2`$-sub-Gaussian |
 
 The Berry–Esseen remark of §2 is used for nothing; its constant is not quoted.
 
@@ -435,7 +436,7 @@ Steps 2 and 3 of Theorem 1 carry over word for word: they use only the two event
 
 ## Sources
 
-- [[2026-09-22-qom-value-based-pessimism]]: Fact 0, the algorithm, the one-sided reduction, the count step, Proposition 2's argument, Proposition 3's instance, and the comparison tables.
+- [[qom-value-based-pessimism]]: Fact 0, the algorithm, the one-sided reduction, the count step, Proposition 2's argument, Proposition 3's instance, and the comparison tables.
 - [[contextual-bandits-offline]] §2; [[contextual-bandits-offline-value-based]] Theorem 4.2 and its proof, Theorem 5.1, Theorem 4.5.
 - [[cassel2026Quantile]]: the estimator. Nothing else of the paper is used here.
 - Lattimore & Szepesvári, *Bandit Algorithms* (2020), §5.3: Definition 5.2, Theorem 5.3, Lemma 5.4, Corollary 5.5, Example 5.6, and the remark $`e^{-x}\le1/(ex)`$ on p. 77. Read from the mirrored PDF on 2026-09-22.

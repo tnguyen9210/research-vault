@@ -606,3 +606,10 @@ Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the m
 - **Not merely loose.** For Bernoulli(1/2) rewards as n → ∞ a batch falls below their threshold with probability Φ(−1.7) = 0.0446, nearly three times the quantile level 1/65, so the claimed event holds with probability at most δ^0.3447: at δ = 0.01 the lemma claims ≥ 0.99 and the truth is ≤ 0.21. Claimed and actual move in opposite directions as δ shrinks
 - **The paper's own related work agrees.** It faults Cassel et al. (2025) because "their bias bound incurs additional logarithmic factors" — which are exactly the √log(1/δ) missing here, so the earlier paper was probably right. That passage also says their optimism claim covers "Bernoulli or symmetric random variables", which is the regime [[2026-09-22-qom-value-based-pessimism-subgaussian]] assumes, and so bears on its open novelty question
 - Read from rendered PDF pages, not `pdftotext`, which garbles radicals — and the radical is where the error lives. Every number re-evaluated in closed form; 0 of 153 spans wrong on GitHub's renderer
+
+## [2026-09-29] update | Query pages drop the date from their filenames
+
+- At Tuan's request, the seven query pages lose their `YYYY-MM-DD-` prefix: [[cassel-qom-lemma1-erratum]], [[concept-renaming-proposal]], [[foster2025-sections-1-4]], [[offline-cb-value-based]], [[offline-fqi-walkthrough]], [[qom-value-based-pessimism]] and [[qom-value-based-pessimism-subgaussian]]. The date stays in each page's `date:` field
+- Each dated name is kept in its page's `aliases:`, so the dated links in this log keep resolving. 20 inbound links relinked across 8 pages, `index.md` included; this log was left alone, being append-only
+- `CLAUDE.md`: the query-page naming row and the Answer-a-Query workflow now use `wiki/queries/<slug>.md`, with a note recording the change. The index's Queries section re-sorted alphabetically, since the dates no longer order it
+- Renamed in a commit of its own, per naming rule 7, so `git log --follow` keeps each page's history

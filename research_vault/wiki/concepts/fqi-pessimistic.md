@@ -288,7 +288,7 @@ algorithm, the bonus reading and VAFQL.
 - [[overestimation-bias]] — the failure mode pessimism corrects
 - [[implicit-q-learning]] — the opposing design in offline RL: rather than penalize uncertainty at out-of-sample actions, never evaluate them. Empirically strong, theoretically much weaker
 - [[importance-weighting]] / [[ryu2025Improved]] — pessimism via betting-based LCBs, applied to offline policy *selection* rather than learning
-- [[2026-08-19-offline-fqi-walkthrough]] — the saved query that arrives here from the FQI template
+- [[offline-fqi-walkthrough]] — the saved query that arrives here from the FQI template
 - **Model-based/model-free bridge:** FQI is a batch Q-learning update but also an instantiation of approximate value iteration, so PFQL unifies the value-iteration (PEVI, VPVI) and fitted-Q lineages
 
 ## Current State and Open Problems

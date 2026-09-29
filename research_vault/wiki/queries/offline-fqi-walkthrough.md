@@ -1,6 +1,7 @@
 ---
 date: 2026-08-19
 question: "What is Fitted Q-Iteration, does it differ between offline and online RL, how can it evaluate state-action pairs absent from the dataset, and how does Algorithm 1 of Yin2023Offline instantiate it?"
+aliases: [2026-08-19-offline-fqi-walkthrough]
 ---
 
 # Offline FQI — A Walkthrough

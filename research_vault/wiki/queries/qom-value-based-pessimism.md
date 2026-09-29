@@ -1,11 +1,12 @@
 ---
 date: 2026-09-22
 question: "Can the Quantile of Means idea of Cassel & Rosenberg (2026) be adapted into value-based pessimism for offline contextual bandits? Propose an algorithm and write a Theorem 4.2-style analysis step by step, verifying every step mathematically."
+aliases: [2026-09-22-qom-value-based-pessimism]
 ---
 
 # Quantile of Means as Value-Based Pessimism for Offline Contextual Bandits
 
-**Scope.** The tabular value-based route of [[contextual-bandits-offline-value-based]] §4, with the explicit penalty of the rule (LCB) replaced by the quantile-of-means (QoM) estimator of [[cassel2026Quantile]]. Policy-based (importance-weighted) variants are out of scope. Every step below is proved from results whose statements were checked against their sources (§8); no step rests on simulation. The simplified case with $`\sigma^2`$-sub-Gaussian rewards, with much better constants and one added assumption, is [[2026-09-22-qom-value-based-pessimism-subgaussian]].
+**Scope.** The tabular value-based route of [[contextual-bandits-offline-value-based]] §4, with the explicit penalty of the rule (LCB) replaced by the quantile-of-means (QoM) estimator of [[cassel2026Quantile]]. Policy-based (importance-weighted) variants are out of scope. Every step below is proved from results whose statements were checked against their sources (§8); no step rests on simulation. The simplified case with $`\sigma^2`$-sub-Gaussian rewards, with much better constants and one added assumption, is [[qom-value-based-pessimism-subgaussian]].
 
 ## Short answer
 
@@ -305,7 +306,7 @@ Feige's paper states the conjecture that $`1/13`$ can be replaced by $`1/e`$. A 
 1. **Novelty.** Not yet checked: whether median-of-means or quantile-of-means pessimism for offline bandits exists, or whether Cassel et al. (2025) has an offline version. Do this before claiming anything.
 2. **Variance adaptivity together with $`(C^{\ast}-1)`$ adaptivity.** Proposition 3 separates the two mechanisms. Is there a rule, or a lower bound, for both at once?
 3. **Better undershoot constants.** Feige's conjecture ($`1/e`$) for i.i.d. summands would cut the factor from about $`7.4`$ to about $`2.1`$ at the best $`\alpha`$ (§9). A constant proved only for $`[0,1]`$-valued rewards would already help.
-4. **Function approximation.** Feige's theorem allows non-identically distributed summands. So a design-measurable weighted average with non-negative weights undershoots its own mean with probability at least $`1/13`$, after a shrinkage of the order of its largest weight. That covers histogram, $`k`$-NN and kernel smoothers, leaving only their approximation bias. Least squares has signed weights, which Feige's theorem cannot handle; **that gap is now closed under symmetric noise** (see [[2026-09-22-qom-value-based-pessimism-subgaussian]] §10), since a sum of independent symmetric variables is symmetric whatever the signs of the coefficients. Under non-negativity alone it remains open. Pessimism over a continuum of pairs needs covering, which likely forces $`B`$ proportional to the dimension: the horizon-one analogue of Cassel & Rosenberg's "ensemble size linear in $`S`$".
+4. **Function approximation.** Feige's theorem allows non-identically distributed summands. So a design-measurable weighted average with non-negative weights undershoots its own mean with probability at least $`1/13`$, after a shrinkage of the order of its largest weight. That covers histogram, $`k`$-NN and kernel smoothers, leaving only their approximation bias. Least squares has signed weights, which Feige's theorem cannot handle; **that gap is now closed under symmetric noise** (see [[qom-value-based-pessimism-subgaussian]] §10), since a sum of independent symmetric variables is symmetric whatever the signs of the coefficients. Under non-negativity alone it remains open. Pessimism over a continuum of pairs needs covering, which likely forces $`B`$ proportional to the dimension: the horizon-one analogue of Cassel & Rosenberg's "ensemble size linear in $`S`$".
 5. **An empirical check** against Hoeffding and empirical-Bernstein LCBs, with both the analysis constants and a tuned $`(\alpha,B)`$. This is the only item that is not theoretical.
 
 ## 11. Next steps

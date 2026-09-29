@@ -1,6 +1,7 @@
 ---
 date: 2026-06-16
 question: "Summarize the ideas in Sections 1–4 of Foster2025Foundation"
+aliases: [2026-06-16-foster2025-sections-1-4]
 ---
 
 # Foster2025Foundation — Sections 1–4 Summary
