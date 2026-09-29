@@ -6,7 +6,7 @@ aliases: [2026-09-22-cassel-qom-lemma1-erratum]
 
 # Cassel & Rosenberg's Lemma 1 and Corollary 2, Checked
 
-**Scope.** §2 of [[cassel2026Quantile]] — the definition of the quantile-of-means (QoM) estimator and the two guarantees stated for it. The occasion was a decision to build the tabular offline section of the Overleaf note on those results directly rather than on the versions reproved in [[qom-value-based-pessimism]] and [[qom-value-based-pessimism-subgaussian]]. Statements below were read from the rendered PDF pages, not from a text extraction, because the extraction garbles the radicals — and a radical is exactly where the error is.
+**Scope.** §2 of [[cassel2026Quantile]] — the definition of the quantile-of-means (QoM) estimator and the two guarantees stated for it. The occasion was a decision to build the tabular offline section of the Overleaf note on those results directly rather than on the versions reproved in the earlier version of [[qom-value-based-pessimism]] (its §9) and in [[qom-value-based-pessimism-subgaussian]]. Statements below were read from the rendered PDF pages, not from a text extraction, because the extraction garbles the radicals — and a radical is exactly where the error is.
 
 ## Short answer
 
@@ -146,10 +146,10 @@ Statements read from the rendered PDF pages of [[cassel2026Quantile]] on 2026-09
 
 1. **Tell the authors.** It is a two-line fix in a preprint and the paper's main claims survive it. Worth doing before building on the result publicly.
 2. **Check Cassel et al. (2025) directly.** Their Lemmas 3 and 4 are the same statements for the minimum of means. If their bias bound has the $`\sqrt{\log(1/\delta)}`$ inside the root, that settles §4.4 and also bears on the novelty question for [[qom-value-based-pessimism-subgaussian]], since their optimism claim covers exactly the symmetric case that page assumes.
-3. **Whether $`4.69`$ is tight.** Proposition 2 of [[qom-value-based-pessimism]] gives a floor of $`3.30`$ for any constant valid at this calibration, so the truth lies between $`3.30`$ and $`4.69`$.
+3. **Whether $`4.69`$ is tight.** Proposition 2 of the earlier version of [[qom-value-based-pessimism]] (listed in its §9) gives a floor of $`3.30`$ for any constant valid at this calibration, so the truth lies between $`3.30`$ and $`4.69`$.
 
 ## Sources
 
 - [[cassel2026Quantile]], §2: Eq. (1), Eq. (2), Lemma 1, Corollary 2, and the closing paragraph on Cassel et al. (2025); §A.1 for the proof of Lemma 1; §A.2 for Lemmas 13 and 14.
 - Feige (STOC 2004), Theorem 1. Beygelzimer, Langford, Li, Reyzin & Schapire (AISTATS 2011; arXiv:1002.4058), Theorem 1.
-- [[qom-value-based-pessimism]] §7.1, where this was first recorded, and its Proposition 2 for the floor of $`3.30`$.
+- The earlier version of [[qom-value-based-pessimism]], recoverable as its §9 describes: its §7.1, where this was first recorded, and its Proposition 2, for the floor of $`3.30`$.

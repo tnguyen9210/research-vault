@@ -6,7 +6,7 @@ aliases: [2026-09-22-qom-value-based-pessimism-subgaussian]
 
 # Quantile of Means as Value-Based Pessimism: the Sub-Gaussian Case
 
-**Scope.** The simplified case of [[qom-value-based-pessimism]] (below, *the general page*): the same tabular value-based route of [[contextual-bandits-offline-value-based]] §4 and the same estimator, with the reward noise assumed $`\sigma^2`$-sub-Gaussian with one common $`\sigma`$, as in the standard stochastic bandit of Lattimore & Szepesvári (2020, §5.3). Rewards may be signed and unbounded, and $`S=1`$ is the $`K`$-armed bandit. Throughout, every pair is assumed logged at least $`B`$ times, assumption (C) of §1; it removes the empty-batch convention and the gap terms from the statements, and §7 records what it costs. The page reads on its own; where a step is identical to the general page it says so instead of repeating the proof. Every black box is cited and its hypotheses checked at the point of use (§8); nothing rests on simulation.
+**Scope.** The simplified case of the earlier version of [[qom-value-based-pessimism]] (below, *the general page*; that page has since been rewritten from the Overleaf note, and its §9 says how to recover the version cited here): the same tabular value-based route of [[contextual-bandits-offline-value-based]] §4 and the same estimator, with the reward noise assumed $`\sigma^2`$-sub-Gaussian with one common $`\sigma`$, as in the standard stochastic bandit of Lattimore & Szepesvári (2020, §5.3). Rewards may be signed and unbounded, and $`S=1`$ is the $`K`$-armed bandit. Throughout, every pair is assumed logged at least $`B`$ times, assumption (C) of §1; it removes the empty-batch convention and the gap terms from the statements, and §7 records what it costs. The page reads on its own; where a step is identical to the general page it says so instead of repeating the proof. Every black box is cited and its hypotheses checked at the point of use (§8); nothing rests on simulation.
 
 ## Short answer
 
@@ -436,7 +436,7 @@ Steps 2 and 3 of Theorem 1 carry over word for word: they use only the two event
 
 ## Sources
 
-- [[qom-value-based-pessimism]]: Fact 0, the algorithm, the one-sided reduction, the count step, Proposition 2's argument, Proposition 3's instance, and the comparison tables.
+- [[qom-value-based-pessimism]], in its earlier version (§9 there): Fact 0, the algorithm, the one-sided reduction, the count step, Proposition 2's argument, Proposition 3's instance, and the comparison tables.
 - [[contextual-bandits-offline]] §2; [[contextual-bandits-offline-value-based]] Theorem 4.2 and its proof, Theorem 5.1, Theorem 4.5.
 - [[cassel2026Quantile]]: the estimator. Nothing else of the paper is used here.
 - Lattimore & Szepesvári, *Bandit Algorithms* (2020), §5.3: Definition 5.2, Theorem 5.3, Lemma 5.4, Corollary 5.5, Example 5.6, and the remark $`e^{-x}\le1/(ex)`$ on p. 77. Read from the mirrored PDF on 2026-09-22.

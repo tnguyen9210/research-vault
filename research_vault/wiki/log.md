@@ -613,3 +613,11 @@ Expanded `concepts/fqi/fitted-q-iteration.md` rather than adding a page -- the m
 - Each dated name is kept in its page's `aliases:`, so the dated links in this log keep resolving. 20 inbound links relinked across 8 pages, `index.md` included; this log was left alone, being append-only
 - `CLAUDE.md`: the query-page naming row and the Answer-a-Query workflow now use `wiki/queries/<slug>.md`, with a note recording the change. The index's Queries section re-sorted alphabetically, since the dates no longer order it
 - Renamed in a commit of its own, per naming rule 7, so `git log --follow` keeps each page's history
+
+## [2026-09-29] update | QoM query page rewritten from the Overleaf note → [[qom-value-based-pessimism]]
+
+- At Tuan's request the page's earlier analysis was removed, and the page rewritten to mirror §3 of the Overleaf note `02_offline_contextual_bandits.tex` at commit `06b0730`: the tabular QoM-LCB of §3.1 in full, and the setting, algorithm and canonical-case lemma of §3.2, the first linear approach, which has no guarantee yet
+- **What changed in substance.** The width is now Cassel & Rosenberg's Freedman route with the logarithm restored under the root, 4.69·√(σ²/(m+1)) + 9/(m+1) in the smallest batch size m = ⌊N/B⌋; the batches are a uniform random split instead of round-robin; the coverage form is 6.64·√(S·σ̄²*·B/T) + 18·S·C*·B/T ≤ 3.32·√(S·C̄*·B/T) + 18·S·C*·B/T under the count condition
+- The project's staged `temp.tex` notes are summarized with the note's own status marks: what the count condition means and how to drop it, C̄* in the second term only at the 1/√T rate (7.57·√(S·C̄*·B/T)), and the bound in C̄* alone, which the note parks
+- **Where the old content went.** Its Propositions 2 and 3 (the 3.30 floor, the lost (C*−1) adaptivity), the expert-data and heavy-tail corollaries and the comparison table are not in the note, so they left the page; its §9 lists them and gives the `git show a1caf4e:…` line that recovers them. The citations in [[cassel2026Quantile]], [[cassel-qom-lemma1-erratum]] and [[qom-value-based-pessimism-subgaussian]] now say when they mean that earlier version
+- Constants re-evaluated in closed form, including the δ₀ threshold 4.829·10⁻⁴ below which kl(1/65, δ₀) ≥ 1/26; `check_math.py`: 0 of 547 spans wrong on the page, 0 of 1138 on the four pages edited with it
