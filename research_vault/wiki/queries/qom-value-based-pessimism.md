@@ -10,7 +10,7 @@ aliases: [2026-09-22-qom-value-based-pessimism]
 
 - §3.1, the tabular setting, is mirrored in full.
 - §3.2, the first linear approach, is mirrored as far as it goes: a setting and an algorithm, with no guarantee yet.
-- Notes staged in the project's `temp.tex` are summarized in §6, with the status the note gives them.
+- Notes staged in the project's `02_offline_temp.tex` are summarized in §6, with the status the note gives them.
 
 The note is the source of truth: this page restates its results in the vault's notation and adds none of its own. It was rewritten on 2026-09-29, replacing an earlier, independent analysis of the same question (§9). The sub-Gaussian simplification, [[qom-value-based-pessimism-subgaussian]], still builds on that earlier analysis.
 
@@ -32,7 +32,7 @@ The note is the source of truth: this page restates its results in the vault's n
 - **The constants are Cassel & Rosenberg's Lemma 1, corrected.**
   - $`4.69\ge2\sqrt{(e-2)L}`$ and $`9\ge L+1`$, with $`L=\ln(1/\delta_0)=7.642`$ and $`\delta_0=4.8\times10^{-4}`$.
   - Their printed $`1.7`$ is $`2\sqrt{e-2}`$ with the $`\sqrt L`$ dropped ([[cassel-qom-lemma1-erratum]]).
-- **Staged in `temp.tex`** (§6):
+- **Staged in `02_offline_temp.tex`** (§6):
   - the count condition can be dropped, at an additive $`8SC^*\ln(S/\delta')/T`$;
   - $`\bar C^*`$ can replace $`C^*`$ in the second term only at the $`1/\sqrt T`$ rate, which gives $`\Delta(\hat\pi)\le7.57\sqrt{S\bar C^*B/T}`$;
   - a bound in $`\bar C^*`$ alone, with no count condition, is derived but parked.
@@ -310,7 +310,7 @@ Notes:
   - Cassel & Rosenberg state part (2) in the count: $`\hat\mu_\alpha\ge\mu-1.7\sqrt{\sigma^2B/\max\lbrace1,n\rbrace}-9RB/\max\lbrace1,n\rbrace`$. Their $`1.7=2\sqrt{e-2}`$ omits the $`\sqrt L`$.
   - With $`R=1`$ and a uniform split, $`1/(m+1)\le B/\max\lbrace1,n\rbrace`$. So part (2) implies their statement with $`4.69`$ in place of $`1.7`$ ([[cassel-qom-lemma1-erratum]] §4).
 
-**Staged detail on part (1)** (`temp.tex`, `sec:tmp-domination`):
+**Staged detail on part (1)** (`02_offline_temp.tex`, `sec:tmp-domination`):
 
 - **Domination.** Independent coins with success probabilities $`p_b\ge p`$ sum to a variable that stochastically dominates $`\mathrm{Bin}(B,p)`$. There are two proofs:
   - by monotonicity: $`\Pr(Z\ge j)=\Pr(Z_{-b}\ge j)+p_b\Pr(Z_{-b}=j-1)`$ is nondecreasing in each $`p_b`$;
@@ -326,9 +326,9 @@ Notes:
   - So the kl form needs $`B`$ of order $`p^{-1}\ln\delta^{-1}`$, against $`p^{-2}\ln\delta^{-1}`$. The constant $`1/26`$ comes from evaluating $`\mathrm{kl}(1/65,1/13)`$ itself, since $`(4-\ln5)/65=0.0368<1/26`$.
 - **A shortcut.** Bounding $`\mathbb Ee^{-\lambda I_b}\le1-p+pe^{-\lambda}`$ directly gives the same tail with no coupling; independence is still needed for the product. Domination is the more general statement, since it covers every nonincreasing test function.
 
-## 6. Staged in `temp.tex`: the coverage form revisited
+## 6. Staged in `02_offline_temp.tex`: the coverage form revisited
 
-These notes sit in the project's `temp.tex`, which `main.tex` includes after §3. They are not yet in the main text.
+These notes sit in the project's `02_offline_temp.tex` (named `temp.tex` until 2026-10-09), which `main.tex` includes after §3. They are not yet in the main text.
 
 ### 6.1 The count condition (`sec:tmp-count`)
 
@@ -545,7 +545,7 @@ It also held results the note does not contain, which other pages still cite:
   - §2.1 (*Coverage*; *Average versus worst-case coverage*);
   - the Tabular LCB theorem (`thm:ocb-tabular-lcb`);
   - §3.1–3.2 (`sec:ocb-qom`, `sec:ocb-qom-lin1`).
-- **`temp.tex`**, at the same commit: `sec:tmp-domination`, `sec:tmp-count`, `sec:tmp-second-term` and `sec:tmp-cbar-only`.
+- **`temp.tex`** (now `02_offline_temp.tex`), at the same commit: `sec:tmp-domination`, `sec:tmp-count`, `sec:tmp-second-term` and `sec:tmp-cbar-only`.
 - **How the results were checked.** They are transcribed, not re-derived. The numerical constants were re-evaluated in closed form when this page was written: $`\mathrm{kl}(1/65,1/13)`$, $`\mathrm{kl}(1/65,\delta_0)`$, $`L`$, $`2\sqrt{(e-2)L}`$, the threshold on $`\delta_0`$, $`(18/3.32)^2`$, $`\sqrt{18}`$ and $`\sqrt{8/26}`$.
 - **[[cassel2026Quantile]]**: Eq. (1), Eq. (2), Corollary 2 and Lemma 1, the last as corrected in [[cassel-qom-lemma1-erratum]].
 - **The black boxes, as the note cites them.**
