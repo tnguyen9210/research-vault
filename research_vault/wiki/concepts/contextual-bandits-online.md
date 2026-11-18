@@ -46,6 +46,10 @@ The organizing question: contextual bandits are computationally hard in general 
 
 The split that matters is which oracle. An **online** regression oracle sees a stream and needs $`O(T)`$ calls — the route taken by SquareCB (Foster & Rakhlin 2020) and E2D (Foster et al. 2021a), with [[decision-estimation-coefficient]] as the governing complexity measure. An **offline** oracle takes a batch and is satisfied by ordinary ERM, so any supervised learner qualifies; this is [[offline-regression-oracle]], and it is the practically useful one.
 
+The earliest regression-oracle algorithm in the vault is RegCB ([[foster2018Practical]], 2018).
+- **Method.** UCB and elimination over a squared-loss version space, whose ends at a pair the oracle computes by binary search.
+- **What it gets.** Practical, and strong empirically, but not minimax. It reaches $`\tilde O(\sqrt{T L_{2,0}\log\lvert\mathcal F\rvert})`$ only under a distributional coefficient.
+
 On the offline route the progression is legible: FALCON ([[simchi-levi2022Bypassing]], 2022) achieved $`O(\log T)`$ calls for discrete actions under realizability, and OE2D ([[qin2026Taming]], 2026) reached general action spaces at the same call count while dropping realizability. Its complexity measure is [[decision-offline-estimation-coefficient]], and its algorithmic primitive is [[exploitative-f-design]], whose minimax value DOEC turns out to be. How to bound DOEC in a given class is unsettled: the [[epsilon-sec]] route is simplest but admits an exponential gap, and the [[eluder-dimension]] route covers only discrete benchmarks.
 
 ### What governs the achievable regret
@@ -81,12 +85,12 @@ Mature for the simple settings — linear rewards, discrete actions — where th
 What is open, in the vault's own terms:
 
 - **Bounding DOEC.** Whether $`\varepsilon`$-SEC or Eluder dimension is the right route for a given class; Proposition 3 of [[qin2026Taming]] constructs an exponential gap for the first.
-- **Empirical behaviour.** Every oracle-efficiency result here is theoretical; the vault has no source on how these algorithms actually perform.
+- **Empirical behaviour.** [[foster2018Practical]] is the only empirical source. RegCB is competitive on 18 datasets, with a leaf-only refit in place of its binary search. The vault has no source on how the $`O(\log T)`$-call algorithms perform.
 - **Non-iid contexts and partial monitoring.** Named as frontiers but with no page and no paper behind them.
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[qin2026Taming]], [[simchi-levi2022Bypassing]] and [[foster2025Good]] comes from their paper pages, written against the PDFs at ingest.
+*Sourced.* Everything attributed to [[foster2018Practical]], [[qin2026Taming]], [[simchi-levi2022Bypassing]] and [[foster2025Good]] comes from their paper pages, written against the PDFs at ingest.
 
 *Cited author–year, no paper page.* SquareCB (Foster & Rakhlin 2020) and E2D (Foster et al. 2021a), including the attribution of DEC to the latter. [[decision-estimation-coefficient]] records the same gap; neither has been checked directly.
 

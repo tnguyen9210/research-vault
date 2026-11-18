@@ -21,6 +21,7 @@ q^*(x,a) := \mathbb{E}[r_t \mid x_t = x, a_t = a] \in \mathcal{F} \quad \forall\
 In the realizable setting, the learner competes with the globally optimal policy $`\pi^* = \pi_{q^*}`$, greedy in $`q^*`$, which is guaranteed to be the best possible policy. In the agnostic setting, the learner only competes with the best policy *in* a policy class $`\Pi`$, which may be strictly worse.
 
 ## Key Papers
+- [[foster2018Practical]] — RegCB (Assumption 1): with $`q^* \in \mathcal{F}`$, the ends of a squared-loss version space are valid confidence bounds, and a regression oracle computes them by binary search. Proposition 1 shows realizability alone does not make such confidence-based rules minimax
 - [[simchi-levi2022Bypassing]] — realizability enables FALCON to achieve optimal regret with $`O(\log T)`$ offline oracle calls; the implicit policy distribution argument relies on $`q^* \in \mathcal{F}`$
 - [[qin2026Taming]] — does not require realizability for the main result; treats misspecification as an extension (Appendix B)
 - [[yin2023Offline]] — the RL form (Assumption 2.1): realizability of $`Q^*_h`$ in the differentiable class *plus* Bellman completeness $`\sup_V\inf_{f\in\mathcal{F}}\|f - \mathcal{P}_h(V)\|_\infty \le \epsilon_\mathcal{F}`$. In sequential problems realizability alone is insufficient — the class must also be closed under Bellman backups, or errors compound across the horizon

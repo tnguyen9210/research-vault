@@ -9,6 +9,7 @@ Format: `- [[slug]] — one-line description`
 
 - [[cassel2026Quantile]] — VIBE: optimism from a quantile of an ensemble on disjoint batches, no bonuses or counts; variance-dependent minimax regret in tabular MDPs
 - [[dam2024Power]] — Stochastic-Power-UCT: power mean MCTS with $`\mathcal{O}(n^{-1/2})`$ convergence in stochastic MDPs; fixes UCT's flawed logarithmic bonus
+- [[foster2018Practical]] — RegCB: UCB and elimination over a squared-loss version space whose ends a regression oracle computes by binary search; not minimax, strong empirically (ICML 2018)
 - [[foster2025Good]] — coverage is necessary and sufficient for computationally efficient LM alignment; SpannerSampling matches $`C_\text{cov}`$ lower bound; ETH-hardness of training-time interventions
 - [[kanarios2024Cost]] — CABAI: cost-aware BAI with heterogeneous arm costs; optimal proportions scale $`\sqrt{c_a}`$; CTAS (optimal) and CO (fast)
 - [[kostrikov2021Offline]] — IQL: offline RL with strictly in-sample value evaluation via upper-expectile regression; $`\tau\to1`$ recovers the support-constrained optimum; SOTA on D4RL antmaze (ICLR 2022)

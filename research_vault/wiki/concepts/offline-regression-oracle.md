@@ -33,6 +33,7 @@ An online regression oracle $`\mathcal{O}_\mathrm{on}(\mathcal{F})`$ receives tu
 
 ## Key Papers
 
+- [[foster2018Practical]] — RegCB assumes a different form of the oracle: an *exact weighted ERM*, called on synthetic weighted datasets with out-of-range targets ($`2`$ and $`-1`$), and on adaptively collected data. It needs $`O(\log(1/\alpha))`$ calls per confidence bound for a convex class
 - [[qin2026Taming]] — uses offline oracle with $`O(\log T)`$ calls for general function classes; shows $`\mathrm{Reg}_\mathrm{off}`$ governs regret alongside [[decision-offline-estimation-coefficient]]
 
 ## Related Concepts

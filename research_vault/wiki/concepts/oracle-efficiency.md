@@ -32,12 +32,19 @@ The progression is legible as a table, which is why it is given as one:
 
 | Algorithm | Oracle | Calls | Setting |
 |-----------|--------|-------|---------|
+| RegCB ([[foster2018Practical]]) | Offline (exact weighted ERM) | $`TK\log(1/\alpha)`$ | General, convex for this count; **not minimax** |
 | E2D (Foster et al. 2021a) | Online | $`T`$ | General |
 | UCCB (Xu & Zeevi 2020) | Offline | $`T`$ | General |
 | E2D.Off (Foster et al. 2024) | Offline | $`T`$ | General |
 | Linear FALCON (Xu & Zeevi 2020, §4) | Offline | $`\log T`$ | Per-context linear |
 | FALCON ([[simchi-levi2022Bypassing]]) | Offline | $`\log T`$ | Discrete actions |
 | **OE2D** ([[qin2026Taming]]) | Offline | $`\log T`$ | **General** |
+
+RegCB predates the table's question. It gives up optimal regret rather than calls or generality.
+- **How it uses the oracle.** It computes UCB-style version-space bounds through the oracle, by binary-searching the weight of one extra example with an out-of-range target.
+- **What it gets.** Its regret is $`\tilde O(\sqrt{T L_{2,0}\log\lvert\mathcal F\rvert})`$ only under a distributional coefficient.
+- **Where it fails.** A class of local perturbations forces $`\lvert\mathcal F\rvert`$ mistakes (Proposition 1).
+- **The call count is this vault's.** $`TK\log(1/\alpha)`$ comes from its paper page. [[simchi-levi2022Bypassing]] quotes $`O(T^{3/2})`$, which matches the nonconvex $`O(1/\alpha)`$ search at $`\alpha\approx T^{-1/2}`$.
 
 UCCB was first to handle general classes with an offline oracle, but at $`O(T)`$ calls it matches the online oracle in count, which undermines the practical motivation for assuming the weaker oracle at all. FALCON achieved $`O(\log T)`$ for discrete actions under realizability, and was the first to reach optimal regret with an offline oracle. OE2D is the first row that is offline, general and $`O(\log T)`$ at once — and it drops realizability as well.
 
@@ -77,11 +84,11 @@ Active, and the offline-oracle route has won on practicality. The call-count tab
 - **Lower bounds on DOEC.** When is offline-oracle-efficient learning information-theoretically hard? The measure has no matching hardness result.
 - **First-order algorithms.** Sub-$`\sqrt{T}`$ regret under favourable conditions, and an online-to-offline reduction for them (cf. Foster & Krishnamurthy 2021).
 - **Beyond iid contexts.** Partial monitoring, RLHF and non-iid context distributions are all named as frontiers with no result behind them here.
-- **Empirical behaviour.** Every result on this page is theoretical; the vault has no source on how any of these algorithms actually performs.
+- **Empirical behaviour.** The only empirical source here is [[foster2018Practical]]. On 18 datasets with gradient-boosted trees, RegCB beats ε-greedy and ILTCB and is close to Bootstrap, but it ran a leaf-only refit in place of the binary search. The vault has no source on how the $`O(\log T)`$-call algorithms (FALCON, OE2D) perform in practice.
 
 ## Provenance
 
-*Sourced.* Everything attributed to [[simchi-levi2022Bypassing]], [[qin2026Taming]] and [[ryu2025Improved]] comes from their paper pages, written against the PDFs at ingest.
+*Sourced.* Everything attributed to [[foster2018Practical]], [[simchi-levi2022Bypassing]], [[qin2026Taming]] and [[ryu2025Improved]] comes from their paper pages, written against the PDFs at ingest. RegCB's call count in the table is that paper page's own count, not the paper's statement.
 
 *Cited author–year, no paper page.* UCCB and Linear FALCON (Xu & Zeevi 2020), E2D (Foster et al. 2021a), E2D.Off (Foster et al. 2024), and Foster & Krishnamurthy (2021). The call-count table's rows for these are taken from how [[qin2026Taming]] and [[simchi-levi2022Bypassing]] position themselves, not from the papers directly — they have not been checked at source.
 

@@ -32,6 +32,7 @@ So small Eluder dimension bounds [[epsilon-sec]], which bounds [[decision-offlin
 
 - Russo & Van Roy (2013) — introduces Eluder dimension for optimistic algorithms in bandits and RL
 - Jin et al. (2021a) — Bellman Eluder dimension; the RL extension
+- [[foster2018Practical]] — a critique: eluder dimension is a worst case over histories, and is hard to bound beyond linear classes. For i.i.d. contexts the paper replaces it with moment coefficients of the distribution, the surprise bound and the implicit exploration coefficient
 - [[qin2026Taming]] — uses it to certify small [[epsilon-sec]] and hence small [[decision-offline-estimation-coefficient]] (Proposition 1)
 - [[yin2023Offline]] — argues the tractable instances of Eluder dimension are still essentially linear-in-features, motivating [[differentiable-function-approximation]] as an alternative structural handle
 

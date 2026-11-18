@@ -16,7 +16,7 @@ citekey: simchi-levi2022Bypassing
 ## Problem
 
 Two prior lines of work each achieved one of two desiderata but not both:
-- **Computationally tractable but suboptimal:** RegCB (Foster et al. 2018) uses $`O(T^{3/2})`$ offline oracle calls and achieves $`\tilde{O}(T)`$ regret in the worst case.
+- **Computationally tractable but suboptimal:** RegCB ([[foster2018Practical]]) uses $`O(T^{3/2})`$ offline oracle calls and achieves $`\tilde{O}(T)`$ regret in the worst case.
 - **Optimal but intractable:** Regressor Elimination (Agarwal et al. 2012) achieves $`\tilde{O}(\sqrt{KT\log|\mathcal{F}|})`$ but requires $`\Omega(|\mathcal{F}|)`$ computation per round.
 - **Online oracle, optimal:** SquareCB (Foster & Rakhlin 2020) achieves optimality but requires an *online* regression oracle — a strictly stronger and less practical assumption than offline.
 
