@@ -24,6 +24,7 @@
       "bibtexURL": "off",
       "cache": true,
       "cacheDelete": false,
+      "cacheTouch": "fill",
       "charmap": "",
       "chinese": false,
       "chineseSplitName": true,
@@ -72,6 +73,8 @@
       "postscript": "",
       "postscriptOverride": "",
       "preferencesOverride": "",
+      "profileRuntime": "no",
+      "profileStartup": false,
       "qualityReport": false,
       "quickCopyEta": "",
       "quickCopyMode": "latex",
@@ -89,7 +92,7 @@
       "skipWords": "a,ab,aboard,about,above,across,after,against,al,along,amid,among,an,and,anti,around,as,at,before,behind,below,beneath,beside,besides,between,beyond,but,by,d,da,das,de,del,dell,dello,dei,degli,della,dell,delle,dem,den,der,des,despite,die,do,down,du,during,ein,eine,einem,einen,einer,eines,el,en,et,except,for,from,gli,i,il,in,inside,into,is,l,la,las,le,les,like,lo,los,near,nor,of,off,on,onto,or,over,past,per,plus,round,save,since,so,some,sur,than,the,through,to,toward,towards,un,una,unas,under,underneath,une,unlike,uno,unos,until,up,upon,versus,via,von,while,with,within,without,yet,zu,zum",
       "strings": "",
       "stringsOverride": "",
-      "verbatimFields": "url,doi,file,pdf,ids,eprint,/^verb[a-z]$/,groups,/^citeulike-linkout-[0-9]+$/,/^bdsk-url-[0-9]+$/, keywords",
+      "verbatimFields": "url,doi,file,pdf,ids,eprint,verb?,groups,citeulike-linkout-?*,bdsk-url-?*,keywords",
       "warnBulkModify": 0,
       "warnTitleCased": false
     },
@@ -110,7 +113,7 @@
   },
   "version": {
     "zotero": "10.0.SOURCE.22f08d1ce",
-    "bbt": "9.0.64"
+    "bbt": "9.0.77"
   },
   "collections": {
     "KV6UZ3U8": {
@@ -3205,13 +3208,16 @@
         177,
         183,
         189,
+        204,
         3421,
         3424,
         3426,
         3428,
         3431,
-        204,
-        3434
+        3434,
+        3462,
+        3463,
+        214
       ]
     },
     "MYSG9BKC": {
@@ -3294,7 +3300,8 @@
       "parent": "2HFURWFG",
       "name": "59_Misc",
       "collections": [
-        "VSSSZEVS"
+        "VSSSZEVS",
+        "4CXW4ZD4"
       ],
       "items": [
         184,
@@ -3315,6 +3322,20 @@
         12,
         13,
         14
+      ]
+    },
+    "4CXW4ZD4": {
+      "key": "4CXW4ZD4",
+      "parent": "FRYH5MKE",
+      "name": "01_Uncategorized",
+      "collections": [],
+      "items": [
+        3438,
+        3441,
+        3444,
+        3446,
+        3450,
+        3458
       ]
     },
     "BVQYFIWF": {
@@ -3404,7 +3425,6 @@
         178,
         210,
         213,
-        214,
         215,
         220,
         223,
@@ -21617,7 +21637,7 @@
     },
     {
       "key": "K2IAX7HE",
-      "version": 14242,
+      "version": 14872,
       "itemType": "conferencePaper",
       "title": "Practical Contextual Bandits with Regression Oracles",
       "abstractNote": "A major challenge in contextual bandits is to design general-purpose algorithms that are both practically useful and theoretically well-founded. We present a new technique that has the empirical and computational advantages of realizability-based approaches combined with the flexibility of agnostic methods. Our algorithms leverage the availability of a regression oracle for the value-function class, a more realistic and reasonable oracle than the classification oracles over policies typically assumed by agnostic methods. Our approach generalizes both UCB and LinUCB to far more expressive possible model classes and achieves low regret under certain distributional assumptions. In an extensive empirical evaluation, compared to both realizability-based and agnostic baselines, we find that our approach typically gives comparable or superior results.",
@@ -40180,6 +40200,61 @@
       "select": "zotero://select/library/items/I48DDEPL"
     },
     {
+      "key": "VSF2FG9C",
+      "version": 14829,
+      "itemType": "conferencePaper",
+      "title": "Pessimism for Offline Linear Contextual Bandits using $\\ell_p$ Confidence Sets",
+      "abstractNote": "We present a family $\\{\\hatπ\\}_{p\\ge 1}$ of pessimistic learning rules for offline learning of linear contextual bandits, relying on confidence sets with respect to different $\\ell_p$ norms, where $\\hatπ_2$ corresponds to Bellman-consistent pessimism (BCP), while $\\hatπ_\\infty$ is a novel generalization of lower confidence bound (LCB) to the linear setting. We show that the novel $\\hatπ_\\infty$ learning rule is, in a sense, adaptively optimal, as it achieves the minimax performance (up to log factors) against all $\\ell_q$-constrained problems, and as such it strictly dominates all other predictors in the family, including $\\hatπ_2$.",
+      "date": "2022-10-04",
+      "DOI": "10.48550/arXiv.2205.10671",
+      "citationKey": "li2022Pessimism",
+      "url": "http://arxiv.org/abs/2205.10671",
+      "accessDate": "2026-09-29T04:52:37Z",
+      "proceedingsTitle": "Proceedings of NeurIPS",
+      "creators": [
+        {
+          "firstName": "Gene",
+          "lastName": "Li",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Cong",
+          "lastName": "Ma",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Nathan",
+          "lastName": "Srebro",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-29T04:52:37Z",
+      "dateModified": "2026-09-29T04:53:21Z",
+      "uri": "http://zotero.org/users/5634105/items/VSF2FG9C",
+      "itemID": 3463,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Full Text PDF",
+          "url": "https://arxiv.org/pdf/2205.10671",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-29T04:52:39Z",
+          "dateModified": "2026-09-29T04:52:39Z",
+          "uri": "http://zotero.org/users/5634105/items/QVZFNBVR",
+          "path": "/home/tnn/Zotero/storage/QVZFNBVR/Li et al. - 2022 - Pessimism for Offline Linear Contextual Bandits using $ell_p$ Confidence Sets.pdf",
+          "select": "zotero://select/library/items/QVZFNBVR"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Proc. NeurIPS",
+      "itemKey": "VSF2FG9C",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/VSF2FG9C"
+    },
+    {
       "key": "CS9WYYSU",
       "version": 14318,
       "itemType": "preprint",
@@ -40393,6 +40468,73 @@
       "itemKey": "EWRNAWVX",
       "libraryID": 1,
       "select": "zotero://select/library/items/EWRNAWVX"
+    },
+    {
+      "key": "6SMUFDUP",
+      "version": 14790,
+      "itemType": "preprint",
+      "title": "Predicting and improving test-time scaling laws via reward tail-guided search",
+      "abstractNote": "Test-time scaling has emerged as a critical avenue for enhancing the reasoning capabilities of Large Language Models (LLMs). Though the straight-forward ''best-of-$N$'' (BoN) strategy has already demonstrated significant improvements in performance, it lacks principled guidance on the choice of $N$, budget allocation, and multi-stage decision-making, thereby leaving substantial room for optimization. While many works have explored such optimization, rigorous theoretical guarantees remain limited. In this work, we propose new methodologies to predict and improve scaling properties via tail-guided search. By estimating the tail distribution of rewards, our method predicts the scaling law of LLMs without the need for exhaustive evaluations. Leveraging this prediction tool, we introduce Scaling-Law Guided (SLG) Search, a new test-time algorithm that dynamically allocates compute to identify and exploit intermediate states with the highest predicted potential. We theoretically prove that SLG achieves vanishing regret compared to perfect-information oracles, and achieves expected rewards that would otherwise require a polynomially larger compute budget required when using BoN. Empirically, we validate our framework across different LLMs and reward models, confirming that tail-guided allocation consistently achieves higher reward yields than Best-of-$N$ under identical compute budgets. Our code is available at https://github.com/PotatoJnny/Scaling-Law-Guided-search.",
+      "date": "2026-02-01",
+      "DOI": "10.48550/arXiv.2602.01485",
+      "citationKey": "li2026Predicting",
+      "url": "http://arxiv.org/abs/2602.01485",
+      "accessDate": "2026-09-22T17:09:32Z",
+      "libraryCatalog": "arXiv.org",
+      "extra": "arXiv:2602.01485 [cs.LG]",
+      "repository": "arXiv",
+      "archiveID": "arXiv:2602.01485",
+      "creators": [
+        {
+          "firstName": "Muheng",
+          "lastName": "Li",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Jian",
+          "lastName": "Qian",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Wenlong",
+          "lastName": "Mou",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [
+        {
+          "tag": "Computer Science - Machine Learning",
+          "type": 1
+        },
+        {
+          "tag": "Statistics - Machine Learning",
+          "type": 1
+        }
+      ],
+      "relations": {},
+      "dateAdded": "2026-09-22T17:09:32Z",
+      "dateModified": "2026-09-22T17:09:32Z",
+      "uri": "http://zotero.org/users/5634105/items/6SMUFDUP",
+      "itemID": 3450,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/2602.01485v1",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-22T17:09:32Z",
+          "dateModified": "2026-09-22T17:09:32Z",
+          "uri": "http://zotero.org/users/5634105/items/DLA7AXFD",
+          "path": "/home/tnn/Zotero/storage/DLA7AXFD/Li et al. - 2026 - Predicting and improving test-time scaling laws via reward tail-guided search.pdf",
+          "select": "zotero://select/library/items/DLA7AXFD"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "",
+      "itemKey": "6SMUFDUP",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/6SMUFDUP"
     },
     {
       "key": "CSU73BWX",
@@ -42429,6 +42571,74 @@
       "itemKey": "BN34V6HA",
       "libraryID": 1,
       "select": "zotero://select/library/items/BN34V6HA"
+    },
+    {
+      "key": "D3IWAQZ2",
+      "version": 14813,
+      "itemType": "preprint",
+      "title": "Optimal Value Inference for Reinforcement Learning",
+      "abstractNote": "We study offline inference for the optimal value in reinforcement learning under finite state and action spaces. Two new nuisances are derived as fixed points of a self-induced Bellman equation, in which we approximate the maximum Bellman operator by its softmax correspondence. We propose a debiased estimator through the Neyman orthogonality and establish its asymptotic normality under diverging horizons even when the behavior policy changes with time, as long as the nuisances have the statistical rates that can be achieved by many machine learning methods. We provide a concrete estimating procedure for these nuisances and show they can lead to valid inference. Synthetic experiments validate the numerical performance of our inference method, and we implement it in real-life decision-making problems, including bike repositioning and AI agentic tool use.",
+      "date": "2026-09-17",
+      "DOI": "10.48550/arXiv.2609.09981",
+      "citationKey": "lu2026Optimal",
+      "url": "http://arxiv.org/abs/2609.09981",
+      "accessDate": "2026-09-22T22:31:18Z",
+      "libraryCatalog": "arXiv.org",
+      "extra": "arXiv:2609.09981 [stat.ML]",
+      "repository": "arXiv",
+      "archiveID": "arXiv:2609.09981",
+      "creators": [
+        {
+          "firstName": "Nan",
+          "lastName": "Lu",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Ethan",
+          "lastName": "Lee",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "James M.",
+          "lastName": "Robins",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "David",
+          "lastName": "Simchi-Levi",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Junwei",
+          "lastName": "Lu",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-22T22:31:18Z",
+      "dateModified": "2026-09-22T22:31:21Z",
+      "uri": "http://zotero.org/users/5634105/items/D3IWAQZ2",
+      "itemID": 3458,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Full Text PDF",
+          "url": "https://arxiv.org/pdf/2609.09981",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-22T22:31:20Z",
+          "dateModified": "2026-09-22T22:31:20Z",
+          "uri": "http://zotero.org/users/5634105/items/EZK2JR4D",
+          "path": "/home/tnn/Zotero/storage/EZK2JR4D/Lu et al. - 2026 - Optimal Value Inference for Reinforcement Learning.pdf",
+          "select": "zotero://select/library/items/EZK2JR4D"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "",
+      "itemKey": "D3IWAQZ2",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/D3IWAQZ2"
     },
     {
       "key": "4KPF2ANS",
@@ -46880,6 +47090,73 @@
       "itemKey": "8NWQG8WA",
       "libraryID": 1,
       "select": "zotero://select/library/items/8NWQG8WA"
+    },
+    {
+      "key": "CFMW2YII",
+      "version": 14849,
+      "itemType": "preprint",
+      "title": "VIPeR: Provably Efficient Algorithm for Offline RL with Neural Function Approximation",
+      "abstractNote": "We propose a novel algorithm for offline reinforcement learning called Value Iteration with Perturbed Rewards (VIPeR), which amalgamates the pessimism principle with random perturbations of the value function. Most current offline RL algorithms explicitly construct statistical confidence regions to obtain pessimism via lower confidence bounds (LCB), which cannot easily scale to complex problems where a neural network is used to estimate the value functions. Instead, VIPeR implicitly obtains pessimism by simply perturbing the offline data multiple times with carefully-designed i.i.d. Gaussian noises to learn an ensemble of estimated state-action {value functions} and acting greedily with respect to the minimum of the ensemble. The estimated state-action values are obtained by fitting a parametric model (e.g., neural networks) to the perturbed datasets using gradient descent. As a result, VIPeR only needs $\\mathcal{O}(1)$ time complexity for action selection, while LCB-based algorithms require at least $Ω(K^2)$, where $K$ is the total number of trajectories in the offline data. We also propose a novel data-splitting technique that helps remove a factor involving the log of the covering number in our bound. We prove that VIPeR yields a provable uncertainty quantifier with overparameterized neural networks and enjoys a bound on sub-optimality of $\\tilde{\\mathcal{O}}( { κH^{5/2} \\tilde{d} }/{\\sqrt{K}})$, where $\\tilde{d}$ is the effective dimension, $H$ is the horizon length and $κ$ measures the distributional shift. We corroborate the statistical and computational efficiency of VIPeR with an empirical evaluation on a wide set of synthetic and real-world datasets. To the best of our knowledge, VIPeR is the first algorithm for offline RL that is provably efficient for general Markov decision processes (MDPs) with neural network function approximation.",
+      "date": "2023-03-04",
+      "DOI": "10.48550/arXiv.2302.12780",
+      "citationKey": "nguyen-tang2023VIPeR",
+      "url": "http://arxiv.org/abs/2302.12780",
+      "accessDate": "2026-10-23T20:56:09Z",
+      "shortTitle": "VIPeR",
+      "libraryCatalog": "arXiv.org",
+      "extra": "arXiv:2302.12780 [cs.LG]",
+      "repository": "arXiv",
+      "archiveID": "arXiv:2302.12780",
+      "creators": [
+        {
+          "firstName": "Thanh",
+          "lastName": "Nguyen-Tang",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Raman",
+          "lastName": "Arora",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-10-23T20:56:09Z",
+      "dateModified": "2026-10-23T20:56:27Z",
+      "uri": "http://zotero.org/users/5634105/items/CFMW2YII",
+      "itemID": 3462,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Full Text PDF",
+          "url": "https://arxiv.org/pdf/2302.12780",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-10-23T20:56:09Z",
+          "dateModified": "2026-10-23T20:56:09Z",
+          "uri": "http://zotero.org/users/5634105/items/LYSNZ9QI",
+          "path": "/home/tnn/Zotero/storage/LYSNZ9QI/Nguyen-Tang and Arora - 2023 - VIPeR Provably Efficient Algorithm for Offline RL with Neural Function Approximation.pdf",
+          "select": "zotero://select/library/items/LYSNZ9QI"
+        }
+      ],
+      "notes": [
+        {
+          "key": "V7LTP52I",
+          "version": 14851,
+          "itemType": "note",
+          "parentItem": "CFMW2YII",
+          "note": "Comment: top-25%-noble ICLR'23; code: https://github.com/thanhnguyentang/neural-offline-rl; v2: change title",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-10-23T20:56:09Z",
+          "dateModified": "2026-10-23T20:56:09Z",
+          "uri": "http://zotero.org/users/5634105/items/V7LTP52I"
+        }
+      ],
+      "autoJournalAbbreviation": "",
+      "itemKey": "CFMW2YII",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/CFMW2YII"
     },
     {
       "key": "RM7Y495J",
@@ -54784,6 +55061,67 @@
       "select": "zotero://select/library/items/SUK9W9FB"
     },
     {
+      "key": "24Y6R8LC",
+      "version": 14762,
+      "itemType": "conferencePaper",
+      "title": "Improved Offline Contextual Bandits with Second-Order Bounds: Betting and Freezing",
+      "abstractNote": "We consider off-policy selection and learning in contextual bandits, where the learner aims to select or train a reward-maximizing policy using data collected by a fixed behavior policy. Our contribution is two-fold. First, we propose a novel off-policy selection method that leverages a new betting-based confidence bound applied to an inverse propensity weight sequence. Our theoretical analysis reveals that this method achieves a significantly improved, variance-adaptive guarantee over prior work. Second, we propose a novel and generic condition on the optimization objective for off-policy learning that strikes a different balance between bias and variance. One special case, which we call freezing, tends to induce low variance, which is preferred in small-data regimes. Our analysis shows that it matches the best existing guarantees. In our empirical study, our selection method outperforms existing methods, and freezing exhibits improved performance in small-sample regimes.",
+      "date": "2025-07-14",
+      "DOI": "10.48550/arXiv.2502.10826",
+      "citationKey": "ryu2025Improved",
+      "url": "http://arxiv.org/abs/2502.10826",
+      "accessDate": "2026-09-22T17:00:00Z",
+      "shortTitle": "Improved Offline Contextual Bandits with Second-Order Bounds",
+      "proceedingsTitle": "Proceedings of COLT",
+      "creators": [
+        {
+          "firstName": "J. Jon",
+          "lastName": "Ryu",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Jeongyeol",
+          "lastName": "Kwon",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Benjamin",
+          "lastName": "Koppe",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Kwang-Sung",
+          "lastName": "Jun",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-22T17:00:00Z",
+      "dateModified": "2026-09-22T17:00:52Z",
+      "uri": "http://zotero.org/users/5634105/items/24Y6R8LC",
+      "itemID": 3441,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/2502.10826v2",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-22T17:00:01Z",
+          "dateModified": "2026-09-22T17:00:01Z",
+          "uri": "http://zotero.org/users/5634105/items/DEW4E3W4",
+          "path": "/home/tnn/Zotero/storage/DEW4E3W4/Ryu et al. - 2025 - Improved Offline Contextual Bandits with Second-Order Bounds Betting and Freezing.pdf",
+          "select": "zotero://select/library/items/DEW4E3W4"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Proc. COLT",
+      "itemKey": "24Y6R8LC",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/24Y6R8LC"
+    },
+    {
       "key": "97FH73SK",
       "version": 13613,
       "itemType": "conferencePaper",
@@ -59824,6 +60162,75 @@
       "select": "zotero://select/library/items/QXXHR589"
     },
     {
+      "key": "B5G79TXY",
+      "version": 14753,
+      "itemType": "conferencePaper",
+      "title": "Revisiting the Softmax Bellman Operator: New Benefits and New Perspective",
+      "abstractNote": "The impact of softmax on the value function itself in reinforcement learning (RL) is often viewed as problematic because it leads to sub-optimal value (or Q) functions and interferes with the contraction properties of the Bellman operator. Surprisingly, despite these concerns, and independent of its effect on exploration, the softmax Bellman operator when combined with Deep Q-learning, leads to Q-functions with superior policies in practice, even outperforming its double Q-learning counterpart. To better understand how and why this occurs, we revisit theoretical properties of the softmax Bellman operator, and prove that $(i)$ it converges to the standard Bellman operator exponentially fast in the inverse temperature parameter, and $(ii)$ the distance of its Q function from the optimal one can be bounded. These alone do not explain its superior performance, so we also show that the softmax operator can reduce the overestimation error, which may give some insight into why a sub-optimal operator leads to better performance in the presence of value function approximation. A comparison among different Bellman operators is then presented, showing the trade-offs when selecting them.",
+      "date": "2019-05-19",
+      "DOI": "10.48550/arXiv.1812.00456",
+      "citationKey": "song2019Revisiting",
+      "url": "http://arxiv.org/abs/1812.00456",
+      "accessDate": "2026-09-22T16:58:53Z",
+      "shortTitle": "Revisiting the Softmax Bellman Operator",
+      "proceedingsTitle": "Proceedings of ICML",
+      "creators": [
+        {
+          "firstName": "Zhao",
+          "lastName": "Song",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Ronald E.",
+          "lastName": "Parr",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Lawrence",
+          "lastName": "Carin",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [],
+      "relations": {},
+      "dateAdded": "2026-09-22T16:58:53Z",
+      "dateModified": "2026-09-22T16:59:37Z",
+      "uri": "http://zotero.org/users/5634105/items/B5G79TXY",
+      "itemID": 3438,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/1812.00456v2",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-22T16:58:55Z",
+          "dateModified": "2026-09-22T16:58:55Z",
+          "uri": "http://zotero.org/users/5634105/items/2GEFP5BJ",
+          "path": "/home/tnn/Zotero/storage/2GEFP5BJ/Song et al. - 2019 - Revisiting the Softmax Bellman Operator New Benefits and New Perspective.pdf",
+          "select": "zotero://select/library/items/2GEFP5BJ"
+        }
+      ],
+      "notes": [
+        {
+          "key": "RCYF8HNF",
+          "version": 14745,
+          "itemType": "note",
+          "parentItem": "B5G79TXY",
+          "note": "Comment: To appear in ICML 2019",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-22T16:58:53Z",
+          "dateModified": "2026-09-22T16:58:53Z",
+          "uri": "http://zotero.org/users/5634105/items/RCYF8HNF"
+        }
+      ],
+      "autoJournalAbbreviation": "Proc. ICML",
+      "itemKey": "B5G79TXY",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/B5G79TXY"
+    },
+    {
       "key": "JBRXJHB9",
       "version": 14229,
       "itemType": "conferencePaper",
@@ -63075,6 +63482,88 @@
       "itemKey": "WK2CMA5X",
       "libraryID": 1,
       "select": "zotero://select/library/items/WK2CMA5X"
+    },
+    {
+      "key": "9RMU6T8R",
+      "version": 14776,
+      "itemType": "conferencePaper",
+      "title": "Epsilon–First Policies for Budget–Limited Multi-Armed Bandits",
+      "abstractNote": "We introduce the budget&ndash;limited multi&ndash;armed bandit (MAB),  which captures situations where a learner&rsquo;s actions are costly  and constrained by a fixed budget that is incommensurable  with the rewards earned from the bandit machine, and then  describe a first algorithm for solving it. Since the learner has  a budget, the problem&rsquo;s duration is finite. Consequently an  optimal exploitation policy is not to pull the optimal arm repeatedly, but to pull the combination of arms that maximises  the agent&rsquo;s total reward within the budget. As such, the rewards  for all arms must be estimated, because any of them  may appear in the optimal combination. This difference from  existing MABs means that new approaches to maximising the  total reward are required. To this end, we propose an epsilon&ndash;first  algorithm, in which the first epsilon of the budget is used solely  to learn the arms&rsquo; rewards (exploration), while the remaining  1 &minus; epsilon is used to maximise the received reward based on those estimates (exploitation). We derive bounds on the algorithm&rsquo;s  loss for generic and uniform exploration methods, and compare  its performance with traditional MAB algorithms under  various distributions of rewards and costs, showing that it outperforms  the others by up to 50%.",
+      "date": "2010-07-04",
+      "DOI": "10.1609/aaai.v24i1.7758",
+      "citationKey": "tran-thanh2010Epsilon",
+      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/7758",
+      "accessDate": "2026-09-22T17:01:54Z",
+      "volume": "24",
+      "pages": "1211-1216",
+      "ISSN": "2374-3468",
+      "proceedingsTitle": "Proceedings of AAAI",
+      "issue": "1",
+      "creators": [
+        {
+          "firstName": "Long",
+          "lastName": "Tran-Thanh",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Archie",
+          "lastName": "Chapman",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Enrique Munoz de",
+          "lastName": "Cote",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Alex",
+          "lastName": "Rogers",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Nicholas R.",
+          "lastName": "Jennings",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [
+        {
+          "tag": "multi-armed bandits",
+          "type": 1
+        },
+        {
+          "tag": "sequential decision making",
+          "type": 1
+        },
+        {
+          "tag": "unsupervised learning",
+          "type": 1
+        }
+      ],
+      "relations": {},
+      "dateAdded": "2026-09-22T17:01:54Z",
+      "dateModified": "2026-09-22T17:03:32Z",
+      "uri": "http://zotero.org/users/5634105/items/9RMU6T8R",
+      "itemID": 3444,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Full Text PDF",
+          "url": "https://ojs.aaai.org/index.php/AAAI/article/download/7758/7618",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-22T17:01:54Z",
+          "dateModified": "2026-09-22T17:01:54Z",
+          "uri": "http://zotero.org/users/5634105/items/7SJXJLD2",
+          "path": "/home/tnn/Zotero/storage/7SJXJLD2/Tran-Thanh et al. - 2010 - Epsilon–First Policies for Budget–Limited Multi-Armed Bandits.pdf",
+          "select": "zotero://select/library/items/7SJXJLD2"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "Proc. AAAI",
+      "itemKey": "9RMU6T8R",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/9RMU6T8R"
     },
     {
       "key": "4LRGBR22",
@@ -69923,6 +70412,74 @@
       "select": "zotero://select/library/items/P9JN65RK"
     },
     {
+      "key": "T3Y9RAGX",
+      "version": 14780,
+      "itemType": "preprint",
+      "title": "Stochastically Constrained Best Arm Identification with Thompson Sampling",
+      "abstractNote": "We consider the problem of the best arm identification in the presence of stochastic constraints, where there is a finite number of arms associated with multiple performance measures. The goal is to identify the arm that optimizes the objective measure subject to constraints on the remaining measures. We will explore the popular idea of Thompson sampling (TS) as a means to solve it. To the best of our knowledge, it is the first attempt to extend TS to this problem. We will design a TS-based sampling algorithm, establish its asymptotic optimality in the rate of posterior convergence, and demonstrate its superior performance using numerical examples.",
+      "date": "2025-01-07",
+      "DOI": "10.48550/arXiv.2501.03877",
+      "citationKey": "yang2025Stochastically",
+      "url": "http://arxiv.org/abs/2501.03877",
+      "accessDate": "2026-09-22T17:07:28Z",
+      "libraryCatalog": "arXiv.org",
+      "extra": "arXiv:2501.03877 [cs.LG]",
+      "repository": "arXiv",
+      "archiveID": "arXiv:2501.03877",
+      "creators": [
+        {
+          "firstName": "Le",
+          "lastName": "Yang",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Siyang",
+          "lastName": "Gao",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Cheng",
+          "lastName": "Li",
+          "creatorType": "author"
+        },
+        {
+          "firstName": "Yi",
+          "lastName": "Wang",
+          "creatorType": "author"
+        }
+      ],
+      "tags": [
+        {
+          "tag": "Computer Science - Machine Learning",
+          "type": 1
+        }
+      ],
+      "relations": {},
+      "dateAdded": "2026-09-22T17:07:28Z",
+      "dateModified": "2026-09-22T17:07:28Z",
+      "uri": "http://zotero.org/users/5634105/items/T3Y9RAGX",
+      "itemID": 3446,
+      "attachments": [
+        {
+          "itemType": "attachment",
+          "title": "Preprint PDF",
+          "url": "http://arxiv.org/pdf/2501.03877v1",
+          "tags": [],
+          "relations": {},
+          "dateAdded": "2026-09-22T17:07:29Z",
+          "dateModified": "2026-09-22T17:07:29Z",
+          "uri": "http://zotero.org/users/5634105/items/2AZCPJJJ",
+          "path": "/home/tnn/Zotero/storage/2AZCPJJJ/Yang et al. - 2025 - Stochastically Constrained Best Arm Identification with Thompson Sampling.pdf",
+          "select": "zotero://select/library/items/2AZCPJJJ"
+        }
+      ],
+      "notes": [],
+      "autoJournalAbbreviation": "",
+      "itemKey": "T3Y9RAGX",
+      "libraryID": 1,
+      "select": "zotero://select/library/items/T3Y9RAGX"
+    },
+    {
       "key": "79KACFEA",
       "version": 14322,
       "itemType": "conferencePaper",
@@ -71059,20 +71616,7 @@
           "select": "zotero://select/library/items/NV4AHL87"
         }
       ],
-      "notes": [
-        {
-          "key": "S9DUP2SI",
-          "version": 14625,
-          "itemType": "note",
-          "parentItem": "FEAHWJZL",
-          "note": "Comment: Bug fixes",
-          "tags": [],
-          "relations": {},
-          "dateAdded": "2026-09-08T21:05:14Z",
-          "dateModified": "2026-09-08T21:05:14Z",
-          "uri": "http://zotero.org/users/5634105/items/S9DUP2SI"
-        }
-      ],
+      "notes": [],
       "autoJournalAbbreviation": "",
       "itemKey": "FEAHWJZL",
       "libraryID": 1,
